@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.Windows.Media.Animation;
 using FontAwesome.Sharp;
 using LogisticsOnDemmand_Proyecto.Capa_Modelo;
+using LogisticsOnDemmand_Proyecto.Capa_Presentacion.Login;
+using LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras;
 using LogisticsOnDemmand_Proyecto.Utility_Class;
 
 namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
@@ -28,10 +30,12 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
         {
             usuariologueado = objusuario;
             InitializeComponent();
+            txtuser.Text = usuariologueado.Email.ToString();
             leftBorderbtn = new Panel();
             leftBorderbtn.Size = new Size(7,60);
             pnlcontenedormenu.Controls.Add(leftBorderbtn);
         }
+
         #endregion
 
         #region Metodos
@@ -96,6 +100,62 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
         private void btncerrarsesion_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void btnrutas_Click(object sender, EventArgs e)
+        {
+            Form openform = Application.OpenForms["frm_Rutas"];
+            if (openform != null)
+            {
+                openform.WindowState = FormWindowState.Normal;
+                openform.Show();
+            }
+            else
+            {
+                Form open = new frm_Rutas();
+                open.Show();
+            }
+        }
+        private void btnusuarios_Click(object sender, EventArgs e)
+        {
+            Form openform = Application.OpenForms["frm_Usuarios"];
+            if (openform != null)
+            {
+                openform.WindowState = FormWindowState.Normal;
+                openform.Show();
+            }
+            else
+            {
+                Form open = new frm_Usuarios();
+                open.Show();
+            }
+        }
+        private void btnvehiculos_Click(object sender, EventArgs e)
+        {
+            Form openform = Application.OpenForms["frm_Vehiculos"];
+            if (openform != null)
+            {
+                openform.WindowState = FormWindowState.Normal;
+                openform.Show();
+            }
+            else
+            {
+                Form open = new frm_Vehiculos();
+                open.Show();
+            }
+        }
+        private void btnajustes_Click(object sender, EventArgs e)
+        {
+            Form openform = Application.OpenForms["frm_Ajustes"];
+            if (openform != null)
+            {
+                openform.WindowState = FormWindowState.Normal;
+                openform.Show();
+            }
+            else
+            {
+                Form open = new frm_Ajustes();
+                open.Show();
+            }
         }
         #endregion
 

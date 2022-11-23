@@ -9,7 +9,7 @@ using Firebase.Database.Query;
 
 namespace LogisticsOnDemmand_Proyecto.Capa_Datos
 {
-    public class CD_Usuarios
+    public class CD_Usuarios: CD_ConexionFireBase
     {
         #region CRUD
 
@@ -26,7 +26,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
         {
             try
             {
-                return (await CD_ConexionFireBase.FireBase_Connect
+                return (await FireBase_Connect
                     .Child("Usuarios")
                     .OrderByKey()
                     .OnceAsync<CM_Usuarios>())
@@ -36,7 +36,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
                         IdUsuario = datos.Object.IdUsuario,
                         NombreCompleto = datos.Object.NombreCompleto,
                         Email = datos.Object.Email,
-                        
                         Estado = datos.Object.Estado,
                         FechaRegistro = datos.Object.FechaRegistro
                     }).ToList();
@@ -45,7 +44,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
             {
                 MessageBox.Show(ex.Message, "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return new List<CM_Usuarios>();
-                
             }
         }
         #endregion

@@ -215,6 +215,30 @@
     <Compile Include="Capa_Presentacion\Login\Registro.Designer.cs">
       <DependentUpon>Registro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Capa_Presentacion\Maestras\frm_Rutas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Capa_Presentacion\Maestras\frm_Rutas.Designer.cs">
+      <DependentUpon>frm_Rutas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Capa_Presentacion\Maestras\frm_Usuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Capa_Presentacion\Maestras\frm_Usuarios.Designer.cs">
+      <DependentUpon>frm_Usuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Capa_Presentacion\Maestras\frm_Vehiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Capa_Presentacion\Maestras\frm_Vehiculos.Designer.cs">
+      <DependentUpon>frm_Vehiculos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Capa_Presentacion\Menus\frm_Ajustes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Capa_Presentacion\Menus\frm_Ajustes.Designer.cs">
+      <DependentUpon>frm_Ajustes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Capa_Presentacion\Menus\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Capa_Presentacion\Login\Registro.resx">
       <DependentUpon>Registro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Capa_Presentacion\Menus\frm_Ajustes.resx">
+      <DependentUpon>frm_Ajustes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Capa_Presentacion\Menus\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>

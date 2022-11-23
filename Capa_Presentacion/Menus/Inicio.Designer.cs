@@ -36,11 +36,18 @@
             this.btnusuarios = new FontAwesome.Sharp.IconButton();
             this.btnrutas = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pnlcontenedor = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pnlcontenedorbarramenu = new System.Windows.Forms.Panel();
+            this.txtuser = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.pnlcontenedormenu.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pnlcontenedor.SuspendLayout();
+            this.pnlcontenedorbarramenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlcontenedormenu
@@ -55,7 +62,7 @@
             this.pnlcontenedormenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlcontenedormenu.Location = new System.Drawing.Point(0, 0);
             this.pnlcontenedormenu.Name = "pnlcontenedormenu";
-            this.pnlcontenedormenu.Size = new System.Drawing.Size(220, 703);
+            this.pnlcontenedormenu.Size = new System.Drawing.Size(220, 674);
             this.pnlcontenedormenu.TabIndex = 1;
             // 
             // btncerrarsesion
@@ -70,7 +77,7 @@
             this.btncerrarsesion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btncerrarsesion.IconSize = 42;
             this.btncerrarsesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btncerrarsesion.Location = new System.Drawing.Point(0, 643);
+            this.btncerrarsesion.Location = new System.Drawing.Point(0, 614);
             this.btncerrarsesion.Name = "btncerrarsesion";
             this.btncerrarsesion.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btncerrarsesion.Size = new System.Drawing.Size(220, 60);
@@ -104,6 +111,7 @@
             this.btnajustes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnajustes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnajustes.UseVisualStyleBackColor = true;
+            this.btnajustes.Click += new System.EventHandler(this.btnajustes_Click);
             this.btnajustes.MouseLeave += new System.EventHandler(this.btnrutas_MouseLeave);
             this.btnajustes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnrutas_MouseMove);
             // 
@@ -128,6 +136,7 @@
             this.btnvehiculos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnvehiculos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnvehiculos.UseVisualStyleBackColor = true;
+            this.btnvehiculos.Click += new System.EventHandler(this.btnvehiculos_Click);
             this.btnvehiculos.MouseLeave += new System.EventHandler(this.btnrutas_MouseLeave);
             this.btnvehiculos.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnrutas_MouseMove);
             // 
@@ -153,6 +162,7 @@
             this.btnusuarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnusuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnusuarios.UseVisualStyleBackColor = false;
+            this.btnusuarios.Click += new System.EventHandler(this.btnusuarios_Click);
             this.btnusuarios.MouseLeave += new System.EventHandler(this.btnrutas_MouseLeave);
             this.btnusuarios.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnrutas_MouseMove);
             // 
@@ -177,6 +187,7 @@
             this.btnrutas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnrutas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnrutas.UseVisualStyleBackColor = true;
+            this.btnrutas.Click += new System.EventHandler(this.btnrutas_Click);
             this.btnrutas.MouseLeave += new System.EventHandler(this.btnrutas_MouseLeave);
             this.btnrutas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnrutas_MouseMove);
             // 
@@ -190,16 +201,6 @@
             this.panel2.Size = new System.Drawing.Size(220, 157);
             this.panel2.TabIndex = 0;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(5, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(210, 99);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -211,17 +212,87 @@
             this.label1.Text = "Logistic On Demmand";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(5, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(210, 99);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pnlcontenedor
+            // 
+            this.pnlcontenedor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlcontenedor.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pnlcontenedor.Controls.Add(this.label2);
+            this.pnlcontenedor.Location = new System.Drawing.Point(226, 110);
+            this.pnlcontenedor.Name = "pnlcontenedor";
+            this.pnlcontenedor.Size = new System.Drawing.Size(954, 560);
+            this.pnlcontenedor.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(221, 167);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(272, 23);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Contenedor maestros";
+            // 
+            // pnlcontenedorbarramenu
+            // 
+            this.pnlcontenedorbarramenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlcontenedorbarramenu.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlcontenedorbarramenu.Controls.Add(this.txtuser);
+            this.pnlcontenedorbarramenu.Controls.Add(this.label3);
+            this.pnlcontenedorbarramenu.Location = new System.Drawing.Point(226, 3);
+            this.pnlcontenedorbarramenu.Name = "pnlcontenedorbarramenu";
+            this.pnlcontenedorbarramenu.Size = new System.Drawing.Size(954, 100);
+            this.pnlcontenedorbarramenu.TabIndex = 3;
+            // 
+            // txtuser
+            // 
+            this.txtuser.BackColor = System.Drawing.SystemColors.Control;
+            this.txtuser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtuser.ForeColor = System.Drawing.Color.Black;
+            this.txtuser.Location = new System.Drawing.Point(765, 73);
+            this.txtuser.Name = "txtuser";
+            this.txtuser.Size = new System.Drawing.Size(186, 23);
+            this.txtuser.TabIndex = 2;
+            this.txtuser.Text = "lblusuariologueado";
+            this.txtuser.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(221, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(272, 23);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Contenedor barra menus";
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1192, 703);
+            this.ClientSize = new System.Drawing.Size(1187, 674);
+            this.Controls.Add(this.pnlcontenedorbarramenu);
+            this.Controls.Add(this.pnlcontenedor);
             this.Controls.Add(this.pnlcontenedormenu);
             this.Name = "Inicio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.pnlcontenedormenu.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.pnlcontenedor.ResumeLayout(false);
+            this.pnlcontenedorbarramenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -237,5 +308,10 @@
         private FontAwesome.Sharp.IconButton btnusuarios;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pnlcontenedor;
+        private System.Windows.Forms.Panel pnlcontenedorbarramenu;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label txtuser;
     }
 }
