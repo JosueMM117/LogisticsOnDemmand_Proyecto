@@ -29,24 +29,22 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtconfirmarclave = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtnombrecompleto = new System.Windows.Forms.TextBox();
             this.btnregistrar = new FontAwesome.Sharp.IconButton();
             this.label3 = new System.Windows.Forms.Label();
             this.txtemail = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtclave = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtnombrecompleto = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtconfirmarclave = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.txtconfirmarclave);
@@ -58,10 +56,66 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtclave);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(12, 29);
+            this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(368, 360);
+            this.panel1.Size = new System.Drawing.Size(368, 359);
             this.panel1.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.DarkGray;
+            this.label6.Location = new System.Drawing.Point(35, 275);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(299, 23);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "\"Al menos 6 caracteres\"";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(35, 217);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(299, 22);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Confirmar Contraseña:";
+            // 
+            // txtconfirmarclave
+            // 
+            this.txtconfirmarclave.BackColor = System.Drawing.Color.White;
+            this.txtconfirmarclave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtconfirmarclave.Cursor = System.Windows.Forms.Cursors.Default;
+            this.txtconfirmarclave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtconfirmarclave.ForeColor = System.Drawing.Color.Black;
+            this.txtconfirmarclave.Location = new System.Drawing.Point(35, 242);
+            this.txtconfirmarclave.Name = "txtconfirmarclave";
+            this.txtconfirmarclave.Size = new System.Drawing.Size(299, 26);
+            this.txtconfirmarclave.TabIndex = 13;
+            this.txtconfirmarclave.TextChanged += new System.EventHandler(this.txtconfirmarclave_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(35, 49);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(300, 22);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Nombre Completo:";
+            // 
+            // txtnombrecompleto
+            // 
+            this.txtnombrecompleto.BackColor = System.Drawing.Color.White;
+            this.txtnombrecompleto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtnombrecompleto.Cursor = System.Windows.Forms.Cursors.Default;
+            this.txtnombrecompleto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtnombrecompleto.ForeColor = System.Drawing.Color.Black;
+            this.txtnombrecompleto.Location = new System.Drawing.Point(36, 74);
+            this.txtnombrecompleto.Name = "txtnombrecompleto";
+            this.txtnombrecompleto.Size = new System.Drawing.Size(299, 26);
+            this.txtnombrecompleto.TabIndex = 11;
             // 
             // btnregistrar
             // 
@@ -139,70 +193,17 @@
             this.label1.Text = "Registro de Usuario";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // txtnombrecompleto
-            // 
-            this.txtnombrecompleto.BackColor = System.Drawing.Color.White;
-            this.txtnombrecompleto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtnombrecompleto.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtnombrecompleto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnombrecompleto.ForeColor = System.Drawing.Color.Black;
-            this.txtnombrecompleto.Location = new System.Drawing.Point(36, 74);
-            this.txtnombrecompleto.Name = "txtnombrecompleto";
-            this.txtnombrecompleto.Size = new System.Drawing.Size(299, 26);
-            this.txtnombrecompleto.TabIndex = 11;
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(35, 49);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(300, 22);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Nombre Completo:";
-            // 
-            // label5
-            // 
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(35, 217);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(299, 22);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "Confirmar Contraseña:";
-            // 
-            // txtconfirmarclave
-            // 
-            this.txtconfirmarclave.BackColor = System.Drawing.Color.White;
-            this.txtconfirmarclave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtconfirmarclave.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtconfirmarclave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtconfirmarclave.ForeColor = System.Drawing.Color.Black;
-            this.txtconfirmarclave.Location = new System.Drawing.Point(35, 242);
-            this.txtconfirmarclave.Name = "txtconfirmarclave";
-            this.txtconfirmarclave.Size = new System.Drawing.Size(299, 26);
-            this.txtconfirmarclave.TabIndex = 13;
-            this.txtconfirmarclave.TextChanged += new System.EventHandler(this.txtconfirmarclave_TextChanged);
-            // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.DarkGray;
-            this.label6.Location = new System.Drawing.Point(35, 275);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(299, 23);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "\"Al menos 6 caracteres\"";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // Registro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.ClientSize = new System.Drawing.Size(392, 401);
+            this.ClientSize = new System.Drawing.Size(381, 371);
             this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Registro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro";

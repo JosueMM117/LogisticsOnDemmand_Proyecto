@@ -20,9 +20,12 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
     public partial class Inicio : Form
     {
         #region Atributos
+        private static IconButton MenuActivo = null;
+        private Form FormularioActivo = null;
         private IconButton currentbtn;
         private Panel leftBorderbtn;
         public static CM_Usuarios usuariologueado;
+
         #endregion
 
         #region Constructor
@@ -30,7 +33,8 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
         {
             usuariologueado = objusuario;
             InitializeComponent();
-            txtuser.Text = usuariologueado.Email.ToString();
+            txtemail.Text = usuariologueado.Email.ToString();
+            txtnombrecompleto.Text = usuariologueado.NombreCompleto.ToString();
             leftBorderbtn = new Panel();
             leftBorderbtn.Size = new Size(7,60);
             pnlcontenedormenu.Controls.Add(leftBorderbtn);
@@ -61,6 +65,8 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
                 leftBorderbtn.Location = new Point(0, currentbtn.Location.Y);
                 leftBorderbtn.Visible = true;
                 leftBorderbtn.BringToFront();
+                    
+                
             }
         }
         private void DesactivarAnimacion_BotonesManu()
@@ -70,11 +76,61 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
                 currentbtn.BackColor = Color.FromArgb(25, 25, 25);
                 currentbtn.ForeColor = Color.White;
                 currentbtn.TextAlign = ContentAlignment.MiddleLeft;
-                currentbtn.IconColor = Color.FromArgb(30, 144, 255); ;
+                currentbtn.IconColor = Color.FromArgb(30, 144, 255);
                 currentbtn.TextImageRelation = TextImageRelation.ImageBeforeText;
                 currentbtn.ImageAlign = ContentAlignment.MiddleLeft;
             }
         }
+        private void ReiniciarAnimaciones()
+        {
+            try
+            {
+                DesactivarAnimacion_BotonesManu();
+                leftBorderbtn.Visible = false;
+                iconformhijo.IconChar = IconChar.Home;
+                iconformhijo.IconColor = Color.FromArgb(30, 144, 255);
+                lbltituloformhijo.Text = "Inicio";
+                pnlcontenedor.Controls.Clear();
+                FormularioActivo.Close();
+            }
+            catch (Exception ex)
+            {
+                string mensaje = ex.Message;
+            }
+            
+        }
+        private void AbrirFormulario(Form formulariohijo)
+        {
+            FormularioActivo = formulariohijo;
+            formulariohijo.TopLevel = false;
+            formulariohijo.FormBorderStyle= FormBorderStyle.None;
+            formulariohijo.Dock = DockStyle.Fill;
+            pnlcontenedor.Controls.Add(formulariohijo);
+            pnlcontenedor.Tag = formulariohijo;
+            formulariohijo.BringToFront();
+            formulariohijo.Show();
+        }
+        //private void AbrirFormularios<T>() where T : Form, new()
+        //{
+        //    Form formulario = pnlcontenedor.Controls.OfType<T>().FirstOrDefault();
+        //    if (formulario != null)
+        //    {
+        //        //Si la instancia esta minimizada la dejamos en su estado normal
+        //        if (formulario.WindowState == FormWindowState.Normal)
+        //        {
+        //            formulario.WindowState = FormWindowState.Maximized;
+        //        }
+        //    //Si la instancia existe la pongo en primer plano
+        //    formulario.BringToFront();
+        //        return;
+        //    }
+        //    //Se abre el form
+        //    formulario = new T();
+        //    formulario.TopLevel = false;
+        //    pnlcontenedor.Controls.Add(formulario);
+        //    //pnlcontenedor.Tag = formulario;
+        //    formulario.Show();
+        //}
         #endregion
 
         #endregion
@@ -103,64 +159,107 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
         }
         private void btnrutas_Click(object sender, EventArgs e)
         {
-            Form openform = Application.OpenForms["frm_Rutas"];
-            if (openform != null)
-            {
-                openform.WindowState = FormWindowState.Normal;
-                openform.Show();
-            }
-            else
-            {
-                Form open = new frm_Rutas();
-                open.Show();
-            }
+            //Icono del form hijo actual
+            iconformhijo.IconChar = currentbtn.IconChar;
+            iconformhijo.IconColor = currentbtn.IconColor;
+            lbltituloformhijo.Text = currentbtn.Text;
+
+            AbrirFormulario(new frm_Rutas());
+            //AbrirFormulario((IconButton)sender, new frm_Rutas());
+            //Form openform = Application.OpenForms["frm_Rutas"];
+            //if (openform != null)
+            //{
+            //    openform.TopLevel = false;
+            //    pnlcontenedor.Controls.Add(openform);
+            //    //openform.WindowState = FormWindowState.Normal;
+            //    openform.Show();
+            //}
+            //else
+            //{
+            //    Form open = new frm_Rutas();
+            //    open.TopLevel = false;
+            //    pnlcontenedor.Controls.Add(open);
+            //    open.Show();
+            //}
         }
         private void btnusuarios_Click(object sender, EventArgs e)
         {
-            Form openform = Application.OpenForms["frm_Usuarios"];
-            if (openform != null)
-            {
-                openform.WindowState = FormWindowState.Normal;
-                openform.Show();
-            }
-            else
-            {
-                Form open = new frm_Usuarios();
-                open.Show();
-            }
+            //Icono del form hijo actual
+            iconformhijo.IconChar = currentbtn.IconChar;
+            iconformhijo.IconColor = currentbtn.IconColor;
+            lbltituloformhijo.Text = currentbtn.Text;
+
+            AbrirFormulario(new frm_Usuarios());
+            //Form openform = Application.OpenForms["frm_Usuarios"];
+            //if (openform != null)
+            //{
+            //    openform.TopLevel = false;
+            //    pnlcontenedor.Controls.Add(openform);
+            //    //openform.WindowState = FormWindowState.Normal;
+            //    openform.Show();
+            //}
+            //else
+            //{
+            //    Form open = new frm_Usuarios();
+            //    open.TopLevel = false;
+            //    pnlcontenedor.Controls.Add(open);
+            //    open.Show();
+            //}
         }
         private void btnvehiculos_Click(object sender, EventArgs e)
         {
-            Form openform = Application.OpenForms["frm_Vehiculos"];
-            if (openform != null)
-            {
-                openform.WindowState = FormWindowState.Normal;
-                openform.Show();
-            }
-            else
-            {
-                Form open = new frm_Vehiculos();
-                open.Show();
-            }
+            //Icono del form hijo actual
+            iconformhijo.IconChar = currentbtn.IconChar;
+            iconformhijo.IconColor = currentbtn.IconColor;
+            lbltituloformhijo.Text = currentbtn.Text;
+
+            AbrirFormulario(new frm_Vehiculos());
+            //Form openform = Application.OpenForms["frm_Vehiculos"];
+            //if (openform != null)
+            //{
+            //    openform.WindowState = FormWindowState.Normal;
+            //    openform.Show();
+            //}
+            //else
+            //{
+            //    Form open = new frm_Vehiculos();
+            //    open.Show();
+            //}
         }
         private void btnajustes_Click(object sender, EventArgs e)
         {
-            Form openform = Application.OpenForms["frm_Ajustes"];
-            if (openform != null)
-            {
-                openform.WindowState = FormWindowState.Normal;
-                openform.Show();
-            }
-            else
-            {
-                Form open = new frm_Ajustes();
-                open.Show();
-            }
+            //Icono del form hijo actual
+            iconformhijo.IconChar = currentbtn.IconChar;
+            iconformhijo.IconColor = currentbtn.IconColor;
+            lbltituloformhijo.Text = currentbtn.Text;
+
+            AbrirFormulario(new frm_Ajustes());
+
+            //Form openform = Application.OpenForms["frm_Ajustes"];
+            //if (openform != null)
+            //{
+            //    openform.WindowState = FormWindowState.Normal;
+            //    openform.Show();
+            //}
+            //else
+            //{
+            //    Form open = new frm_Ajustes();
+            //    open.Show();
+            //}
         }
-        #endregion
+        private void iconformhijo_Click(object sender, EventArgs e)
+        {
+            ReiniciarAnimaciones();
+            
+        }
 
         #endregion
 
+        #endregion
 
+        private void Inicio_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

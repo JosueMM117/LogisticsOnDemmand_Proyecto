@@ -13,7 +13,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Modelo
         public string NombreCompleto { get; set; }
         public string Email { get; set; }
         public string Clave { get; set; }
-        public bool Estado { get; set; }
+        public string Estado { get; set; }
         public DateTime FechaRegistro { get; set; }
     }
 }

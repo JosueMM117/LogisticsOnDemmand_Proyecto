@@ -30,24 +30,31 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.pnlcontenedormenu = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pnlcontenedor = new System.Windows.Forms.Panel();
+            this.pnlcontenedorbarramenu = new System.Windows.Forms.Panel();
+            this.txtnombrecompleto = new System.Windows.Forms.Label();
+            this.txtemail = new System.Windows.Forms.Label();
+            this.lbltituloformhijo = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.iconformhijo = new FontAwesome.Sharp.IconPictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btncerrarsesion = new FontAwesome.Sharp.IconButton();
             this.btnajustes = new FontAwesome.Sharp.IconButton();
             this.btnvehiculos = new FontAwesome.Sharp.IconButton();
             this.btnusuarios = new FontAwesome.Sharp.IconButton();
             this.btnrutas = new FontAwesome.Sharp.IconButton();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pnlcontenedor = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pnlcontenedorbarramenu = new System.Windows.Forms.Panel();
-            this.txtuser = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.pnlcontenedormenu.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlcontenedor.SuspendLayout();
             this.pnlcontenedorbarramenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconformhijo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlcontenedormenu
@@ -64,6 +71,134 @@
             this.pnlcontenedormenu.Name = "pnlcontenedormenu";
             this.pnlcontenedormenu.Size = new System.Drawing.Size(220, 674);
             this.pnlcontenedormenu.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(220, 157);
+            this.panel2.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(5, 110);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(210, 23);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Logistic On Demmand";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // pnlcontenedor
+            // 
+            this.pnlcontenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.pnlcontenedor.Controls.Add(this.pictureBox3);
+            this.pnlcontenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlcontenedor.Location = new System.Drawing.Point(220, 0);
+            this.pnlcontenedor.Name = "pnlcontenedor";
+            this.pnlcontenedor.Size = new System.Drawing.Size(967, 674);
+            this.pnlcontenedor.TabIndex = 2;
+            // 
+            // pnlcontenedorbarramenu
+            // 
+            this.pnlcontenedorbarramenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.pnlcontenedorbarramenu.Controls.Add(this.txtnombrecompleto);
+            this.pnlcontenedorbarramenu.Controls.Add(this.pictureBox2);
+            this.pnlcontenedorbarramenu.Controls.Add(this.iconformhijo);
+            this.pnlcontenedorbarramenu.Controls.Add(this.txtemail);
+            this.pnlcontenedorbarramenu.Controls.Add(this.lbltituloformhijo);
+            this.pnlcontenedorbarramenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlcontenedorbarramenu.Location = new System.Drawing.Point(220, 0);
+            this.pnlcontenedorbarramenu.Name = "pnlcontenedorbarramenu";
+            this.pnlcontenedorbarramenu.Size = new System.Drawing.Size(967, 80);
+            this.pnlcontenedorbarramenu.TabIndex = 3;
+            // 
+            // txtnombrecompleto
+            // 
+            this.txtnombrecompleto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtnombrecompleto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.txtnombrecompleto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtnombrecompleto.ForeColor = System.Drawing.Color.White;
+            this.txtnombrecompleto.Location = new System.Drawing.Point(554, 9);
+            this.txtnombrecompleto.Name = "txtnombrecompleto";
+            this.txtnombrecompleto.Size = new System.Drawing.Size(354, 23);
+            this.txtnombrecompleto.TabIndex = 5;
+            this.txtnombrecompleto.Text = "lblusuarionombre";
+            this.txtnombrecompleto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtemail
+            // 
+            this.txtemail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtemail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.txtemail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtemail.ForeColor = System.Drawing.Color.White;
+            this.txtemail.Location = new System.Drawing.Point(554, 29);
+            this.txtemail.Name = "txtemail";
+            this.txtemail.Size = new System.Drawing.Size(354, 25);
+            this.txtemail.TabIndex = 2;
+            this.txtemail.Text = "lblusuariologueado";
+            this.txtemail.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbltituloformhijo
+            // 
+            this.lbltituloformhijo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltituloformhijo.ForeColor = System.Drawing.Color.White;
+            this.lbltituloformhijo.Location = new System.Drawing.Point(53, 29);
+            this.lbltituloformhijo.Name = "lbltituloformhijo";
+            this.lbltituloformhijo.Size = new System.Drawing.Size(131, 47);
+            this.lbltituloformhijo.TabIndex = 1;
+            this.lbltituloformhijo.Text = "Inicio";
+            this.lbltituloformhijo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(220, 80);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(967, 10);
+            this.panel1.TabIndex = 4;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox2.Image = global::LogisticsOnDemmand_Proyecto.Properties.Resources.profile;
+            this.pictureBox2.Location = new System.Drawing.Point(914, 6);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(47, 50);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
+            // 
+            // iconformhijo
+            // 
+            this.iconformhijo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.iconformhijo.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.iconformhijo.IconChar = FontAwesome.Sharp.IconChar.Home;
+            this.iconformhijo.IconColor = System.Drawing.Color.DodgerBlue;
+            this.iconformhijo.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconformhijo.IconSize = 42;
+            this.iconformhijo.Location = new System.Drawing.Point(10, 29);
+            this.iconformhijo.Name = "iconformhijo";
+            this.iconformhijo.Size = new System.Drawing.Size(42, 47);
+            this.iconformhijo.TabIndex = 3;
+            this.iconformhijo.TabStop = false;
+            this.iconformhijo.Click += new System.EventHandler(this.iconformhijo_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox3.Image = global::LogisticsOnDemmand_Proyecto.Properties.Resources.logoapp;
+            this.pictureBox3.Location = new System.Drawing.Point(190, 217);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(548, 277);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
             // 
             // btncerrarsesion
             // 
@@ -191,27 +326,6 @@
             this.btnrutas.MouseLeave += new System.EventHandler(this.btnrutas_MouseLeave);
             this.btnrutas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnrutas_MouseMove);
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(220, 157);
-            this.panel2.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(5, 110);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(210, 23);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Logistic On Demmand";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -222,77 +336,28 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // pnlcontenedor
-            // 
-            this.pnlcontenedor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlcontenedor.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pnlcontenedor.Controls.Add(this.label2);
-            this.pnlcontenedor.Location = new System.Drawing.Point(226, 110);
-            this.pnlcontenedor.Name = "pnlcontenedor";
-            this.pnlcontenedor.Size = new System.Drawing.Size(954, 560);
-            this.pnlcontenedor.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(221, 167);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(272, 23);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Contenedor maestros";
-            // 
-            // pnlcontenedorbarramenu
-            // 
-            this.pnlcontenedorbarramenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlcontenedorbarramenu.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pnlcontenedorbarramenu.Controls.Add(this.txtuser);
-            this.pnlcontenedorbarramenu.Controls.Add(this.label3);
-            this.pnlcontenedorbarramenu.Location = new System.Drawing.Point(226, 3);
-            this.pnlcontenedorbarramenu.Name = "pnlcontenedorbarramenu";
-            this.pnlcontenedorbarramenu.Size = new System.Drawing.Size(954, 100);
-            this.pnlcontenedorbarramenu.TabIndex = 3;
-            // 
-            // txtuser
-            // 
-            this.txtuser.BackColor = System.Drawing.SystemColors.Control;
-            this.txtuser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtuser.ForeColor = System.Drawing.Color.Black;
-            this.txtuser.Location = new System.Drawing.Point(765, 73);
-            this.txtuser.Name = "txtuser";
-            this.txtuser.Size = new System.Drawing.Size(186, 23);
-            this.txtuser.TabIndex = 2;
-            this.txtuser.Text = "lblusuariologueado";
-            this.txtuser.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(221, 36);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(272, 23);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Contenedor barra menus";
-            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.ClientSize = new System.Drawing.Size(1187, 674);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlcontenedorbarramenu);
             this.Controls.Add(this.pnlcontenedor);
             this.Controls.Add(this.pnlcontenedormenu);
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Inicio_FormClosing);
             this.pnlcontenedormenu.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlcontenedor.ResumeLayout(false);
             this.pnlcontenedorbarramenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconformhijo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -310,8 +375,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlcontenedor;
         private System.Windows.Forms.Panel pnlcontenedorbarramenu;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        public System.Windows.Forms.Label txtuser;
+        private System.Windows.Forms.Label lbltituloformhijo;
+        public System.Windows.Forms.Label txtemail;
+        private FontAwesome.Sharp.IconPictureBox iconformhijo;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        public System.Windows.Forms.Label txtnombrecompleto;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
