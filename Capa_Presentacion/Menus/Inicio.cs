@@ -91,7 +91,15 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
                 iconformhijo.IconColor = Color.FromArgb(30, 144, 255);
                 lbltituloformhijo.Text = "Inicio";
                 pnlcontenedor.Controls.Clear();
-                FormularioActivo.Close();
+
+                if (!pnlcontenedor.Controls.Contains(picblogoempresa))
+                {
+                    //Task.Delay(1000);
+                }
+                else
+                    FormularioActivo.Close();
+                pnlcontenedor.Controls.Add(picblogoempresa);
+
             }
             catch (Exception ex)
             {
@@ -107,11 +115,17 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
             formulariohijo.Dock = DockStyle.Fill;
             pnlcontenedor.Controls.Add(formulariohijo);
             pnlcontenedor.Tag = formulariohijo;
-            formulariohijo.BringToFront();
             formulariohijo.Show();
         }
         //private void AbrirFormularios<T>() where T : Form, new()
         //{
+        //void radTreeView1_NodeMouseDown(object sender, RadTreeViewMouseEventArgs e)
+        //{
+        //    if (e.OriginalEventArgs.Button == MouseButtons.Right)
+        //    {
+        //        this.radTreeView1.SelectedNode = e.Node;
+        //    }
+        //}
         //    Form formulario = pnlcontenedor.Controls.OfType<T>().FirstOrDefault();
         //    if (formulario != null)
         //    {
@@ -249,8 +263,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
         }
         private void iconformhijo_Click(object sender, EventArgs e)
         {
-            ReiniciarAnimaciones();
-            
+            ReiniciarAnimaciones(); 
         }
 
         #endregion
