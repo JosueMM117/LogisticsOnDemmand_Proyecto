@@ -24,6 +24,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
         private Form FormularioActivo = null;
         private IconButton currentbtn;
         private Panel leftBorderbtn;
+        private ContextMenu opciones_menu = new ContextMenu();
+        private MenuItem mi = new MenuItem("Abrir Nuevo Nodo");
+        
         public static CM_Usuarios usuariologueado;
 
         #endregion
@@ -64,9 +67,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
                 leftBorderbtn.BackColor = colorfondo;
                 leftBorderbtn.Location = new Point(0, currentbtn.Location.Y);
                 leftBorderbtn.Visible = true;
-                leftBorderbtn.BringToFront();
-                    
-                
+                leftBorderbtn.BringToFront();   
             }
         }
         private void DesactivarAnimacion_BotonesManu()
@@ -82,7 +83,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
             }
         }
         private void ReiniciarAnimaciones()
-        {
+         {
             try
             {
                 DesactivarAnimacion_BotonesManu();
@@ -91,7 +92,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
                 iconformhijo.IconColor = Color.FromArgb(30, 144, 255);
                 lbltituloformhijo.Text = "Inicio";
                 pnlcontenedor.Controls.Clear();
-
                 if (!pnlcontenedor.Controls.Contains(picblogoempresa))
                 {
                     //Task.Delay(1000);
@@ -99,13 +99,11 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
                 else
                     FormularioActivo.Close();
                 pnlcontenedor.Controls.Add(picblogoempresa);
-
             }
             catch (Exception ex)
             {
                 string mensaje = ex.Message;
             }
-            
         }
         private void AbrirFormulario(Form formulariohijo)
         {
@@ -115,7 +113,18 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
             formulariohijo.Dock = DockStyle.Fill;
             pnlcontenedor.Controls.Add(formulariohijo);
             pnlcontenedor.Tag = formulariohijo;
+            formulariohijo.BringToFront();
             formulariohijo.Show();
+        }
+        private EventHandler AbrirNuevoNodo(Form formulario_nodo)
+        {
+            FormularioActivo = formulario_nodo;
+            formulario_nodo.StartPosition = FormStartPosition.CenterScreen;
+            formulario_nodo.FormBorderStyle = FormBorderStyle.Sizable;
+            formulario_nodo.WindowState = FormWindowState.Normal;
+            formulario_nodo.Show();
+            return null;
+            
         }
         //private void AbrirFormularios<T>() where T : Form, new()
         //{
@@ -163,6 +172,39 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
             DesactivarAnimacion_BotonesManu();
         }
 
+        private void btnrutas_MouseDown(object sender, MouseEventArgs e )
+        {
+
+            if (e.Button == MouseButtons.Right)
+            {
+                opciones_menu.MenuItems.Add(mi);
+                btnrutas.ContextMenu = opciones_menu;
+                //mi.Click += 
+                //mi.Click += AbrirNuevoNodo(new frm_Rutas());
+            }
+            //void radTreeView1_NodeMouseDown(object sender, RadTreeViewMouseEventArgs e)
+            //{
+            //if (e.OriginalEventArgs.Button == MouseButtons.Right)
+            //{
+            //    this.radTreeView1.SelectedNode = e.Node;
+            //}
+            //}
+
+        }
+        private void btnusuarios_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void btnvehiculos_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void btnajustes_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
         #endregion
 
         #region Click
@@ -268,11 +310,17 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
 
         #endregion
 
-        #endregion
-
+        #region FormClosing
         private void Inicio_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
+
+
+        #endregion
+
+        #endregion
+
+
     }
 }

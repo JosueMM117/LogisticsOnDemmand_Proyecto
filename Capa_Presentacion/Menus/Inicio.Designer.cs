@@ -119,6 +119,7 @@
             this.btnajustes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnajustes.UseVisualStyleBackColor = true;
             this.btnajustes.Click += new System.EventHandler(this.btnajustes_Click);
+            this.btnajustes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnajustes_MouseDown);
             this.btnajustes.MouseLeave += new System.EventHandler(this.btnrutas_MouseLeave);
             this.btnajustes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnrutas_MouseMove);
             // 
@@ -144,6 +145,7 @@
             this.btnvehiculos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnvehiculos.UseVisualStyleBackColor = true;
             this.btnvehiculos.Click += new System.EventHandler(this.btnvehiculos_Click);
+            this.btnvehiculos.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnvehiculos_MouseDown);
             this.btnvehiculos.MouseLeave += new System.EventHandler(this.btnrutas_MouseLeave);
             this.btnvehiculos.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnrutas_MouseMove);
             // 
@@ -170,6 +172,7 @@
             this.btnusuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnusuarios.UseVisualStyleBackColor = false;
             this.btnusuarios.Click += new System.EventHandler(this.btnusuarios_Click);
+            this.btnusuarios.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnusuarios_MouseDown);
             this.btnusuarios.MouseLeave += new System.EventHandler(this.btnrutas_MouseLeave);
             this.btnusuarios.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnrutas_MouseMove);
             // 
@@ -195,6 +198,7 @@
             this.btnrutas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnrutas.UseVisualStyleBackColor = true;
             this.btnrutas.Click += new System.EventHandler(this.btnrutas_Click);
+            this.btnrutas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnrutas_MouseDown);
             this.btnrutas.MouseLeave += new System.EventHandler(this.btnrutas_MouseLeave);
             this.btnrutas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnrutas_MouseMove);
             // 
