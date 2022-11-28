@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Firebase.Database.Query;
+using LogisticsOnDemmand_Proyecto.Capa_Negocio;
+using Firebase.Auth;
 
 namespace LogisticsOnDemmand_Proyecto.Capa_Datos
 {
@@ -31,12 +33,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
                         IdUsuario = objusuario.IdUsuario,
                         NombreCompleto = objusuario.NombreCompleto,
                         Email = objusuario.Email,
+                        Rol = objusuario.Rol,
+                        Telefono = objusuario.Telefono,
                         Estado = objusuario.Estado,
                         FechaRegistro = objusuario.FechaRegistro
                     });
                 mensaje = "Usuario registrado!";
                 return true;
-
             }
             catch (Exception ex)
             {
@@ -66,6 +69,8 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
                         IdUsuario = datos.Object.IdUsuario,
                         NombreCompleto = datos.Object.NombreCompleto,
                         Email = datos.Object.Email,
+                        Telefono = datos.Object.Telefono,
+                        Rol = datos.Object.Rol,
                         Estado = datos.Object.Estado,
                         FechaRegistro = datos.Object.FechaRegistro
                     }).ToList();
@@ -79,7 +84,34 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
         #endregion
 
         #region Actualizar
-
+        public async Task<bool> actualizar_informacionusuarios(CM_Usuarios objusuario)
+        {
+            try
+            {
+                var datos_usuario = (await FireBase_Connect
+                    .Child("Usuarios")
+                    .OnceAsync<CM_Usuarios>()).Where(b=>b.Object.IdUsuario == objusuario.IdUsuario).FirstOrDefault();
+                await FireBase_Connect
+                    .Child("Usuarios")
+                    .Child(datos_usuario.Key)
+                    .PutAsync(new CM_Usuarios()
+                    {
+                        IdUsuario = datos_usuario.Object.IdUsuario,
+                        NombreCompleto = objusuario.NombreCompleto,
+                        Email = datos_usuario.Object.Email,
+                        Telefono = objusuario.Telefono,
+                        Rol = objusuario.Rol,
+                        Estado = objusuario.Estado,
+                        FechaRegistro = datos_usuario.Object.FechaRegistro
+                    });
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
         #endregion
 
         #region Eliminar

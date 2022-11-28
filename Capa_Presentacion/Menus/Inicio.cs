@@ -24,9 +24,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
         private Form FormularioActivo = null;
         private IconButton currentbtn;
         private Panel leftBorderbtn;
-        private ContextMenu opciones_menu = new ContextMenu();
-        private MenuItem mi = new MenuItem("Abrir Nuevo Nodo");
-        
+        private readonly ContextMenu opciones_menu = new ContextMenu();
+        private readonly MenuItem mi = new MenuItem("Abrir Nuevo Nodo");
+        private Type FormularioBoton;
         public static CM_Usuarios usuariologueado;
 
         #endregion
@@ -41,6 +41,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
             leftBorderbtn = new Panel();
             leftBorderbtn.Size = new Size(7,60);
             pnlcontenedormenu.Controls.Add(leftBorderbtn);
+            mi.Click += AbrirNuevoNodo;
         }
 
         #endregion
@@ -116,15 +117,14 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
             formulariohijo.BringToFront();
             formulariohijo.Show();
         }
-        private EventHandler AbrirNuevoNodo(Form formulario_nodo)
+        private void AbrirNuevoNodo(object sender, EventArgs e)
         {
-            FormularioActivo = formulario_nodo;
-            formulario_nodo.StartPosition = FormStartPosition.CenterScreen;
-            formulario_nodo.FormBorderStyle = FormBorderStyle.Sizable;
-            formulario_nodo.WindowState = FormWindowState.Normal;
-            formulario_nodo.Show();
-            return null;
-            
+            var NewForm = Activator.CreateInstance(FormularioBoton);
+            FormularioActivo = (Form)NewForm;
+            FormularioActivo.StartPosition = FormStartPosition.CenterScreen;
+            FormularioActivo.FormBorderStyle = FormBorderStyle.Sizable;
+            FormularioActivo.WindowState = FormWindowState.Normal;
+            FormularioActivo.Show();
         }
         //private void AbrirFormularios<T>() where T : Form, new()
         //{
@@ -179,31 +179,35 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
             {
                 opciones_menu.MenuItems.Add(mi);
                 btnrutas.ContextMenu = opciones_menu;
-                //mi.Click += 
-                //mi.Click += AbrirNuevoNodo(new frm_Rutas());
+                FormularioBoton = typeof(frm_Rutas);
             }
-            //void radTreeView1_NodeMouseDown(object sender, RadTreeViewMouseEventArgs e)
-            //{
-            //if (e.OriginalEventArgs.Button == MouseButtons.Right)
-            //{
-            //    this.radTreeView1.SelectedNode = e.Node;
-            //}
-            //}
-
         }
         private void btnusuarios_MouseDown(object sender, MouseEventArgs e)
         {
-
+            if (e.Button == MouseButtons.Right)
+            {
+                opciones_menu.MenuItems.Add(mi);
+                btnusuarios.ContextMenu = opciones_menu;
+                FormularioBoton = typeof(frm_Usuarios);
+            }
         }
-
         private void btnvehiculos_MouseDown(object sender, MouseEventArgs e)
         {
-
+            if (e.Button == MouseButtons.Right)
+            {
+                opciones_menu.MenuItems.Add(mi);
+                btnvehiculos.ContextMenu = opciones_menu;
+                FormularioBoton = typeof(frm_Vehiculos);
+            }
         }
-
         private void btnajustes_MouseDown(object sender, MouseEventArgs e)
         {
-
+            if (e.Button == MouseButtons.Right)
+            {
+                opciones_menu.MenuItems.Add(mi);
+                btnajustes.ContextMenu = opciones_menu;
+                FormularioBoton = typeof(frm_Ajustes);
+            }
         }
         #endregion
 

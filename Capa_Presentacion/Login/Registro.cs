@@ -20,6 +20,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Login
         public Registro()
         {
             InitializeComponent();
+            txtnombrecompleto.Select();
         }
 
         private void txtclave_TextChanged(object sender, EventArgs e)
@@ -58,8 +59,10 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Login
                     NombreCompleto = txtnombrecompleto.Text,
                     Email = txtemail.Text,
                     Clave = txtclave.Text,
+                    Rol  = "Soporte Técnico",
+                    Telefono = "",
                     Estado = "Activo",
-                    FechaRegistro = Convert.ToDateTime(DateTime.Now.ToString("dd-mm-yyy hh:mm:ss tt"))
+                    FechaRegistro = Convert.ToDateTime(DateTime.Now.ToString("dd-MMM-yyy HH:mm:ss tt"))
                 };
                 if (txtclave.Text.Length < 6)
                 {

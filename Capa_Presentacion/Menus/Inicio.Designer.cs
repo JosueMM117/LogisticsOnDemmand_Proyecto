@@ -238,16 +238,16 @@
             this.pnlcontenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.pnlcontenedor.Controls.Add(this.picblogoempresa);
             this.pnlcontenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlcontenedor.Location = new System.Drawing.Point(220, 0);
+            this.pnlcontenedor.Location = new System.Drawing.Point(220, 90);
             this.pnlcontenedor.Name = "pnlcontenedor";
-            this.pnlcontenedor.Size = new System.Drawing.Size(967, 674);
+            this.pnlcontenedor.Size = new System.Drawing.Size(967, 584);
             this.pnlcontenedor.TabIndex = 2;
             // 
             // picblogoempresa
             // 
             this.picblogoempresa.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.picblogoempresa.Image = global::LogisticsOnDemmand_Proyecto.Properties.Resources.logoapp;
-            this.picblogoempresa.Location = new System.Drawing.Point(190, 217);
+            this.picblogoempresa.Location = new System.Drawing.Point(190, 172);
             this.picblogoempresa.Name = "picblogoempresa";
             this.picblogoempresa.Size = new System.Drawing.Size(548, 277);
             this.picblogoempresa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -346,9 +346,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.ClientSize = new System.Drawing.Size(1187, 674);
+            this.Controls.Add(this.pnlcontenedor);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlcontenedorbarramenu);
-            this.Controls.Add(this.pnlcontenedor);
             this.Controls.Add(this.pnlcontenedormenu);
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
