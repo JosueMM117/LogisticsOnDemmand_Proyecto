@@ -20,7 +20,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
         /// Registrar Usuarios
         /// </summary>
         /// <param name="objusuario"></param>
-        /// <returns>Retorna True si el registro fue insertado correctamente, en caso contrario devuelve false.</returns>
+        /// <returns>Retorna True, si el registro fue insertado correctamente, en caso contrario devuelve false.</returns>
         public bool registrar_usuarios(CM_Usuarios objusuario, out string mensaje)
         {
             try
@@ -84,6 +84,11 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
         #endregion
 
         #region Actualizar
+        /// <summary>
+        /// Actualizar Informacíon de Usuarios
+        /// </summary>
+        /// <param name="objusuario"></param>
+        /// <returns>Retorna True, si el registro fue actualizado correctamente, en caso contrario devuelve false.</returns>
         public async Task<bool> actualizar_informacionusuarios(CM_Usuarios objusuario)
         {
             try

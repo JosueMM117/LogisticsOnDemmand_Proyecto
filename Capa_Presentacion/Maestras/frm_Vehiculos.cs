@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LogisticsOnDemmand_Proyecto.Capa_Presentacion.Login;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,27 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         public frm_Vehiculos()
         {
             InitializeComponent();
+        }
+
+        private void btnhabilidad_Click(object sender, EventArgs e)
+        {
+            Form oprenform = Application.OpenForms["frm_Habilidades"];
+            if (oprenform != null)
+            {
+                oprenform.WindowState = FormWindowState.Normal;
+                oprenform.TopMost = true;
+                oprenform.ShowDialog();
+            }
+            else
+            {
+                Form open = new frm_Habilidades();
+                open.ShowDialog();
+            }
+        }
+
+        private void btnbuscarconductor_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

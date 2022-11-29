@@ -45,6 +45,15 @@
     <Reference Include="LiteDB, Version=4.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
       <HintPath>packages\LiteDB.4.1.4\lib\net40\LiteDB.dll</HintPath>
     </Reference>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
       <Private>True</Private>
@@ -201,8 +210,12 @@
   <ItemGroup>
     <Compile Include="Capa_Datos\CD_ConexionFireBase.cs" />
     <Compile Include="Capa_Datos\CD_Usuarios.cs" />
+    <Compile Include="Capa_Datos\CD_Vehiculos.cs" />
+    <Compile Include="Capa_Modelo\CM_Habilidades.cs" />
     <Compile Include="Capa_Modelo\CM_Usuarios.cs" />
+    <Compile Include="Capa_Modelo\CM_Vehiculos.cs" />
     <Compile Include="Capa_Negocio\CN_Usuarios.cs" />
+    <Compile Include="Capa_Negocio\CN_Vehiculos.cs" />
     <Compile Include="Capa_Presentacion\Login\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,6 +233,12 @@
     </Compile>
     <Compile Include="Capa_Presentacion\Maestras\frm_CambiarClave.Designer.cs">
       <DependentUpon>frm_CambiarClave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Capa_Presentacion\Maestras\frm_Habilidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Capa_Presentacion\Maestras\frm_Habilidades.Designer.cs">
+      <DependentUpon>frm_Habilidades.cs</DependentUpon>
     </Compile>
     <Compile Include="Capa_Presentacion\Maestras\frm_Rutas.cs">
       <SubType>Form</SubType>
@@ -263,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Capa_Presentacion\Maestras\frm_CambiarClave.resx">
       <DependentUpon>frm_CambiarClave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Capa_Presentacion\Maestras\frm_Habilidades.resx">
+      <DependentUpon>frm_Habilidades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Capa_Presentacion\Maestras\frm_Rutas.resx">
       <DependentUpon>frm_Rutas.cs</DependentUpon>
@@ -308,6 +330,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Capa_Presentacion\Maestras\frm_Busquedas\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
