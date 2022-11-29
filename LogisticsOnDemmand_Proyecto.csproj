@@ -228,6 +228,12 @@
     <Compile Include="Capa_Presentacion\Login\Registro.Designer.cs">
       <DependentUpon>Registro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Capa_Presentacion\Maestras\frm_Busquedas\frm_BuscarUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Capa_Presentacion\Maestras\frm_Busquedas\frm_BuscarUsuarios.Designer.cs">
+      <DependentUpon>frm_BuscarUsuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Capa_Presentacion\Maestras\frm_CambiarClave.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +286,9 @@
     <EmbeddedResource Include="Capa_Presentacion\Login\Registro.resx">
       <DependentUpon>Registro.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Capa_Presentacion\Maestras\frm_Busquedas\frm_BuscarUsuarios.resx">
+      <DependentUpon>frm_BuscarUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Capa_Presentacion\Maestras\frm_CambiarClave.resx">
       <DependentUpon>frm_CambiarClave.cs</DependentUpon>
     </EmbeddedResource>
@@ -331,8 +340,6 @@
   <ItemGroup>
     <None Include="Resources\profile.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Capa_Presentacion\Maestras\frm_Busquedas\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
