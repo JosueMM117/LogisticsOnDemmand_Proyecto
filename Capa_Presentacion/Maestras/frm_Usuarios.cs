@@ -185,8 +185,8 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 //debe indicar que no se puede inactivar dicho usuario
                 object objrol = cborol.SelectedItem;
                 string rol = cborol.GetItemText(objrol);
-                object objestado = cboestado.SelectedItem;
-                string estado = cboestado.GetItemText(objestado);
+                //object objestado = cboestado.SelectedItem;
+                //string estado = cboestado.GetItemText(objestado);
 
                 var objusuario = new CM_Usuarios()
                 {
@@ -195,7 +195,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     Email = txtemail.Text,
                     Telefono = txttelefono.Text,
                     Rol = rol,
-                    Estado = estado,
+                    Estado = cboestado.GetItemText(cboestado.SelectedItem),
                     FechaRegistro = Convert.ToDateTime(DateTime.Now.Date.ToString("dd-MMM-yyy HH:mm:ss tt"))
                 };
 

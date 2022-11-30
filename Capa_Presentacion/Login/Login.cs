@@ -97,7 +97,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Login
 
         private void Login_Load(object sender, EventArgs e)
         {
-            Task.Delay(500);
+            //Task.Delay(500);
             btnlogin_Click(sender, e);
         }
     }
