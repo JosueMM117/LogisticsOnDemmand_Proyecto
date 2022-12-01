@@ -263,6 +263,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     {
                         MessageBox.Show("El Producto no existe", "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         txtidhabilidad.SelectAll();
+                        Limpiar();
                     }
                 }
             }

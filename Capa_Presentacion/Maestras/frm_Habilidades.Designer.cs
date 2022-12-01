@@ -29,20 +29,19 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.menubotones = new System.Windows.Forms.MenuStrip();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtidhabilidad = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtdescripcion = new System.Windows.Forms.TextBox();
             this.cboestado = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtdescripcion = new System.Windows.Forms.TextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.menubotones = new System.Windows.Forms.MenuStrip();
             this.btnadicionar = new FontAwesome.Sharp.IconMenuItem();
             this.btnguardar = new FontAwesome.Sharp.IconMenuItem();
             this.btneditar = new FontAwesome.Sharp.IconMenuItem();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtidhabilidad = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.btnbuscar = new FontAwesome.Sharp.IconButton();
-            this.wToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.menubotones.SuspendLayout();
@@ -64,85 +63,6 @@
             this.panel1.Size = new System.Drawing.Size(526, 154);
             this.panel1.TabIndex = 0;
             // 
-            // panel5
-            // 
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.menubotones);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(528, 64);
-            this.panel5.TabIndex = 291;
-            // 
-            // menubotones
-            // 
-            this.menubotones.AutoSize = false;
-            this.menubotones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.menubotones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnadicionar,
-            this.btnguardar,
-            this.btneditar,
-            this.wToolStripMenuItem});
-            this.menubotones.Location = new System.Drawing.Point(0, 0);
-            this.menubotones.Name = "menubotones";
-            this.menubotones.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menubotones.Size = new System.Drawing.Size(526, 62);
-            this.menubotones.TabIndex = 291;
-            this.menubotones.Text = "menuStrip1";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(3, 70);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(82, 17);
-            this.label11.TabIndex = 292;
-            this.label11.Text = "IdHabilidad:";
-            // 
-            // txtidhabilidad
-            // 
-            this.txtidhabilidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtidhabilidad.Location = new System.Drawing.Point(87, 67);
-            this.txtidhabilidad.Name = "txtidhabilidad";
-            this.txtidhabilidad.Size = new System.Drawing.Size(82, 23);
-            this.txtidhabilidad.TabIndex = 294;
-            this.txtidhabilidad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtidhabilidad_KeyDown);
-            this.txtidhabilidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtidhabilidad_KeyPress);
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.txtidhabilidad);
-            this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.btnbuscar);
-            this.panel2.Location = new System.Drawing.Point(1, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(526, 96);
-            this.panel2.TabIndex = 295;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(3, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 17);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Descripción:";
-            // 
-            // txtdescripcion
-            // 
-            this.txtdescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtdescripcion.Location = new System.Drawing.Point(5, 31);
-            this.txtdescripcion.Name = "txtdescripcion";
-            this.txtdescripcion.Size = new System.Drawing.Size(351, 23);
-            this.txtdescripcion.TabIndex = 8;
-            // 
             // cboestado
             // 
             this.cboestado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -163,6 +83,50 @@
             this.label7.Size = new System.Drawing.Size(56, 17);
             this.label7.TabIndex = 20;
             this.label7.Text = "Estado:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(3, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 17);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Descripción:";
+            // 
+            // txtdescripcion
+            // 
+            this.txtdescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtdescripcion.Location = new System.Drawing.Point(5, 31);
+            this.txtdescripcion.Name = "txtdescripcion";
+            this.txtdescripcion.Size = new System.Drawing.Size(351, 23);
+            this.txtdescripcion.TabIndex = 8;
+            // 
+            // panel5
+            // 
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.menubotones);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(528, 64);
+            this.panel5.TabIndex = 291;
+            // 
+            // menubotones
+            // 
+            this.menubotones.AutoSize = false;
+            this.menubotones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.menubotones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnadicionar,
+            this.btnguardar,
+            this.btneditar});
+            this.menubotones.Location = new System.Drawing.Point(0, 0);
+            this.menubotones.Name = "menubotones";
+            this.menubotones.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.menubotones.Size = new System.Drawing.Size(526, 62);
+            this.menubotones.TabIndex = 291;
+            this.menubotones.Text = "menuStrip1";
             // 
             // btnadicionar
             // 
@@ -210,6 +174,40 @@
             this.btneditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btneditar.Click += new System.EventHandler(this.btneditar_Click);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(3, 70);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(82, 17);
+            this.label11.TabIndex = 292;
+            this.label11.Text = "IdHabilidad:";
+            // 
+            // txtidhabilidad
+            // 
+            this.txtidhabilidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtidhabilidad.Location = new System.Drawing.Point(87, 67);
+            this.txtidhabilidad.Name = "txtidhabilidad";
+            this.txtidhabilidad.Size = new System.Drawing.Size(82, 23);
+            this.txtidhabilidad.TabIndex = 294;
+            this.txtidhabilidad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtidhabilidad_KeyDown);
+            this.txtidhabilidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtidhabilidad_KeyPress);
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.txtidhabilidad);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.btnbuscar);
+            this.panel2.Location = new System.Drawing.Point(1, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(526, 96);
+            this.panel2.TabIndex = 295;
+            // 
             // btnbuscar
             // 
             this.btnbuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
@@ -230,12 +228,6 @@
             this.btnbuscar.TabIndex = 293;
             this.btnbuscar.UseVisualStyleBackColor = false;
             this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
-            // 
-            // wToolStripMenuItem
-            // 
-            this.wToolStripMenuItem.Name = "wToolStripMenuItem";
-            this.wToolStripMenuItem.Size = new System.Drawing.Size(28, 58);
-            this.wToolStripMenuItem.Text = "w";
             // 
             // frm_Habilidades
             // 
@@ -278,6 +270,5 @@
         private System.Windows.Forms.TextBox txtdescripcion;
         private System.Windows.Forms.ComboBox cboestado;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ToolStripMenuItem wToolStripMenuItem;
     }
 }
