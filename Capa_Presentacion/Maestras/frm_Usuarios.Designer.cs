@@ -515,7 +515,7 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_Usuarios";
-            this.Text = "frm_Usuarios";
+            this.Text = "Mantenimiento de  Usuarios";
             this.Load += new System.EventHandler(this.frm_Usuarios_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

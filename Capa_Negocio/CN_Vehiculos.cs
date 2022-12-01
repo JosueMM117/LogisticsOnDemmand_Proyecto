@@ -54,6 +54,10 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
                 {
                     Mensaje += "Debe indicar la cantidad la cantidad mínima y máxima que soportará este vehículo.\n";
                 }
+                if (objvehiculo.HorarioDisponibilidad > 24)
+                {
+                    Mensaje += "Las horas indicas sobrepasan las horas permitidas por dia.\nLa cantidad de horas disponibles por dia es 24 Horas.";
+                }
                 if (objvehiculo.Conductor.IdUsuario == 0 || string.IsNullOrEmpty(objvehiculo.Conductor.NombreCompleto))
                 {
                     Mensaje += "No puede registrar un vehiculo sin indicar antes el conductor\n";

@@ -16,5 +16,6 @@ namespace LogisticsOnDemmand_Proyecto.Utility_Class
         public static Color color5 = Color.FromArgb(249, 88, 155);
         public static Color color6 = Color.FromArgb(24, 161, 251);
         public static Color color7 = Color.FromArgb(30, 144, 255);
+        public static Color color8 = Color.FromArgb(0, 116, 228);
     }
 }

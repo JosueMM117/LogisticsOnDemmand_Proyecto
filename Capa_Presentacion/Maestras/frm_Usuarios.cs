@@ -63,16 +63,12 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 cboestado.DisplayMember = "Texto";
                 cboestado.ValueMember = "IdPos";
                 cboestado.SelectedIndex = -1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            List<CM_Usuarios> listaUsuario = await new CN_Usuarios().Listar_Usuarios();
-            //var estado = listaUsuario.Where().FirstOrDefault();
-            foreach (CM_Usuarios item in listaUsuario)
-            {
-                dgvusuarios.Rows.Add(new object[] {
+
+                List<CM_Usuarios> listaUsuario = await new CN_Usuarios().Listar_Usuarios();
+                //var estado = listaUsuario.Where().FirstOrDefault();
+                foreach (CM_Usuarios item in listaUsuario)
+                {
+                    dgvusuarios.Rows.Add(new object[] {
                     "",
                     item.IdUsuario,
                     item.NombreCompleto,
@@ -82,6 +78,11 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     item.Estado,
                     item.FechaRegistro.ToString("dd-MMM-yyy"),
                     });
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion

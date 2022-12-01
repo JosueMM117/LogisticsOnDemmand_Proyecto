@@ -30,16 +30,35 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         #region Metodos
         public void Limpiar()
         {
+            txtidvehiculo.Select();
             txtidvehiculo.Clear();
             txtidconductor.Text = "";
             txtnombrevehiculo.Clear();
             txtnombreconductor.Text = "";
             txtmarca.Clear();
             txtidentificacion.Clear();
-            txtcargamaxima.Clear();
-            txtcargaminima.Clear();
-            txthoraiodisponibilidad.Clear();
+            nupcargamaxima.Value = 1;
+            nupcargaminima.Value = 1;
+            nuphoraiodisponibilidad.Value = 1;
             cbohabilidad.SelectedIndex = -1;
+            cboestado.SelectedIndex = -1;
+        }
+        public async void CargarDatos()
+        {
+            //Habilidades
+
+            //Estado
+            List<OpcionCombo> listaestado = new List<OpcionCombo>
+                {
+                    new OpcionCombo() { IdPos = 0, Texto = "Activo" },
+                    new OpcionCombo() { IdPos = 1, Texto = "Inactivo" }
+                };
+            foreach (OpcionCombo estados in listaestado)
+            {
+                cboestado.Items.Add(new OpcionCombo() { IdPos = estados.IdPos, Texto = estados.Texto });
+            }
+            cboestado.DisplayMember = "Texto";
+            cboestado.ValueMember = "IdPos";
             cboestado.SelectedIndex = -1;
         }
         #endregion
@@ -49,7 +68,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         //Load 
         private void frm_Vehiculos_Load(object sender, EventArgs e)
         {
+            txtidvehiculo.Select();
             btnguardar.Enabled = false;
+            CargarDatos();
         }
 
         #region Click
@@ -70,19 +91,26 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         }
         private void btnbuscarconductor_Click(object sender, EventArgs e)
         {
-            using (var new_modal = new frm_BuscarUsuarios())
+            try
             {
-                var resultado = new_modal.ShowDialog();
-                if (resultado == DialogResult.OK)
+                using (var new_modal = new frm_BuscarUsuarios())
                 {
-                    if (new_modal._Usuarios.Estado == "Activo")
+                    var resultado = new_modal.ShowDialog();
+                    if (resultado == DialogResult.OK)
                     {
-                        txtidconductor.Text = new_modal._Usuarios.IdUsuario.ToString();
-                        txtnombreconductor.Text = new_modal._Usuarios.NombreCompleto;
+                        if (new_modal._Usuarios.Estado == "Activo")
+                        {
+                            txtidconductor.Text = new_modal._Usuarios.IdUsuario.ToString();
+                            txtnombreconductor.Text = new_modal._Usuarios.NombreCompleto;
+                        }
+                        else
+                            MessageBox.Show("El conductor se encuentra inactivo.", "Vehiculos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                    else
-                        MessageBox.Show("El conductor se encuentra inactivo.", "Vehiculos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private async void btnadicionar_Click(object sender, EventArgs e)
@@ -104,11 +132,10 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 {
                     btnadicionar.IconChar = IconChar.Ban;
                     btnadicionar.Text = "Cancelar";
-                    btnguardar.Enabled = true;
                     btneditar.Enabled = false;
                     btnbuscar.Enabled = false;
                     txtidvehiculo.Enabled = false;
-                    txtidvehiculo.BackColor = Color.LightGreen;
+                    cboestado.Enabled = false;
                     Limpiar();
                     List<CM_Vehiculos> BuscarDatos = await cnvehiculos.Listar_Vehículos();
                     int cant_registros = BuscarDatos.Select(b => b.IdVehiculo).Count();
@@ -121,7 +148,11 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         cant_registros = BuscarDatos.Select(b => b.IdVehiculo).Max();
                         idgenerado = cant_registros + 1;
                     }
-                    txtidvehiculo.Text = string.Format("{0:0000}", idgenerado); 
+                    txtidvehiculo.Text = string.Format("{0:0000}", idgenerado);
+                    txtidvehiculo.BackColor = Color.LightGreen;
+                    btnguardar.Enabled = true;
+                    txtidconductor.Text = "0";
+                    cboestado.SelectedIndex = 0;
                 }
             }
             catch (Exception ex)
@@ -131,37 +162,53 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         }
         private void btnguardar_Click(object sender, EventArgs e)
         {
-            btnadicionar.IconChar = IconChar.Plus;
-            btnadicionar.Text = "Adicionar";
-            btneditar.IconChar = IconChar.PenToSquare;
-            btneditar.Text = "Editar";
-            btnguardar.Enabled = false;
-            btneditar.Enabled = true;
-            btnadicionar.Enabled = true;
-            btnbuscar.Enabled = true;
-            txtidvehiculo.Enabled = true;
-
-            var objvehiculo = new CM_Vehiculos()
+            try
             {
-                IdVehiculo = Convert.ToInt32(txtidvehiculo.Text),
-                NombreVehiculo = txtnombrevehiculo.Text,
-                Marca = txtmarca.Text,
-                CargaMaxima = Convert.ToDecimal(txtcargamaxima.Text),
-                //CargaManima = Convert.ToDecimal(txtcargaminima.Text),
-                ////Identificacion = txtidentificacion.Text,
-                //HorarioDisponibilidad = Convert.ToInt32(txthoraiodisponibilidad.Text),
-                //Conductor = new CM_Usuarios
-                //{
-                //    IdUsuario = Convert.ToInt32(txtidconductor.Text),
-                //    //NombreCompleto = txtnombreconductor.Text
-                //},
-                ////Habilidades = new CM_Habilidades
-                ////{
-                ////    IdHabilidad = 
-                ////},
-                //Estado = cboestado.GetItemText(cboestado.SelectedItem),
-                //FechaRegistro = Convert.ToDateTime(DateTime.Now.Date.ToString("dd-MMM-yyy HH:mm:ss tt"))
-            };
+                string mensaje = string.Empty;
+                btnadicionar.IconChar = IconChar.Plus;
+                btnadicionar.Text = "Adicionar";
+                btneditar.IconChar = IconChar.PenToSquare;
+                btneditar.Text = "Editar";
+                btnguardar.Enabled = false;
+                btneditar.Enabled = true;
+                btnadicionar.Enabled = true;
+                btnbuscar.Enabled = true;
+                txtidvehiculo.Enabled = true;
+                cboestado.Enabled = true;
+                txtidvehiculo.BackColor = Color.White;
+
+                if (nuphoraiodisponibilidad.Value < 0 || nuphoraiodisponibilidad.Value > 24)
+                {
+                    MessageBox.Show("La cantidad de horas de disponibilidad no puede ser mayor a 24 horas o menor a 1 hora.", "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var objvehiculo = new CM_Vehiculos()
+                {
+                    IdVehiculo = Convert.ToInt32(txtidvehiculo.Text),
+                    NombreVehiculo = txtnombrevehiculo.Text,
+                    Marca = txtmarca.Text,
+                    CargaMaxima = Convert.ToDecimal(nupcargamaxima.Value),
+                    CargaManima = Convert.ToDecimal(nupcargaminima.Value),
+                    Identificacion = txtidentificacion.Text,
+                    HorarioDisponibilidad = Convert.ToInt32(nuphoraiodisponibilidad.Value),
+                    Conductor = new CM_Usuarios
+                    {
+                        IdUsuario = Convert.ToInt32(txtidconductor.Text),
+                        NombreCompleto = txtnombreconductor.Text
+                    },
+                    //Habilidades = new CM_Habilidades
+                    //{
+                    //    IdHabilidad =
+                    //},
+                    Estado = cboestado.GetItemText(cboestado.SelectedItem),
+                    FechaRegistro = Convert.ToDateTime(DateTime.Now.Date.ToString("dd-MMM-yyy HH:mm:ss tt"))
+                };
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private async void btneditar_Click(object sender, EventArgs e)
         {
@@ -185,9 +232,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     txtnombreconductor.Text = validar.Conductor.NombreCompleto;
                     txtmarca.Text = validar.Marca;
                     txtidentificacion.Text = validar.Identificacion;
-                    txtcargamaxima.Text = Convert.ToDecimal(validar.CargaMaxima).ToString("N2");
-                    txtcargaminima.Text = Convert.ToDecimal(validar.CargaManima).ToString("N2");
-                    txthoraiodisponibilidad.Text = Convert.ToInt32(validar.HorarioDisponibilidad).ToString("N0");
+                    nupcargamaxima.Value = Convert.ToDecimal(validar.CargaMaxima);
+                    nupcargaminima.Value = Convert.ToDecimal(validar.CargaManima);
+                    nuphoraiodisponibilidad.Value = Convert.ToInt32(validar.HorarioDisponibilidad);
                     foreach (OpcionCombo oc in cbohabilidad.Items)
                     {
                         if (Convert.ToInt32(oc.IdPos) == Convert.ToInt32(validar.Habilidades.IdHabilidad))
@@ -218,9 +265,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         txtnombreconductor.Text = validar.Conductor.NombreCompleto;
                         txtmarca.Text = validar.Marca;
                         txtidentificacion.Text = validar.Identificacion;
-                        txtcargamaxima.Text = Convert.ToDecimal(validar.CargaMaxima).ToString("N2");
-                        txtcargaminima.Text = Convert.ToDecimal(validar.CargaManima).ToString("N2");
-                        txthoraiodisponibilidad.Text = Convert.ToInt32(validar.HorarioDisponibilidad).ToString("N0");
+                        nupcargamaxima.Value = Convert.ToDecimal(validar.CargaMaxima);
+                        nupcargaminima.Value = Convert.ToDecimal(validar.CargaManima);
+                        nuphoraiodisponibilidad.Value = Convert.ToInt32(validar.HorarioDisponibilidad);
                         foreach (OpcionCombo oc in cbohabilidad.Items)
                             {
                                 if (Convert.ToInt32(oc.IdPos) == Convert.ToInt32(validar.Habilidades.IdHabilidad))

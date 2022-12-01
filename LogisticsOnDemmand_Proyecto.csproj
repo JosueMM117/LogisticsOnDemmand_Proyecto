@@ -228,6 +228,12 @@
     <Compile Include="Capa_Presentacion\Login\Registro.Designer.cs">
       <DependentUpon>Registro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Capa_Presentacion\Maestras\frm_Busquedas\frm_BuscarHabilidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Capa_Presentacion\Maestras\frm_Busquedas\frm_BuscarHabilidades.Designer.cs">
+      <DependentUpon>frm_BuscarHabilidades.cs</DependentUpon>
+    </Compile>
     <Compile Include="Capa_Presentacion\Maestras\frm_Busquedas\frm_BuscarUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -286,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Capa_Presentacion\Login\Registro.resx">
       <DependentUpon>Registro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Capa_Presentacion\Maestras\frm_Busquedas\frm_BuscarHabilidades.resx">
+      <DependentUpon>frm_BuscarHabilidades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Capa_Presentacion\Maestras\frm_Busquedas\frm_BuscarUsuarios.resx">
       <DependentUpon>frm_BuscarUsuarios.cs</DependentUpon>

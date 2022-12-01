@@ -36,7 +36,6 @@
             this.txtnombreconductor = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.txthoraiodisponibilidad = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnhabilidad = new FontAwesome.Sharp.IconButton();
             this.label6 = new System.Windows.Forms.Label();
@@ -54,17 +53,18 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtidvehiculo = new System.Windows.Forms.TextBox();
-            this.btnbuscar = new FontAwesome.Sharp.IconButton();
-            this.label11 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.menubotones = new System.Windows.Forms.MenuStrip();
-            this.btneditar = new FontAwesome.Sharp.IconMenuItem();
-            this.btnguardar = new FontAwesome.Sharp.IconMenuItem();
             this.btnadicionar = new FontAwesome.Sharp.IconMenuItem();
-            this.txtcargamaxima = new System.Windows.Forms.TextBox();
-            this.txtcargaminima = new System.Windows.Forms.TextBox();
+            this.btnguardar = new FontAwesome.Sharp.IconMenuItem();
+            this.btneditar = new FontAwesome.Sharp.IconMenuItem();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnbuscar = new FontAwesome.Sharp.IconButton();
+            this.txtidvehiculo = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.nupcargamaxima = new System.Windows.Forms.NumericUpDown();
+            this.nupcargaminima = new System.Windows.Forms.NumericUpDown();
+            this.nuphoraiodisponibilidad = new System.Windows.Forms.NumericUpDown();
             this.tbctlvehiculos.SuspendLayout();
             this.tabpginformacion.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -73,6 +73,9 @@
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.menubotones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nupcargamaxima)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupcargaminima)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nuphoraiodisponibilidad)).BeginInit();
             this.SuspendLayout();
             // 
             // tbctlvehiculos
@@ -111,14 +114,14 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.txtcargaminima);
-            this.panel2.Controls.Add(this.txtcargamaxima);
+            this.panel2.Controls.Add(this.nuphoraiodisponibilidad);
+            this.panel2.Controls.Add(this.nupcargaminima);
+            this.panel2.Controls.Add(this.nupcargamaxima);
             this.panel2.Controls.Add(this.txtidconductor);
             this.panel2.Controls.Add(this.btnbuscarconductor);
             this.panel2.Controls.Add(this.txtnombreconductor);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.txthoraiodisponibilidad);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.btnhabilidad);
             this.panel2.Controls.Add(this.label6);
@@ -143,7 +146,7 @@
             this.txtidconductor.AutoSize = true;
             this.txtidconductor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtidconductor.ForeColor = System.Drawing.Color.White;
-            this.txtidconductor.Location = new System.Drawing.Point(816, 11);
+            this.txtidconductor.Location = new System.Drawing.Point(781, 11);
             this.txtidconductor.Name = "txtidconductor";
             this.txtidconductor.Size = new System.Drawing.Size(84, 17);
             this.txtidconductor.TabIndex = 288;
@@ -184,7 +187,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(544, 11);
+            this.label10.Location = new System.Drawing.Point(544, 10);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(77, 17);
             this.label10.TabIndex = 30;
@@ -195,19 +198,11 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(370, 112);
+            this.label9.Location = new System.Drawing.Point(370, 113);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(134, 17);
             this.label9.TabIndex = 28;
             this.label9.Text = "Horas Disp. (al día):";
-            // 
-            // txthoraiodisponibilidad
-            // 
-            this.txthoraiodisponibilidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txthoraiodisponibilidad.Location = new System.Drawing.Point(372, 133);
-            this.txthoraiodisponibilidad.Name = "txthoraiodisponibilidad";
-            this.txthoraiodisponibilidad.Size = new System.Drawing.Size(128, 23);
-            this.txthoraiodisponibilidad.TabIndex = 27;
             // 
             // label8
             // 
@@ -401,55 +396,6 @@
             this.panel3.Size = new System.Drawing.Size(924, 101);
             this.panel3.TabIndex = 4;
             // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(1, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(528, 31);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Mantenimiento de Vehículos\r\n";
-            // 
-            // txtidvehiculo
-            // 
-            this.txtidvehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtidvehiculo.Location = new System.Drawing.Point(86, 71);
-            this.txtidvehiculo.Name = "txtidvehiculo";
-            this.txtidvehiculo.Size = new System.Drawing.Size(82, 23);
-            this.txtidvehiculo.TabIndex = 289;
-            // 
-            // btnbuscar
-            // 
-            this.btnbuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.btnbuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnbuscar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnbuscar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnbuscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btnbuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnbuscar.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnbuscar.ForeColor = System.Drawing.Color.White;
-            this.btnbuscar.IconChar = FontAwesome.Sharp.IconChar.Search;
-            this.btnbuscar.IconColor = System.Drawing.Color.DodgerBlue;
-            this.btnbuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnbuscar.IconSize = 17;
-            this.btnbuscar.Location = new System.Drawing.Point(170, 70);
-            this.btnbuscar.Name = "btnbuscar";
-            this.btnbuscar.Size = new System.Drawing.Size(24, 25);
-            this.btnbuscar.TabIndex = 289;
-            this.btnbuscar.UseVisualStyleBackColor = false;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(4, 74);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(77, 17);
-            this.label11.TabIndex = 289;
-            this.label11.Text = "IdVehiculo:";
-            // 
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -475,36 +421,6 @@
             this.menubotones.TabIndex = 291;
             this.menubotones.Text = "menuStrip1";
             // 
-            // btneditar
-            // 
-            this.btneditar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btneditar.ForeColor = System.Drawing.Color.White;
-            this.btneditar.IconChar = FontAwesome.Sharp.IconChar.PenToSquare;
-            this.btneditar.IconColor = System.Drawing.Color.DodgerBlue;
-            this.btneditar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btneditar.IconSize = 40;
-            this.btneditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btneditar.Name = "btneditar";
-            this.btneditar.Size = new System.Drawing.Size(52, 59);
-            this.btneditar.Text = "Editar";
-            this.btneditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btneditar.Click += new System.EventHandler(this.btneditar_Click);
-            // 
-            // btnguardar
-            // 
-            this.btnguardar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnguardar.ForeColor = System.Drawing.Color.White;
-            this.btnguardar.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
-            this.btnguardar.IconColor = System.Drawing.Color.DodgerBlue;
-            this.btnguardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnguardar.IconSize = 40;
-            this.btnguardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnguardar.Name = "btnguardar";
-            this.btnguardar.Size = new System.Drawing.Size(64, 59);
-            this.btnguardar.Text = "Guardar";
-            this.btnguardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnguardar.Click += new System.EventHandler(this.btnguardar_Click);
-            // 
             // btnadicionar
             // 
             this.btnadicionar.BackColor = System.Drawing.Color.Transparent;
@@ -521,21 +437,150 @@
             this.btnadicionar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnadicionar.Click += new System.EventHandler(this.btnadicionar_Click);
             // 
-            // txtcargamaxima
+            // btnguardar
             // 
-            this.txtcargamaxima.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcargamaxima.Location = new System.Drawing.Point(372, 36);
-            this.txtcargamaxima.Name = "txtcargamaxima";
-            this.txtcargamaxima.Size = new System.Drawing.Size(128, 23);
-            this.txtcargamaxima.TabIndex = 289;
+            this.btnguardar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnguardar.ForeColor = System.Drawing.Color.White;
+            this.btnguardar.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            this.btnguardar.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btnguardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnguardar.IconSize = 40;
+            this.btnguardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnguardar.Name = "btnguardar";
+            this.btnguardar.Size = new System.Drawing.Size(64, 59);
+            this.btnguardar.Text = "Guardar";
+            this.btnguardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnguardar.Click += new System.EventHandler(this.btnguardar_Click);
             // 
-            // txtcargaminima
+            // btneditar
             // 
-            this.txtcargaminima.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcargaminima.Location = new System.Drawing.Point(372, 86);
-            this.txtcargaminima.Name = "txtcargaminima";
-            this.txtcargaminima.Size = new System.Drawing.Size(128, 23);
-            this.txtcargaminima.TabIndex = 290;
+            this.btneditar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btneditar.ForeColor = System.Drawing.Color.White;
+            this.btneditar.IconChar = FontAwesome.Sharp.IconChar.PenToSquare;
+            this.btneditar.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btneditar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btneditar.IconSize = 40;
+            this.btneditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btneditar.Name = "btneditar";
+            this.btneditar.Size = new System.Drawing.Size(52, 59);
+            this.btneditar.Text = "Editar";
+            this.btneditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btneditar.Click += new System.EventHandler(this.btneditar_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(4, 74);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(77, 17);
+            this.label11.TabIndex = 289;
+            this.label11.Text = "IdVehiculo:";
+            // 
+            // btnbuscar
+            // 
+            this.btnbuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.btnbuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnbuscar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnbuscar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnbuscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btnbuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnbuscar.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnbuscar.ForeColor = System.Drawing.Color.White;
+            this.btnbuscar.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.btnbuscar.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btnbuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnbuscar.IconSize = 17;
+            this.btnbuscar.Location = new System.Drawing.Point(170, 70);
+            this.btnbuscar.Name = "btnbuscar";
+            this.btnbuscar.Size = new System.Drawing.Size(24, 25);
+            this.btnbuscar.TabIndex = 289;
+            this.btnbuscar.UseVisualStyleBackColor = false;
+            // 
+            // txtidvehiculo
+            // 
+            this.txtidvehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtidvehiculo.Location = new System.Drawing.Point(86, 71);
+            this.txtidvehiculo.Name = "txtidvehiculo";
+            this.txtidvehiculo.Size = new System.Drawing.Size(82, 23);
+            this.txtidvehiculo.TabIndex = 289;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(1, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(528, 31);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Mantenimiento de Vehículos\r\n";
+            // 
+            // nupcargamaxima
+            // 
+            this.nupcargamaxima.Location = new System.Drawing.Point(373, 82);
+            this.nupcargamaxima.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nupcargamaxima.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nupcargamaxima.Name = "nupcargamaxima";
+            this.nupcargamaxima.Size = new System.Drawing.Size(120, 23);
+            this.nupcargamaxima.TabIndex = 291;
+            this.nupcargamaxima.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nupcargaminima
+            // 
+            this.nupcargaminima.Location = new System.Drawing.Point(373, 34);
+            this.nupcargaminima.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nupcargaminima.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nupcargaminima.Name = "nupcargaminima";
+            this.nupcargaminima.Size = new System.Drawing.Size(120, 23);
+            this.nupcargaminima.TabIndex = 292;
+            this.nupcargaminima.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nuphoraiodisponibilidad
+            // 
+            this.nuphoraiodisponibilidad.Location = new System.Drawing.Point(373, 133);
+            this.nuphoraiodisponibilidad.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.nuphoraiodisponibilidad.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nuphoraiodisponibilidad.Name = "nuphoraiodisponibilidad";
+            this.nuphoraiodisponibilidad.Size = new System.Drawing.Size(120, 23);
+            this.nuphoraiodisponibilidad.TabIndex = 293;
+            this.nuphoraiodisponibilidad.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // frm_Vehiculos
             // 
@@ -547,7 +592,7 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_Vehiculos";
-            this.Text = "frm_Vehiculos";
+            this.Text = "Mantenimiento de Vehículos";
             this.Load += new System.EventHandler(this.frm_Vehiculos_Load);
             this.tbctlvehiculos.ResumeLayout(false);
             this.tabpginformacion.ResumeLayout(false);
@@ -560,6 +605,9 @@
             this.panel5.ResumeLayout(false);
             this.menubotones.ResumeLayout(false);
             this.menubotones.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nupcargamaxima)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupcargaminima)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nuphoraiodisponibilidad)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -587,7 +635,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txthoraiodisponibilidad;
         private System.Windows.Forms.Label txtidconductor;
         private FontAwesome.Sharp.IconButton btnbuscarconductor;
         private System.Windows.Forms.Label txtnombreconductor;
@@ -600,7 +647,8 @@
         private FontAwesome.Sharp.IconMenuItem btnadicionar;
         private FontAwesome.Sharp.IconMenuItem btnguardar;
         private FontAwesome.Sharp.IconMenuItem btneditar;
-        private System.Windows.Forms.TextBox txtcargaminima;
-        private System.Windows.Forms.TextBox txtcargamaxima;
+        private System.Windows.Forms.NumericUpDown nuphoraiodisponibilidad;
+        private System.Windows.Forms.NumericUpDown nupcargaminima;
+        private System.Windows.Forms.NumericUpDown nupcargamaxima;
     }
 }
