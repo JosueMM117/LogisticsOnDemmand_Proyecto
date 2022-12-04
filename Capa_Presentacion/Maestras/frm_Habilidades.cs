@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Odbc;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -115,11 +116,16 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 MessageBox.Show(ex.Message, "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnguardar_Click(object sender, EventArgs e)
+        private async void btnguardar_Click(object sender, EventArgs e)
         {
             try
             {
                 string mensaje = string.Empty;
+                if (string.IsNullOrEmpty(txtdescripcion.Text))
+                {
+                    MessageBox.Show("No pude dejar el campo de *Descripción* en blanco.","Habilidades",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 var objhabilidad = new CM_Habilidades()
                 {
                     IdHabilidad = Convert.ToInt32(txtidhabilidad.Text),
@@ -128,23 +134,47 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     FechaRegistro = Convert.ToDateTime(DateTime.Now.Date.ToString("dd-MMM-yyy HH:mm:ss tt"))
                 };
 
-                bool respuesta = cnvehiculos.Registrar_Habilidad(objhabilidad, out mensaje);
-                if (respuesta == true)
+                if (txtidhabilidad.BackColor == Color.LightGreen)
                 {
-                    btnadicionar.IconChar = IconChar.Plus;
-                    btnadicionar.Text = "Adicionar";
-                    btneditar.IconChar = IconChar.PenToSquare;
-                    btneditar.Text = "Editar";
-                    btnguardar.Enabled = false;
-                    btneditar.Enabled = true;
-                    btnadicionar.Enabled = true;
-                    btnbuscar.Enabled = true;
-                    txtidhabilidad.Enabled = true;
-                    cboestado.Enabled = true;
-                    txtidhabilidad.BackColor = Color.White;
+                    bool respuesta = cnvehiculos.Registrar_Habilidad(objhabilidad, out mensaje);
+                    if (respuesta == true)
+                    {
+                        btnadicionar.IconChar = IconChar.Plus;
+                        btnadicionar.Text = "Adicionar";
+                        btneditar.IconChar = IconChar.PenToSquare;
+                        btneditar.Text = "Editar";
+                        btnguardar.Enabled = false;
+                        btneditar.Enabled = true;
+                        btnadicionar.Enabled = true;
+                        btnbuscar.Enabled = true;
+                        txtidhabilidad.Enabled = true;
+                        cboestado.Enabled = false;
+                        txtidhabilidad.BackColor = Color.White;
+                    }
+                    else
+                        MessageBox.Show(mensaje, "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
-                    MessageBox.Show(mensaje, "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                {
+                    bool respuesta = await cnvehiculos.Actualizar_InformacionHabilidades(objhabilidad);
+                    if (respuesta == true)
+                    {
+                        btnadicionar.IconChar = IconChar.Plus;
+                        btnadicionar.Text = "Adicionar";
+                        btneditar.IconChar = IconChar.PenToSquare;
+                        btneditar.Text = "Editar";
+                        btnguardar.Enabled = false;
+                        btneditar.Enabled = true;
+                        btnadicionar.Enabled = true;
+                        btnbuscar.Enabled = true;
+                        txtidhabilidad.Enabled = true;
+                        cboestado.Enabled = false;
+                        txtidhabilidad.BackColor = Color.White;
+                    }
+                    else
+                        MessageBox.Show("No se pudieron actualizar las informaciones.\n \n Proceso Candelado.", "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -155,6 +185,11 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         {
             try
             {
+                if (string.IsNullOrEmpty(txtidhabilidad.Text))
+                {
+                    MessageBox.Show("Debe seleccionar una habilidad", "Habilidades", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    return;
+                }
                 List<CM_Habilidades> BuscarDatos = await cnvehiculos.Listar_Habilidades();
                 var validar = BuscarDatos.Where(b => b.IdHabilidad == Convert.ToInt32(txtidhabilidad.Text)).FirstOrDefault();
                 if (btneditar.IconChar == IconChar.Ban)
@@ -165,6 +200,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     btnadicionar.Enabled = true;
                     btnbuscar.Enabled = true;
                     txtidhabilidad.Enabled = true;
+                    cboestado.Enabled = false;
                     txtidhabilidad.BackColor = Color.White;
 
                     #region Cargar_Datos_IdSelecciado
@@ -202,10 +238,11 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         btnadicionar.Enabled = false;
                         btnbuscar.Enabled = false;
                         txtidhabilidad.Enabled = false;
+                        cboestado.Enabled = true;
                         txtidhabilidad.BackColor = Color.Khaki;
                     }
                     else
-                        MessageBox.Show("Debe seleccionar la habilidad que desea editar", "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Debe seleccionar la habilidad que desea editar", "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -215,19 +252,35 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         }
         private void btnbuscar_Click(object sender, EventArgs e)
         {
-            Form oprenform = Application.OpenForms["frm_BuscarHabilidades"];
-            if (oprenform != null)
+            try
             {
-                oprenform.WindowState = FormWindowState.Normal;
-                oprenform.TopMost = true;
-                oprenform.ShowDialog();
+                using (var modal = new frm_BuscarHabilidades())
+                {
+                    var result = modal.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        txtidhabilidad.Text = string.Format("{0:000}", modal._Habilidades.IdHabilidad);
+                        txtdescripcion.Text = modal._Habilidades.Descripcion;
+                        //Implementar en el dgvdata la existencia de los productos
+                        foreach (OpcionCombo oc in cboestado.Items)
+                        {
+                            if (oc.Texto == modal._Habilidades.Estado)
+                            {
+                                int indice_combo = cboestado.Items.IndexOf(oc);
+                                cboestado.SelectedIndex = indice_combo;
+                                break;
+                            }
+                        }
+                        cboestado.Enabled = false;
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Form open = new frm_BuscarHabilidades();
-                open.ShowDialog();
+                MessageBox.Show(ex.Message, "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         //KeyPress
         private void txtidhabilidad_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -261,7 +314,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     }
                     else
                     {
-                        MessageBox.Show("El Producto no existe", "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("La habilidad no existe", "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         txtidhabilidad.SelectAll();
                         Limpiar();
                     }
@@ -272,7 +325,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 MessageBox.Show(ex.Message, "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         #endregion
 
     }

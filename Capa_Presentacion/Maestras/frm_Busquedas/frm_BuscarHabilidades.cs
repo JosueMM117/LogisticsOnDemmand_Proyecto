@@ -1,5 +1,6 @@
 ﻿using LogisticsOnDemmand_Proyecto.Capa_Modelo;
 using LogisticsOnDemmand_Proyecto.Capa_Negocio;
+using LogisticsOnDemmand_Proyecto.Utility_Class;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,7 +42,18 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras.frm_Busquedas
                     item.FechaRegistro.ToString("dd-MMM-yyy"),
                     });
                 }
-                //dgvhabilidades.Columns.RemoveAt(-1);
+
+                //Filtros
+                foreach (DataGridViewColumn columna in dgvhabilidades.Columns)
+                {
+                    if (columna.Visible == true && columna.Name != "IdHabilidad" && columna.Name != "FechaRegistro")
+                    {
+                        cbofiltro.Items.Add(new OpcionCombo() { IdPos = columna.Name, Texto = columna.HeaderText });
+                    }
+                }
+                cbofiltro.DisplayMember = "Texto";
+                cbofiltro.ValueMember = "IdPos";
+                cbofiltro.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -64,6 +76,8 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras.frm_Busquedas
                         Descripcion = dgvhabilidades.Rows[irow].Cells["Descripcion"].Value.ToString(),
                         Estado = dgvhabilidades.Rows[irow].Cells["Estado"].Value.ToString()
                     };
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                     //MessageBox.Show("Has seleccionado una celda", "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -72,8 +86,40 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras.frm_Busquedas
                 MessageBox.Show(ex.Message, "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void btnquitarfiltro_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //KeyPress
+        private void txtbusqueda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                string columnafiltro = ((OpcionCombo)cbofiltro.SelectedItem).IdPos.ToString();
+                if (string.IsNullOrEmpty(columnafiltro))
+                {
+                    return;
+                }
+                else
+                {
+                    if (dgvhabilidades.Rows.Count > 0)
+                    {
+                        foreach (DataGridViewRow row in dgvhabilidades.Rows)
+                        {
+                            if (row.Cells[columnafiltro].Value.ToString().Trim().ToUpper().Contains(txtbusqueda.Text.Trim().ToUpper()))
+                                row.Visible = true;
+                            else
+                                row.Visible = false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         #endregion
-
-
     }
 }

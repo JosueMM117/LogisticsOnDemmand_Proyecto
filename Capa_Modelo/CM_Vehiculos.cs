@@ -14,8 +14,8 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Modelo
         public int IdVehiculo { get; set; }
         public string NombreVehiculo { get; set; }
         public string Marca { get; set; }
-        public decimal CargaMaxima { get; set; }
-        public decimal CargaManima { get; set; }
+        public int CargaMaxima { get; set; }
+        public int CargaMinima { get; set; }
         public string Identificacion { get; set; }
         public int HorarioDisponibilidad { get; set; }
         public CM_Usuarios Conductor { get; set; }

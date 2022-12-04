@@ -31,6 +31,9 @@
             this.tbctlvehiculos = new MetroFramework.Controls.MetroTabControl();
             this.tabpginformacion = new MetroFramework.Controls.MetroTabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.nuphoraiodisponibilidad = new System.Windows.Forms.NumericUpDown();
+            this.nupcargaminima = new System.Windows.Forms.NumericUpDown();
+            this.nupcargamaxima = new System.Windows.Forms.NumericUpDown();
             this.txtidconductor = new System.Windows.Forms.Label();
             this.btnbuscarconductor = new FontAwesome.Sharp.IconButton();
             this.txtnombreconductor = new System.Windows.Forms.Label();
@@ -62,20 +65,17 @@
             this.btnbuscar = new FontAwesome.Sharp.IconButton();
             this.txtidvehiculo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.nupcargamaxima = new System.Windows.Forms.NumericUpDown();
-            this.nupcargaminima = new System.Windows.Forms.NumericUpDown();
-            this.nuphoraiodisponibilidad = new System.Windows.Forms.NumericUpDown();
             this.tbctlvehiculos.SuspendLayout();
             this.tabpginformacion.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nuphoraiodisponibilidad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupcargaminima)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupcargamaxima)).BeginInit();
             this.tabpgrutas.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.menubotones.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nupcargamaxima)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nupcargaminima)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nuphoraiodisponibilidad)).BeginInit();
             this.SuspendLayout();
             // 
             // tbctlvehiculos
@@ -141,6 +141,72 @@
             this.panel2.Size = new System.Drawing.Size(916, 311);
             this.panel2.TabIndex = 2;
             // 
+            // nuphoraiodisponibilidad
+            // 
+            this.nuphoraiodisponibilidad.Location = new System.Drawing.Point(373, 133);
+            this.nuphoraiodisponibilidad.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.nuphoraiodisponibilidad.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nuphoraiodisponibilidad.Name = "nuphoraiodisponibilidad";
+            this.nuphoraiodisponibilidad.Size = new System.Drawing.Size(120, 23);
+            this.nuphoraiodisponibilidad.TabIndex = 293;
+            this.nuphoraiodisponibilidad.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nupcargaminima
+            // 
+            this.nupcargaminima.Location = new System.Drawing.Point(373, 34);
+            this.nupcargaminima.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nupcargaminima.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nupcargaminima.Name = "nupcargaminima";
+            this.nupcargaminima.Size = new System.Drawing.Size(120, 23);
+            this.nupcargaminima.TabIndex = 292;
+            this.nupcargaminima.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nupcargamaxima
+            // 
+            this.nupcargamaxima.Location = new System.Drawing.Point(373, 82);
+            this.nupcargamaxima.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nupcargamaxima.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nupcargamaxima.Name = "nupcargamaxima";
+            this.nupcargamaxima.Size = new System.Drawing.Size(120, 23);
+            this.nupcargamaxima.TabIndex = 291;
+            this.nupcargamaxima.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // txtidconductor
             // 
             this.txtidconductor.AutoSize = true;
@@ -148,14 +214,15 @@
             this.txtidconductor.ForeColor = System.Drawing.Color.White;
             this.txtidconductor.Location = new System.Drawing.Point(781, 11);
             this.txtidconductor.Name = "txtidconductor";
-            this.txtidconductor.Size = new System.Drawing.Size(84, 17);
+            this.txtidconductor.Size = new System.Drawing.Size(16, 17);
             this.txtidconductor.TabIndex = 288;
-            this.txtidconductor.Text = "IdConductor";
+            this.txtidconductor.Text = "0";
+            this.txtidconductor.Visible = false;
             // 
             // btnbuscarconductor
             // 
             this.btnbuscarconductor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.btnbuscarconductor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnbuscarconductor.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnbuscarconductor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnbuscarconductor.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
             this.btnbuscarconductor.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
@@ -177,6 +244,7 @@
             // 
             this.txtnombreconductor.BackColor = System.Drawing.SystemColors.Window;
             this.txtnombreconductor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtnombreconductor.ForeColor = System.Drawing.Color.Black;
             this.txtnombreconductor.Location = new System.Drawing.Point(546, 32);
             this.txtnombreconductor.Name = "txtnombreconductor";
             this.txtnombreconductor.Size = new System.Drawing.Size(320, 23);
@@ -481,7 +549,7 @@
             // btnbuscar
             // 
             this.btnbuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.btnbuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnbuscar.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnbuscar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnbuscar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
             this.btnbuscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
@@ -497,6 +565,7 @@
             this.btnbuscar.Size = new System.Drawing.Size(24, 25);
             this.btnbuscar.TabIndex = 289;
             this.btnbuscar.UseVisualStyleBackColor = false;
+            this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
             // 
             // txtidvehiculo
             // 
@@ -505,6 +574,8 @@
             this.txtidvehiculo.Name = "txtidvehiculo";
             this.txtidvehiculo.Size = new System.Drawing.Size(82, 23);
             this.txtidvehiculo.TabIndex = 289;
+            this.txtidvehiculo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtidvehiculo_KeyDown);
+            this.txtidvehiculo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtidvehiculo_KeyPress);
             // 
             // label1
             // 
@@ -515,72 +586,6 @@
             this.label1.Size = new System.Drawing.Size(528, 31);
             this.label1.TabIndex = 7;
             this.label1.Text = "Mantenimiento de Vehículos\r\n";
-            // 
-            // nupcargamaxima
-            // 
-            this.nupcargamaxima.Location = new System.Drawing.Point(373, 82);
-            this.nupcargamaxima.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nupcargamaxima.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nupcargamaxima.Name = "nupcargamaxima";
-            this.nupcargamaxima.Size = new System.Drawing.Size(120, 23);
-            this.nupcargamaxima.TabIndex = 291;
-            this.nupcargamaxima.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // nupcargaminima
-            // 
-            this.nupcargaminima.Location = new System.Drawing.Point(373, 34);
-            this.nupcargaminima.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nupcargaminima.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nupcargaminima.Name = "nupcargaminima";
-            this.nupcargaminima.Size = new System.Drawing.Size(120, 23);
-            this.nupcargaminima.TabIndex = 292;
-            this.nupcargaminima.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // nuphoraiodisponibilidad
-            // 
-            this.nuphoraiodisponibilidad.Location = new System.Drawing.Point(373, 133);
-            this.nuphoraiodisponibilidad.Maximum = new decimal(new int[] {
-            24,
-            0,
-            0,
-            0});
-            this.nuphoraiodisponibilidad.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nuphoraiodisponibilidad.Name = "nuphoraiodisponibilidad";
-            this.nuphoraiodisponibilidad.Size = new System.Drawing.Size(120, 23);
-            this.nuphoraiodisponibilidad.TabIndex = 293;
-            this.nuphoraiodisponibilidad.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // frm_Vehiculos
             // 
@@ -598,6 +603,9 @@
             this.tabpginformacion.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nuphoraiodisponibilidad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupcargaminima)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupcargamaxima)).EndInit();
             this.tabpgrutas.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -605,9 +613,6 @@
             this.panel5.ResumeLayout(false);
             this.menubotones.ResumeLayout(false);
             this.menubotones.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nupcargamaxima)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nupcargaminima)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nuphoraiodisponibilidad)).EndInit();
             this.ResumeLayout(false);
 
         }

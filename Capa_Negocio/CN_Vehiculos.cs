@@ -50,7 +50,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
                 {
                     Mensaje += "Es necesario indicar la identificacíon de este vehículo.\n";
                 }
-                if (objvehiculo.CargaMaxima == 0 || objvehiculo.CargaManima == 0)
+                if (objvehiculo.CargaMaxima == 0 || objvehiculo.CargaMinima == 0)
                 {
                     Mensaje += "Debe indicar la cantidad la cantidad mínima y máxima que soportará este vehículo.\n";
                 }
