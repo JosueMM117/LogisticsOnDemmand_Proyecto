@@ -76,10 +76,11 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             {
                 if (btnadicionar.IconChar == IconChar.Ban)
                 {
-                    btnadicionar.IconChar = IconChar.Plus;
+                    btnadicionar.IconChar = IconChar.FileCirclePlus;
                     btnadicionar.Text = "Adicionar";
                     btnguardar.Enabled = false;
                     btneditar.Enabled = true;
+                    btnborrar.Enabled = true;
                     btnbuscar.Enabled = true;
                     txtidhabilidad.Enabled = true;
                     txtidhabilidad.BackColor = Color.White;
@@ -91,6 +92,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     btnadicionar.Text = "Cancelar";
                     btneditar.Enabled = false;
                     btnbuscar.Enabled = false;
+                    btnborrar.Enabled = false;
                     txtidhabilidad.Enabled = false;
                     cboestado.Enabled = false;
                     Limpiar();
@@ -139,12 +141,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     bool respuesta = cnvehiculos.Registrar_Habilidad(objhabilidad, out mensaje);
                     if (respuesta == true)
                     {
-                        btnadicionar.IconChar = IconChar.Plus;
+                        btnadicionar.IconChar = IconChar.FileCirclePlus;
                         btnadicionar.Text = "Adicionar";
-                        btneditar.IconChar = IconChar.PenToSquare;
+                        btneditar.IconChar = IconChar.FilePen;
                         btneditar.Text = "Editar";
                         btnguardar.Enabled = false;
                         btneditar.Enabled = true;
+                        btnborrar.Enabled = true;
                         btnadicionar.Enabled = true;
                         btnbuscar.Enabled = true;
                         txtidhabilidad.Enabled = true;
@@ -159,12 +162,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     bool respuesta = await cnvehiculos.Actualizar_InformacionHabilidades(objhabilidad);
                     if (respuesta == true)
                     {
-                        btnadicionar.IconChar = IconChar.Plus;
+                        btnadicionar.IconChar = IconChar.FileCirclePlus;
                         btnadicionar.Text = "Adicionar";
-                        btneditar.IconChar = IconChar.PenToSquare;
+                        btneditar.IconChar = IconChar.FilePen;
                         btneditar.Text = "Editar";
                         btnguardar.Enabled = false;
                         btneditar.Enabled = true;
+                        btnborrar.Enabled = true;
                         btnadicionar.Enabled = true;
                         btnbuscar.Enabled = true;
                         txtidhabilidad.Enabled = true;
@@ -194,11 +198,12 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 var validar = BuscarDatos.Where(b => b.IdHabilidad == Convert.ToInt32(txtidhabilidad.Text)).FirstOrDefault();
                 if (btneditar.IconChar == IconChar.Ban)
                 {
-                    btneditar.IconChar = IconChar.PenToSquare;
+                    btneditar.IconChar = IconChar.FilePen;
                     btneditar.Text = "Editar";
                     btnguardar.Enabled = false;
                     btnadicionar.Enabled = true;
                     btnbuscar.Enabled = true;
+                    btnborrar.Enabled = true;
                     txtidhabilidad.Enabled = true;
                     cboestado.Enabled = false;
                     txtidhabilidad.BackColor = Color.White;
@@ -236,6 +241,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         btneditar.Text = "Cancelar";
                         btnguardar.Enabled = true;
                         btnadicionar.Enabled = false;
+                        btnborrar.Enabled = false;
                         btnbuscar.Enabled = false;
                         txtidhabilidad.Enabled = false;
                         cboestado.Enabled = true;
@@ -243,6 +249,43 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     }
                     else
                         MessageBox.Show("Debe seleccionar la habilidad que desea editar", "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private async void btnborrar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(txtidhabilidad.Text))
+                {
+                    MessageBox.Show("Debe seleccionar una habilidad", "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                var objhabilidad = new CM_Habilidades
+                {
+                    IdHabilidad = Convert.ToInt32(txtidhabilidad.Text)
+                };
+
+                if (MessageBox.Show("¿Seguro que desea borrar la habilidad?", "Habilidades", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    List<CM_Vehiculos> BuscarDatos = await cnvehiculos.Listar_Vehículos();
+                    var validar_datos = BuscarDatos.Where(b => b.Habilidades.IdHabilidad == objhabilidad.IdHabilidad).FirstOrDefault();
+                    if (validar_datos == null)
+                    {
+                        bool respuesta = await cnvehiculos.Borrar_Habilidades(objhabilidad);
+                        if (respuesta == true)
+                        {
+                            Limpiar();
+                        }
+                    }
+                    else
+                        MessageBox.Show("No puede borrar esta habilidad porque esta relacionada aun vehículo.", "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    
                 }
             }
             catch (Exception ex)
@@ -326,6 +369,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             }
         }
         #endregion
+
 
     }
 }
