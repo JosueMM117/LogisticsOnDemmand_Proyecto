@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Habilidades));
             this.panel1 = new System.Windows.Forms.Panel();
             this.cboestado = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -38,6 +39,7 @@
             this.btnadicionar = new FontAwesome.Sharp.IconMenuItem();
             this.btnguardar = new FontAwesome.Sharp.IconMenuItem();
             this.btneditar = new FontAwesome.Sharp.IconMenuItem();
+            this.btnborrar = new FontAwesome.Sharp.IconMenuItem();
             this.label11 = new System.Windows.Forms.Label();
             this.txtidhabilidad = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -120,7 +122,8 @@
             this.menubotones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnadicionar,
             this.btnguardar,
-            this.btneditar});
+            this.btneditar,
+            this.btnborrar});
             this.menubotones.Location = new System.Drawing.Point(0, 0);
             this.menubotones.Name = "menubotones";
             this.menubotones.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -133,7 +136,7 @@
             this.btnadicionar.BackColor = System.Drawing.Color.Transparent;
             this.btnadicionar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnadicionar.ForeColor = System.Drawing.Color.White;
-            this.btnadicionar.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.btnadicionar.IconChar = FontAwesome.Sharp.IconChar.FileCirclePlus;
             this.btnadicionar.IconColor = System.Drawing.Color.DodgerBlue;
             this.btnadicionar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnadicionar.IconSize = 40;
@@ -163,7 +166,7 @@
             // 
             this.btneditar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btneditar.ForeColor = System.Drawing.Color.White;
-            this.btneditar.IconChar = FontAwesome.Sharp.IconChar.PenToSquare;
+            this.btneditar.IconChar = FontAwesome.Sharp.IconChar.FilePen;
             this.btneditar.IconColor = System.Drawing.Color.DodgerBlue;
             this.btneditar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btneditar.IconSize = 40;
@@ -173,6 +176,21 @@
             this.btneditar.Text = "Editar";
             this.btneditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btneditar.Click += new System.EventHandler(this.btneditar_Click);
+            // 
+            // btnborrar
+            // 
+            this.btnborrar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnborrar.ForeColor = System.Drawing.Color.White;
+            this.btnborrar.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            this.btnborrar.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btnborrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnborrar.IconSize = 40;
+            this.btnborrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnborrar.Name = "btnborrar";
+            this.btnborrar.Size = new System.Drawing.Size(55, 58);
+            this.btnborrar.Text = "Borrar";
+            this.btnborrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnborrar.Click += new System.EventHandler(this.btnborrar_Click);
             // 
             // label11
             // 
@@ -238,6 +256,7 @@
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frm_Habilidades";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -270,5 +289,6 @@
         private System.Windows.Forms.TextBox txtdescripcion;
         private System.Windows.Forms.ComboBox cboestado;
         private System.Windows.Forms.Label label7;
+        private FontAwesome.Sharp.IconMenuItem btnborrar;
     }
 }

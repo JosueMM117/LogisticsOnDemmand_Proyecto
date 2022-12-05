@@ -6,6 +6,7 @@ using LogisticsOnDemmand_Proyecto.Capa_Presentacion.Login;
 using LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras.frm_Busquedas;
 using LogisticsOnDemmand_Proyecto.Utility_Class;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,7 +21,8 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
 {
     public partial class frm_Vehiculos : Form
     {
-        public CN_Vehiculos cnvehiculos = new CN_Vehiculos();
+        public CN_Vehiculos cn_vehiculos = new CN_Vehiculos();
+        public CN_Rutas cn_rutas = new CN_Rutas(); 
         #region Constructor
         public frm_Vehiculos()
         {
@@ -47,7 +49,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         public async void CargarDatos()
         {
             //Habilidades
-            List<CM_Habilidades> listahabilidades = await cnvehiculos.Listar_Habilidades();
+            List<CM_Habilidades> listahabilidades = await cn_vehiculos.Listar_Habilidades();
             foreach (CM_Habilidades item in listahabilidades)
             {
                 cbohabilidad.Items.Add(new OpcionCombo() { IdPos = item.IdHabilidad, Texto = item.Descripcion });
@@ -129,11 +131,12 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             {
                 if (btnadicionar.IconChar == IconChar.Ban)
                 {
-                    btnadicionar.IconChar = IconChar.Plus;
+                    btnadicionar.IconChar = IconChar.FileCirclePlus;
                     btnadicionar.Text = "Adicionar";
                     btnguardar.Enabled = false;
                     btneditar.Enabled = true;
                     btnbuscar.Enabled = true;
+                    btnborrar.Enabled = true;
                     txtidvehiculo.Enabled = true;
                     btnbuscarconductor.Enabled = false;
                     txtidvehiculo.BackColor = Color.White;
@@ -145,11 +148,12 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     btnadicionar.Text = "Cancelar";
                     btneditar.Enabled = false;
                     btnbuscar.Enabled = false;
+                    btnborrar.Enabled = false;
                     txtidvehiculo.Enabled = false;
                     cboestado.Enabled = false;
                     btnbuscarconductor.Enabled = true;
                     Limpiar();
-                    List<CM_Vehiculos> BuscarDatos = await cnvehiculos.Listar_Vehículos();
+                    List<CM_Vehiculos> BuscarDatos = await cn_vehiculos.Listar_Vehículos();
                     int cant_registros = BuscarDatos.Select(b => b.IdVehiculo).Count();
                     int idgenerado;
 
@@ -209,15 +213,16 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
 
                 if (txtidvehiculo.BackColor == Color.LightGreen)
                 {
-                    bool respuesta = cnvehiculos.Registrar_Vehiculo(objvehiculo, out mensaje);
+                    bool respuesta = cn_vehiculos.Registrar_Vehiculo(objvehiculo, out mensaje);
                     if (respuesta == true)
                     {
-                        btnadicionar.IconChar = IconChar.Plus;
+                        btnadicionar.IconChar = IconChar.FileCirclePlus;
                         btnadicionar.Text = "Adicionar";
-                        btneditar.IconChar = IconChar.PenToSquare;
+                        btneditar.IconChar = IconChar.FilePen;
                         btneditar.Text = "Editar";
                         btnguardar.Enabled = false;
                         btneditar.Enabled = true;
+                        btnborrar.Enabled = true;
                         btnadicionar.Enabled = true;
                         btnbuscar.Enabled = true;
                         txtidvehiculo.Enabled = true;
@@ -230,15 +235,16 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 }
                 else
                 {
-                    bool respuesta = await cnvehiculos.Actualizar_InformacionVehiculos(objvehiculo);
+                    bool respuesta = await cn_vehiculos.Actualizar_InformacionVehiculos(objvehiculo);
                     if (respuesta == true)
                     {
-                        btnadicionar.IconChar = IconChar.Plus;
+                        btnadicionar.IconChar = IconChar.FileCirclePlus;
                         btnadicionar.Text = "Adicionar";
-                        btneditar.IconChar = IconChar.PenToSquare;
+                        btneditar.IconChar = IconChar.FilePen;
                         btneditar.Text = "Editar";
                         btnguardar.Enabled = false;
                         btneditar.Enabled = true;
+                        btnborrar.Enabled = true;
                         btnadicionar.Enabled = true;
                         btnbuscar.Enabled = true;
                         txtidvehiculo.Enabled = true;
@@ -264,16 +270,18 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     MessageBox.Show("Debe seleccionar un vehículo.", "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                List<CM_Vehiculos> BuscarDatos = await cnvehiculos.Listar_Vehículos();
+                List<CM_Vehiculos> BuscarDatos = await cn_vehiculos.Listar_Vehículos();
                 var validar = BuscarDatos.Where(b => b.IdVehiculo == Convert.ToInt32(txtidvehiculo.Text)).FirstOrDefault();
                 if (btneditar.IconChar == IconChar.Ban)
                 {
-                    btneditar.IconChar = IconChar.PenToSquare;
+                    btneditar.IconChar = IconChar.FilePen;
                     btneditar.Text = "Editar";
                     btnguardar.Enabled = false;
                     btnadicionar.Enabled = true;
                     btnbuscar.Enabled = true;
+                    btnborrar.Enabled = true;
                     txtidvehiculo.Enabled = true;
+                    cboestado.Enabled = false;
                     txtidvehiculo.BackColor = Color.White;
                     btnbuscarconductor.Enabled = false;
 
@@ -311,7 +319,19 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 {
                     if (validar != null)
                     {
-                        txtidvehiculo.Text = string.Format("{0:0000}", Convert.ToInt32(txtidvehiculo.Text));
+                        btneditar.IconChar = IconChar.Ban;
+                        btneditar.Text = "Cancelar";
+                        btnguardar.Enabled = true;
+                        btnadicionar.Enabled = false;
+                        btnborrar.Enabled = false;
+                        btnbuscar.Enabled = false;
+                        txtidvehiculo.Enabled = false;
+                        cboestado.Enabled = true;
+                        btnbuscarconductor.Enabled = true;
+                        txtidvehiculo.BackColor = Color.Khaki;
+
+                        #region Cargar_Datos_IdSeleccionado
+                        txtidvehiculo.Text = string.Format("{0:000}", Convert.ToInt32(txtidvehiculo.Text));
                         txtnombrevehiculo.Text = validar.NombreVehiculo;
                         txtidconductor.Text = validar.Conductor.IdUsuario.ToString();
                         txtnombreconductor.Text = validar.Conductor.NombreCompleto;
@@ -321,36 +341,72 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         nupcargaminima.Value = validar.CargaMinima;
                         nuphoraiodisponibilidad.Value = Convert.ToInt32(validar.HorarioDisponibilidad);
                         foreach (OpcionCombo oc in cbohabilidad.Items)
+                        {
+                            if (Convert.ToInt32(oc.IdPos) == Convert.ToInt32(validar.Habilidades.IdHabilidad))
                             {
-                                if (Convert.ToInt32(oc.IdPos) == Convert.ToInt32(validar.Habilidades.IdHabilidad))
-                                {
-                                    int indice_combo = cbohabilidad.Items.IndexOf(oc);
-                                    cbohabilidad.SelectedIndex = indice_combo;
-                                    break;
-                                }
+                                int indice_combo = cbohabilidad.Items.IndexOf(oc);
+                                cbohabilidad.SelectedIndex = indice_combo;
+                                break;
                             }
+                        }
                         foreach (OpcionCombo oc in cboestado.Items)
+                        {
+                            if (oc.Texto == validar.Habilidades.Descripcion)
                             {
-                                if (oc.Texto == validar.Habilidades.Descripcion)
-                                {
-                                    int indice_combo = cboestado.Items.IndexOf(oc);
-                                    cboestado.SelectedIndex = indice_combo;
-                                    break;
-                                }
+                                int indice_combo = cboestado.Items.IndexOf(oc);
+                                cboestado.SelectedIndex = indice_combo;
+                                break;
                             }
-
-                        btneditar.IconChar = IconChar.Ban;
-                        btneditar.Text = "Cancelar";
-                        btnguardar.Enabled = true;
-                        btnadicionar.Enabled = false;
-                        btnbuscar.Enabled = false;
-                        txtidvehiculo.Enabled = false;
-                        btnbuscarconductor.Enabled = true;
-                        txtidvehiculo.BackColor = Color.Khaki;
+                        }
+                        #endregion
                     }
                     else
                         MessageBox.Show("Debe seleccionar el vehículo que desea editar", "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }   
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private async void btnborrar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(txtidvehiculo.Text))
+                {
+                    MessageBox.Show("Debe seleccionar un vehículo.", "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                var objvehiculo = new CM_Vehiculos
+                {
+                    IdVehiculo = Convert.ToInt32(txtidvehiculo.Text)
+                };
+
+                if (MessageBox.Show("¿Seguro que desea borrar el vehículo?", "Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    List<CM_Rutas> BuscarDatos = await cn_rutas.Listar_Rutas();
+                    var validar_rutas = BuscarDatos.Where(b => b.Vehiculo.IdVehiculo == objvehiculo.IdVehiculo).FirstOrDefault();
+                    if (validar_rutas == null)
+                    {
+                        //if (validar_rutas.Estado == "Pendiente")
+                        //{
+                        //    MessageBox.Show("No puede borrar este vehículo porque tiene rutas pendientes por entregar.", "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //}
+                        //else
+                        //{
+                            bool respuesta = await cn_vehiculos.Borrar_Vehiculos(objvehiculo);
+                            if (respuesta == true)
+                            {
+                                Limpiar();
+                            }
+                        //}
+                    }
+                    else
+                        MessageBox.Show("No puede borrar este vehículo porque se encuentra relacionado a una ruta.", "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //Limpiar();
+                }
             }
             catch (Exception ex)
             {
@@ -418,7 +474,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 {
                     e.SuppressKeyPress = true;
                     int codigo = int.Parse(txtidvehiculo.Text);
-                    List<CM_Vehiculos> BuscarDatos = await cnvehiculos.Listar_Vehículos();
+                    List<CM_Vehiculos> BuscarDatos = await cn_vehiculos.Listar_Vehículos();
                     var validar = BuscarDatos.Where(b => b.IdVehiculo == codigo).FirstOrDefault();
                     if (validar != null)
                     {
@@ -466,5 +522,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             }
         }
         #endregion
+
+
     }
 }

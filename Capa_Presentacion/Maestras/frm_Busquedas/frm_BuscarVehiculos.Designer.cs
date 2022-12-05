@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_BuscarVehiculos));
             this.dgv_vehiculos = new MetroFramework.Controls.MetroGrid();
             this.IdVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -354,9 +355,10 @@
             this.ClientSize = new System.Drawing.Size(1285, 698);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_BuscarVehiculos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frm_BuscarVehiculos";
+            this.Text = "Buscar Vehiculos";
             this.Load += new System.EventHandler(this.frm_BuscarVehiculos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_vehiculos)).EndInit();
             this.panel1.ResumeLayout(false);
