@@ -16,7 +16,69 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
         #region CRUD
 
         #region Crear
-
+        /// <summary>
+        /// Registrar Rutas
+        /// </summary>
+        /// <param name="objruta"></param>
+        /// <param name="mensaje"></param>
+        /// <returns>Retorna True, si el registro fue insertado correctamente, en caso contrario devuelve false.</returns>
+        public bool registrar_rutas(CM_Rutas objruta, out string mensaje)
+        {
+            try
+            {
+                mensaje = string.Empty;
+                FireBase_Connect
+                    .Child("Rutas")
+                    .PostAsync(new CM_Rutas()
+                    {
+                        IdRuta = objruta.IdRuta,
+                        Titulo = objruta.Titulo,
+                        Concepto = objruta.Concepto,
+                        Direccion = objruta.Direccion,
+                        Fecha_Entrega = objruta.Fecha_Entrega,
+                        Ventana_Tiempo_Desde = objruta.Ventana_Tiempo_Desde,
+                        Ventana_Tiempo_Hasta = objruta.Ventana_Tiempo_Hasta,
+                        Cargas = objruta.Cargas,
+                        DetalleRuta = new CM_DetalleRuta
+                        {
+                            IdDetalleRuta = objruta.DetalleRuta.IdDetalleRuta,
+                            Destino1_Ruta = objruta.DetalleRuta.Destino1_Ruta,
+                            Destino2_Ruta = objruta.DetalleRuta.Destino2_Ruta
+                        },
+                        Vehiculo = new CM_Vehiculos
+                        {
+                            IdVehiculo = objruta.Vehiculo.IdVehiculo,
+                            NombreVehiculo = objruta.Vehiculo.NombreVehiculo,
+                            Conductor = new CM_Usuarios
+                            {
+                                IdUsuario = objruta.Vehiculo.Conductor.IdUsuario,
+                                NombreCompleto = objruta.Vehiculo.Conductor.NombreCompleto
+                            },
+                            Habilidades = new CM_Habilidades
+                            {
+                                IdHabilidad = objruta.Vehiculo.Habilidades.IdHabilidad,
+                                Descripcion = objruta.Vehiculo.Habilidades.Descripcion
+                            }
+                        },
+                        Nombre_Cliente = objruta.Nombre_Cliente,
+                        Telefono_Cliente = objruta.Telefono_Cliente,
+                        Telefono2_Cliente = objruta.Telefono2_Cliente,
+                        Email_Cliente = objruta.Email_Cliente,
+                        Comentarios = objruta.Comentarios,
+                        Prioridad = objruta.Prioridad,
+                        Estado = objruta.Estado,
+                        FechaRegistro = objruta.FechaRegistro
+                    });
+                mensaje = "Ruta registrada!.";
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mensaje = string.Empty;
+                return false;
+            }
+        }
         #endregion
 
         #region Leer

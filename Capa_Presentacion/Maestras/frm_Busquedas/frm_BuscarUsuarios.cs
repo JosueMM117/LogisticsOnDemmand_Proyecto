@@ -33,8 +33,8 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras.frm_Busquedas
             try
             {
                 List<CM_Usuarios> ListaUsuarios = await cnusuarios.Listar_Usuarios();
-                //var estado = listaUsuario.Where().FirstOrDefault();
-                foreach (CM_Usuarios item in ListaUsuarios)
+                //var usuarios = ListaUsuarios.Where(b=>b.Rol == "Conductor" && b.Estado == "Activo").FirstOrDefault();
+                foreach (CM_Usuarios item in ListaUsuarios.Where(b => b.Rol == "Conductor" && b.Estado == "Activo"))
                 {
                     dgvusuarios.Rows.Add(new object[] {
                     item.IdUsuario,

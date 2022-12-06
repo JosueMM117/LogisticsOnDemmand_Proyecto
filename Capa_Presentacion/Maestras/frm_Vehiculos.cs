@@ -48,29 +48,36 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         }
         public async void CargarDatos()
         {
-            //Habilidades
-            List<CM_Habilidades> listahabilidades = await cn_vehiculos.Listar_Habilidades();
-            foreach (CM_Habilidades item in listahabilidades)
+            try
             {
-                cbohabilidad.Items.Add(new OpcionCombo() { IdPos = item.IdHabilidad, Texto = item.Descripcion });
-            }
-            cbohabilidad.DisplayMember = "Texto";
-            cbohabilidad.ValueMember = "Valor";
-            cbohabilidad.SelectedIndex = 0;
+                //Habilidades
+                List<CM_Habilidades> listahabilidades = await cn_vehiculos.Listar_Habilidades();
+                foreach (CM_Habilidades item in listahabilidades)
+                {
+                    cbohabilidad.Items.Add(new OpcionCombo() { IdPos = item.IdHabilidad, Texto = item.Descripcion });
+                }
+                cbohabilidad.DisplayMember = "Texto";
+                cbohabilidad.ValueMember = "Valor";
+                cbohabilidad.SelectedIndex = 0;
 
-            //Estado
-            List<OpcionCombo> listaestado = new List<OpcionCombo>
+                //Estado
+                List<OpcionCombo> listaestado = new List<OpcionCombo>
                 {
                     new OpcionCombo() { IdPos = 0, Texto = "Activo" },
                     new OpcionCombo() { IdPos = 1, Texto = "Inactivo" }
                 };
-            foreach (OpcionCombo estados in listaestado)
-            {
-                cboestado.Items.Add(new OpcionCombo() { IdPos = estados.IdPos, Texto = estados.Texto });
+                foreach (OpcionCombo estados in listaestado)
+                {
+                    cboestado.Items.Add(new OpcionCombo() { IdPos = estados.IdPos, Texto = estados.Texto });
+                }
+                cboestado.DisplayMember = "Texto";
+                cboestado.ValueMember = "IdPos";
+                cboestado.SelectedIndex = -1;
             }
-            cboestado.DisplayMember = "Texto";
-            cboestado.ValueMember = "IdPos";
-            cboestado.SelectedIndex = -1;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } 
         }
         #endregion
 
