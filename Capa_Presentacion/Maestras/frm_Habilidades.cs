@@ -66,6 +66,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         {
             btnguardar.Enabled = false;
             txtidhabilidad.Select();
+            cboestado.Enabled = false;
             CargarDatos();
         }
 
@@ -273,19 +274,11 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
 
                 if (MessageBox.Show("¿Seguro que desea borrar la habilidad?", "Habilidades", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    List<CM_Vehiculos> BuscarDatos = await cnvehiculos.Listar_Vehículos();
-                    var validar_datos = BuscarDatos.Where(b => b.Habilidades.IdHabilidad == objhabilidad.IdHabilidad).FirstOrDefault();
-                    if (validar_datos == null)
+                    bool respuesta = await cnvehiculos.Borrar_Habilidades(objhabilidad);
+                    if (respuesta == true)
                     {
-                        bool respuesta = await cnvehiculos.Borrar_Habilidades(objhabilidad);
-                        if (respuesta == true)
-                        {
-                            Limpiar();
-                        }
+                        Limpiar();
                     }
-                    else
-                        MessageBox.Show("No puede borrar esta habilidad porque esta relacionada aun vehículo.", "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    
                 }
             }
             catch (Exception ex)

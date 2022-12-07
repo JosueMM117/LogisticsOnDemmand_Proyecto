@@ -11,15 +11,15 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
 {
     public class CN_Vehiculos
     {
-        private CD_Vehiculos cdvehiculos = new CD_Vehiculos();
-
+        private CD_Vehiculos cd_vehiculos = new CD_Vehiculos();
+        private CD_Rutas cd_rutas = new CD_Rutas();
         /// <summary>
         /// Listar Vehiculos
         /// </summary>
         /// <returns>Retorna una lista con todos los vehículos registrados.</returns>
         public async Task<List<CM_Vehiculos>> Listar_Vehículos()
         {
-            return await cdvehiculos.listavehiculos();
+            return await cd_vehiculos.listavehiculos();
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
         /// <returns>Retorna una lista con todos los habilidades registrados.</returns>
         public async Task<List<CM_Habilidades>> Listar_Habilidades()
         {
-            return await cdvehiculos.listahabilidades();
+            return await cd_vehiculos.listahabilidades();
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
                     return false;
                 }
                 else
-                    return cdvehiculos.registrar_vehiculos(objvehiculo, out Mensaje);
+                    return cd_vehiculos.registrar_vehiculos(objvehiculo, out Mensaje);
             }
             catch (Exception ex)
             {
@@ -96,11 +96,11 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
                     return false;
                 }
                 else
-                    return cdvehiculos.registrar_habilidades(objhabilidad, out Mensaje);
+                    return cd_vehiculos.registrar_habilidades(objhabilidad, out Mensaje);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Vehiculos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
@@ -114,7 +114,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
         {
             try
             {
-                return await cdvehiculos.actualizar_informacionesvehiculos(objvehiculo);
+                return await cd_vehiculos.actualizar_informacionesvehiculos(objvehiculo);
             }
             catch (Exception ex)
             {
@@ -132,11 +132,11 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
         {
             try
             {
-                return await cdvehiculos.actualizar_informacioneshabilidades(objhabilidad);
+                return await cd_vehiculos.actualizar_informacioneshabilidades(objhabilidad);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Vehiculos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -150,9 +150,16 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
         {
             try
             {
-                //validar si el vehiculo que estamos borrando se encuentra relacionado a una ruta, de ser asi, no permita borrar el 
-                //registro, solo se pueda inactivar.
-                return await cdvehiculos.borrar_vehiculo(objvehiculo);
+                //Si un vehiculo ya posee rutas cuyo estado sea completado, el mismo no puede ser borrado.
+                List<CM_Rutas> ListaRutas = await cd_rutas.listarutas();
+                var validar_rutas = ListaRutas.Where(b => b.Vehiculo.IdVehiculo == objvehiculo.IdVehiculo).FirstOrDefault();
+                if (validar_rutas != null)
+                {
+                    MessageBox.Show("No se puede borrar el vehículo porque ya posee histórico de rutas.", "Vehiculos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }  
+                else
+                    return await cd_vehiculos.borrar_vehiculo(objvehiculo);
             }
             catch (Exception ex)
             {
@@ -170,12 +177,20 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
         {
             try
             {
-                //validar si la habilidad se encuentra ralacionada a un vehiculo.
-                return await cdvehiculos.borrar_habilidad(objhabilidad);
+                //Si una habilidad se encuentra relacionada a un vehiculo, esta no puede ser borrada.
+                List<CM_Vehiculos> BuscarDatos = await cd_vehiculos.listavehiculos();
+                var validar_datos = BuscarDatos.Where(b => b.Habilidades.IdHabilidad == objhabilidad.IdHabilidad).FirstOrDefault();
+                if (validar_datos != null)
+                {
+                    MessageBox.Show("No puede borrar esta habilidad porque esta relacionada a un vehículo.", "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                else
+                    return await cd_vehiculos.borrar_habilidad(objhabilidad);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Vehiculos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }

@@ -20,7 +20,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
     public partial class frm_Rutas : Form
     {
         public CN_Rutas cn_rutas = new CN_Rutas();
-        public CN_Vehiculos cn_vehiculos = new CN_Vehiculos(); 
+        public CN_Vehiculos cn_vehiculos = new CN_Vehiculos();
         #region Constructor
         public frm_Rutas()
         {
@@ -37,7 +37,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             txtnombreconductor.Text = "";
             txtnombrevehiculo.Text = "";
             txthabilidadvehiculo.Text = "";
-
             //txtidconductor.Text = "";
             //txtnombrevehiculo.Clear();
             //txtnombreconductor.Text = "";
@@ -48,7 +47,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             //nuphoraiodisponibilidad.Value = 1;
             //cbohabilidad.SelectedIndex = -1;
             //cboestado.SelectedIndex = -1;
-            
+
         }
         public void CargarDatos()
         {
@@ -101,7 +100,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             txtidvehiculo.Enabled = false;
             btnbuscarvehiculo.Enabled = false;
             cboestado.Enabled = false;
-            dtpfechaentrega.CustomFormat= "dd-MM-yyy";
+            dtpfechaentrega.CustomFormat = "dd-MM-yyy";
         }
 
         #region Click
@@ -270,7 +269,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         btnbuscar.Enabled = false;
                         btnbuscarvehiculo.Enabled = true;
                         btnprocesar.Enabled = false;
-                        cboestado.Enabled = true;    
+                        cboestado.Enabled = true;
                         txtidruta.Enabled = false;
                         btnprocesar.Enabled = true;
                         txtidruta.BackColor = Color.Khaki;
@@ -279,50 +278,49 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
 
                         #region Cargar_Datos_IdSeleccionado
 
-                    //Datos Ruta
-                    txtidruta.Text = string.Format("{0:0000}", Convert.ToInt32(txtidruta.Text));
-                    txttitulo.Text = validar.Titulo;
-                    txtconcepto.Text = validar.Concepto;
-                    txtdireccion.Text = validar.Direccion;
-                    txtcomentarios.Text = validar.Comentarios;
-                    dtpfechaentrega.Value = Convert.ToDateTime(validar.Fecha_Entrega);
-                    txthoradesde.Text = validar.Ventana_Tiempo_Desde;
-                    txthorahasta.Text = validar.Ventana_Tiempo_Hasta;
-                    nupcargas.Value = validar.Cargas;
-                    foreach (OpcionCombo oc in cboprioridad.Items)
-                    {
-                        if (oc.Texto == validar.Prioridad)
+                        //Datos Ruta
+                        txtidruta.Text = string.Format("{0:0000}", Convert.ToInt32(txtidruta.Text));
+                        txttitulo.Text = validar.Titulo;
+                        txtconcepto.Text = validar.Concepto;
+                        txtdireccion.Text = validar.Direccion;
+                        txtcomentarios.Text = validar.Comentarios;
+                        dtpfechaentrega.Value = Convert.ToDateTime(validar.Fecha_Entrega);
+                        txthoradesde.Text = validar.Ventana_Tiempo_Desde;
+                        txthorahasta.Text = validar.Ventana_Tiempo_Hasta;
+                        nupcargas.Value = validar.Cargas;
+                        foreach (OpcionCombo oc in cboprioridad.Items)
                         {
-                            int indice_combo = cboprioridad.Items.IndexOf(oc);
-                            cboprioridad.SelectedIndex = indice_combo;
-                            break;
+                            if (oc.Texto == validar.Prioridad)
+                            {
+                                int indice_combo = cboprioridad.Items.IndexOf(oc);
+                                cboprioridad.SelectedIndex = indice_combo;
+                                break;
+                            }
                         }
-                    }
-                    foreach (OpcionCombo oc in cboestado.Items)
-                    {
-                        if (oc.Texto == validar.Estado)
+                        foreach (OpcionCombo oc in cboestado.Items)
                         {
-                            int indice_combo = cboestado.Items.IndexOf(oc);
-                            cboestado.SelectedIndex = indice_combo;
-                            break;
+                            if (oc.Texto == validar.Estado)
+                            {
+                                int indice_combo = cboestado.Items.IndexOf(oc);
+                                cboestado.SelectedIndex = indice_combo;
+                                break;
+                            }
                         }
-                    }
-                    //datalle rutas
+                        //datalle rutas
 
-                    //Datos Vehiculo
-                    txtidvehiculo.Text = string.Format("{0:000}", validar.Vehiculo.IdVehiculo);
-                    txtnombrevehiculo.Text = validar.Vehiculo.NombreVehiculo;
-                    txtnombreconductor.Text = validar.Vehiculo.Conductor.NombreCompleto;
-                    txthabilidadvehiculo.Text = validar.Vehiculo.Habilidades.Descripcion;
+                        //Datos Vehiculo
+                        txtidvehiculo.Text = string.Format("{0:000}", validar.Vehiculo.IdVehiculo);
+                        txtnombrevehiculo.Text = validar.Vehiculo.NombreVehiculo;
+                        txtnombreconductor.Text = validar.Vehiculo.Conductor.NombreCompleto;
+                        txthabilidadvehiculo.Text = validar.Vehiculo.Habilidades.Descripcion;
 
-                    //Datos Cliente
-                    txtnombrecliente.Text = validar.Nombre_Cliente;
-                    txttelefonocliente.Text = validar.Telefono_Cliente;
-                    txttelefono2cliente.Text = validar.Telefono2_Cliente;
-                    txtemailcliente.Text = validar.Email_Cliente;
+                        //Datos Cliente
+                        txtnombrecliente.Text = validar.Nombre_Cliente;
+                        txttelefonocliente.Text = validar.Telefono_Cliente;
+                        txttelefono2cliente.Text = validar.Telefono2_Cliente;
+                        txtemailcliente.Text = validar.Email_Cliente;
 
-                    #endregion
-
+                        #endregion
                     }
                     else
                     MessageBox.Show("Debe seleccionar la ruta que desea editar.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -383,10 +381,15 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     var result = modal.ShowDialog();
                     if (result == DialogResult.OK)
                     {
-                        txtidvehiculo.Text = string.Format("{0:000}", modal._Vehiculos.IdVehiculo);
-                        txtnombrevehiculo.Text = modal._Vehiculos.NombreVehiculo;
-                        txtnombreconductor.Text = modal._Vehiculos.Conductor.NombreCompleto;
-                        txthabilidadvehiculo.Text = modal._Vehiculos.Habilidades.Descripcion;
+                        if (modal._Vehiculos.Estado == "Activo")
+                        {
+                            txtidvehiculo.Text = string.Format("{0:000}", modal._Vehiculos.IdVehiculo);
+                            txtnombrevehiculo.Text = modal._Vehiculos.NombreVehiculo;
+                            txtnombreconductor.Text = modal._Vehiculos.Conductor.NombreCompleto;
+                            txthabilidadvehiculo.Text = modal._Vehiculos.Habilidades.Descripcion;
+                        }
+                        else
+                            MessageBox.Show("El Vehiculo se encuentra inactivo.","Rutas",MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
@@ -395,6 +398,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         //KeyPress
         private void txtidvehiculo_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -408,7 +412,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         {
             try
             {
-                if (e.KeyValue ==13)
+                if (e.KeyValue == 13)
                 {
                     e.SuppressKeyPress = true;
                     int codigo = int.Parse(txtidvehiculo.Text);
@@ -416,12 +420,20 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     var validar = BuscarDatos.Where(b => b.IdVehiculo == codigo).FirstOrDefault();
                     if (validar != null)
                     {
-                        e.SuppressKeyPress = true;
-                        txtidvehiculo.Text = string.Format("{0:000}", validar.IdVehiculo);
-                        txtnombrevehiculo.Text = validar.NombreVehiculo;
-                        txtnombreconductor.Text = validar.Conductor.NombreCompleto;
-                        txthabilidadvehiculo.Text = validar.Habilidades.Descripcion;
-                        txtidvehiculo.SelectionStart = txtidvehiculo.MaxLength;
+                        if (validar.Estado == "Activo")
+                        {
+                            e.SuppressKeyPress = true;
+                            txtidvehiculo.Text = string.Format("{0:000}", validar.IdVehiculo);
+                            txtnombrevehiculo.Text = validar.NombreVehiculo;
+                            txtnombreconductor.Text = validar.Conductor.NombreCompleto;
+                            txthabilidadvehiculo.Text = validar.Habilidades.Descripcion;
+                            txtidvehiculo.SelectionStart = txtidvehiculo.MaxLength;
+                        }
+                        else
+                        {
+                            MessageBox.Show("El Vehiculo se encuentra inactivo.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            txtidvehiculo.Clear();
+                        }
                     }
                     else
                     {
@@ -436,12 +448,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
         #endregion
 
         #endregion
-
 
     }
 }

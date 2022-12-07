@@ -530,6 +530,5 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         }
         #endregion
 
-
     }
 }
