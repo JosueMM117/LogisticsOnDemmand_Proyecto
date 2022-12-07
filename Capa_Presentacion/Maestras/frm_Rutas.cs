@@ -1,4 +1,8 @@
 ﻿using FontAwesome.Sharp;
+using GMap.NET;
+using GMap.NET.MapProviders;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
 using LogisticsOnDemmand_Proyecto.Capa_Datos;
 using LogisticsOnDemmand_Proyecto.Capa_Modelo;
 using LogisticsOnDemmand_Proyecto.Capa_Negocio;
@@ -26,6 +30,15 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         {
             InitializeComponent();
         }
+        #endregion
+
+        #region Variables
+        GMarkerGoogle marcadorgoogle;
+        GMapOverlay marcadoraverlay;
+        DataTable dtdestinos = new DataTable();
+        int iddestinoselecciado = 0;
+        double latitudinicial = 18.450217322488683;
+        double lonitudinicial = -69.92890886875865;
         #endregion
 
         #region Metodos
@@ -82,6 +95,14 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 cboestado.DisplayMember = "Texto";
                 cboestado.ValueMember = "IdPos";
                 cboestado.SelectedIndex = -1;
+
+                //Cargar columnas dtdestino
+                dtdestinos.Columns.Add(new DataColumn("IdDestino"));
+                dtdestinos.Columns.Add(new DataColumn("Descripción"));
+                dtdestinos.Columns.Add(new DataColumn("Latitud"));
+                dtdestinos.Columns.Add(new DataColumn("Longitud"));
+                
+                dgvdestinos.DataSource = dtdestinos;
             }
             catch (Exception ex)
             {
@@ -101,6 +122,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             btnbuscarvehiculo.Enabled = false;
             cboestado.Enabled = false;
             dtpfechaentrega.CustomFormat = "dd-MM-yyy";
+            tbctlvehiculos.SelectTab(0);
         }
 
         #region Click
@@ -398,6 +420,49 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void btnagregardestino_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Agregar destinos al dtdestinos
+                dtdestinos.Rows.Add(1, "Destino Inicial", 18.450217322488683,-69.92890886875865);
+                dtdestinos.Rows.Add(1, "Destino Final", 18.450217322488683, -69.92890886875865);
+                dtdestinos.Rows.Add(2, "Destino Final", 18.450217322488683, -69.92890886875865);
+                dtdestinos.Rows.Add(2, "Destino Final", 18.450217322488683, -69.92890886875865);
+
+               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void gMaprutas_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                //obtener ubicacion seleccionada de gMaprutas
+                double latitud = gMaprutas.FromLocalToLatLng(e.X, e.Y).Lat;
+                double longitud = gMaprutas.FromLocalToLatLng(e.X, e.Y).Lng;
+                txtlatitud.Text = latitud.ToString();
+                txtlongitud.Text = longitud.ToString();
+
+                //Mover el marcador a la posicion seleccionada por el usuario en el mapa
+                marcadorgoogle.Position = new PointLatLng(latitud, longitud);
+                marcadorgoogle.ToolTipText = string.Format("Ubicación: \n Latitud:{0} \n Longitud:{1}", latitud, longitud);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void btncargarubicacionactual_Click(object sender, EventArgs e)
+        {
+            gMaprutas.Position = new GMap.NET.PointLatLng(latitudinicial, lonitudinicial);
+        }
+
+
+        #endregion
 
         //KeyPress
         private void txtidvehiculo_KeyPress(object sender, KeyPressEventArgs e)
@@ -448,9 +513,66 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        #endregion
+
+        //Selected TabControl
+        private void tbctlvehiculos_Selected(object sender, TabControlEventArgs e)
+        {
+            try
+            {
+                //Cargar gMaprutas
+                gMaprutas.DragButton = MouseButtons.Left;
+                gMaprutas.CanDragMap = true;
+                gMaprutas.MapProvider = GMapProviders.GoogleMap;
+                gMaprutas.Position = new GMap.NET.PointLatLng(latitudinicial, lonitudinicial);
+                gMaprutas.AutoScroll = true;
+
+                //Marcador
+                marcadoraverlay = new GMapOverlay("Marcador");
+                marcadorgoogle = new GMarkerGoogle(new PointLatLng(latitudinicial, lonitudinicial), GMarkerGoogleType.red);
+                marcadoraverlay.Markers.Add(marcadorgoogle); // Agregar al Mapa
+
+                //Crear mensaje flotante
+                marcadorgoogle.ToolTipMode = MarkerTooltipMode.Always;
+                //marcadorgoogle.ToolTipText = string.Format("Ubicación: \n Latitud:{0} \n Longitud:{1}", latitudinicial, lonitudinicial);
+
+                //Agregar el mensaje flotante a gMaprutas
+                gMaprutas.Overlays.Add(marcadoraverlay);
+
+                //Ocultar Columnas
+                dgvdestinos.Columns[2].Visible = false;
+                dgvdestinos.Columns[3].Visible = false;
+                dgvdestinos.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //CellContentClick
+        private void dgvdestinos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int irow = e.RowIndex;
+                int icolumn = e.ColumnIndex;
+                if (irow >= 0 && icolumn >= 0)
+                {
+                    txtlatitud.Text = dgvdestinos.Rows[irow].Cells["Latitud"].Value.ToString();
+                    txtlongitud.Text = dgvdestinos.Rows[irow].Cells["Longitud"].Value.ToString();
+                    //Asignamos las posicion del destino seleccionado
+                    marcadorgoogle.Position = new PointLatLng(Convert.ToDouble(txtlatitud.Text), Convert.ToDouble(txtlongitud.Text));
+                    gMaprutas.Position = marcadorgoogle.Position;
+                }  
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
 
         #endregion
-
+  
     }
 }

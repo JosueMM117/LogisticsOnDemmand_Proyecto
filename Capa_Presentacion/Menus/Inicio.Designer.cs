@@ -69,7 +69,7 @@
             this.pnlcontenedormenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlcontenedormenu.Location = new System.Drawing.Point(0, 0);
             this.pnlcontenedormenu.Name = "pnlcontenedormenu";
-            this.pnlcontenedormenu.Size = new System.Drawing.Size(220, 674);
+            this.pnlcontenedormenu.Size = new System.Drawing.Size(220, 834);
             this.pnlcontenedormenu.TabIndex = 1;
             // 
             // btncerrarsesion
@@ -84,7 +84,7 @@
             this.btncerrarsesion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btncerrarsesion.IconSize = 42;
             this.btncerrarsesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btncerrarsesion.Location = new System.Drawing.Point(0, 614);
+            this.btncerrarsesion.Location = new System.Drawing.Point(0, 774);
             this.btncerrarsesion.Name = "btncerrarsesion";
             this.btncerrarsesion.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btncerrarsesion.Size = new System.Drawing.Size(220, 60);
@@ -240,14 +240,14 @@
             this.pnlcontenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlcontenedor.Location = new System.Drawing.Point(220, 90);
             this.pnlcontenedor.Name = "pnlcontenedor";
-            this.pnlcontenedor.Size = new System.Drawing.Size(967, 584);
+            this.pnlcontenedor.Size = new System.Drawing.Size(1213, 744);
             this.pnlcontenedor.TabIndex = 2;
             // 
             // picblogoempresa
             // 
             this.picblogoempresa.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.picblogoempresa.Image = global::LogisticsOnDemmand_Proyecto.Properties.Resources.logoapp;
-            this.picblogoempresa.Location = new System.Drawing.Point(190, 172);
+            this.picblogoempresa.Location = new System.Drawing.Point(313, 252);
             this.picblogoempresa.Name = "picblogoempresa";
             this.picblogoempresa.Size = new System.Drawing.Size(548, 277);
             this.picblogoempresa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -265,7 +265,7 @@
             this.pnlcontenedorbarramenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlcontenedorbarramenu.Location = new System.Drawing.Point(220, 0);
             this.pnlcontenedorbarramenu.Name = "pnlcontenedorbarramenu";
-            this.pnlcontenedorbarramenu.Size = new System.Drawing.Size(967, 80);
+            this.pnlcontenedorbarramenu.Size = new System.Drawing.Size(1213, 80);
             this.pnlcontenedorbarramenu.TabIndex = 3;
             // 
             // txtnombrecompleto
@@ -274,7 +274,7 @@
             this.txtnombrecompleto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.txtnombrecompleto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtnombrecompleto.ForeColor = System.Drawing.Color.White;
-            this.txtnombrecompleto.Location = new System.Drawing.Point(554, 9);
+            this.txtnombrecompleto.Location = new System.Drawing.Point(800, 9);
             this.txtnombrecompleto.Name = "txtnombrecompleto";
             this.txtnombrecompleto.Size = new System.Drawing.Size(354, 23);
             this.txtnombrecompleto.TabIndex = 5;
@@ -285,7 +285,7 @@
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Image = global::LogisticsOnDemmand_Proyecto.Properties.Resources.profile;
-            this.pictureBox2.Location = new System.Drawing.Point(914, 6);
+            this.pictureBox2.Location = new System.Drawing.Point(1160, 6);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(47, 50);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -313,7 +313,7 @@
             this.txtemail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.txtemail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtemail.ForeColor = System.Drawing.Color.White;
-            this.txtemail.Location = new System.Drawing.Point(554, 29);
+            this.txtemail.Location = new System.Drawing.Point(800, 29);
             this.txtemail.Name = "txtemail";
             this.txtemail.Size = new System.Drawing.Size(354, 25);
             this.txtemail.TabIndex = 2;
@@ -337,7 +337,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(220, 80);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(967, 10);
+            this.panel1.Size = new System.Drawing.Size(1213, 10);
             this.panel1.TabIndex = 4;
             // 
             // Inicio
@@ -345,7 +345,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.ClientSize = new System.Drawing.Size(1187, 674);
+            this.ClientSize = new System.Drawing.Size(1433, 834);
             this.Controls.Add(this.pnlcontenedor);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlcontenedorbarramenu);

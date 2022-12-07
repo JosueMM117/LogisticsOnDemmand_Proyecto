@@ -163,6 +163,7 @@
             this.btnexportarexcel.IconSize = 36;
             this.btnexportarexcel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnexportarexcel.Name = "btnexportarexcel";
+            this.btnexportarexcel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnexportarexcel.Size = new System.Drawing.Size(48, 56);
             this.btnexportarexcel.Text = "Excel";
             this.btnexportarexcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;

@@ -64,7 +64,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras.frm_Busquedas
             }
             cbofiltro.DisplayMember = "Texto";
             cbofiltro.ValueMember = "IdPos";
-            cbofiltro.SelectedIndex = 0;
+            //cbofiltro.SelectedIndex = 0;
             txtbusqueda.Select();
         }
 

@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Rutas));
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -89,13 +92,19 @@
             this.txtnombrecliente = new System.Windows.Forms.TextBox();
             this.tabpgmapa = new MetroFramework.Controls.MetroTabPage();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.gbmapa = new System.Windows.Forms.GroupBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.btncargarubicacionactual = new FontAwesome.Sharp.IconButton();
+            this.gMaprutas = new GMap.NET.WindowsForms.GMapControl();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.txtlongitud = new System.Windows.Forms.Label();
+            this.txtlatitud = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.btneliminardestino = new FontAwesome.Sharp.IconButton();
+            this.btnagregardestino = new FontAwesome.Sharp.IconButton();
+            this.gbdetalledestinos = new System.Windows.Forms.GroupBox();
+            this.dgvdestinos = new MetroFramework.Controls.MetroGrid();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.menubotones.SuspendLayout();
@@ -110,6 +119,11 @@
             this.panel4.SuspendLayout();
             this.tabpgmapa.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.gbmapa.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.gbdetalledestinos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvdestinos)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -305,11 +319,12 @@
             this.tbctlvehiculos.Location = new System.Drawing.Point(3, 3);
             this.tbctlvehiculos.Multiline = true;
             this.tbctlvehiculos.Name = "tbctlvehiculos";
-            this.tbctlvehiculos.SelectedIndex = 0;
+            this.tbctlvehiculos.SelectedIndex = 2;
             this.tbctlvehiculos.Size = new System.Drawing.Size(923, 359);
             this.tbctlvehiculos.TabIndex = 3;
             this.tbctlvehiculos.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.tbctlvehiculos.UseSelectable = true;
+            this.tbctlvehiculos.Selected += new System.Windows.Forms.TabControlEventHandler(this.tbctlvehiculos_Selected);
             // 
             // tabpgdatosruta
             // 
@@ -440,7 +455,7 @@
             this.gbdatosvehiculo.ForeColor = System.Drawing.Color.White;
             this.gbdatosvehiculo.Location = new System.Drawing.Point(383, 124);
             this.gbdatosvehiculo.Name = "gbdatosvehiculo";
-            this.gbdatosvehiculo.Size = new System.Drawing.Size(536, 186);
+            this.gbdatosvehiculo.Size = new System.Drawing.Size(533, 186);
             this.gbdatosvehiculo.TabIndex = 377;
             this.gbdatosvehiculo.TabStop = false;
             this.gbdatosvehiculo.Text = "Datos de Vehículo";
@@ -852,84 +867,260 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.panel6.Controls.Add(this.label23);
-            this.panel6.Controls.Add(this.label31);
-            this.panel6.Controls.Add(this.textBox4);
-            this.panel6.Controls.Add(this.label32);
-            this.panel6.Controls.Add(this.textBox5);
-            this.panel6.Controls.Add(this.label33);
-            this.panel6.Controls.Add(this.textBox6);
+            this.panel6.Controls.Add(this.gbmapa);
+            this.panel6.Controls.Add(this.gbdetalledestinos);
+            this.panel6.Controls.Add(this.btnagregardestino);
+            this.panel6.Controls.Add(this.btneliminardestino);
             this.panel6.Location = new System.Drawing.Point(-4, 0);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(915, 312);
             this.panel6.TabIndex = 3;
             // 
+            // gbmapa
+            // 
+            this.gbmapa.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbmapa.Controls.Add(this.panel9);
+            this.gbmapa.Controls.Add(this.panel7);
+            this.gbmapa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbmapa.ForeColor = System.Drawing.Color.White;
+            this.gbmapa.Location = new System.Drawing.Point(321, 3);
+            this.gbmapa.Name = "gbmapa";
+            this.gbmapa.Size = new System.Drawing.Size(591, 306);
+            this.gbmapa.TabIndex = 360;
+            this.gbmapa.TabStop = false;
+            this.gbmapa.Text = "Mapa";
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.btncargarubicacionactual);
+            this.panel9.Controls.Add(this.gMaprutas);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(3, 52);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(585, 251);
+            this.panel9.TabIndex = 1;
+            // 
+            // btncargarubicacionactual
+            // 
+            this.btncargarubicacionactual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btncargarubicacionactual.BackColor = System.Drawing.Color.White;
+            this.btncargarubicacionactual.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btncargarubicacionactual.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btncargarubicacionactual.FlatAppearance.BorderSize = 0;
+            this.btncargarubicacionactual.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btncargarubicacionactual.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btncargarubicacionactual.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btncargarubicacionactual.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.btncargarubicacionactual.ForeColor = System.Drawing.Color.White;
+            this.btncargarubicacionactual.IconChar = FontAwesome.Sharp.IconChar.LocationCrosshairs;
+            this.btncargarubicacionactual.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btncargarubicacionactual.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btncargarubicacionactual.IconSize = 30;
+            this.btncargarubicacionactual.Location = new System.Drawing.Point(534, 207);
+            this.btncargarubicacionactual.Name = "btncargarubicacionactual";
+            this.btncargarubicacionactual.Size = new System.Drawing.Size(31, 31);
+            this.btncargarubicacionactual.TabIndex = 292;
+            this.btncargarubicacionactual.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btncargarubicacionactual.UseVisualStyleBackColor = false;
+            this.btncargarubicacionactual.Click += new System.EventHandler(this.btncargarubicacionactual_Click);
+            // 
+            // gMaprutas
+            // 
+            this.gMaprutas.Bearing = 0F;
+            this.gMaprutas.CanDragMap = true;
+            this.gMaprutas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gMaprutas.EmptyTileColor = System.Drawing.Color.Navy;
+            this.gMaprutas.GrayScaleMode = false;
+            this.gMaprutas.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.gMaprutas.LevelsKeepInMemory = 5;
+            this.gMaprutas.Location = new System.Drawing.Point(0, 0);
+            this.gMaprutas.MarkersEnabled = true;
+            this.gMaprutas.MaxZoom = 24;
+            this.gMaprutas.MinZoom = 0;
+            this.gMaprutas.MouseWheelZoomEnabled = true;
+            this.gMaprutas.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.gMaprutas.Name = "gMaprutas";
+            this.gMaprutas.NegativeMode = false;
+            this.gMaprutas.PolygonsEnabled = true;
+            this.gMaprutas.RetryLoadTile = 0;
+            this.gMaprutas.RoutesEnabled = true;
+            this.gMaprutas.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.gMaprutas.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.gMaprutas.ShowTileGridLines = false;
+            this.gMaprutas.Size = new System.Drawing.Size(585, 251);
+            this.gMaprutas.TabIndex = 0;
+            this.gMaprutas.Zoom = 14D;
+            this.gMaprutas.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gMaprutas_MouseDoubleClick);
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.txtlongitud);
+            this.panel7.Controls.Add(this.txtlatitud);
+            this.panel7.Controls.Add(this.label23);
+            this.panel7.Controls.Add(this.label16);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(3, 19);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(585, 33);
+            this.panel7.TabIndex = 0;
+            // 
+            // txtlongitud
+            // 
+            this.txtlongitud.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtlongitud.AutoSize = true;
+            this.txtlongitud.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtlongitud.Location = new System.Drawing.Point(483, 17);
+            this.txtlongitud.Name = "txtlongitud";
+            this.txtlongitud.Size = new System.Drawing.Size(13, 13);
+            this.txtlongitud.TabIndex = 295;
+            this.txtlongitud.Text = "0";
+            // 
+            // txtlatitud
+            // 
+            this.txtlatitud.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtlatitud.AutoSize = true;
+            this.txtlatitud.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtlatitud.Location = new System.Drawing.Point(321, 17);
+            this.txtlatitud.Name = "txtlatitud";
+            this.txtlatitud.Size = new System.Drawing.Size(13, 13);
+            this.txtlatitud.TabIndex = 294;
+            this.txtlatitud.Text = "0";
+            // 
             // label23
             // 
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.SystemColors.Control;
-            this.label23.Location = new System.Drawing.Point(422, 71);
+            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(278, 17);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(282, 30);
-            this.label23.TabIndex = 362;
-            this.label23.Text = "Detalle Rutas";
+            this.label23.Size = new System.Drawing.Size(42, 13);
+            this.label23.TabIndex = 293;
+            this.label23.Text = "Latitud:";
             // 
-            // label31
+            // label16
             // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.ForeColor = System.Drawing.Color.White;
-            this.label31.Location = new System.Drawing.Point(20, 121);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(71, 17);
-            this.label31.TabIndex = 361;
-            this.label31.Text = "Direccion:";
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(428, 17);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(51, 13);
+            this.label16.TabIndex = 292;
+            this.label16.Text = "Longitud:";
             // 
-            // textBox4
+            // btneliminardestino
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(22, 142);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(351, 23);
-            this.textBox4.TabIndex = 360;
+            this.btneliminardestino.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.btneliminardestino.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btneliminardestino.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btneliminardestino.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btneliminardestino.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btneliminardestino.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btneliminardestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.btneliminardestino.ForeColor = System.Drawing.Color.White;
+            this.btneliminardestino.IconChar = FontAwesome.Sharp.IconChar.CircleMinus;
+            this.btneliminardestino.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btneliminardestino.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btneliminardestino.IconSize = 18;
+            this.btneliminardestino.Location = new System.Drawing.Point(186, 22);
+            this.btneliminardestino.Name = "btneliminardestino";
+            this.btneliminardestino.Size = new System.Drawing.Size(129, 24);
+            this.btneliminardestino.TabIndex = 291;
+            this.btneliminardestino.Text = "Eliminar Destino";
+            this.btneliminardestino.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btneliminardestino.UseVisualStyleBackColor = false;
             // 
-            // label32
+            // btnagregardestino
             // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.ForeColor = System.Drawing.Color.White;
-            this.label32.Location = new System.Drawing.Point(20, 71);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(72, 17);
-            this.label32.TabIndex = 359;
-            this.label32.Text = "Concepto:";
+            this.btnagregardestino.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.btnagregardestino.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnagregardestino.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnagregardestino.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnagregardestino.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btnagregardestino.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnagregardestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.btnagregardestino.ForeColor = System.Drawing.Color.White;
+            this.btnagregardestino.IconChar = FontAwesome.Sharp.IconChar.MapPin;
+            this.btnagregardestino.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btnagregardestino.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnagregardestino.IconSize = 19;
+            this.btnagregardestino.Location = new System.Drawing.Point(7, 22);
+            this.btnagregardestino.Name = "btnagregardestino";
+            this.btnagregardestino.Size = new System.Drawing.Size(129, 24);
+            this.btnagregardestino.TabIndex = 290;
+            this.btnagregardestino.Text = "Agregar Destino";
+            this.btnagregardestino.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnagregardestino.UseVisualStyleBackColor = false;
+            this.btnagregardestino.Click += new System.EventHandler(this.btnagregardestino_Click);
             // 
-            // textBox5
+            // gbdetalledestinos
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(22, 92);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(267, 23);
-            this.textBox5.TabIndex = 358;
+            this.gbdetalledestinos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbdetalledestinos.Controls.Add(this.dgvdestinos);
+            this.gbdetalledestinos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbdetalledestinos.ForeColor = System.Drawing.Color.White;
+            this.gbdetalledestinos.Location = new System.Drawing.Point(7, 55);
+            this.gbdetalledestinos.Name = "gbdetalledestinos";
+            this.gbdetalledestinos.Size = new System.Drawing.Size(308, 254);
+            this.gbdetalledestinos.TabIndex = 359;
+            this.gbdetalledestinos.TabStop = false;
+            this.gbdetalledestinos.Text = "Detalle Destinos";
             // 
-            // label33
+            // dgvdestinos
             // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.ForeColor = System.Drawing.Color.White;
-            this.label33.Location = new System.Drawing.Point(20, 22);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(47, 17);
-            this.label33.TabIndex = 357;
-            this.label33.Text = "Título:";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(22, 43);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(267, 23);
-            this.textBox6.TabIndex = 356;
+            this.dgvdestinos.AllowUserToAddRows = false;
+            this.dgvdestinos.AllowUserToDeleteRows = false;
+            this.dgvdestinos.AllowUserToResizeRows = false;
+            this.dgvdestinos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvdestinos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvdestinos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvdestinos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvdestinos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(116)))), ((int)(((byte)(228)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdestinos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvdestinos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvdestinos.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvdestinos.EnableHeadersVisualStyles = false;
+            this.dgvdestinos.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.dgvdestinos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgvdestinos.Location = new System.Drawing.Point(6, 22);
+            this.dgvdestinos.Name = "dgvdestinos";
+            this.dgvdestinos.ReadOnly = true;
+            this.dgvdestinos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdestinos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvdestinos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvdestinos.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvdestinos.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.dgvdestinos.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Silver;
+            this.dgvdestinos.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.dgvdestinos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvdestinos.Size = new System.Drawing.Size(296, 226);
+            this.dgvdestinos.TabIndex = 358;
+            this.dgvdestinos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdestinos_CellContentClick);
             // 
             // frm_Rutas
             // 
@@ -965,7 +1156,12 @@
             this.panel4.PerformLayout();
             this.tabpgmapa.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
+            this.gbmapa.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.gbdetalledestinos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvdestinos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1008,12 +1204,6 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox txtnombrecliente;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txttelefono2cliente;
         private System.Windows.Forms.ComboBox cboestado;
@@ -1037,6 +1227,18 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txthoradesde;
+        private System.Windows.Forms.GroupBox gbdetalledestinos;
+        private MetroFramework.Controls.MetroGrid dgvdestinos;
+        private System.Windows.Forms.GroupBox gbmapa;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel7;
+        private GMap.NET.WindowsForms.GMapControl gMaprutas;
+        private FontAwesome.Sharp.IconButton btnagregardestino;
+        private FontAwesome.Sharp.IconButton btneliminardestino;
+        private FontAwesome.Sharp.IconButton btncargarubicacionactual;
+        private System.Windows.Forms.Label txtlongitud;
+        private System.Windows.Forms.Label txtlatitud;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label16;
     }
 }
