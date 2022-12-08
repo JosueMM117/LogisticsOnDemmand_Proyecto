@@ -93,7 +93,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         }
 
         #region Click
-        private void btnhabilidad_Click(object sender, EventArgs e)
+        private async void btnhabilidad_Click(object sender, EventArgs e)
         {
             Form oprenform = Application.OpenForms["frm_Habilidades"];
             if (oprenform != null)
@@ -106,6 +106,19 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             {
                 Form open = new frm_Habilidades();
                 open.ShowDialog();
+                if (open.DialogResult == DialogResult.OK)
+                {
+                    //Volver a llenar el combo al momento de cerrar el frm_Habilidades, en caso de que se haya creado una nueva.
+                    cbohabilidad.Items.Clear();
+                    List<CM_Habilidades> listahabilidades = await cn_vehiculos.Listar_Habilidades();
+                    foreach (CM_Habilidades item in listahabilidades)
+                    {
+                        cbohabilidad.Items.Add(new OpcionCombo() { IdPos = item.IdHabilidad, Texto = item.Descripcion });
+                    }
+                    cbohabilidad.DisplayMember = "Texto";
+                    cbohabilidad.ValueMember = "Valor";
+                    cbohabilidad.SelectedIndex = 0;
+                }
             }
         }
         private void btnbuscarconductor_Click(object sender, EventArgs e)
@@ -393,26 +406,11 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
 
                 if (MessageBox.Show("¿Seguro que desea borrar el vehículo?", "Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    List<CM_Rutas> BuscarDatos = await cn_rutas.Listar_Rutas();
-                    var validar_rutas = BuscarDatos.Where(b => b.Vehiculo.IdVehiculo == objvehiculo.IdVehiculo).FirstOrDefault();
-                    if (validar_rutas == null)
+                    bool respuesta = await cn_vehiculos.Borrar_Vehiculos(objvehiculo);
+                    if (respuesta == true)
                     {
-                        //if (validar_rutas.Estado == "Pendiente")
-                        //{
-                        //    MessageBox.Show("No puede borrar este vehículo porque tiene rutas pendientes por entregar.", "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        //}
-                        //else
-                        //{
-                            bool respuesta = await cn_vehiculos.Borrar_Vehiculos(objvehiculo);
-                            if (respuesta == true)
-                            {
-                                Limpiar();
-                            }
-                        //}
+                        Limpiar();
                     }
-                    else
-                        MessageBox.Show("No puede borrar este vehículo porque se encuentra relacionado a una ruta.", "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //Limpiar();
                 }
             }
             catch (Exception ex)

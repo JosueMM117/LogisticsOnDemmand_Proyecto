@@ -48,13 +48,37 @@
             this.tbctlvehiculos = new MetroFramework.Controls.MetroTabControl();
             this.tabpgdatosruta = new MetroFramework.Controls.MetroTabPage();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label19 = new System.Windows.Forms.Label();
-            this.txthorahasta = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
+            this.txttiemporuta = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.txthoradesde = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtcomentarios = new System.Windows.Forms.TextBox();
+            this.cboestado = new System.Windows.Forms.ComboBox();
+            this.dtpfechaentrega = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
+            this.nupcargas = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cboprioridad = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtconcepto = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txttitulo = new System.Windows.Forms.TextBox();
+            this.tabpbdatosenvio = new MetroFramework.Controls.MetroTabPage();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.gbdetalledestinos = new System.Windows.Forms.GroupBox();
+            this.dgvdetalleruta = new MetroFramework.Controls.MetroGrid();
+            this.gbclientes = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtemailcliente = new System.Windows.Forms.TextBox();
+            this.label996 = new System.Windows.Forms.Label();
+            this.txtdireccioncliente = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txttelefono2cliente = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txttelefonocliente = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtnombrecliente = new System.Windows.Forms.TextBox();
             this.gbdatosvehiculo = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtidvehiculo = new System.Windows.Forms.TextBox();
@@ -66,30 +90,6 @@
             this.txtnombrevehiculo = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtnombreconductor = new System.Windows.Forms.Label();
-            this.cboestado = new System.Windows.Forms.ComboBox();
-            this.dtpfechaentrega = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
-            this.nupcargas = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cboprioridad = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtdireccion = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtconcepto = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txttitulo = new System.Windows.Forms.TextBox();
-            this.tabpbdatoscliente = new MetroFramework.Controls.MetroTabPage();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txttelefono2cliente = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.txtemailcliente = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.txttelefonocliente = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.txtnombrecliente = new System.Windows.Forms.TextBox();
             this.tabpgmapa = new MetroFramework.Controls.MetroTabPage();
             this.panel6 = new System.Windows.Forms.Panel();
             this.gbmapa = new System.Windows.Forms.GroupBox();
@@ -97,14 +97,27 @@
             this.btncargarubicacionactual = new FontAwesome.Sharp.IconButton();
             this.gMaprutas = new GMap.NET.WindowsForms.GMapControl();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.btncargarruta = new FontAwesome.Sharp.IconButton();
+            this.btnagregardestino = new FontAwesome.Sharp.IconButton();
+            this.btneliminardestino = new FontAwesome.Sharp.IconButton();
             this.txtlongitud = new System.Windows.Forms.Label();
             this.txtlatitud = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.btneliminardestino = new FontAwesome.Sharp.IconButton();
-            this.btnagregardestino = new FontAwesome.Sharp.IconButton();
-            this.gbdetalledestinos = new System.Windows.Forms.GroupBox();
-            this.dgvdestinos = new MetroFramework.Controls.MetroGrid();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.IdDetalleRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Conductor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DireccionEnvio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LatitudDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LongitudDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Teléfono1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Teléfono2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmailCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.menubotones.SuspendLayout();
@@ -112,18 +125,19 @@
             this.tbctlvehiculos.SuspendLayout();
             this.tabpgdatosruta.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nupcargas)).BeginInit();
+            this.tabpbdatosenvio.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.gbdetalledestinos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvdetalleruta)).BeginInit();
+            this.gbclientes.SuspendLayout();
             this.gbdatosvehiculo.SuspendLayout();
             this.panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nupcargas)).BeginInit();
-            this.tabpbdatoscliente.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.tabpgmapa.SuspendLayout();
             this.panel6.SuspendLayout();
             this.gbmapa.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel7.SuspendLayout();
-            this.gbdetalledestinos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvdestinos)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -138,7 +152,7 @@
             this.panel3.Controls.Add(this.txtidruta);
             this.panel3.Location = new System.Drawing.Point(5, 46);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(929, 101);
+            this.panel3.Size = new System.Drawing.Size(1204, 101);
             this.panel3.TabIndex = 5;
             // 
             // panel5
@@ -148,7 +162,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(927, 64);
+            this.panel5.Size = new System.Drawing.Size(1202, 64);
             this.panel5.TabIndex = 290;
             // 
             // menubotones
@@ -164,7 +178,7 @@
             this.menubotones.Location = new System.Drawing.Point(0, 0);
             this.menubotones.Name = "menubotones";
             this.menubotones.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menubotones.Size = new System.Drawing.Size(925, 63);
+            this.menubotones.Size = new System.Drawing.Size(1200, 63);
             this.menubotones.TabIndex = 291;
             this.menubotones.Text = "menuStrip1";
             // 
@@ -304,7 +318,7 @@
             this.panel1.Controls.Add(this.tbctlvehiculos);
             this.panel1.Location = new System.Drawing.Point(5, 153);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(929, 365);
+            this.panel1.Size = new System.Drawing.Size(1204, 588);
             this.panel1.TabIndex = 7;
             // 
             // tbctlvehiculos
@@ -313,14 +327,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbctlvehiculos.Controls.Add(this.tabpgdatosruta);
-            this.tbctlvehiculos.Controls.Add(this.tabpbdatoscliente);
+            this.tbctlvehiculos.Controls.Add(this.tabpbdatosenvio);
             this.tbctlvehiculos.Controls.Add(this.tabpgmapa);
             this.tbctlvehiculos.FontWeight = MetroFramework.MetroTabControlWeight.Bold;
             this.tbctlvehiculos.Location = new System.Drawing.Point(3, 3);
             this.tbctlvehiculos.Multiline = true;
             this.tbctlvehiculos.Name = "tbctlvehiculos";
-            this.tbctlvehiculos.SelectedIndex = 2;
-            this.tbctlvehiculos.Size = new System.Drawing.Size(923, 359);
+            this.tbctlvehiculos.SelectedIndex = 1;
+            this.tbctlvehiculos.Size = new System.Drawing.Size(1198, 582);
             this.tbctlvehiculos.TabIndex = 3;
             this.tbctlvehiculos.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.tbctlvehiculos.UseSelectable = true;
@@ -335,7 +349,7 @@
             this.tabpgdatosruta.HorizontalScrollbarSize = 10;
             this.tabpgdatosruta.Location = new System.Drawing.Point(4, 38);
             this.tabpgdatosruta.Name = "tabpgdatosruta";
-            this.tabpgdatosruta.Size = new System.Drawing.Size(915, 317);
+            this.tabpgdatosruta.Size = new System.Drawing.Size(1190, 540);
             this.tabpgdatosruta.TabIndex = 5;
             this.tabpgdatosruta.Text = "Datos de Ruta";
             this.tabpgdatosruta.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -349,14 +363,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.panel2.Controls.Add(this.label19);
-            this.panel2.Controls.Add(this.txthorahasta);
-            this.panel2.Controls.Add(this.label18);
+            this.panel2.Controls.Add(this.txttiemporuta);
             this.panel2.Controls.Add(this.label17);
-            this.panel2.Controls.Add(this.txthoradesde);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.txtcomentarios);
-            this.panel2.Controls.Add(this.gbdatosvehiculo);
             this.panel2.Controls.Add(this.cboestado);
             this.panel2.Controls.Add(this.dtpfechaentrega);
             this.panel2.Controls.Add(this.label8);
@@ -365,72 +375,40 @@
             this.panel2.Controls.Add(this.cboprioridad);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.txtdireccion);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtconcepto);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.txttitulo);
             this.panel2.Location = new System.Drawing.Point(-4, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(916, 317);
+            this.panel2.Size = new System.Drawing.Size(1191, 540);
             this.panel2.TabIndex = 2;
             // 
-            // label19
+            // txttiemporuta
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(721, 34);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(17, 17);
-            this.label19.TabIndex = 384;
-            this.label19.Text = "A";
-            // 
-            // txthorahasta
-            // 
-            this.txthorahasta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txthorahasta.Location = new System.Drawing.Point(743, 31);
-            this.txthorahasta.Name = "txthorahasta";
-            this.txthorahasta.Size = new System.Drawing.Size(53, 23);
-            this.txthorahasta.TabIndex = 383;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(633, 33);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(30, 17);
-            this.label18.TabIndex = 382;
-            this.label18.Text = "De:";
+            this.txttiemporuta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txttiemporuta.Location = new System.Drawing.Point(561, 138);
+            this.txttiemporuta.Name = "txttiemporuta";
+            this.txttiemporuta.Size = new System.Drawing.Size(66, 23);
+            this.txttiemporuta.TabIndex = 383;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(633, 11);
+            this.label17.Location = new System.Drawing.Point(380, 140);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(136, 17);
+            this.label17.Size = new System.Drawing.Size(175, 17);
             this.label17.TabIndex = 381;
-            this.label17.Text = "Ventana de Tiempo:";
-            // 
-            // txthoradesde
-            // 
-            this.txthoradesde.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txthoradesde.Location = new System.Drawing.Point(663, 31);
-            this.txthoradesde.Name = "txthoradesde";
-            this.txthoradesde.Size = new System.Drawing.Size(53, 23);
-            this.txthoradesde.TabIndex = 380;
+            this.label17.Text = "Tiempo Estimado de Ruta:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(14, 181);
+            this.label9.Location = new System.Drawing.Point(12, 113);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(125, 17);
             this.label9.TabIndex = 379;
@@ -439,145 +417,11 @@
             // txtcomentarios
             // 
             this.txtcomentarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcomentarios.Location = new System.Drawing.Point(16, 202);
+            this.txtcomentarios.Location = new System.Drawing.Point(16, 137);
             this.txtcomentarios.Multiline = true;
             this.txtcomentarios.Name = "txtcomentarios";
             this.txtcomentarios.Size = new System.Drawing.Size(350, 108);
             this.txtcomentarios.TabIndex = 378;
-            // 
-            // gbdatosvehiculo
-            // 
-            this.gbdatosvehiculo.Controls.Add(this.label13);
-            this.gbdatosvehiculo.Controls.Add(this.txtidvehiculo);
-            this.gbdatosvehiculo.Controls.Add(this.btnbuscarvehiculo);
-            this.gbdatosvehiculo.Controls.Add(this.panel8);
-            this.gbdatosvehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbdatosvehiculo.ForeColor = System.Drawing.Color.White;
-            this.gbdatosvehiculo.Location = new System.Drawing.Point(383, 124);
-            this.gbdatosvehiculo.Name = "gbdatosvehiculo";
-            this.gbdatosvehiculo.Size = new System.Drawing.Size(533, 186);
-            this.gbdatosvehiculo.TabIndex = 377;
-            this.gbdatosvehiculo.TabStop = false;
-            this.gbdatosvehiculo.Text = "Datos de Vehículo";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(6, 32);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(77, 17);
-            this.label13.TabIndex = 380;
-            this.label13.Text = "IdVehiculo:";
-            // 
-            // txtidvehiculo
-            // 
-            this.txtidvehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtidvehiculo.Location = new System.Drawing.Point(89, 29);
-            this.txtidvehiculo.Name = "txtidvehiculo";
-            this.txtidvehiculo.Size = new System.Drawing.Size(82, 23);
-            this.txtidvehiculo.TabIndex = 379;
-            this.txtidvehiculo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtidvehiculo_KeyDown);
-            this.txtidvehiculo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtidvehiculo_KeyPress);
-            // 
-            // btnbuscarvehiculo
-            // 
-            this.btnbuscarvehiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.btnbuscarvehiculo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnbuscarvehiculo.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnbuscarvehiculo.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnbuscarvehiculo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btnbuscarvehiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnbuscarvehiculo.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnbuscarvehiculo.ForeColor = System.Drawing.Color.White;
-            this.btnbuscarvehiculo.IconChar = FontAwesome.Sharp.IconChar.Search;
-            this.btnbuscarvehiculo.IconColor = System.Drawing.Color.DodgerBlue;
-            this.btnbuscarvehiculo.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnbuscarvehiculo.IconSize = 17;
-            this.btnbuscarvehiculo.Location = new System.Drawing.Point(173, 28);
-            this.btnbuscarvehiculo.Name = "btnbuscarvehiculo";
-            this.btnbuscarvehiculo.Size = new System.Drawing.Size(24, 25);
-            this.btnbuscarvehiculo.TabIndex = 378;
-            this.btnbuscarvehiculo.UseVisualStyleBackColor = false;
-            this.btnbuscarvehiculo.Click += new System.EventHandler(this.btnbuscarvehiculo_Click);
-            // 
-            // panel8
-            // 
-            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel8.Controls.Add(this.label15);
-            this.panel8.Controls.Add(this.txthabilidadvehiculo);
-            this.panel8.Controls.Add(this.label14);
-            this.panel8.Controls.Add(this.txtnombrevehiculo);
-            this.panel8.Controls.Add(this.label10);
-            this.panel8.Controls.Add(this.txtnombreconductor);
-            this.panel8.Location = new System.Drawing.Point(6, 57);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(524, 123);
-            this.panel8.TabIndex = 377;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(275, 9);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(71, 17);
-            this.label15.TabIndex = 380;
-            this.label15.Text = "Habilidad:";
-            // 
-            // txthabilidadvehiculo
-            // 
-            this.txthabilidadvehiculo.BackColor = System.Drawing.SystemColors.Window;
-            this.txthabilidadvehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txthabilidadvehiculo.ForeColor = System.Drawing.Color.Black;
-            this.txthabilidadvehiculo.Location = new System.Drawing.Point(274, 31);
-            this.txthabilidadvehiculo.Name = "txthabilidadvehiculo";
-            this.txthabilidadvehiculo.Size = new System.Drawing.Size(201, 23);
-            this.txthabilidadvehiculo.TabIndex = 381;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(8, 9);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(120, 17);
-            this.label14.TabIndex = 378;
-            this.label14.Text = "Nombre Vehículo:";
-            // 
-            // txtnombrevehiculo
-            // 
-            this.txtnombrevehiculo.BackColor = System.Drawing.SystemColors.Window;
-            this.txtnombrevehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnombrevehiculo.ForeColor = System.Drawing.Color.Black;
-            this.txtnombrevehiculo.Location = new System.Drawing.Point(7, 31);
-            this.txtnombrevehiculo.Name = "txtnombrevehiculo";
-            this.txtnombrevehiculo.Size = new System.Drawing.Size(253, 23);
-            this.txtnombrevehiculo.TabIndex = 379;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(4, 60);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(77, 17);
-            this.label10.TabIndex = 376;
-            this.label10.Text = "Conductor:";
-            // 
-            // txtnombreconductor
-            // 
-            this.txtnombreconductor.BackColor = System.Drawing.SystemColors.Window;
-            this.txtnombreconductor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnombreconductor.ForeColor = System.Drawing.Color.Black;
-            this.txtnombreconductor.Location = new System.Drawing.Point(7, 82);
-            this.txtnombreconductor.Name = "txtnombreconductor";
-            this.txtnombreconductor.Size = new System.Drawing.Size(254, 23);
-            this.txtnombreconductor.TabIndex = 377;
             // 
             // cboestado
             // 
@@ -676,26 +520,6 @@
             this.label7.TabIndex = 362;
             this.label7.Text = "Estado:";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(13, 111);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 17);
-            this.label4.TabIndex = 361;
-            this.label4.Text = "Direccion:";
-            // 
-            // txtdireccion
-            // 
-            this.txtdireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtdireccion.Location = new System.Drawing.Point(15, 132);
-            this.txtdireccion.Multiline = true;
-            this.txtdireccion.Name = "txtdireccion";
-            this.txtdireccion.Size = new System.Drawing.Size(351, 41);
-            this.txtdireccion.TabIndex = 360;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -734,21 +558,21 @@
             this.txttitulo.Size = new System.Drawing.Size(351, 23);
             this.txttitulo.TabIndex = 356;
             // 
-            // tabpbdatoscliente
+            // tabpbdatosenvio
             // 
-            this.tabpbdatoscliente.Controls.Add(this.panel4);
-            this.tabpbdatoscliente.HorizontalScrollbarBarColor = true;
-            this.tabpbdatoscliente.HorizontalScrollbarHighlightOnWheel = false;
-            this.tabpbdatoscliente.HorizontalScrollbarSize = 10;
-            this.tabpbdatoscliente.Location = new System.Drawing.Point(4, 38);
-            this.tabpbdatoscliente.Name = "tabpbdatoscliente";
-            this.tabpbdatoscliente.Size = new System.Drawing.Size(915, 317);
-            this.tabpbdatoscliente.TabIndex = 6;
-            this.tabpbdatoscliente.Text = "Datos del Cliente";
-            this.tabpbdatoscliente.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.tabpbdatoscliente.VerticalScrollbarBarColor = true;
-            this.tabpbdatoscliente.VerticalScrollbarHighlightOnWheel = false;
-            this.tabpbdatoscliente.VerticalScrollbarSize = 10;
+            this.tabpbdatosenvio.Controls.Add(this.panel4);
+            this.tabpbdatosenvio.HorizontalScrollbarBarColor = true;
+            this.tabpbdatosenvio.HorizontalScrollbarHighlightOnWheel = false;
+            this.tabpbdatosenvio.HorizontalScrollbarSize = 10;
+            this.tabpbdatosenvio.Location = new System.Drawing.Point(4, 38);
+            this.tabpbdatosenvio.Name = "tabpbdatosenvio";
+            this.tabpbdatosenvio.Size = new System.Drawing.Size(1190, 540);
+            this.tabpbdatosenvio.TabIndex = 6;
+            this.tabpbdatosenvio.Text = "Datos de Envío";
+            this.tabpbdatosenvio.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.tabpbdatosenvio.VerticalScrollbarBarColor = true;
+            this.tabpbdatosenvio.VerticalScrollbarHighlightOnWheel = false;
+            this.tabpbdatosenvio.VerticalScrollbarSize = 10;
             // 
             // panel4
             // 
@@ -756,94 +580,349 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.panel4.Controls.Add(this.label12);
-            this.panel4.Controls.Add(this.txttelefono2cliente);
-            this.panel4.Controls.Add(this.label20);
-            this.panel4.Controls.Add(this.txtemailcliente);
-            this.panel4.Controls.Add(this.label21);
-            this.panel4.Controls.Add(this.txttelefonocliente);
-            this.panel4.Controls.Add(this.label22);
-            this.panel4.Controls.Add(this.txtnombrecliente);
+            this.panel4.Controls.Add(this.gbdetalledestinos);
+            this.panel4.Controls.Add(this.gbclientes);
+            this.panel4.Controls.Add(this.gbdatosvehiculo);
             this.panel4.Location = new System.Drawing.Point(0, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(911, 309);
+            this.panel4.Size = new System.Drawing.Size(1186, 532);
             this.panel4.TabIndex = 3;
             // 
-            // label12
+            // gbdetalledestinos
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(185, 60);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(80, 17);
-            this.label12.TabIndex = 363;
-            this.label12.Text = "Teléfono 2:";
+            this.gbdetalledestinos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbdetalledestinos.Controls.Add(this.dgvdetalleruta);
+            this.gbdetalledestinos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbdetalledestinos.ForeColor = System.Drawing.Color.White;
+            this.gbdetalledestinos.Location = new System.Drawing.Point(12, 239);
+            this.gbdetalledestinos.Name = "gbdetalledestinos";
+            this.gbdetalledestinos.Size = new System.Drawing.Size(1171, 290);
+            this.gbdetalledestinos.TabIndex = 389;
+            this.gbdetalledestinos.TabStop = false;
+            this.gbdetalledestinos.Text = "Detalle Destinos";
             // 
-            // txttelefono2cliente
+            // dgvdetalleruta
             // 
-            this.txttelefono2cliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txttelefono2cliente.Location = new System.Drawing.Point(187, 81);
-            this.txttelefono2cliente.Name = "txttelefono2cliente";
-            this.txttelefono2cliente.Size = new System.Drawing.Size(174, 23);
-            this.txttelefono2cliente.TabIndex = 362;
+            this.dgvdetalleruta.AllowUserToAddRows = false;
+            this.dgvdetalleruta.AllowUserToDeleteRows = false;
+            this.dgvdetalleruta.AllowUserToResizeRows = false;
+            this.dgvdetalleruta.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvdetalleruta.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvdetalleruta.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvdetalleruta.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvdetalleruta.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(116)))), ((int)(((byte)(228)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdetalleruta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvdetalleruta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvdetalleruta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdDetalleRuta,
+            this.IdRuta,
+            this.IdVehiculo,
+            this.NombreVehiculo,
+            this.Conductor,
+            this.DireccionEnvio,
+            this.LatitudDestino,
+            this.LongitudDestino,
+            this.NombreCliente,
+            this.Teléfono1,
+            this.Teléfono2,
+            this.EmailCliente,
+            this.FechaRegistro});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvdetalleruta.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvdetalleruta.EnableHeadersVisualStyles = false;
+            this.dgvdetalleruta.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.dgvdetalleruta.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgvdetalleruta.Location = new System.Drawing.Point(6, 22);
+            this.dgvdetalleruta.Name = "dgvdetalleruta";
+            this.dgvdetalleruta.ReadOnly = true;
+            this.dgvdetalleruta.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdetalleruta.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvdetalleruta.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvdetalleruta.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvdetalleruta.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.dgvdetalleruta.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Silver;
+            this.dgvdetalleruta.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.dgvdetalleruta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvdetalleruta.Size = new System.Drawing.Size(1159, 262);
+            this.dgvdetalleruta.TabIndex = 358;
+            // 
+            // gbclientes
+            // 
+            this.gbclientes.Controls.Add(this.label20);
+            this.gbclientes.Controls.Add(this.txtemailcliente);
+            this.gbclientes.Controls.Add(this.label996);
+            this.gbclientes.Controls.Add(this.txtdireccioncliente);
+            this.gbclientes.Controls.Add(this.label12);
+            this.gbclientes.Controls.Add(this.txttelefono2cliente);
+            this.gbclientes.Controls.Add(this.label21);
+            this.gbclientes.Controls.Add(this.txttelefonocliente);
+            this.gbclientes.Controls.Add(this.label22);
+            this.gbclientes.Controls.Add(this.txtnombrecliente);
+            this.gbclientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbclientes.ForeColor = System.Drawing.Color.White;
+            this.gbclientes.Location = new System.Drawing.Point(12, 17);
+            this.gbclientes.Name = "gbclientes";
+            this.gbclientes.Size = new System.Drawing.Size(558, 216);
+            this.gbclientes.TabIndex = 388;
+            this.gbclientes.TabStop = false;
+            this.gbclientes.Text = "Información Cliente";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(8, 110);
+            this.label20.Location = new System.Drawing.Point(6, 77);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(51, 17);
-            this.label20.TabIndex = 361;
+            this.label20.TabIndex = 394;
             this.label20.Text = "E-Mail:";
             // 
             // txtemailcliente
             // 
             this.txtemailcliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtemailcliente.Location = new System.Drawing.Point(10, 131);
+            this.txtemailcliente.Location = new System.Drawing.Point(8, 98);
             this.txtemailcliente.Name = "txtemailcliente";
             this.txtemailcliente.Size = new System.Drawing.Size(351, 23);
-            this.txtemailcliente.TabIndex = 360;
+            this.txtemailcliente.TabIndex = 393;
+            // 
+            // label996
+            // 
+            this.label996.AutoSize = true;
+            this.label996.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label996.ForeColor = System.Drawing.Color.White;
+            this.label996.Location = new System.Drawing.Point(6, 126);
+            this.label996.Name = "label996";
+            this.label996.Size = new System.Drawing.Size(109, 17);
+            this.label996.TabIndex = 392;
+            this.label996.Text = "Dirección envio:";
+            // 
+            // txtdireccioncliente
+            // 
+            this.txtdireccioncliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtdireccioncliente.Location = new System.Drawing.Point(8, 147);
+            this.txtdireccioncliente.Name = "txtdireccioncliente";
+            this.txtdireccioncliente.Size = new System.Drawing.Size(533, 23);
+            this.txtdireccioncliente.TabIndex = 391;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(365, 76);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(80, 17);
+            this.label12.TabIndex = 384;
+            this.label12.Text = "Teléfono 2:";
+            // 
+            // txttelefono2cliente
+            // 
+            this.txttelefono2cliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txttelefono2cliente.Location = new System.Drawing.Point(367, 97);
+            this.txttelefono2cliente.Name = "txttelefono2cliente";
+            this.txttelefono2cliente.Size = new System.Drawing.Size(174, 23);
+            this.txttelefono2cliente.TabIndex = 383;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(8, 60);
+            this.label21.Location = new System.Drawing.Point(365, 27);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(68, 17);
-            this.label21.TabIndex = 359;
+            this.label21.TabIndex = 380;
             this.label21.Text = "Teléfono:";
             // 
             // txttelefonocliente
             // 
             this.txttelefonocliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txttelefonocliente.Location = new System.Drawing.Point(10, 81);
+            this.txttelefonocliente.Location = new System.Drawing.Point(367, 48);
             this.txttelefonocliente.Name = "txttelefonocliente";
-            this.txttelefonocliente.Size = new System.Drawing.Size(171, 23);
-            this.txttelefonocliente.TabIndex = 358;
+            this.txttelefonocliente.Size = new System.Drawing.Size(174, 23);
+            this.txttelefonocliente.TabIndex = 379;
             // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(8, 11);
+            this.label22.Location = new System.Drawing.Point(6, 27);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(125, 17);
-            this.label22.TabIndex = 357;
+            this.label22.TabIndex = 388;
             this.label22.Text = "Nombre Completo:";
             // 
             // txtnombrecliente
             // 
             this.txtnombrecliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnombrecliente.Location = new System.Drawing.Point(10, 32);
+            this.txtnombrecliente.Location = new System.Drawing.Point(8, 48);
             this.txtnombrecliente.Name = "txtnombrecliente";
             this.txtnombrecliente.Size = new System.Drawing.Size(351, 23);
-            this.txtnombrecliente.TabIndex = 356;
+            this.txtnombrecliente.TabIndex = 387;
+            // 
+            // gbdatosvehiculo
+            // 
+            this.gbdatosvehiculo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbdatosvehiculo.Controls.Add(this.label13);
+            this.gbdatosvehiculo.Controls.Add(this.txtidvehiculo);
+            this.gbdatosvehiculo.Controls.Add(this.btnbuscarvehiculo);
+            this.gbdatosvehiculo.Controls.Add(this.panel8);
+            this.gbdatosvehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbdatosvehiculo.ForeColor = System.Drawing.Color.White;
+            this.gbdatosvehiculo.Location = new System.Drawing.Point(576, 17);
+            this.gbdatosvehiculo.Name = "gbdatosvehiculo";
+            this.gbdatosvehiculo.Size = new System.Drawing.Size(607, 216);
+            this.gbdatosvehiculo.TabIndex = 387;
+            this.gbdatosvehiculo.TabStop = false;
+            this.gbdatosvehiculo.Text = "Información de Vehículo";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(6, 32);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(77, 17);
+            this.label13.TabIndex = 380;
+            this.label13.Text = "IdVehiculo:";
+            // 
+            // txtidvehiculo
+            // 
+            this.txtidvehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtidvehiculo.Location = new System.Drawing.Point(89, 29);
+            this.txtidvehiculo.Name = "txtidvehiculo";
+            this.txtidvehiculo.Size = new System.Drawing.Size(82, 23);
+            this.txtidvehiculo.TabIndex = 379;
+            this.txtidvehiculo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtidvehiculo_KeyDown);
+            this.txtidvehiculo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtidvehiculo_KeyPress);
+            // 
+            // btnbuscarvehiculo
+            // 
+            this.btnbuscarvehiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.btnbuscarvehiculo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnbuscarvehiculo.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnbuscarvehiculo.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnbuscarvehiculo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btnbuscarvehiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnbuscarvehiculo.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnbuscarvehiculo.ForeColor = System.Drawing.Color.White;
+            this.btnbuscarvehiculo.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.btnbuscarvehiculo.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btnbuscarvehiculo.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnbuscarvehiculo.IconSize = 17;
+            this.btnbuscarvehiculo.Location = new System.Drawing.Point(173, 28);
+            this.btnbuscarvehiculo.Name = "btnbuscarvehiculo";
+            this.btnbuscarvehiculo.Size = new System.Drawing.Size(24, 25);
+            this.btnbuscarvehiculo.TabIndex = 378;
+            this.btnbuscarvehiculo.UseVisualStyleBackColor = false;
+            this.btnbuscarvehiculo.Click += new System.EventHandler(this.btnbuscarvehiculo_Click);
+            // 
+            // panel8
+            // 
+            this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel8.Controls.Add(this.label15);
+            this.panel8.Controls.Add(this.txthabilidadvehiculo);
+            this.panel8.Controls.Add(this.label14);
+            this.panel8.Controls.Add(this.txtnombrevehiculo);
+            this.panel8.Controls.Add(this.label10);
+            this.panel8.Controls.Add(this.txtnombreconductor);
+            this.panel8.Location = new System.Drawing.Point(6, 57);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(598, 153);
+            this.panel8.TabIndex = 377;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.White;
+            this.label15.Location = new System.Drawing.Point(275, 9);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(71, 17);
+            this.label15.TabIndex = 380;
+            this.label15.Text = "Habilidad:";
+            // 
+            // txthabilidadvehiculo
+            // 
+            this.txthabilidadvehiculo.BackColor = System.Drawing.SystemColors.Window;
+            this.txthabilidadvehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txthabilidadvehiculo.ForeColor = System.Drawing.Color.Black;
+            this.txthabilidadvehiculo.Location = new System.Drawing.Point(274, 31);
+            this.txthabilidadvehiculo.Name = "txthabilidadvehiculo";
+            this.txthabilidadvehiculo.Size = new System.Drawing.Size(201, 23);
+            this.txthabilidadvehiculo.TabIndex = 381;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.Location = new System.Drawing.Point(8, 9);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(120, 17);
+            this.label14.TabIndex = 378;
+            this.label14.Text = "Nombre Vehículo:";
+            // 
+            // txtnombrevehiculo
+            // 
+            this.txtnombrevehiculo.BackColor = System.Drawing.SystemColors.Window;
+            this.txtnombrevehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtnombrevehiculo.ForeColor = System.Drawing.Color.Black;
+            this.txtnombrevehiculo.Location = new System.Drawing.Point(7, 31);
+            this.txtnombrevehiculo.Name = "txtnombrevehiculo";
+            this.txtnombrevehiculo.Size = new System.Drawing.Size(253, 23);
+            this.txtnombrevehiculo.TabIndex = 379;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(4, 60);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(77, 17);
+            this.label10.TabIndex = 376;
+            this.label10.Text = "Conductor:";
+            // 
+            // txtnombreconductor
+            // 
+            this.txtnombreconductor.BackColor = System.Drawing.SystemColors.Window;
+            this.txtnombreconductor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtnombreconductor.ForeColor = System.Drawing.Color.Black;
+            this.txtnombreconductor.Location = new System.Drawing.Point(7, 82);
+            this.txtnombreconductor.Name = "txtnombreconductor";
+            this.txtnombreconductor.Size = new System.Drawing.Size(254, 23);
+            this.txtnombreconductor.TabIndex = 377;
             // 
             // tabpgmapa
             // 
@@ -853,9 +932,9 @@
             this.tabpgmapa.HorizontalScrollbarSize = 10;
             this.tabpgmapa.Location = new System.Drawing.Point(4, 38);
             this.tabpgmapa.Name = "tabpgmapa";
-            this.tabpgmapa.Size = new System.Drawing.Size(915, 317);
+            this.tabpgmapa.Size = new System.Drawing.Size(1190, 540);
             this.tabpgmapa.TabIndex = 7;
-            this.tabpgmapa.Text = "Direcciones Mapa";
+            this.tabpgmapa.Text = "Direcciones/Mapa";
             this.tabpgmapa.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.tabpgmapa.VerticalScrollbarBarColor = true;
             this.tabpgmapa.VerticalScrollbarHighlightOnWheel = false;
@@ -868,12 +947,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.panel6.Controls.Add(this.gbmapa);
-            this.panel6.Controls.Add(this.gbdetalledestinos);
-            this.panel6.Controls.Add(this.btnagregardestino);
-            this.panel6.Controls.Add(this.btneliminardestino);
             this.panel6.Location = new System.Drawing.Point(-4, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(915, 312);
+            this.panel6.Size = new System.Drawing.Size(1190, 535);
             this.panel6.TabIndex = 3;
             // 
             // gbmapa
@@ -883,11 +959,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbmapa.Controls.Add(this.panel9);
             this.gbmapa.Controls.Add(this.panel7);
-            this.gbmapa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbmapa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbmapa.ForeColor = System.Drawing.Color.White;
-            this.gbmapa.Location = new System.Drawing.Point(321, 3);
+            this.gbmapa.Location = new System.Drawing.Point(7, 3);
             this.gbmapa.Name = "gbmapa";
-            this.gbmapa.Size = new System.Drawing.Size(591, 306);
+            this.gbmapa.Size = new System.Drawing.Size(1180, 529);
             this.gbmapa.TabIndex = 360;
             this.gbmapa.TabStop = false;
             this.gbmapa.Text = "Mapa";
@@ -897,9 +973,9 @@
             this.panel9.Controls.Add(this.btncargarubicacionactual);
             this.panel9.Controls.Add(this.gMaprutas);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(3, 52);
+            this.panel9.Location = new System.Drawing.Point(3, 50);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(585, 251);
+            this.panel9.Size = new System.Drawing.Size(1174, 476);
             this.panel9.TabIndex = 1;
             // 
             // btncargarubicacionactual
@@ -918,7 +994,7 @@
             this.btncargarubicacionactual.IconColor = System.Drawing.Color.DodgerBlue;
             this.btncargarubicacionactual.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btncargarubicacionactual.IconSize = 30;
-            this.btncargarubicacionactual.Location = new System.Drawing.Point(534, 207);
+            this.btncargarubicacionactual.Location = new System.Drawing.Point(1123, 432);
             this.btncargarubicacionactual.Name = "btncargarubicacionactual";
             this.btncargarubicacionactual.Size = new System.Drawing.Size(31, 31);
             this.btncargarubicacionactual.TabIndex = 292;
@@ -949,88 +1025,47 @@
             this.gMaprutas.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gMaprutas.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gMaprutas.ShowTileGridLines = false;
-            this.gMaprutas.Size = new System.Drawing.Size(585, 251);
+            this.gMaprutas.Size = new System.Drawing.Size(1174, 476);
             this.gMaprutas.TabIndex = 0;
             this.gMaprutas.Zoom = 14D;
             this.gMaprutas.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gMaprutas_MouseDoubleClick);
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.btncargarruta);
+            this.panel7.Controls.Add(this.btnagregardestino);
+            this.panel7.Controls.Add(this.btneliminardestino);
             this.panel7.Controls.Add(this.txtlongitud);
             this.panel7.Controls.Add(this.txtlatitud);
             this.panel7.Controls.Add(this.label23);
             this.panel7.Controls.Add(this.label16);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(3, 19);
+            this.panel7.Location = new System.Drawing.Point(3, 17);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(585, 33);
+            this.panel7.Size = new System.Drawing.Size(1174, 33);
             this.panel7.TabIndex = 0;
             // 
-            // txtlongitud
+            // btncargarruta
             // 
-            this.txtlongitud.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtlongitud.AutoSize = true;
-            this.txtlongitud.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtlongitud.Location = new System.Drawing.Point(483, 17);
-            this.txtlongitud.Name = "txtlongitud";
-            this.txtlongitud.Size = new System.Drawing.Size(13, 13);
-            this.txtlongitud.TabIndex = 295;
-            this.txtlongitud.Text = "0";
-            // 
-            // txtlatitud
-            // 
-            this.txtlatitud.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtlatitud.AutoSize = true;
-            this.txtlatitud.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtlatitud.Location = new System.Drawing.Point(321, 17);
-            this.txtlatitud.Name = "txtlatitud";
-            this.txtlatitud.Size = new System.Drawing.Size(13, 13);
-            this.txtlatitud.TabIndex = 294;
-            this.txtlatitud.Text = "0";
-            // 
-            // label23
-            // 
-            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(278, 17);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(42, 13);
-            this.label23.TabIndex = 293;
-            this.label23.Text = "Latitud:";
-            // 
-            // label16
-            // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(428, 17);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(51, 13);
-            this.label16.TabIndex = 292;
-            this.label16.Text = "Longitud:";
-            // 
-            // btneliminardestino
-            // 
-            this.btneliminardestino.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.btneliminardestino.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btneliminardestino.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btneliminardestino.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btneliminardestino.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btneliminardestino.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btneliminardestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.btneliminardestino.ForeColor = System.Drawing.Color.White;
-            this.btneliminardestino.IconChar = FontAwesome.Sharp.IconChar.CircleMinus;
-            this.btneliminardestino.IconColor = System.Drawing.Color.DodgerBlue;
-            this.btneliminardestino.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btneliminardestino.IconSize = 18;
-            this.btneliminardestino.Location = new System.Drawing.Point(186, 22);
-            this.btneliminardestino.Name = "btneliminardestino";
-            this.btneliminardestino.Size = new System.Drawing.Size(129, 24);
-            this.btneliminardestino.TabIndex = 291;
-            this.btneliminardestino.Text = "Eliminar Destino";
-            this.btneliminardestino.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btneliminardestino.UseVisualStyleBackColor = false;
+            this.btncargarruta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.btncargarruta.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btncargarruta.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btncargarruta.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btncargarruta.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btncargarruta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btncargarruta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.btncargarruta.ForeColor = System.Drawing.Color.White;
+            this.btncargarruta.IconChar = FontAwesome.Sharp.IconChar.ArrowRotateForward;
+            this.btncargarruta.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btncargarruta.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btncargarruta.IconSize = 18;
+            this.btncargarruta.Location = new System.Drawing.Point(275, 4);
+            this.btncargarruta.Name = "btncargarruta";
+            this.btncargarruta.Size = new System.Drawing.Size(129, 24);
+            this.btncargarruta.TabIndex = 300;
+            this.btncargarruta.Text = "Cargar Ruta";
+            this.btncargarruta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btncargarruta.UseVisualStyleBackColor = false;
             // 
             // btnagregardestino
             // 
@@ -1046,88 +1081,174 @@
             this.btnagregardestino.IconColor = System.Drawing.Color.DodgerBlue;
             this.btnagregardestino.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnagregardestino.IconSize = 19;
-            this.btnagregardestino.Location = new System.Drawing.Point(7, 22);
+            this.btnagregardestino.Location = new System.Drawing.Point(6, 4);
             this.btnagregardestino.Name = "btnagregardestino";
             this.btnagregardestino.Size = new System.Drawing.Size(129, 24);
-            this.btnagregardestino.TabIndex = 290;
+            this.btnagregardestino.TabIndex = 298;
             this.btnagregardestino.Text = "Agregar Destino";
             this.btnagregardestino.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnagregardestino.UseVisualStyleBackColor = false;
-            this.btnagregardestino.Click += new System.EventHandler(this.btnagregardestino_Click);
             // 
-            // gbdetalledestinos
+            // btneliminardestino
             // 
-            this.gbdetalledestinos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.gbdetalledestinos.Controls.Add(this.dgvdestinos);
-            this.gbdetalledestinos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbdetalledestinos.ForeColor = System.Drawing.Color.White;
-            this.gbdetalledestinos.Location = new System.Drawing.Point(7, 55);
-            this.gbdetalledestinos.Name = "gbdetalledestinos";
-            this.gbdetalledestinos.Size = new System.Drawing.Size(308, 254);
-            this.gbdetalledestinos.TabIndex = 359;
-            this.gbdetalledestinos.TabStop = false;
-            this.gbdetalledestinos.Text = "Detalle Destinos";
+            this.btneliminardestino.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.btneliminardestino.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btneliminardestino.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btneliminardestino.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btneliminardestino.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btneliminardestino.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btneliminardestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.btneliminardestino.ForeColor = System.Drawing.Color.White;
+            this.btneliminardestino.IconChar = FontAwesome.Sharp.IconChar.CircleMinus;
+            this.btneliminardestino.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btneliminardestino.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btneliminardestino.IconSize = 18;
+            this.btneliminardestino.Location = new System.Drawing.Point(140, 4);
+            this.btneliminardestino.Name = "btneliminardestino";
+            this.btneliminardestino.Size = new System.Drawing.Size(129, 24);
+            this.btneliminardestino.TabIndex = 299;
+            this.btneliminardestino.Text = "Eliminar Destino";
+            this.btneliminardestino.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btneliminardestino.UseVisualStyleBackColor = false;
             // 
-            // dgvdestinos
+            // txtlongitud
             // 
-            this.dgvdestinos.AllowUserToAddRows = false;
-            this.dgvdestinos.AllowUserToDeleteRows = false;
-            this.dgvdestinos.AllowUserToResizeRows = false;
-            this.dgvdestinos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvdestinos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvdestinos.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvdestinos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dgvdestinos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(116)))), ((int)(((byte)(228)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdestinos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvdestinos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvdestinos.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvdestinos.EnableHeadersVisualStyles = false;
-            this.dgvdestinos.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.dgvdestinos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dgvdestinos.Location = new System.Drawing.Point(6, 22);
-            this.dgvdestinos.Name = "dgvdestinos";
-            this.dgvdestinos.ReadOnly = true;
-            this.dgvdestinos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdestinos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvdestinos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dgvdestinos.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvdestinos.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            this.dgvdestinos.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Silver;
-            this.dgvdestinos.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            this.dgvdestinos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvdestinos.Size = new System.Drawing.Size(296, 226);
-            this.dgvdestinos.TabIndex = 358;
-            this.dgvdestinos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdestinos_CellContentClick);
+            this.txtlongitud.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtlongitud.AutoSize = true;
+            this.txtlongitud.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtlongitud.Location = new System.Drawing.Point(1072, 17);
+            this.txtlongitud.Name = "txtlongitud";
+            this.txtlongitud.Size = new System.Drawing.Size(13, 13);
+            this.txtlongitud.TabIndex = 295;
+            this.txtlongitud.Text = "0";
+            // 
+            // txtlatitud
+            // 
+            this.txtlatitud.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtlatitud.AutoSize = true;
+            this.txtlatitud.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtlatitud.Location = new System.Drawing.Point(910, 17);
+            this.txtlatitud.Name = "txtlatitud";
+            this.txtlatitud.Size = new System.Drawing.Size(13, 13);
+            this.txtlatitud.TabIndex = 294;
+            this.txtlatitud.Text = "0";
+            // 
+            // label23
+            // 
+            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(867, 17);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(42, 13);
+            this.label23.TabIndex = 293;
+            this.label23.Text = "Latitud:";
+            // 
+            // label16
+            // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(1017, 17);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(51, 13);
+            this.label16.TabIndex = 292;
+            this.label16.Text = "Longitud:";
+            // 
+            // IdDetalleRuta
+            // 
+            this.IdDetalleRuta.HeaderText = "IdDetalleRuta";
+            this.IdDetalleRuta.Name = "IdDetalleRuta";
+            this.IdDetalleRuta.ReadOnly = true;
+            this.IdDetalleRuta.Visible = false;
+            // 
+            // IdRuta
+            // 
+            this.IdRuta.HeaderText = "IdRuta";
+            this.IdRuta.Name = "IdRuta";
+            this.IdRuta.ReadOnly = true;
+            this.IdRuta.Visible = false;
+            // 
+            // IdVehiculo
+            // 
+            this.IdVehiculo.HeaderText = "IdVehiculo";
+            this.IdVehiculo.Name = "IdVehiculo";
+            this.IdVehiculo.ReadOnly = true;
+            this.IdVehiculo.Visible = false;
+            // 
+            // NombreVehiculo
+            // 
+            this.NombreVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NombreVehiculo.HeaderText = "Nombre Vehículo";
+            this.NombreVehiculo.Name = "NombreVehiculo";
+            this.NombreVehiculo.ReadOnly = true;
+            // 
+            // Conductor
+            // 
+            this.Conductor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Conductor.HeaderText = "Conductor";
+            this.Conductor.Name = "Conductor";
+            this.Conductor.ReadOnly = true;
+            // 
+            // DireccionEnvio
+            // 
+            this.DireccionEnvio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DireccionEnvio.HeaderText = "Direccion Envío";
+            this.DireccionEnvio.Name = "DireccionEnvio";
+            this.DireccionEnvio.ReadOnly = true;
+            // 
+            // LatitudDestino
+            // 
+            this.LatitudDestino.HeaderText = "Latitud Destino";
+            this.LatitudDestino.Name = "LatitudDestino";
+            this.LatitudDestino.ReadOnly = true;
+            this.LatitudDestino.Visible = false;
+            // 
+            // LongitudDestino
+            // 
+            this.LongitudDestino.HeaderText = "Longitud Destino";
+            this.LongitudDestino.Name = "LongitudDestino";
+            this.LongitudDestino.ReadOnly = true;
+            this.LongitudDestino.Visible = false;
+            // 
+            // NombreCliente
+            // 
+            this.NombreCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NombreCliente.HeaderText = "Cliente";
+            this.NombreCliente.Name = "NombreCliente";
+            this.NombreCliente.ReadOnly = true;
+            // 
+            // Teléfono1
+            // 
+            this.Teléfono1.HeaderText = "Teléfono 1";
+            this.Teléfono1.Name = "Teléfono1";
+            this.Teléfono1.ReadOnly = true;
+            // 
+            // Teléfono2
+            // 
+            this.Teléfono2.HeaderText = "Teléfono 2";
+            this.Teléfono2.Name = "Teléfono2";
+            this.Teléfono2.ReadOnly = true;
+            // 
+            // EmailCliente
+            // 
+            this.EmailCliente.HeaderText = "Email";
+            this.EmailCliente.Name = "EmailCliente";
+            this.EmailCliente.ReadOnly = true;
+            // 
+            // FechaRegistro
+            // 
+            this.FechaRegistro.HeaderText = "Fecha Registro";
+            this.FechaRegistro.Name = "FechaRegistro";
+            this.FechaRegistro.ReadOnly = true;
+            this.FechaRegistro.Visible = false;
             // 
             // frm_Rutas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.ClientSize = new System.Drawing.Size(938, 521);
+            this.ClientSize = new System.Drawing.Size(1213, 744);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel3);
@@ -1146,22 +1267,23 @@
             this.tabpgdatosruta.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nupcargas)).EndInit();
+            this.tabpbdatosenvio.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.gbdetalledestinos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvdetalleruta)).EndInit();
+            this.gbclientes.ResumeLayout(false);
+            this.gbclientes.PerformLayout();
             this.gbdatosvehiculo.ResumeLayout(false);
             this.gbdatosvehiculo.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nupcargas)).EndInit();
-            this.tabpbdatoscliente.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.tabpgmapa.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.gbmapa.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            this.gbdetalledestinos.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvdestinos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1180,7 +1302,7 @@
         private System.Windows.Forms.Panel panel1;
         private MetroFramework.Controls.MetroTabControl tbctlvehiculos;
         private MetroFramework.Controls.MetroTabPage tabpgdatosruta;
-        private MetroFramework.Controls.MetroTabPage tabpbdatoscliente;
+        private MetroFramework.Controls.MetroTabPage tabpbdatosenvio;
         private MetroFramework.Controls.MetroTabPage tabpgmapa;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DateTimePicker dtpfechaentrega;
@@ -1190,26 +1312,44 @@
         private System.Windows.Forms.ComboBox cboprioridad;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtdireccion;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtconcepto;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txttitulo;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox txtemailcliente;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox txttelefonocliente;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox txtnombrecliente;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txttelefono2cliente;
         private System.Windows.Forms.ComboBox cboestado;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtcomentarios;
+        private FontAwesome.Sharp.IconMenuItem btneditar;
+        private FontAwesome.Sharp.IconMenuItem btnborrar;
+        private System.Windows.Forms.TextBox txttiemporuta;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.GroupBox gbmapa;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel7;
+        private GMap.NET.WindowsForms.GMapControl gMaprutas;
+        private FontAwesome.Sharp.IconButton btncargarubicacionactual;
+        private System.Windows.Forms.Label txtlongitud;
+        private System.Windows.Forms.Label txtlatitud;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label16;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txttelefono2cliente;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox txttelefonocliente;
+        private System.Windows.Forms.GroupBox gbdetalledestinos;
+        private MetroFramework.Controls.MetroGrid dgvdetalleruta;
+        private System.Windows.Forms.GroupBox gbclientes;
+        private System.Windows.Forms.Label label996;
+        private System.Windows.Forms.TextBox txtdireccioncliente;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox txtnombrecliente;
         private System.Windows.Forms.GroupBox gbdatosvehiculo;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtidvehiculo;
+        private FontAwesome.Sharp.IconButton btnbuscarvehiculo;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label txthabilidadvehiculo;
@@ -1217,28 +1357,23 @@
         private System.Windows.Forms.Label txtnombrevehiculo;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label txtnombreconductor;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtidvehiculo;
-        private FontAwesome.Sharp.IconButton btnbuscarvehiculo;
-        private FontAwesome.Sharp.IconMenuItem btneditar;
-        private FontAwesome.Sharp.IconMenuItem btnborrar;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox txthorahasta;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txthoradesde;
-        private System.Windows.Forms.GroupBox gbdetalledestinos;
-        private MetroFramework.Controls.MetroGrid dgvdestinos;
-        private System.Windows.Forms.GroupBox gbmapa;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel7;
-        private GMap.NET.WindowsForms.GMapControl gMaprutas;
         private FontAwesome.Sharp.IconButton btnagregardestino;
         private FontAwesome.Sharp.IconButton btneliminardestino;
-        private FontAwesome.Sharp.IconButton btncargarubicacionactual;
-        private System.Windows.Forms.Label txtlongitud;
-        private System.Windows.Forms.Label txtlatitud;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox txtemailcliente;
+        private FontAwesome.Sharp.IconButton btncargarruta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdDetalleRuta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdRuta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdVehiculo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreVehiculo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Conductor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DireccionEnvio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LatitudDestino;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LongitudDestino;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Teléfono1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Teléfono2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EmailCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaRegistro;
     }
 }

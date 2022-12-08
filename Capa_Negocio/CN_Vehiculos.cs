@@ -151,8 +151,8 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
             try
             {
                 //Si un vehiculo ya posee rutas cuyo estado sea completado, el mismo no puede ser borrado.
-                List<CM_Rutas> ListaRutas = await cd_rutas.listarutas();
-                var validar_rutas = ListaRutas.Where(b => b.Vehiculo.IdVehiculo == objvehiculo.IdVehiculo).FirstOrDefault();
+                List<CM_DetalleRuta> ListaRutas = await cd_rutas.listadetallerutas(objvehiculo.IdVehiculo);
+                var validar_rutas = ListaRutas.Where(b => b.IdVehiculo == objvehiculo.IdVehiculo).FirstOrDefault();
                 if (validar_rutas != null)
                 {
                     MessageBox.Show("No se puede borrar el vehículo porque ya posee histórico de rutas.", "Vehiculos", MessageBoxButtons.OK, MessageBoxIcon.Warning);

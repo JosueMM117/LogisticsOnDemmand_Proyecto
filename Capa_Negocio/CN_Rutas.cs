@@ -23,6 +23,15 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
         }
 
         /// <summary>
+        /// Listar Detalle Rutas
+        /// </summary>
+        /// <returns>Retorna una lista con todos los detalles de rutas registrados.</returns>
+        public async Task<List<CM_DetalleRuta>> Listar_DetalleRutas(CM_Rutas objruta)
+        {
+            return await cdrutas.listadetallerutas(objruta.IdRuta);
+        }
+
+        /// <summary>
         /// Registrar Rutas
         /// </summary>
         /// <param name="objruta"></param>
@@ -37,10 +46,10 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
                 {
                     Mensaje += "No se puede dejar el campo *Titulo* en blanco.\n";
                 }
-                if (string.IsNullOrEmpty(objruta.Direccion))
-                {
-                    Mensaje += "Es necesario indicar la *Direccion* de destino.\n";
-                }
+                //if (string.IsNullOrEmpty(objruta.Direccion))
+                //{
+                //    Mensaje += "Es necesario indicar la *Direccion* de destino.\n";
+                //}
                 //if (objvehiculo.CargaMaxima == 0 || objvehiculo.CargaMinima == 0)
                 //{
                 //    Mensaje += "Debe indicar la cantidad la cantidad mínima y máxima que soportará este vehículo.\n";

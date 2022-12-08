@@ -34,40 +34,29 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
                         IdRuta = objruta.IdRuta,
                         Titulo = objruta.Titulo,
                         Concepto = objruta.Concepto,
-                        Direccion = objruta.Direccion,
                         Fecha_Entrega = objruta.Fecha_Entrega,
-                        Ventana_Tiempo_Desde = objruta.Ventana_Tiempo_Desde,
-                        Ventana_Tiempo_Hasta = objruta.Ventana_Tiempo_Hasta,
+                        Tiempo_Ruta = objruta.Tiempo_Ruta,
                         Cargas = objruta.Cargas,
-                        DetalleRuta = new CM_DetalleRuta
-                        {
-                            IdDetalleRuta = objruta.DetalleRuta.IdDetalleRuta,
-                            Destino1_Ruta = objruta.DetalleRuta.Destino1_Ruta,
-                            Destino2_Ruta = objruta.DetalleRuta.Destino2_Ruta
-                        },
-                        Vehiculo = new CM_Vehiculos
-                        {
-                            IdVehiculo = objruta.Vehiculo.IdVehiculo,
-                            NombreVehiculo = objruta.Vehiculo.NombreVehiculo,
-                            Conductor = new CM_Usuarios
-                            {
-                                IdUsuario = objruta.Vehiculo.Conductor.IdUsuario,
-                                NombreCompleto = objruta.Vehiculo.Conductor.NombreCompleto
-                            },
-                            Habilidades = new CM_Habilidades
-                            {
-                                IdHabilidad = objruta.Vehiculo.Habilidades.IdHabilidad,
-                                Descripcion = objruta.Vehiculo.Habilidades.Descripcion
-                            }
-                        },
-                        Nombre_Cliente = objruta.Nombre_Cliente,
-                        Telefono_Cliente = objruta.Telefono_Cliente,
-                        Telefono2_Cliente = objruta.Telefono2_Cliente,
-                        Email_Cliente = objruta.Email_Cliente,
                         Comentarios = objruta.Comentarios,
                         Prioridad = objruta.Prioridad,
                         Estado = objruta.Estado,
-                        FechaRegistro = objruta.FechaRegistro
+                        FechaRegistro = objruta.FechaRegistro,
+                        DetalleRuta = new CM_DetalleRuta
+                        {
+                            IdDetalleRuta = objruta.DetalleRuta.IdDetalleRuta,
+                            IdRuta = objruta.DetalleRuta.IdRuta,
+                            IdVehiculo = objruta.DetalleRuta.IdVehiculo,
+                            NombreVehiculo = objruta.DetalleRuta.NombreVehiculo,
+                            Conductor = objruta.DetalleRuta.Conductor,
+                            DireccionEnvio = objruta.DetalleRuta.DireccionEnvio,
+                            Latitud = objruta.DetalleRuta.Latitud,
+                            Longitud = objruta.DetalleRuta.Longitud,
+                            NombreCliente = objruta.DetalleRuta.NombreCliente,
+                            TelefonoCliente1 = objruta.DetalleRuta.TelefonoCliente1,
+                            TelefonoCliente2 = objruta.DetalleRuta.TelefonoCliente2,
+                            EmailCliente = objruta.DetalleRuta.EmailCliente,
+                            FechaRegistro = objruta.DetalleRuta.FechaRegistro
+                        }
                     });
                 mensaje = "Ruta registrada!.";
                 return true;
@@ -100,38 +89,11 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
                         IdRuta = datos.Object.IdRuta,
                         Titulo = datos.Object.Titulo,
                         Concepto = datos.Object.Concepto,
-                        Direccion = datos.Object.Direccion,
                         Fecha_Entrega = datos.Object.Fecha_Entrega,
-                        Ventana_Tiempo_Desde = datos.Object.Ventana_Tiempo_Desde,
-                        Ventana_Tiempo_Hasta = datos.Object.Ventana_Tiempo_Hasta,
+                        Tiempo_Ruta = datos.Object.Tiempo_Ruta,
                         Cargas = datos.Object.Cargas,
                         Prioridad = datos.Object.Prioridad,
                         Comentarios = datos.Object.Comentarios,
-                        Nombre_Cliente = datos.Object.Nombre_Cliente,
-                        Telefono_Cliente = datos.Object.Telefono_Cliente,
-                        Telefono2_Cliente = datos.Object.Telefono2_Cliente,
-                        Email_Cliente = datos.Object.Email_Cliente,
-                        DetalleRuta = new CM_DetalleRuta
-                        {
-                            IdDetalleRuta = datos.Object.DetalleRuta.IdDetalleRuta,
-                            Destino1_Ruta = datos.Object.DetalleRuta.Destino1_Ruta,
-                            Destino2_Ruta = datos.Object.DetalleRuta.Destino2_Ruta,
-                        },
-                        Vehiculo = new CM_Vehiculos
-                        {
-                            IdVehiculo = datos.Object.Vehiculo.IdVehiculo,
-                            NombreVehiculo = datos.Object.Vehiculo.NombreVehiculo,
-                            Conductor = new CM_Usuarios
-                            {
-                                IdUsuario = datos.Object.Vehiculo.Conductor.IdUsuario,
-                                NombreCompleto = datos.Object.Vehiculo.Conductor.NombreCompleto
-                            },
-                            Habilidades = new CM_Habilidades
-                            {
-                                IdHabilidad = datos.Object.Vehiculo.Habilidades.IdHabilidad,
-                                Descripcion = datos.Object.Vehiculo.Habilidades.Descripcion
-                            }
-                        },
                         Estado = datos.Object.Estado,
                         FechaRegistro = datos.Object.FechaRegistro
                     }).ToList();
@@ -140,6 +102,43 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
             {
                 MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return new List<CM_Rutas>();
+            }
+        }
+
+        /// <summary>
+        /// Lista Detalle Rutas
+        /// </summary>
+        /// <returns>Retorna una lista con el detalle de todas las rutas.</returns>
+        public async Task<List<CM_DetalleRuta>> listadetallerutas(int idruta)
+        {
+            try
+            {
+                return (await FireBase_Connect
+                    .Child("DetalleRutas")
+                    .OrderByKey()
+                    .OnceAsync<CM_DetalleRuta>())
+                    .Where(b=>b.Object.IdRuta == idruta)
+                    .Select(datos => new CM_DetalleRuta
+                    {
+                        IdDetalleRuta = datos.Object.IdDetalleRuta,
+                        IdRuta = datos.Object.IdRuta,
+                        IdVehiculo = datos.Object.IdVehiculo,
+                        NombreVehiculo = datos.Object.NombreVehiculo,
+                        Conductor = datos.Object.Conductor,
+                        DireccionEnvio = datos.Object.DireccionEnvio,
+                        Latitud = datos.Object.Latitud,
+                        Longitud = datos.Object.Longitud,
+                        NombreCliente = datos.Object.NombreCliente,
+                        TelefonoCliente1 = datos.Object.TelefonoCliente1,
+                        TelefonoCliente2 = datos.Object.TelefonoCliente2,
+                        EmailCliente = datos.Object.EmailCliente,
+                        FechaRegistro = datos.Object.FechaRegistro
+                    }).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new List<CM_DetalleRuta>();
             }
         }
         #endregion

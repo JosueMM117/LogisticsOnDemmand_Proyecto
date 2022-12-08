@@ -361,6 +361,12 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 MessageBox.Show(ex.Message, "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        //FormClosing
+        private void frm_Habilidades_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
         #endregion
 
 

@@ -261,6 +261,7 @@
             this.Name = "frm_Habilidades";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mentenimiento de Habilidades";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Habilidades_FormClosing);
             this.Load += new System.EventHandler(this.frm_Habilidades_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
