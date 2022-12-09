@@ -79,6 +79,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras.frm_Busquedas
                     {
                         IdUsuario = Convert.ToInt32(dgvusuarios.Rows[irow].Cells["IdUsuario"].Value),
                         NombreCompleto = dgvusuarios.Rows[irow].Cells["NombreCompleto"].Value.ToString(),
+                        Rol = dgvusuarios.Rows[irow].Cells["Rol"].Value.ToString(),
                         Estado = dgvusuarios.Rows[irow].Cells["Estado"].Value.ToString()
                     };
                     this.DialogResult = DialogResult.OK;

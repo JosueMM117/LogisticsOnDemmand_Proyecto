@@ -333,7 +333,7 @@
             this.tbctlvehiculos.Location = new System.Drawing.Point(3, 3);
             this.tbctlvehiculos.Multiline = true;
             this.tbctlvehiculos.Name = "tbctlvehiculos";
-            this.tbctlvehiculos.SelectedIndex = 1;
+            this.tbctlvehiculos.SelectedIndex = 2;
             this.tbctlvehiculos.Size = new System.Drawing.Size(1198, 582);
             this.tbctlvehiculos.TabIndex = 3;
             this.tbctlvehiculos.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -961,9 +961,9 @@
             this.gbmapa.Controls.Add(this.panel7);
             this.gbmapa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbmapa.ForeColor = System.Drawing.Color.White;
-            this.gbmapa.Location = new System.Drawing.Point(7, 3);
+            this.gbmapa.Location = new System.Drawing.Point(4, 3);
             this.gbmapa.Name = "gbmapa";
-            this.gbmapa.Size = new System.Drawing.Size(1180, 529);
+            this.gbmapa.Size = new System.Drawing.Size(1187, 535);
             this.gbmapa.TabIndex = 360;
             this.gbmapa.TabStop = false;
             this.gbmapa.Text = "Mapa";
@@ -975,7 +975,7 @@
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(3, 50);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1174, 476);
+            this.panel9.Size = new System.Drawing.Size(1181, 482);
             this.panel9.TabIndex = 1;
             // 
             // btncargarubicacionactual
@@ -994,7 +994,7 @@
             this.btncargarubicacionactual.IconColor = System.Drawing.Color.DodgerBlue;
             this.btncargarubicacionactual.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btncargarubicacionactual.IconSize = 30;
-            this.btncargarubicacionactual.Location = new System.Drawing.Point(1123, 432);
+            this.btncargarubicacionactual.Location = new System.Drawing.Point(1130, 438);
             this.btncargarubicacionactual.Name = "btncargarubicacionactual";
             this.btncargarubicacionactual.Size = new System.Drawing.Size(31, 31);
             this.btncargarubicacionactual.TabIndex = 292;
@@ -1025,7 +1025,7 @@
             this.gMaprutas.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gMaprutas.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gMaprutas.ShowTileGridLines = false;
-            this.gMaprutas.Size = new System.Drawing.Size(1174, 476);
+            this.gMaprutas.Size = new System.Drawing.Size(1181, 482);
             this.gMaprutas.TabIndex = 0;
             this.gMaprutas.Zoom = 14D;
             this.gMaprutas.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gMaprutas_MouseDoubleClick);
@@ -1042,7 +1042,7 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(3, 17);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1174, 33);
+            this.panel7.Size = new System.Drawing.Size(1181, 33);
             this.panel7.TabIndex = 0;
             // 
             // btncargarruta
@@ -1116,7 +1116,7 @@
             this.txtlongitud.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtlongitud.AutoSize = true;
             this.txtlongitud.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtlongitud.Location = new System.Drawing.Point(1072, 17);
+            this.txtlongitud.Location = new System.Drawing.Point(1079, 17);
             this.txtlongitud.Name = "txtlongitud";
             this.txtlongitud.Size = new System.Drawing.Size(13, 13);
             this.txtlongitud.TabIndex = 295;
@@ -1127,7 +1127,7 @@
             this.txtlatitud.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtlatitud.AutoSize = true;
             this.txtlatitud.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtlatitud.Location = new System.Drawing.Point(910, 17);
+            this.txtlatitud.Location = new System.Drawing.Point(917, 17);
             this.txtlatitud.Name = "txtlatitud";
             this.txtlatitud.Size = new System.Drawing.Size(13, 13);
             this.txtlatitud.TabIndex = 294;
@@ -1138,7 +1138,7 @@
             this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(867, 17);
+            this.label23.Location = new System.Drawing.Point(874, 17);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(42, 13);
             this.label23.TabIndex = 293;
@@ -1149,7 +1149,7 @@
             this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(1017, 17);
+            this.label16.Location = new System.Drawing.Point(1024, 17);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(51, 13);
             this.label16.TabIndex = 292;
@@ -1178,10 +1178,10 @@
             // 
             // NombreVehiculo
             // 
-            this.NombreVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.NombreVehiculo.HeaderText = "Nombre Vehículo";
             this.NombreVehiculo.Name = "NombreVehiculo";
             this.NombreVehiculo.ReadOnly = true;
+            this.NombreVehiculo.Width = 190;
             // 
             // Conductor
             // 

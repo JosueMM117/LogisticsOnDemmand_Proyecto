@@ -511,9 +511,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 //    subtotal += Convert.ToDecimal(row.Cells["CostoTotal"].Value.ToString());
 
                 //dtdestinos.Rows.Add(1, "Destino" + Convert.ToDouble(txtlatitud.Text), Convert.ToDouble(txtlongitud.Text));
-                
-
-               
             }
             catch (Exception ex)
             {
@@ -544,7 +541,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             gMaprutas.Position = new GMap.NET.PointLatLng(latitudinicial, longitudinicial);
             gMaprutas.Zoom = 20;
         }
-
 
         #endregion
 

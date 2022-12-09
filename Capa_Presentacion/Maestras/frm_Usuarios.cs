@@ -69,7 +69,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 foreach (CM_Usuarios item in listaUsuario)
                 {
                     dgvusuarios.Rows.Add(new object[] {
-                    "",
                     item.IdUsuario,
                     item.NombreCompleto,
                     item.Rol,
@@ -102,7 +101,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 btnguardarcambios.Enabled = false;
                 foreach (DataGridViewColumn columna in dgvusuarios.Columns)
                 {
-                    if (columna.Visible == true && columna.Name != "btnseleccionar")
+                    if (columna.Visible == true)
                     {
                         cbofiltro.Items.Add(new OpcionCombo() { IdPos = columna.Name, Texto = columna.HeaderText });
                     }

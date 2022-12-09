@@ -130,13 +130,15 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     var resultado = new_modal.ShowDialog();
                     if (resultado == DialogResult.OK)
                     {
-                        if (new_modal._Usuarios.Estado != "Inactivo")
-                        {
-                            txtidconductor.Text = new_modal._Usuarios.IdUsuario.ToString();
-                            txtnombreconductor.Text = new_modal._Usuarios.NombreCompleto;
-                        }
-                        else
+                        if (new_modal._Usuarios.Rol != "Conductor")
+                            MessageBox.Show("El usuario que sea asignar debe ser un conductor.","Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        else if (new_modal._Usuarios.Estado == "Inactivo")
                             MessageBox.Show("El conductor se encuentra inactivo.", "Vehiculos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        else      
+                        {
+                             txtidconductor.Text = new_modal._Usuarios.IdUsuario.ToString();
+                             txtnombreconductor.Text = new_modal._Usuarios.NombreCompleto;
+                        }        
                     }
                 }
             }
