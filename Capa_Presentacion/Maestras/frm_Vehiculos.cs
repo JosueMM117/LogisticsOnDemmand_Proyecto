@@ -23,6 +23,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
     {
         public CN_Vehiculos cn_vehiculos = new CN_Vehiculos();
         public CN_Rutas cn_rutas = new CN_Rutas(); 
+
         #region Constructor
         public frm_Vehiculos()
         {
@@ -203,7 +204,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             try
             {
                 string mensaje = string.Empty;
-                
                 if (nuphoraiodisponibilidad.Value < 0 || nuphoraiodisponibilidad.Value > 24)
                 {
                     MessageBox.Show("La cantidad de horas de disponibilidad no puede ser mayor a 24 horas o menor a 1 hora.", "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -458,6 +458,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                             }
                         }
                         cboestado.Enabled = false;
+                        dgv_rutasvehiculo.Rows.Clear();
                     }
                 }
             }
@@ -465,6 +466,53 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             {
                 MessageBox.Show(ex.Message, "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private async void btncargarrutavehiculo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(txtidvehiculo.Text))
+                {
+                    MessageBox.Show("Debe indicar el Id del vehículo.", "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                int codigo = int.Parse(txtidvehiculo.Text);
+                List<CM_DetalleRuta> DetalleRutas = await cn_rutas.Listar_DetalleRutas();
+                var buscar_rutavehiculo = DetalleRutas.Where(b => b.IdVehiculo == codigo);
+                if (buscar_rutavehiculo != null)
+                {
+                    List<CM_Rutas> Rutas = await cn_rutas.Listar_Rutas();
+                    var rutas = buscar_rutavehiculo.Where(b => b.IdVehiculo == codigo).FirstOrDefault();
+                    //var cargarruta = Rutas.Where(b => b.IdRuta.Equals(rutas.IdRuta));
+                    foreach (var item in Rutas)
+                    {
+                        if (item.IdRuta == rutas.IdRuta)
+                        {
+                            dgv_rutasvehiculo.Rows.Add(new object[]
+                            {
+                                string.Format("{0:0000}",item.IdRuta),
+                                item.Titulo,
+                                item.Concepto,
+                                string.Format("{0:dd-MMM-yyy}",item.Fecha_Entrega),
+                                item.Tiempo_Ruta,
+                                item.Cargas,
+                                item.Comentarios,
+                                item.Prioridad,
+                                item.Estado,
+                                string.Format("{0:dd-MMM-yyy}",item.FechaRegistro)
+                            });
+                        }
+                    }
+                }
+                else
+                    MessageBox.Show("Este vehículo no tiene rutas asignadas.", "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
         #endregion
 
@@ -480,6 +528,11 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 if (e.KeyValue == 13)
                 {
                     e.SuppressKeyPress = true;
+                    if (string.IsNullOrEmpty(txtidvehiculo.Text))
+                    {
+                        MessageBox.Show("Debe indicar el Id del vehículo.", "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
                     int codigo = int.Parse(txtidvehiculo.Text);
                     List<CM_Vehiculos> BuscarDatos = await cn_vehiculos.Listar_Vehículos();
                     var validar = BuscarDatos.Where(b => b.IdVehiculo == codigo).FirstOrDefault();
@@ -514,11 +567,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                             }
                         }
                         txtidvehiculo.SelectionStart = txtidvehiculo.MaxLength;
+                        dgv_rutasvehiculo.Rows.Clear();
                     }
                     else
                     {
                         MessageBox.Show("La vehículo no existe", "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         txtidvehiculo.SelectAll();
+                        dgv_rutasvehiculo.Rows.Clear();
                         Limpiar();
                     }
                 }
@@ -530,5 +585,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         }
         #endregion
 
+        
     }
 }

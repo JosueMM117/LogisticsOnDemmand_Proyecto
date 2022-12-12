@@ -3,11 +3,16 @@ using LogisticsOnDemmand_Proyecto.Capa_Modelo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FireSharp.Response;
+using FireSharp.Interfaces;
+using FireSharp.Config;
+using System.Windows.Controls;
 
 namespace LogisticsOnDemmand_Proyecto.Capa_Datos
 {
@@ -22,7 +27,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
         /// <param name="objruta"></param>
         /// <param name="mensaje"></param>
         /// <returns>Retorna True, si el registro fue insertado correctamente, en caso contrario devuelve false.</returns>
-        public bool registrar_rutas(CM_Rutas objruta, out string mensaje)
+        public bool registrar_rutas(CM_Rutas objruta, out string mensaje, List<CM_DetalleRuta> detalleruta)
         {
             try
             {
@@ -41,23 +46,29 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
                         Prioridad = objruta.Prioridad,
                         Estado = objruta.Estado,
                         FechaRegistro = objruta.FechaRegistro,
-                        DetalleRuta = new CM_DetalleRuta
-                        {
-                            IdDetalleRuta = objruta.DetalleRuta.IdDetalleRuta,
-                            IdRuta = objruta.DetalleRuta.IdRuta,
-                            IdVehiculo = objruta.DetalleRuta.IdVehiculo,
-                            NombreVehiculo = objruta.DetalleRuta.NombreVehiculo,
-                            Conductor = objruta.DetalleRuta.Conductor,
-                            DireccionEnvio = objruta.DetalleRuta.DireccionEnvio,
-                            Latitud = objruta.DetalleRuta.Latitud,
-                            Longitud = objruta.DetalleRuta.Longitud,
-                            NombreCliente = objruta.DetalleRuta.NombreCliente,
-                            TelefonoCliente1 = objruta.DetalleRuta.TelefonoCliente1,
-                            TelefonoCliente2 = objruta.DetalleRuta.TelefonoCliente2,
-                            EmailCliente = objruta.DetalleRuta.EmailCliente,
-                            FechaRegistro = objruta.DetalleRuta.FechaRegistro
-                        }
                     });
+
+                foreach (var items in detalleruta)
+                {
+                    FireBase_Connect
+                    .Child("DetalleRutas/Registros")
+                    .PostAsync(new CM_DetalleRuta()
+                    {
+                        IdDetalleRuta = items.IdDetalleRuta,
+                        IdRuta = items.IdRuta,
+                        IdVehiculo = items.IdVehiculo,
+                        NombreVehiculo = items.NombreVehiculo,
+                        Conductor = items.Conductor,
+                        DireccionEnvio = items.DireccionEnvio,
+                        Latitud = items.Latitud,
+                        Longitud = items.Longitud,
+                        NombreCliente = items.NombreCliente,
+                        TelefonoCliente1 = items.TelefonoCliente1,
+                        TelefonoCliente2 = items.TelefonoCliente2,
+                        EmailCliente = items.EmailCliente,
+                        FechaRegistro = items.FechaRegistro
+                    });
+                }
                 mensaje = "Ruta registrada!.";
                 return true;
             }
@@ -109,17 +120,18 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
         /// Lista Detalle Rutas
         /// </summary>
         /// <returns>Retorna una lista con el detalle de todas las rutas.</returns>
-        public async Task<List<CM_DetalleRuta>> listadetallerutas(int idruta)
+        public async Task<List<CM_DetalleRuta>> listadetallerutas()
         {
             try
             {
                 return (await FireBase_Connect
-                    .Child("DetalleRutas")
+                    .Child("DetalleRutas/Registros")
                     .OrderByKey()
                     .OnceAsync<CM_DetalleRuta>())
-                    .Where(b=>b.Object.IdRuta == idruta)
+                    //.Where(b=>b.Object.IdRuta == idruta)
                     .Select(datos => new CM_DetalleRuta
                     {
+                        IdDetalleRutaFireBase = datos.Key,
                         IdDetalleRuta = datos.Object.IdDetalleRuta,
                         IdRuta = datos.Object.IdRuta,
                         IdVehiculo = datos.Object.IdVehiculo,
@@ -144,7 +156,69 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
         #endregion
 
         #region Actualizar
+        public async Task<bool> actualizar_informacionruta(CM_Rutas objruta, List<CM_DetalleRuta> detalle_ruta)
+        {
+            try
+            {
+                var datos_ruta = (await FireBase_Connect
+                    .Child("Rutas")
+                    .OnceAsync<CM_Rutas>()).Where(b => b.Object.IdRuta == objruta.IdRuta).FirstOrDefault();
 
+                await FireBase_Connect
+                    .Child("Rutas")
+                    .Child(datos_ruta.Key)
+                    .PutAsync(new CM_Rutas()
+                    {
+                        IdRuta = datos_ruta.Object.IdRuta,
+                        Titulo = objruta.Titulo,
+                        Concepto = objruta.Concepto,
+                        Fecha_Entrega = objruta.Fecha_Entrega,
+                        Tiempo_Ruta = objruta.Tiempo_Ruta,
+                        Cargas = objruta.Cargas,
+                        Comentarios = objruta.Comentarios,
+                        Prioridad = objruta.Prioridad,
+                        Estado = objruta.Estado,
+                        FechaRegistro = datos_ruta.Object.FechaRegistro
+                    });
+
+                //Eliminar el detalle de la ruta
+                List<CM_DetalleRuta> listardetalles = await listadetallerutas();
+                var obteneriddetalle = listardetalles.Where(b=>b.IdRuta == objruta.IdRuta).ToList();
+                foreach (var items in obteneriddetalle)
+                {
+                    await FireBase_Connect.Child("DetalleRutas/Registros").Child(items.IdDetalleRutaFireBase).DeleteAsync();
+                }
+
+                //Volvemos a insertar el detalle modificado
+                foreach (var items in detalle_ruta)
+                {
+                    await FireBase_Connect
+                        .Child("DetalleRutas/Registros")
+                        .PostAsync(new CM_DetalleRuta()
+                        {
+                            IdDetalleRuta = items.IdDetalleRuta,
+                            IdRuta = items.IdRuta,
+                            IdVehiculo = items.IdVehiculo,
+                            NombreVehiculo = items.NombreVehiculo,
+                            Conductor = items.Conductor,
+                            DireccionEnvio = items.DireccionEnvio,
+                            Latitud = items.Latitud,
+                            Longitud = items.Longitud,
+                            NombreCliente = items.NombreCliente,
+                            TelefonoCliente1 = items.TelefonoCliente1,
+                            TelefonoCliente2 = items.TelefonoCliente2,
+                            EmailCliente = items.EmailCliente,
+                            FechaRegistro = items.FechaRegistro
+                        });
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
         #endregion
 
         #region Eliminar

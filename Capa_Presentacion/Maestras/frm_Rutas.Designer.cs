@@ -45,7 +45,7 @@
             this.txtidruta = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tbctlvehiculos = new MetroFramework.Controls.MetroTabControl();
+            this.tbctlrutas = new MetroFramework.Controls.MetroTabControl();
             this.tabpgdatosruta = new MetroFramework.Controls.MetroTabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txttiemporuta = new System.Windows.Forms.TextBox();
@@ -68,6 +68,19 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.gbdetalledestinos = new System.Windows.Forms.GroupBox();
             this.dgvdetalleruta = new MetroFramework.Controls.MetroGrid();
+            this.IdDetalleRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Conductor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DireccionEnvio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LatitudDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LongitudDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmailCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbclientes = new System.Windows.Forms.GroupBox();
             this.label20 = new System.Windows.Forms.Label();
             this.txtemailcliente = new System.Windows.Forms.TextBox();
@@ -80,10 +93,11 @@
             this.label22 = new System.Windows.Forms.Label();
             this.txtnombrecliente = new System.Windows.Forms.TextBox();
             this.gbdatosvehiculo = new System.Windows.Forms.GroupBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.lblidvehiculo = new System.Windows.Forms.Label();
             this.txtidvehiculo = new System.Windows.Forms.TextBox();
             this.btnbuscarvehiculo = new FontAwesome.Sharp.IconButton();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.btnagregardestino = new FontAwesome.Sharp.IconButton();
             this.label15 = new System.Windows.Forms.Label();
             this.txthabilidadvehiculo = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -98,31 +112,16 @@
             this.gMaprutas = new GMap.NET.WindowsForms.GMapControl();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btncargarruta = new FontAwesome.Sharp.IconButton();
-            this.btnagregardestino = new FontAwesome.Sharp.IconButton();
-            this.btneliminardestino = new FontAwesome.Sharp.IconButton();
             this.txtlongitud = new System.Windows.Forms.Label();
             this.txtlatitud = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.IdDetalleRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Conductor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DireccionEnvio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LatitudDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LongitudDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Teléfono1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Teléfono2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmailCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.menubotones.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.tbctlvehiculos.SuspendLayout();
+            this.tbctlrutas.SuspendLayout();
             this.tabpgdatosruta.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nupcargas)).BeginInit();
@@ -297,6 +296,7 @@
             this.txtidruta.Name = "txtidruta";
             this.txtidruta.Size = new System.Drawing.Size(82, 23);
             this.txtidruta.TabIndex = 289;
+            this.txtidruta.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtidruta_KeyDown);
             this.txtidruta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtidruta_KeyPress);
             // 
             // label1
@@ -315,30 +315,30 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.panel1.Controls.Add(this.tbctlvehiculos);
+            this.panel1.Controls.Add(this.tbctlrutas);
             this.panel1.Location = new System.Drawing.Point(5, 153);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1204, 588);
             this.panel1.TabIndex = 7;
             // 
-            // tbctlvehiculos
+            // tbctlrutas
             // 
-            this.tbctlvehiculos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tbctlrutas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbctlvehiculos.Controls.Add(this.tabpgdatosruta);
-            this.tbctlvehiculos.Controls.Add(this.tabpbdatosenvio);
-            this.tbctlvehiculos.Controls.Add(this.tabpgmapa);
-            this.tbctlvehiculos.FontWeight = MetroFramework.MetroTabControlWeight.Bold;
-            this.tbctlvehiculos.Location = new System.Drawing.Point(3, 3);
-            this.tbctlvehiculos.Multiline = true;
-            this.tbctlvehiculos.Name = "tbctlvehiculos";
-            this.tbctlvehiculos.SelectedIndex = 2;
-            this.tbctlvehiculos.Size = new System.Drawing.Size(1198, 582);
-            this.tbctlvehiculos.TabIndex = 3;
-            this.tbctlvehiculos.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.tbctlvehiculos.UseSelectable = true;
-            this.tbctlvehiculos.Selected += new System.Windows.Forms.TabControlEventHandler(this.tbctlvehiculos_Selected);
+            this.tbctlrutas.Controls.Add(this.tabpgdatosruta);
+            this.tbctlrutas.Controls.Add(this.tabpbdatosenvio);
+            this.tbctlrutas.Controls.Add(this.tabpgmapa);
+            this.tbctlrutas.FontWeight = MetroFramework.MetroTabControlWeight.Bold;
+            this.tbctlrutas.Location = new System.Drawing.Point(3, 3);
+            this.tbctlrutas.Multiline = true;
+            this.tbctlrutas.Name = "tbctlrutas";
+            this.tbctlrutas.SelectedIndex = 0;
+            this.tbctlrutas.Size = new System.Drawing.Size(1198, 582);
+            this.tbctlrutas.TabIndex = 3;
+            this.tbctlrutas.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.tbctlrutas.UseSelectable = true;
+            this.tbctlrutas.Selected += new System.Windows.Forms.TabControlEventHandler(this.tbctlvehiculos_Selected);
             // 
             // tabpgdatosruta
             // 
@@ -634,8 +634,8 @@
             this.LatitudDestino,
             this.LongitudDestino,
             this.NombreCliente,
-            this.Teléfono1,
-            this.Teléfono2,
+            this.Telefono1,
+            this.Telefono2,
             this.EmailCliente,
             this.FechaRegistro});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -668,6 +668,95 @@
             this.dgvdetalleruta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvdetalleruta.Size = new System.Drawing.Size(1159, 262);
             this.dgvdetalleruta.TabIndex = 358;
+            this.dgvdetalleruta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdetalleruta_CellDoubleClick);
+            // 
+            // IdDetalleRuta
+            // 
+            this.IdDetalleRuta.HeaderText = "IdDetalleRuta";
+            this.IdDetalleRuta.Name = "IdDetalleRuta";
+            this.IdDetalleRuta.ReadOnly = true;
+            this.IdDetalleRuta.Visible = false;
+            // 
+            // IdRuta
+            // 
+            this.IdRuta.HeaderText = "IdRuta";
+            this.IdRuta.Name = "IdRuta";
+            this.IdRuta.ReadOnly = true;
+            this.IdRuta.Visible = false;
+            // 
+            // IdVehiculo
+            // 
+            this.IdVehiculo.HeaderText = "IdVehiculo";
+            this.IdVehiculo.Name = "IdVehiculo";
+            this.IdVehiculo.ReadOnly = true;
+            this.IdVehiculo.Visible = false;
+            // 
+            // NombreVehiculo
+            // 
+            this.NombreVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NombreVehiculo.HeaderText = "Nombre Vehículo";
+            this.NombreVehiculo.Name = "NombreVehiculo";
+            this.NombreVehiculo.ReadOnly = true;
+            // 
+            // Conductor
+            // 
+            this.Conductor.HeaderText = "Conductor";
+            this.Conductor.Name = "Conductor";
+            this.Conductor.ReadOnly = true;
+            this.Conductor.Width = 130;
+            // 
+            // DireccionEnvio
+            // 
+            this.DireccionEnvio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DireccionEnvio.HeaderText = "Direccion Envío";
+            this.DireccionEnvio.Name = "DireccionEnvio";
+            this.DireccionEnvio.ReadOnly = true;
+            // 
+            // LatitudDestino
+            // 
+            this.LatitudDestino.HeaderText = "Latitud Destino";
+            this.LatitudDestino.Name = "LatitudDestino";
+            this.LatitudDestino.ReadOnly = true;
+            this.LatitudDestino.Visible = false;
+            // 
+            // LongitudDestino
+            // 
+            this.LongitudDestino.HeaderText = "Longitud Destino";
+            this.LongitudDestino.Name = "LongitudDestino";
+            this.LongitudDestino.ReadOnly = true;
+            this.LongitudDestino.Visible = false;
+            // 
+            // NombreCliente
+            // 
+            this.NombreCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NombreCliente.HeaderText = "Cliente";
+            this.NombreCliente.Name = "NombreCliente";
+            this.NombreCliente.ReadOnly = true;
+            // 
+            // Telefono1
+            // 
+            this.Telefono1.HeaderText = "Teléfono 1";
+            this.Telefono1.Name = "Telefono1";
+            this.Telefono1.ReadOnly = true;
+            // 
+            // Telefono2
+            // 
+            this.Telefono2.HeaderText = "Teléfono 2";
+            this.Telefono2.Name = "Telefono2";
+            this.Telefono2.ReadOnly = true;
+            // 
+            // EmailCliente
+            // 
+            this.EmailCliente.HeaderText = "Email";
+            this.EmailCliente.Name = "EmailCliente";
+            this.EmailCliente.ReadOnly = true;
+            // 
+            // FechaRegistro
+            // 
+            this.FechaRegistro.HeaderText = "Fecha Registro";
+            this.FechaRegistro.Name = "FechaRegistro";
+            this.FechaRegistro.ReadOnly = true;
+            this.FechaRegistro.Visible = false;
             // 
             // gbclientes
             // 
@@ -789,7 +878,7 @@
             // 
             this.gbdatosvehiculo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbdatosvehiculo.Controls.Add(this.label13);
+            this.gbdatosvehiculo.Controls.Add(this.lblidvehiculo);
             this.gbdatosvehiculo.Controls.Add(this.txtidvehiculo);
             this.gbdatosvehiculo.Controls.Add(this.btnbuscarvehiculo);
             this.gbdatosvehiculo.Controls.Add(this.panel8);
@@ -802,16 +891,16 @@
             this.gbdatosvehiculo.TabStop = false;
             this.gbdatosvehiculo.Text = "Información de Vehículo";
             // 
-            // label13
+            // lblidvehiculo
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(6, 32);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(77, 17);
-            this.label13.TabIndex = 380;
-            this.label13.Text = "IdVehiculo:";
+            this.lblidvehiculo.AutoSize = true;
+            this.lblidvehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblidvehiculo.ForeColor = System.Drawing.Color.White;
+            this.lblidvehiculo.Location = new System.Drawing.Point(6, 32);
+            this.lblidvehiculo.Name = "lblidvehiculo";
+            this.lblidvehiculo.Size = new System.Drawing.Size(77, 17);
+            this.lblidvehiculo.TabIndex = 380;
+            this.lblidvehiculo.Text = "IdVehiculo:";
             // 
             // txtidvehiculo
             // 
@@ -822,6 +911,7 @@
             this.txtidvehiculo.TabIndex = 379;
             this.txtidvehiculo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtidvehiculo_KeyDown);
             this.txtidvehiculo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtidvehiculo_KeyPress);
+            this.txtidvehiculo.MouseLeave += new System.EventHandler(this.txtidvehiculo_MouseLeave);
             // 
             // btnbuscarvehiculo
             // 
@@ -850,6 +940,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel8.Controls.Add(this.btnagregardestino);
             this.panel8.Controls.Add(this.label15);
             this.panel8.Controls.Add(this.txthabilidadvehiculo);
             this.panel8.Controls.Add(this.label14);
@@ -861,6 +952,29 @@
             this.panel8.Size = new System.Drawing.Size(598, 153);
             this.panel8.TabIndex = 377;
             // 
+            // btnagregardestino
+            // 
+            this.btnagregardestino.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.btnagregardestino.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnagregardestino.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnagregardestino.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnagregardestino.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btnagregardestino.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnagregardestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.btnagregardestino.ForeColor = System.Drawing.Color.White;
+            this.btnagregardestino.IconChar = FontAwesome.Sharp.IconChar.MapPin;
+            this.btnagregardestino.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btnagregardestino.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnagregardestino.IconSize = 19;
+            this.btnagregardestino.Location = new System.Drawing.Point(462, 124);
+            this.btnagregardestino.Name = "btnagregardestino";
+            this.btnagregardestino.Size = new System.Drawing.Size(129, 24);
+            this.btnagregardestino.TabIndex = 383;
+            this.btnagregardestino.Text = "Agregar Destino";
+            this.btnagregardestino.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnagregardestino.UseVisualStyleBackColor = false;
+            this.btnagregardestino.Click += new System.EventHandler(this.btnagregardestino_Click);
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -871,6 +985,7 @@
             this.label15.Size = new System.Drawing.Size(71, 17);
             this.label15.TabIndex = 380;
             this.label15.Text = "Habilidad:";
+            this.label15.Visible = false;
             // 
             // txthabilidadvehiculo
             // 
@@ -881,6 +996,7 @@
             this.txthabilidadvehiculo.Name = "txthabilidadvehiculo";
             this.txthabilidadvehiculo.Size = new System.Drawing.Size(201, 23);
             this.txthabilidadvehiculo.TabIndex = 381;
+            this.txthabilidadvehiculo.Visible = false;
             // 
             // label14
             // 
@@ -908,7 +1024,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(4, 60);
+            this.label10.Location = new System.Drawing.Point(4, 64);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(77, 17);
             this.label10.TabIndex = 376;
@@ -919,7 +1035,7 @@
             this.txtnombreconductor.BackColor = System.Drawing.SystemColors.Window;
             this.txtnombreconductor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtnombreconductor.ForeColor = System.Drawing.Color.Black;
-            this.txtnombreconductor.Location = new System.Drawing.Point(7, 82);
+            this.txtnombreconductor.Location = new System.Drawing.Point(7, 86);
             this.txtnombreconductor.Name = "txtnombreconductor";
             this.txtnombreconductor.Size = new System.Drawing.Size(254, 23);
             this.txtnombreconductor.TabIndex = 377;
@@ -1033,8 +1149,6 @@
             // panel7
             // 
             this.panel7.Controls.Add(this.btncargarruta);
-            this.panel7.Controls.Add(this.btnagregardestino);
-            this.panel7.Controls.Add(this.btneliminardestino);
             this.panel7.Controls.Add(this.txtlongitud);
             this.panel7.Controls.Add(this.txtlatitud);
             this.panel7.Controls.Add(this.label23);
@@ -1059,57 +1173,14 @@
             this.btncargarruta.IconColor = System.Drawing.Color.DodgerBlue;
             this.btncargarruta.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btncargarruta.IconSize = 18;
-            this.btncargarruta.Location = new System.Drawing.Point(275, 4);
+            this.btncargarruta.Location = new System.Drawing.Point(6, 4);
             this.btncargarruta.Name = "btncargarruta";
             this.btncargarruta.Size = new System.Drawing.Size(129, 24);
             this.btncargarruta.TabIndex = 300;
             this.btncargarruta.Text = "Cargar Ruta";
             this.btncargarruta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btncargarruta.UseVisualStyleBackColor = false;
-            // 
-            // btnagregardestino
-            // 
-            this.btnagregardestino.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.btnagregardestino.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnagregardestino.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnagregardestino.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnagregardestino.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btnagregardestino.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnagregardestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.btnagregardestino.ForeColor = System.Drawing.Color.White;
-            this.btnagregardestino.IconChar = FontAwesome.Sharp.IconChar.MapPin;
-            this.btnagregardestino.IconColor = System.Drawing.Color.DodgerBlue;
-            this.btnagregardestino.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnagregardestino.IconSize = 19;
-            this.btnagregardestino.Location = new System.Drawing.Point(6, 4);
-            this.btnagregardestino.Name = "btnagregardestino";
-            this.btnagregardestino.Size = new System.Drawing.Size(129, 24);
-            this.btnagregardestino.TabIndex = 298;
-            this.btnagregardestino.Text = "Agregar Destino";
-            this.btnagregardestino.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnagregardestino.UseVisualStyleBackColor = false;
-            // 
-            // btneliminardestino
-            // 
-            this.btneliminardestino.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.btneliminardestino.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btneliminardestino.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btneliminardestino.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btneliminardestino.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btneliminardestino.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btneliminardestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.btneliminardestino.ForeColor = System.Drawing.Color.White;
-            this.btneliminardestino.IconChar = FontAwesome.Sharp.IconChar.CircleMinus;
-            this.btneliminardestino.IconColor = System.Drawing.Color.DodgerBlue;
-            this.btneliminardestino.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btneliminardestino.IconSize = 18;
-            this.btneliminardestino.Location = new System.Drawing.Point(140, 4);
-            this.btneliminardestino.Name = "btneliminardestino";
-            this.btneliminardestino.Size = new System.Drawing.Size(129, 24);
-            this.btneliminardestino.TabIndex = 299;
-            this.btneliminardestino.Text = "Eliminar Destino";
-            this.btneliminardestino.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btneliminardestino.UseVisualStyleBackColor = false;
+            this.btncargarruta.Click += new System.EventHandler(this.btncargarruta_Click);
             // 
             // txtlongitud
             // 
@@ -1155,94 +1226,6 @@
             this.label16.TabIndex = 292;
             this.label16.Text = "Longitud:";
             // 
-            // IdDetalleRuta
-            // 
-            this.IdDetalleRuta.HeaderText = "IdDetalleRuta";
-            this.IdDetalleRuta.Name = "IdDetalleRuta";
-            this.IdDetalleRuta.ReadOnly = true;
-            this.IdDetalleRuta.Visible = false;
-            // 
-            // IdRuta
-            // 
-            this.IdRuta.HeaderText = "IdRuta";
-            this.IdRuta.Name = "IdRuta";
-            this.IdRuta.ReadOnly = true;
-            this.IdRuta.Visible = false;
-            // 
-            // IdVehiculo
-            // 
-            this.IdVehiculo.HeaderText = "IdVehiculo";
-            this.IdVehiculo.Name = "IdVehiculo";
-            this.IdVehiculo.ReadOnly = true;
-            this.IdVehiculo.Visible = false;
-            // 
-            // NombreVehiculo
-            // 
-            this.NombreVehiculo.HeaderText = "Nombre Vehículo";
-            this.NombreVehiculo.Name = "NombreVehiculo";
-            this.NombreVehiculo.ReadOnly = true;
-            this.NombreVehiculo.Width = 190;
-            // 
-            // Conductor
-            // 
-            this.Conductor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Conductor.HeaderText = "Conductor";
-            this.Conductor.Name = "Conductor";
-            this.Conductor.ReadOnly = true;
-            // 
-            // DireccionEnvio
-            // 
-            this.DireccionEnvio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DireccionEnvio.HeaderText = "Direccion Envío";
-            this.DireccionEnvio.Name = "DireccionEnvio";
-            this.DireccionEnvio.ReadOnly = true;
-            // 
-            // LatitudDestino
-            // 
-            this.LatitudDestino.HeaderText = "Latitud Destino";
-            this.LatitudDestino.Name = "LatitudDestino";
-            this.LatitudDestino.ReadOnly = true;
-            this.LatitudDestino.Visible = false;
-            // 
-            // LongitudDestino
-            // 
-            this.LongitudDestino.HeaderText = "Longitud Destino";
-            this.LongitudDestino.Name = "LongitudDestino";
-            this.LongitudDestino.ReadOnly = true;
-            this.LongitudDestino.Visible = false;
-            // 
-            // NombreCliente
-            // 
-            this.NombreCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NombreCliente.HeaderText = "Cliente";
-            this.NombreCliente.Name = "NombreCliente";
-            this.NombreCliente.ReadOnly = true;
-            // 
-            // Teléfono1
-            // 
-            this.Teléfono1.HeaderText = "Teléfono 1";
-            this.Teléfono1.Name = "Teléfono1";
-            this.Teléfono1.ReadOnly = true;
-            // 
-            // Teléfono2
-            // 
-            this.Teléfono2.HeaderText = "Teléfono 2";
-            this.Teléfono2.Name = "Teléfono2";
-            this.Teléfono2.ReadOnly = true;
-            // 
-            // EmailCliente
-            // 
-            this.EmailCliente.HeaderText = "Email";
-            this.EmailCliente.Name = "EmailCliente";
-            this.EmailCliente.ReadOnly = true;
-            // 
-            // FechaRegistro
-            // 
-            this.FechaRegistro.HeaderText = "Fecha Registro";
-            this.FechaRegistro.Name = "FechaRegistro";
-            this.FechaRegistro.ReadOnly = true;
-            this.FechaRegistro.Visible = false;
-            // 
             // frm_Rutas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1263,7 +1246,7 @@
             this.menubotones.ResumeLayout(false);
             this.menubotones.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.tbctlvehiculos.ResumeLayout(false);
+            this.tbctlrutas.ResumeLayout(false);
             this.tabpgdatosruta.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -1300,7 +1283,7 @@
         private System.Windows.Forms.TextBox txtidruta;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
-        private MetroFramework.Controls.MetroTabControl tbctlvehiculos;
+        private MetroFramework.Controls.MetroTabControl tbctlrutas;
         private MetroFramework.Controls.MetroTabPage tabpgdatosruta;
         private MetroFramework.Controls.MetroTabPage tabpbdatosenvio;
         private MetroFramework.Controls.MetroTabPage tabpgmapa;
@@ -1347,7 +1330,7 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox txtnombrecliente;
         private System.Windows.Forms.GroupBox gbdatosvehiculo;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblidvehiculo;
         private System.Windows.Forms.TextBox txtidvehiculo;
         private FontAwesome.Sharp.IconButton btnbuscarvehiculo;
         private System.Windows.Forms.Panel panel8;
@@ -1357,11 +1340,10 @@
         private System.Windows.Forms.Label txtnombrevehiculo;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label txtnombreconductor;
-        private FontAwesome.Sharp.IconButton btnagregardestino;
-        private FontAwesome.Sharp.IconButton btneliminardestino;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtemailcliente;
         private FontAwesome.Sharp.IconButton btncargarruta;
+        private FontAwesome.Sharp.IconButton btnagregardestino;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdDetalleRuta;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdRuta;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdVehiculo;
@@ -1371,8 +1353,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LatitudDestino;
         private System.Windows.Forms.DataGridViewTextBoxColumn LongitudDestino;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Teléfono1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Teléfono2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Telefono1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Telefono2;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmailCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaRegistro;
     }

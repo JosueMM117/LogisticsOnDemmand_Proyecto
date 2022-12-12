@@ -3,7 +3,7 @@ using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
-using LogisticsOnDemmand_Proyecto.Capa_Datos;
+using GMap.NET.WindowsPresentation;
 using LogisticsOnDemmand_Proyecto.Capa_Modelo;
 using LogisticsOnDemmand_Proyecto.Capa_Negocio;
 using LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras.frm_Busquedas;
@@ -15,6 +15,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -36,10 +37,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         #region Variables
         GMarkerGoogle marcadorgoogle;
         GMapOverlay marcadoraverlay;
+
+
         //DataTable dtdestinos = new DataTable();
-        int iddestinoselecciado = 0;
+        int iddetalleruta_generado;
         double latitudinicial = 18.450217322488683;
         double longitudinicial = -69.92890886875865;
+        
         #endregion
 
         #region Metodos
@@ -69,8 +73,28 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     controles.Text = string.Empty;
                 }
             }
-            
+            lblidvehiculo.Text = "";
+            lblidvehiculo.Text = "IdVehículo:";
+        }
+        public void LimpiarDatosDetalle()
+        {
+            //Datos Vehículo
+            txtidvehiculo.Clear();
+            txtnombrevehiculo.Text = string.Empty;
+            txtnombreconductor.Text = string.Empty;
+            txthabilidadvehiculo.Text = string.Empty;
 
+            //Datos Cliente
+            txtnombrecliente.Clear();
+            txtemailcliente.Clear();
+            txtdireccioncliente.Clear();
+            txttelefonocliente.Clear();
+            txttelefono2cliente.Clear();
+
+            //Datos Ubicacion Map
+            txtlatitud.Text = "0";
+            txtlongitud.Text = "0";
+            marcadorgoogle.Position = new PointLatLng(latitudinicial, longitudinicial);
         }
         public void CargarDatos()
         {
@@ -107,14 +131,12 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 cboestado.SelectedIndex = -1;
 
                 //InaHabilitar controles
-                txtidruta.Select();
                 txtidvehiculo.Enabled = false;
                 btnbuscarvehiculo.Enabled = false;
+                btnguardar.Enabled = false;
                 cboestado.Enabled = false;
                 dgvdetalleruta.Enabled = false;
                 btnagregardestino.Enabled = false;
-                btneliminardestino.Enabled = false;
-                btncargarruta.Enabled = false;
                 foreach (Control controles in gbclientes.Controls)
                 {
                     if (controles is TextBox)
@@ -137,23 +159,77 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         {
             CargarDatos();
             dtpfechaentrega.CustomFormat = "dd-MM-yyy";
-            tbctlvehiculos.SelectTab(0);
+            tbctlrutas.SelectTab(0);
+            txtidruta.Select();
         }
 
         #region Click
-        private void btnbuscar_Click(object sender, EventArgs e)
+        private async void btnbuscar_Click(object sender, EventArgs e)
         {
-            Form oprenform = Application.OpenForms["frm_BuscarRutas"];
-            if (oprenform != null)
+            try
             {
-                oprenform.WindowState = FormWindowState.Normal;
-                oprenform.TopMost = true;
-                oprenform.ShowDialog();
+                using(var modal = new frm_BuscarRutas())
+                {
+                    var result = modal.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        txtidruta.Text = string.Format("{0:0000}", modal._Ruta.IdRuta);
+                        txttitulo.Text = modal._Ruta.Titulo;
+                        txtconcepto.Text = modal._Ruta.Concepto;
+                        txtcomentarios.Text = modal._Ruta.Comentarios;
+                        txttiemporuta.Text = modal._Ruta.Tiempo_Ruta;
+                        dtpfechaentrega.Value = modal._Ruta.Fecha_Entrega;
+                        nupcargas.Value = modal._Ruta.Cargas;
+                        foreach (OpcionCombo oc in cboprioridad.Items)
+                        {
+                            if (oc.Texto == modal._Ruta.Prioridad)
+                            {
+                                int indice_combo = cboestado.Items.IndexOf(oc);
+                                cboestado.SelectedIndex = indice_combo;
+                                break;
+                            }
+                        }
+                        foreach (OpcionCombo oc in cboestado.Items)
+                        {
+                            if (oc.Texto == modal._Ruta.Estado)
+                            {
+                                int indice_combo = cboestado.Items.IndexOf(oc);
+                                cboestado.SelectedIndex = indice_combo;
+                                break;
+                            }
+                        }
+
+                        //Detalle Ruta
+                        dgvdetalleruta.Rows.Clear();
+                        List<CM_DetalleRuta> BuscarDatosDetalle = await cn_rutas.Listar_DetalleRutas();
+                        foreach (var items in BuscarDatosDetalle)
+                        {
+                            if (items.IdRuta == modal._Ruta.IdRuta)
+                            {
+                                dgvdetalleruta.Rows.Add(new object[]
+                                {
+                                items.IdDetalleRuta,
+                                items.IdRuta,
+                                items.IdVehiculo,
+                                items.NombreVehiculo,
+                                items.Conductor,
+                                items.DireccionEnvio,
+                                items.Latitud,
+                                items.Longitud,
+                                items.NombreCliente,
+                                items.TelefonoCliente1,
+                                items.TelefonoCliente2,
+                                items.EmailCliente,
+                                items.FechaRegistro
+                                });
+                            }
+                        }
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Form open = new frm_BuscarRutas();
-                open.ShowDialog();
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private async void btnadicionar_Click(object sender, EventArgs e)
@@ -178,8 +254,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     cboestado.SelectedIndex = -1;
                     dgvdetalleruta.Enabled = false;
                     btnagregardestino.Enabled = false;
-                    btneliminardestino.Enabled = false;
-                    btncargarruta.Enabled = false;
                     foreach (Control controles in gbclientes.Controls)
                     {
                         if (controles is TextBox)
@@ -203,8 +277,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     txtidvehiculo.Enabled = true;
                     dgvdetalleruta.Enabled = true;
                     btnagregardestino.Enabled = true;
-                    btneliminardestino.Enabled = true;
-                    btncargarruta.Enabled = true;
                     foreach (Control controles in gbclientes.Controls)
                     {
                         if (controles is TextBox)
@@ -214,6 +286,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     }
                     Limpiar();
 
+                    //Genererar IdRuta
                     List<CM_Rutas> BuscarDatos = await cn_rutas.Listar_Rutas();
                     int cant_registros = BuscarDatos.Select(b => b.IdRuta).Count();
                     int idgenerado;
@@ -230,6 +303,18 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     txtidvehiculo.BackColor = Color.LightGreen;
                     btnguardar.Enabled = true;
                     cboestado.SelectedIndex = 0;
+                   
+
+                    //Generar IdDetalleRuta
+                    //List<CM_DetalleRuta> BuscarDetalleRuta = await cn_rutas.Listar_DetalleRutas();
+                    //int cantidad_registrosdetalle = BuscarDetalleRuta.Select(b => b.IdDetalleRuta).Count();
+                    //if (cantidad_registrosdetalle == 0)
+                    //    iddetalleruta_generado = 1;
+                    //else
+                    //{
+                    //    cantidad_registrosdetalle = BuscarDetalleRuta.Select(b => b.IdDetalleRuta).Max();
+                    //    iddetalleruta_generado = cantidad_registrosdetalle + 1;
+                    //}
                 }
             }
             catch (Exception ex)
@@ -240,7 +325,126 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         }
         private async void btnguardar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string mensaje = string.Empty;
+                if (dgvdetalleruta.RowCount == 0)
+                {
+                    MessageBox.Show("Debe detallar los destinos destinos de esta ruta.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tbctlrutas.SelectedIndex = 1;
+                    return;
+                }
 
+                List<CM_DetalleRuta> detalle_ruta = new List<CM_DetalleRuta>();
+                var objruta = new CM_Rutas()
+                {
+                    IdRuta = Convert.ToInt32(txtidruta.Text),
+                    Titulo = txttitulo.Text,
+                    Concepto = txtconcepto.Text,
+                    Comentarios = txtcomentarios.Text,
+                    Cargas = Convert.ToInt32(nupcargas.Value),
+                    Fecha_Entrega = dtpfechaentrega.Value,
+                    Tiempo_Ruta = txttiemporuta.Text,
+                    Prioridad = cboprioridad.GetItemText(cboprioridad.SelectedItem),
+                    Estado = cboestado.GetItemText(cboestado.SelectedItem),
+                    FechaRegistro = Convert.ToDateTime(DateTime.Today.ToString("dd-MMM-yyy HH:mm:ss tt"))
+                };
+
+                foreach (DataGridViewRow items_detalle in dgvdetalleruta.Rows)
+                {
+                    var objdetalleruta = new CM_DetalleRuta()
+                    {
+
+                        IdDetalleRuta = Convert.ToInt32(items_detalle.Cells["IdDetalleRuta"].Value),
+                        IdRuta = Convert.ToInt32(items_detalle.Cells["IdRuta"].Value),
+                        IdVehiculo = Convert.ToInt32(items_detalle.Cells["IdVehiculo"].Value),
+                        NombreVehiculo = items_detalle.Cells["NombreVehiculo"].Value.ToString(),
+                        Conductor = items_detalle.Cells["Conductor"].Value.ToString(),
+                        DireccionEnvio = items_detalle.Cells["DireccionEnvio"].Value.ToString(),
+                        Latitud = Convert.ToDouble(items_detalle.Cells["LatitudDestino"].Value),
+                        Longitud = Convert.ToDouble(items_detalle.Cells["LongitudDestino"].Value),
+                        NombreCliente = items_detalle.Cells["NombreCliente"].Value.ToString(),
+                        TelefonoCliente1 = items_detalle.Cells["Telefono1"].Value.ToString(),
+                        TelefonoCliente2 = items_detalle.Cells["Telefono2"].Value.ToString(),
+                        EmailCliente = items_detalle.Cells["EmailCliente"].Value.ToString(),
+                        FechaRegistro = items_detalle.Cells["FechaRegistro"].Value.ToString()
+                    };
+                    detalle_ruta.Add(objdetalleruta);
+                }
+
+                if (txtidruta.BackColor == Color.LightGreen)
+                {
+                    bool respuesta = cn_rutas.Registrar_Rutas(objruta, out mensaje, detalle_ruta);
+                    if (respuesta == true)
+                    {
+                        btnadicionar.IconChar = IconChar.FileCirclePlus;
+                        btnadicionar.Text = "Adicionar";
+                        btneditar.IconChar = IconChar.FilePen;
+                        btneditar.Text = "Editar";
+                        btnguardar.Enabled = false;
+                        btneditar.Enabled = true;
+                        btnborrar.Enabled = true;
+                        btnadicionar.Enabled = true;
+                        btnprocesar.Enabled = true;
+                        btnbuscar.Enabled = true;
+                        txtidruta.Enabled = true;
+                        cboestado.Enabled = false;
+                        btnbuscarvehiculo.Enabled = false;
+                        txtidvehiculo.Enabled = false;
+                        dgvdetalleruta.Enabled = false;
+                        btnagregardestino.Enabled = false;
+                        txtidruta.BackColor = Color.White;
+                        txtidvehiculo.BackColor = Color.White;
+                        foreach (Control controles in gbclientes.Controls)
+                        {
+                            if (controles is TextBox)
+                            {
+                                controles.Enabled = false;
+                            }
+                        }
+                        //gMaprutas.Overlays.Remove(marcadoraverlay);
+                    }
+                    else
+                        MessageBox.Show(mensaje, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    bool respuesta = await cn_rutas.Actualizar_InformacionRuta(objruta, detalle_ruta);
+                    if (respuesta == true)
+                    {
+                        btnadicionar.IconChar = IconChar.FileCirclePlus;
+                        btnadicionar.Text = "Adicionar";
+                        btneditar.IconChar = IconChar.FilePen;
+                        btneditar.Text = "Editar";
+                        btnguardar.Enabled = false;
+                        btneditar.Enabled = true;
+                        btnborrar.Enabled = true;
+                        btnadicionar.Enabled = true;
+                        btnprocesar.Enabled = true;
+                        btnbuscar.Enabled = true;
+                        txtidruta.Enabled = true;
+                        cboestado.Enabled = false;
+                        dgvdetalleruta.Enabled = false;
+                        btnbuscarvehiculo.Enabled = false;
+                        txtidvehiculo.Enabled = false;
+                        txtidruta.BackColor = Color.White;
+                        txtidvehiculo.BackColor = Color.White;
+                        foreach (Control controles in gbclientes.Controls)
+                        {
+                            if (controles is TextBox)
+                            {
+                                controles.Enabled = false;
+                            }
+                        }
+                    }
+                    else
+                        MessageBox.Show("No se pudieron actualizar las informaciones.\n \n Proceso Candelado.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private async void btnprocesar_Click(object sender, EventArgs e)
         {
@@ -255,8 +459,8 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     MessageBox.Show("Debe seleccionar una ruta.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                //List<CM_Rutas> BuscarDatos = await cn_rutas.Listar_Rutas();
-                //var validar = BuscarDatos.Where(b => b.IdRuta == Convert.ToInt32(txtidruta.Text)).FirstOrDefault();
+                List<CM_Rutas> BuscarDatos = await cn_rutas.Listar_Rutas();
+                var validar = BuscarDatos.Where(b => b.IdRuta == Convert.ToInt32(txtidruta.Text)).FirstOrDefault();
                 if (btneditar.IconChar == IconChar.Ban)
                 {
                     btneditar.IconChar = IconChar.FilePen;
@@ -273,8 +477,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     btnbuscarvehiculo.Enabled = false;
                     dgvdetalleruta.Enabled = false;
                     btnagregardestino.Enabled = false;
-                    btneliminardestino.Enabled = false;
-                    btncargarruta.Enabled = false;
                     foreach (Control controles in gbclientes.Controls)
                     {
                         if (controles is TextBox)
@@ -285,59 +487,63 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
 
                     #region Cargar_Datos_IdSelecciado
                     //Datos Ruta
-                    //txtidruta.Text = string.Format("{0:0000}", Convert.ToInt32(txtidruta.Text));
-                    //txttitulo.Text = validar.Titulo;
-                    //txtconcepto.Text = validar.Concepto;
-                    //txtcomentarios.Text = validar.Comentarios;
-                    //dtpfechaentrega.Value = Convert.ToDateTime(validar.Fecha_Entrega);
-                    //txttiemporuta.Text = validar.Tiempo_Ruta;
-                    //nupcargas.Value = validar.Cargas;
-                    //foreach (OpcionCombo oc in cboprioridad.Items)
-                    //{
-                    //    if (oc.Texto == validar.Prioridad)
-                    //    {
-                    //        int indice_combo = cboprioridad.Items.IndexOf(oc);
-                    //        cboprioridad.SelectedIndex = indice_combo;
-                    //        break;
-                    //    }
-                    //}
-                    //foreach (OpcionCombo oc in cboestado.Items)
-                    //{
-                    //    if (oc.Texto == validar.Estado)
-                    //    {
-                    //        int indice_combo = cboestado.Items.IndexOf(oc);
-                    //        cboestado.SelectedIndex = indice_combo;
-                    //        break;
-                    //    }
-                    //}
+                    txtidruta.Text = string.Format("{0:0000}", Convert.ToInt32(txtidruta.Text));
+                    txttitulo.Text = validar.Titulo;
+                    txtconcepto.Text = validar.Concepto;
+                    txtcomentarios.Text = validar.Comentarios;
+                    dtpfechaentrega.Value = Convert.ToDateTime(validar.Fecha_Entrega);
+                    txttiemporuta.Text = validar.Tiempo_Ruta;
+                    nupcargas.Value = validar.Cargas;
+                    foreach (OpcionCombo oc in cboprioridad.Items)
+                    {
+                        if (oc.Texto == validar.Prioridad)
+                        {
+                            int indice_combo = cboprioridad.Items.IndexOf(oc);
+                            cboprioridad.SelectedIndex = indice_combo;
+                            break;
+                        }
+                    }
+                    foreach (OpcionCombo oc in cboestado.Items)
+                    {
+                        if (oc.Texto == validar.Estado)
+                        {
+                            int indice_combo = cboestado.Items.IndexOf(oc);
+                            cboestado.SelectedIndex = indice_combo;
+                            break;
+                        }
+                    }
 
-                    ////Detalle Ruta
-                    //List<CM_DetalleRuta> BuscarDatosDetalle = await cn_rutas.Listar_DetalleRutas(validar);
-                    //foreach (CM_DetalleRuta items in BuscarDatosDetalle)
-                    //{
-                    //    dgvdetalleruta.Rows.Add(new object[]
-                    //    {
-                    //        items.IdDetalleRuta,
-                    //        items.IdRuta,
-                    //        items.IdVehiculo,
-                    //        items.NombreVehiculo,
-                    //        items.Conductor,
-                    //        items.DireccionEnvio,
-                    //        items.Latitud,
-                    //        items.Longitud,
-                    //        items.NombreCliente,
-                    //        items.TelefonoCliente1,
-                    //        items.TelefonoCliente2,
-                    //        items.EmailCliente,
-                    //        items.FechaRegistro
-                    //    });
-                    //}
+                    //Detalle Ruta
+                    dgvdetalleruta.Rows.Clear();
+                    List<CM_DetalleRuta> BuscarDatosDetalle = await cn_rutas.Listar_DetalleRutas();
+                    foreach (var items in BuscarDatosDetalle)
+                    {
+                        if (items.IdRuta == validar.IdRuta)
+                        {
+                            dgvdetalleruta.Rows.Add(new object[]
+                            {
+                                    items.IdDetalleRuta,
+                                    items.IdRuta,
+                                    items.IdVehiculo,
+                                    items.NombreVehiculo,
+                                    items.Conductor,
+                                    items.DireccionEnvio,
+                                    items.Latitud,
+                                    items.Longitud,
+                                    items.NombreCliente,
+                                    items.TelefonoCliente1,
+                                    items.TelefonoCliente2,
+                                    items.EmailCliente,
+                                    items.FechaRegistro
+                            });
+                        }
+                    }
                     #endregion
                 }
                 else
                 {
-                    //if (validar != null)
-                    //{
+                    if (validar != null)
+                    {
                         btneditar.IconChar = IconChar.Ban;
                         btneditar.Text = "Cancelar";
                         btnguardar.Enabled = true;
@@ -354,8 +560,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         txtidvehiculo.Enabled = true;
                         dgvdetalleruta.Enabled = true;
                         btnagregardestino.Enabled = true;
-                        btneliminardestino.Enabled = true;
-                        btncargarruta.Enabled = true;
                         foreach (Control controles in gbclientes.Controls)
                         {
                             if (controles is TextBox)
@@ -364,61 +568,65 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                             }
                         }
 
-                        //#region Cargar_Datos_IdSeleccionado
+                        #region Cargar_Datos_IdSeleccionado
 
-                        ////Datos Ruta
-                        //txtidruta.Text = string.Format("{0:0000}", Convert.ToInt32(txtidruta.Text));
-                        //txttitulo.Text = validar.Titulo;
-                        //txtconcepto.Text = validar.Concepto;
-                        //txtcomentarios.Text = validar.Comentarios;
-                        //dtpfechaentrega.Value = Convert.ToDateTime(validar.Fecha_Entrega);
-                        //txttiemporuta.Text = validar.Tiempo_Ruta;
-                        //nupcargas.Value = validar.Cargas;
-                        //foreach (OpcionCombo oc in cboprioridad.Items)
-                        //{
-                        //    if (oc.Texto == validar.Prioridad)
-                        //    {
-                        //        int indice_combo = cboprioridad.Items.IndexOf(oc);
-                        //        cboprioridad.SelectedIndex = indice_combo;
-                        //        break;
-                        //    }
-                        //}
-                        //foreach (OpcionCombo oc in cboestado.Items)
-                        //{
-                        //    if (oc.Texto == validar.Estado)
-                        //    {
-                        //        int indice_combo = cboestado.Items.IndexOf(oc);
-                        //        cboestado.SelectedIndex = indice_combo;
-                        //        break;
-                        //    }
-                        //}
+                        //Datos Ruta
+                        txtidruta.Text = string.Format("{0:0000}", Convert.ToInt32(txtidruta.Text));
+                        txttitulo.Text = validar.Titulo;
+                        txtconcepto.Text = validar.Concepto;
+                        txtcomentarios.Text = validar.Comentarios;
+                        dtpfechaentrega.Value = Convert.ToDateTime(validar.Fecha_Entrega);
+                        txttiemporuta.Text = validar.Tiempo_Ruta;
+                        nupcargas.Value = validar.Cargas;
+                        foreach (OpcionCombo oc in cboprioridad.Items)
+                        {
+                            if (oc.Texto == validar.Prioridad)
+                            {
+                                int indice_combo = cboprioridad.Items.IndexOf(oc);
+                                cboprioridad.SelectedIndex = indice_combo;
+                                break;
+                            }
+                        }
+                        foreach (OpcionCombo oc in cboestado.Items)
+                        {
+                            if (oc.Texto == validar.Estado)
+                            {
+                                int indice_combo = cboestado.Items.IndexOf(oc);
+                                cboestado.SelectedIndex = indice_combo;
+                                break;
+                            }
+                        }
 
-                        ////Detalle Ruta
-                        //List<CM_DetalleRuta> BuscarDatosDetalle = await cn_rutas.Listar_DetalleRutas(validar);
-                        //foreach (CM_DetalleRuta items in BuscarDatosDetalle)
-                        //{
-                        //    dgvdetalleruta.Rows.Add(new object[]
-                        //    {
-                        //    items.IdDetalleRuta,
-                        //    items.IdRuta,
-                        //    items.IdVehiculo,
-                        //    items.NombreVehiculo,
-                        //    items.Conductor,
-                        //    items.DireccionEnvio,
-                        //    items.Latitud,
-                        //    items.Longitud,
-                        //    items.NombreCliente,
-                        //    items.TelefonoCliente1,
-                        //    items.TelefonoCliente2,
-                        //    items.EmailCliente,
-                        //    items.FechaRegistro
-                        //    });
-                        //}
+                        //Detalle Ruta
+                        dgvdetalleruta.Rows.Clear();
+                        List<CM_DetalleRuta> BuscarDatosDetalle = await cn_rutas.Listar_DetalleRutas();
+                        foreach (var items in BuscarDatosDetalle)
+                        {
+                            if (items.IdRuta == validar.IdRuta)
+                            {
+                                dgvdetalleruta.Rows.Add(new object[]
+                                {
+                                    items.IdDetalleRuta,
+                                    items.IdRuta,
+                                    items.IdVehiculo,
+                                    items.NombreVehiculo,
+                                    items.Conductor,
+                                    items.DireccionEnvio,
+                                    items.Latitud,
+                                    items.Longitud,
+                                    items.NombreCliente,
+                                    items.TelefonoCliente1,
+                                    items.TelefonoCliente2,
+                                    items.EmailCliente,
+                                    items.FechaRegistro
+                                });
+                            }
+                        }
 
-                        //#endregion
-                    //}
-                    //else
-                    //MessageBox.Show("Debe seleccionar la ruta que desea editar.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        #endregion
+                    }
+                    else
+                        MessageBox.Show("La ruta no existe.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -436,9 +644,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     return;
                 }
 
-                var objvehiculo = new CM_Vehiculos
+                var objvehiculo = new CM_Rutas
                 {
-                    IdVehiculo = Convert.ToInt32(txtidvehiculo.Text)
+                    IdRuta = Convert.ToInt32(txtidruta.Text)
                 };
 
                 if (MessageBox.Show("¿Seguro que desea borrar la ruta?", "Rutas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -464,7 +672,77 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private async void btncargarruta_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MapRoute rutasdireccion;
+                GMap.NET.WindowsForms.GMapRoute rutaobtenida;
+                GMapOverlay Ruta = new GMapOverlay("CapaRutas");
+                List<PointLatLng> destinos = new List<PointLatLng>();
+
+                //Almacenar los puntos;
+                double latitud, longitud;
+                string nombrecliente;
+                
+                //Buscar Destinos en el dgvdetalleruta
+                for (int irow = 0; irow < dgvdetalleruta.Rows.Count; irow++)
+                {
+                    latitud = Convert.ToDouble(dgvdetalleruta.Rows[irow].Cells["LatitudDestino"].Value);
+                    longitud = Convert.ToDouble(dgvdetalleruta.Rows[irow].Cells["LongitudDestino"].Value);
+                    nombrecliente = dgvdetalleruta.Rows[irow].Cells["NombreCliente"].Value.ToString();
+                    destinos.Add(new PointLatLng(latitud,longitud));
+                    marcadorgoogle.Position = new PointLatLng(latitud, longitud);
+                    marcadorgoogle.ToolTipText = string.Format($"\n{nombrecliente}\n");
+                }
+
+                //Cargar puntos de destinos en gMaprutas
+                GMap.NET.WindowsForms.GMapRoute Ruta_Destinos = new GMap.NET.WindowsForms.GMapRoute(destinos, "CapaRutas");
+                Ruta.Routes.Add(Ruta_Destinos);
+                gMaprutas.Overlays.Add(Ruta);
+                
+                //Actualizar destinos en gMaprutas
+                gMaprutas.Zoom = gMaprutas.Zoom + 1;
+                gMaprutas.Zoom = gMaprutas.Zoom - 1;
+
+                
+                //GMapOverlay caparutas;
+                //// creamos las variables para almacenar los datos
+                //double lat, lng;
+                //// tomamos los datos del grid
+                //for (int filas = 0; filas < DataGridView2.Rows.Count - 1; filas++)
+                //{
+
+                //    lat = Convert.ToDouble(DataGridView2.Rows[filas].Cells[2].Value);
+                //    lng = Convert.ToDouble(DataGridView2.Rows[filas].Cells[3].Value);
+
+                //    //En este apartado añades un punto a tu lista
+                //    puntos.Add(new PointLatLng(lat, lng));
+
+                //    //Si queremos utilizar 2 elementos de la lista puntos debemos estar seguros de que existen, al menos,
+                //    //esos 2 elementos, es decir en la primera iteración del bucle no debo realizar esta parte
+                //    if (puntos.Count() >= 2)
+                //    {
+                //        rutasdireccion =
+                //            GoogleMapProvider.Instance.GetRoute(puntos[filas], puntos[filas + 1], true, false, 10);
+                //        rutaobtenida = new GMapRoute(rutasdireccion.Points, "Ruta Ubicación");
+                //        caparutas = new GMapOverlay("capa de la ruta");
+                //        caparutas.Routes.Add(rutaobtenida);
+                //        gMapControl1.Overlays.Add(caparutas);
+                //        // para actualizar
+                //        //gMapControl1.Zoom = gMapControl1.Zoom + 1;
+                //        //gMapControl1.Zoom = gMapControl1.Zoom - 1;
+                //        gMapControl1.UpdateRouteLocalPosition(rutaobtenida);
+                //    }
+
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btnbuscarvehiculo_Click(object sender, EventArgs e)
@@ -493,24 +771,75 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnagregardestino_Click(object sender, EventArgs e)
+        private async void btnagregardestino_Click(object sender, EventArgs e)
         {
             try
             {
                 //Agregar destinos al dtdestinos
-                //int IdGenerado = 0;
-
-                //if (dtdestinos.Rows.Count == 0)
-                //    IdGenerado = 1;
-                //else
-                //{
-                    
-                //}
+                if (txtlatitud.Text.Trim().Equals("0") || txtlongitud.Text.Trim().Equals("0"))
+                {
+                    MessageBox.Show("Debe indicar la ubicación del destino.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tbctlrutas.SelectTab(tabpgmapa);
+                    return;
+                }
                 
-                //foreach (DataGridViewRow row in dgvdatadetalle.Rows)
-                //    subtotal += Convert.ToDecimal(row.Cells["CostoTotal"].Value.ToString());
+                List<CM_Vehiculos> BuscarDatos = await cn_vehiculos.Listar_Vehículos();
+                if (txtidvehiculo.Text == "")
+                    txtidvehiculo.Text = "0";
+                var validar = BuscarDatos.Where(b => b.IdVehiculo == Convert.ToInt32(txtidvehiculo.Text)).FirstOrDefault();
+                if (validar == null)
+                {
+                    MessageBox.Show("La vehículo no existe", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtidvehiculo.SelectAll();
+                    txtnombreconductor.Text = "";
+                    txtnombrevehiculo.Text = "";
+                    txthabilidadvehiculo.Text = "";
+                    return;
+                }
 
-                //dtdestinos.Rows.Add(1, "Destino" + Convert.ToDouble(txtlatitud.Text), Convert.ToDouble(txtlongitud.Text));
+                if (string.IsNullOrEmpty(txtnombrecliente.Text))
+                    MessageBox.Show("Debe indicar el nombre del cliente.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else if (string.IsNullOrEmpty(txttelefonocliente.Text) && string.IsNullOrEmpty(txttelefono2cliente.Text))
+                    MessageBox.Show("Debe indicar al menos un número de contacto.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else if (string.IsNullOrEmpty(txtdireccioncliente.Text))
+                    MessageBox.Show("Debe indicar la direccion de envío.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    //Generar el IdDetalleRuta
+                    int irows = 0;
+                    if (dgvdetalleruta.RowCount == 0)
+                        irows = 1;
+                    else
+                    {
+                        foreach (DataGridViewRow rows in dgvdetalleruta.Rows)
+                        {
+                            irows++;
+                            if (irows == dgvdetalleruta.RowCount)
+                            {
+                                irows = irows + 1;
+                            }
+                        }
+                    }
+                    
+                    //Agregar al detalle
+                    dgvdetalleruta.Rows.Add(new object[]
+                    {
+                        string.Format("{0:0000}",irows),
+                        Convert.ToUInt32(txtidruta.Text),
+                        Convert.ToInt32(txtidvehiculo.Text),
+                        txtnombrevehiculo.Text,
+                        txtnombreconductor.Text,
+                        txtdireccioncliente.Text,
+                        Convert.ToDouble(txtlatitud.Text),
+                        Convert.ToDouble(txtlongitud.Text),
+                        txtnombrecliente.Text,
+                        txttelefonocliente.Text,
+                        txttelefono2cliente.Text,
+                        txtemailcliente.Text,
+                        DateTime.Today.ToString("dd-MMM-yyy HH:mm:ss tt")
+                    });
+                    LimpiarDatosDetalle();
+                }
             }
             catch (Exception ex)
             {
@@ -529,7 +858,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
 
                 //Mover el marcador a la posicion seleccionada por el usuario en el mapa
                 marcadorgoogle.Position = new PointLatLng(latitud, longitud);
-                marcadorgoogle.ToolTipText = string.Format("Ubicación: \n Latitud:{0} \n Longitud:{1}", latitud, longitud);
+                marcadorgoogle.ToolTipText = string.Format("\n Latitud:{0} \n Longitud:{1}", latitud, longitud);
             }
             catch (Exception ex)
             {
@@ -539,10 +868,22 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         private void btncargarubicacionactual_Click(object sender, EventArgs e)
         {
             gMaprutas.Position = new GMap.NET.PointLatLng(latitudinicial, longitudinicial);
-            gMaprutas.Zoom = 20;
+            gMaprutas.Zoom = 18;
         }
-
         #endregion
+
+        //MouseLeave
+        private async void txtidvehiculo_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         //KeyPress
         private void txtidvehiculo_KeyPress(object sender, KeyPressEventArgs e)
@@ -602,6 +943,90 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private async void txtidruta_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyValue == 13)
+                {
+                    e.SuppressKeyPress = true;
+                    if (string.IsNullOrEmpty(txtidruta.Text))
+                    {
+                        MessageBox.Show("Debe indicar el Id de la ruta.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    int codigo = int.Parse(txtidruta.Text);
+                    List<CM_Rutas> BuscarDatos = await cn_rutas.Listar_Rutas();
+                    var validar = BuscarDatos.Where(b => b.IdRuta == codigo).FirstOrDefault();
+                    if (validar != null)
+                    {
+                        e.SuppressKeyPress = true;
+                        txtidruta.Text = string.Format("{0:0000}", codigo);
+                        txttitulo.Text = validar.Titulo;
+                        txtconcepto.Text = validar.Concepto;
+                        txtcomentarios.Text = validar.Comentarios;
+                        txttiemporuta.Text = validar.Tiempo_Ruta;
+                        dtpfechaentrega.Value = validar.Fecha_Entrega;
+                        nupcargas.Value = validar.Cargas;
+                        foreach (OpcionCombo oc in cboprioridad.Items)
+                        {
+                            if (oc.Texto == validar.Prioridad)
+                            {
+                                int indice_combo = cboestado.Items.IndexOf(oc);
+                                cboestado.SelectedIndex = indice_combo;
+                                break;
+                            }
+                        }
+                        foreach (OpcionCombo oc in cboestado.Items)
+                        {
+                            if (oc.Texto == validar.Estado)
+                            {
+                                int indice_combo = cboestado.Items.IndexOf(oc);
+                                cboestado.SelectedIndex = indice_combo;
+                                break;
+                            }
+                        }
+                        //Detalle Ruta
+                        dgvdetalleruta.Rows.Clear();
+                        List<CM_DetalleRuta> BuscarDatosDetalle = await cn_rutas.Listar_DetalleRutas();
+                        foreach (var items in BuscarDatosDetalle)
+                        {
+                            if (items.IdRuta == validar.IdRuta)
+                            {
+                                dgvdetalleruta.Rows.Add(new object[]
+                                {
+                                    items.IdDetalleRuta,
+                                    items.IdRuta,
+                                    items.IdVehiculo,
+                                    items.NombreVehiculo,
+                                    items.Conductor,
+                                    items.DireccionEnvio,
+                                    items.Latitud,
+                                    items.Longitud,
+                                    items.NombreCliente,
+                                    items.TelefonoCliente1,
+                                    items.TelefonoCliente2,
+                                    items.EmailCliente,
+                                    items.FechaRegistro
+                                });
+                            }
+                        }
+                        txtidruta.SelectionStart = txtidruta.MaxLength;
+                    }
+                    else
+                    {
+                        MessageBox.Show("La Ruta no existe", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtidruta.SelectAll();
+                        dgvdetalleruta.Rows.Clear();
+                        Limpiar();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         //Selected TabControl
         private void tbctlvehiculos_Selected(object sender, TabControlEventArgs e)
@@ -626,11 +1051,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
 
                 //Agregar el mensaje flotante a gMaprutas
                 gMaprutas.Overlays.Add(marcadoraverlay);
-
-                //Ocultar Columnas
-                dgvdetalleruta.Columns[2].Visible = false;
-                dgvdetalleruta.Columns[3].Visible = false;
-                dgvdetalleruta.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
             catch (Exception ex)
             {
@@ -647,20 +1067,58 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 int icolumn = e.ColumnIndex;
                 if (irow >= 0 && icolumn >= 0)
                 {
-                    txtlatitud.Text = dgvdetalleruta.Rows[irow].Cells["Latitud"].Value.ToString();
-                    txtlongitud.Text = dgvdetalleruta.Rows[irow].Cells["Longitud"].Value.ToString();
-                    //Asignamos las posicion del destino seleccionado
-                    marcadorgoogle.Position = new PointLatLng(Convert.ToDouble(txtlatitud.Text), Convert.ToDouble(txtlongitud.Text));
-                    gMaprutas.Position = marcadorgoogle.Position;
+                    //txtlatitud.Text = dgvdetalleruta.Rows[irow].Cells["Latitud"].Value.ToString();
+                    //txtlongitud.Text = dgvdetalleruta.Rows[irow].Cells["Longitud"].Value.ToString();
+                    ////Asignamos las posicion del destino seleccionado
+                    //marcadorgoogle.Position = new PointLatLng(Convert.ToDouble(txtlatitud.Text), Convert.ToDouble(txtlongitud.Text));
+                    //gMaprutas.Position = marcadorgoogle.Position;
                 }  
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
         }
 
+        //CellDoubleClick
+        private void dgvdetalleruta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int irow = e.RowIndex;
+                int icolumn = e.ColumnIndex;
+                if (irow >= 0 && icolumn >= 0)
+                {
+                    //Datos cliente
+                    txtnombrecliente.Text = dgvdetalleruta.Rows[irow].Cells["NombreCliente"].Value.ToString();
+                    txttelefonocliente.Text = dgvdetalleruta.Rows[irow].Cells["Telefono1"].Value.ToString();
+                    txttelefono2cliente.Text = dgvdetalleruta.Rows[irow].Cells["Telefono2"].Value.ToString();
+                    txtemailcliente.Text = dgvdetalleruta.Rows[irow].Cells["EmailCliente"].Value.ToString();
+                    txtdireccioncliente.Text = dgvdetalleruta.Rows[irow].Cells["DireccionEnvio"].Value.ToString();
+
+                    //Datos Vehiculo
+                    txtidvehiculo.Text = string.Format("{0:0000}", dgvdetalleruta.Rows[irow].Cells["IdVehiculo"].Value);
+                    txtnombrevehiculo.Text = dgvdetalleruta.Rows[irow].Cells["NombreVehiculo"].Value.ToString();
+                    txtnombreconductor.Text = dgvdetalleruta.Rows[irow].Cells["Conductor"].Value.ToString();
+
+                    //Datos Destino
+                    txtlatitud.Text = dgvdetalleruta.Rows[irow].Cells["LatitudDestino"].Value.ToString();
+                    txtlongitud.Text = dgvdetalleruta.Rows[irow].Cells["LongitudDestino"].Value.ToString();
+                    marcadorgoogle.Position = new PointLatLng(Convert.ToDouble(txtlatitud.Text), Convert.ToDouble(txtlongitud.Text));
+                    marcadorgoogle.ToolTipText = string.Format("\n Latitud:{0} \n Longitud:{1}", Convert.ToDouble(txtlatitud.Text), Convert.ToDouble(txtlongitud.Text));
+
+                    //GMapOverlay marcadoraverlay = new GMapOverlay();
+                    //gMaprutas.Overlays.Remove(marcadoraverlay = null);
+
+                    //Remover Fila
+                    dgvdetalleruta.Rows.RemoveAt(irow);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         #endregion
     }
 }

@@ -15,7 +15,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Modelo
         public DateTime Fecha_Entrega { get; set; }
         public string Tiempo_Ruta { get; set; }
         public int Cargas { get; set; }
-        public CM_DetalleRuta DetalleRuta { get; set; }
+        //public List<CM_DetalleRuta> DetalleRuta { get; set; }
         public string Comentarios { get; set; }
         public string Prioridad { get; set; }
         public string Estado { get; set; }

@@ -13,6 +13,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
     {
         private CD_Vehiculos cd_vehiculos = new CD_Vehiculos();
         private CD_Rutas cd_rutas = new CD_Rutas();
+
         /// <summary>
         /// Listar Vehiculos
         /// </summary>
@@ -43,29 +44,17 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
             {
                 Mensaje = string.Empty;
                 if (string.IsNullOrEmpty(objvehiculo.NombreVehiculo))
-                {
                     Mensaje += "No se puede dejar el campo *Nombre* en blanco.\n";
-                }
                 if (string.IsNullOrEmpty(objvehiculo.Identificacion))
-                {
                     Mensaje += "Es necesario indicar la identificacíon de este vehículo.\n";
-                }
-                if (objvehiculo.CargaMaxima == 0 || objvehiculo.CargaMinima == 0)
-                {
-                    Mensaje += "Debe indicar la cantidad la cantidad mínima y máxima que soportará este vehículo.\n";
-                }
+                if (objvehiculo.CargaMaxima == 0 || objvehiculo.CargaMinima == 0)                
+                    Mensaje += "Debe indicar la cantidad la cantidad mínima y máxima que soportará este vehículo.\n";                
                 if (objvehiculo.HorarioDisponibilidad > 24)
-                {
                     Mensaje += "Las horas indicas sobrepasan las horas permitidas por dia.\nLa cantidad de horas disponibles por dia es 24 Horas.";
-                }
                 if (objvehiculo.Conductor.IdUsuario == 0 || string.IsNullOrEmpty(objvehiculo.Conductor.NombreCompleto))
-                {
                     Mensaje += "No puede registrar un vehiculo sin indicar antes el conductor\n";
-                }
                 if (Mensaje != string.Empty)
-                {
                     return false;
-                }
                 else
                     return cd_vehiculos.registrar_vehiculos(objvehiculo, out Mensaje);
             }
@@ -88,13 +77,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
             {
                 Mensaje = string.Empty;
                 if (string.IsNullOrEmpty(objhabilidad.Descripcion))
-                {
-                    Mensaje += "No se puede dejar el campo *Descripcion* en blanco.\n";
-                }
+                    Mensaje += "No se puede dejar el campo *Descripcion* en blanco.\n";    
                 if (Mensaje != string.Empty)
-                {
                     return false;
-                }
                 else
                     return cd_vehiculos.registrar_habilidades(objhabilidad, out Mensaje);
             }
@@ -151,7 +136,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
             try
             {
                 //Si un vehiculo ya posee rutas cuyo estado sea completado, el mismo no puede ser borrado.
-                List<CM_DetalleRuta> ListaRutas = await cd_rutas.listadetallerutas(objvehiculo.IdVehiculo);
+                List<CM_DetalleRuta> ListaRutas = await cd_rutas.listadetallerutas();
                 var validar_rutas = ListaRutas.Where(b => b.IdVehiculo == objvehiculo.IdVehiculo).FirstOrDefault();
                 if (validar_rutas != null)
                 {

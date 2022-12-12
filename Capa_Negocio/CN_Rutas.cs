@@ -26,9 +26,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
         /// Listar Detalle Rutas
         /// </summary>
         /// <returns>Retorna una lista con todos los detalles de rutas registrados.</returns>
-        public async Task<List<CM_DetalleRuta>> Listar_DetalleRutas(CM_Rutas objruta)
+        public async Task<List<CM_DetalleRuta>> Listar_DetalleRutas()
         {
-            return await cdrutas.listadetallerutas(objruta.IdRuta);
+            return await cdrutas.listadetallerutas();
         }
 
         /// <summary>
@@ -37,46 +37,50 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
         /// <param name="objruta"></param>
         /// <param name="Mensaje"></param>
         /// <returns>Retorna True, si el registro fue insertado correctamente.</returns>
-        public bool Registrar_Rutas(CM_Rutas objruta, out string Mensaje)
+        public bool Registrar_Rutas(CM_Rutas objruta, out string Mensaje, List<CM_DetalleRuta> detalleruta)
         {
             try
             {
                 Mensaje = string.Empty;
                 if (string.IsNullOrEmpty(objruta.Titulo))
-                {
-                    Mensaje += "No se puede dejar el campo *Titulo* en blanco.\n";
-                }
-                //if (string.IsNullOrEmpty(objruta.Direccion))
-                //{
-                //    Mensaje += "Es necesario indicar la *Direccion* de destino.\n";
-                //}
-                //if (objvehiculo.CargaMaxima == 0 || objvehiculo.CargaMinima == 0)
-                //{
-                //    Mensaje += "Debe indicar la cantidad la cantidad mínima y máxima que soportará este vehículo.\n";
-                //}
-                //if (objvehiculo.HorarioDisponibilidad > 24)
-                //{
-                //    Mensaje += "Las horas indicas sobrepasan las horas permitidas por dia.\nLa cantidad de horas disponibles por dia es 24 Horas.";
-                //}
-                //if (objvehiculo.Conductor.IdUsuario == 0 || string.IsNullOrEmpty(objvehiculo.Conductor.NombreCompleto))
-                //{
-                //    Mensaje += "No puede registrar un vehiculo sin indicar antes el conductor\n";
-                //}
+                    Mensaje += "Debe indicar el título de esta ruta.\n";
+                else if (string.IsNullOrEmpty(objruta.Concepto))
+                    Mensaje += "Debe indicar un concepto.\n";
+                else if (objruta.Fecha_Entrega.Date > DateTime.Now)
+                    Mensaje += "No puede crear una ruta con fecha futura.\n";
+                else if (string.IsNullOrEmpty(objruta.Tiempo_Ruta))
+                    Mensaje += "Es necesario indicar el tiempo que derará el vehículo en completar su ruta.\n";
+                else if (string.IsNullOrEmpty(objruta.Prioridad))
+                    Mensaje += "Debe indicar el nivel de prioridad que tendrá esta ruta\n";
                 if (Mensaje != string.Empty)
-                {
                     return false;
-                }
                 else
-                    return cdrutas.registrar_rutas(objruta, out Mensaje);
-                
+                    return cdrutas.registrar_rutas(objruta, out Mensaje, detalleruta); 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 Mensaje = string.Empty;
                 return false;
-                throw;
+            }
+        }
+
+        /// <summary>
+        /// Actualizar Inforacion de la ruta
+        /// </summary>
+        /// <param name="objruta"></param>
+        /// <param name="detalleruta"></param>
+        /// <returns>Retorn True, si el registro fue actualizado correctamente.</returns>
+        public async Task<bool> Actualizar_InformacionRuta(CM_Rutas objruta, List<CM_DetalleRuta> detalleruta)
+        {
+            try
+            {
+                return await cdrutas.actualizar_informacionruta(objruta,detalleruta);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
     }

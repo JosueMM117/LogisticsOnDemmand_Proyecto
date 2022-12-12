@@ -47,17 +47,9 @@
             this.IdRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Titulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Concepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VentanaTiempoDesde = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VentanaTiempoHasta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TiempoRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cargas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TelefonoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono2Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmailCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comentarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prioridad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -104,17 +96,9 @@
             this.IdRuta,
             this.Titulo,
             this.Concepto,
-            this.Direccion,
             this.FechaEntrega,
-            this.VentanaTiempoDesde,
-            this.VentanaTiempoHasta,
+            this.TiempoRuta,
             this.Cargas,
-            this.IdVehiculo,
-            this.NombreVehiculo,
-            this.NombreCliente,
-            this.TelefonoCliente,
-            this.Telefono2Cliente,
-            this.EmailCliente,
             this.Comentarios,
             this.Prioridad,
             this.Estado,
@@ -149,6 +133,7 @@
             this.dgv_rutas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_rutas.Size = new System.Drawing.Size(1278, 626);
             this.dgv_rutas.TabIndex = 1;
+            this.dgv_rutas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_rutas_CellDoubleClick);
             // 
             // btnquitarfiltro
             // 
@@ -185,6 +170,7 @@
             this.txtbusqueda.Name = "txtbusqueda";
             this.txtbusqueda.Size = new System.Drawing.Size(240, 23);
             this.txtbusqueda.TabIndex = 296;
+            this.txtbusqueda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbusqueda_KeyPress);
             // 
             // label8
             // 
@@ -284,85 +270,26 @@
             this.Concepto.ReadOnly = true;
             this.Concepto.Visible = false;
             // 
-            // Direccion
-            // 
-            this.Direccion.HeaderText = "Direccion";
-            this.Direccion.Name = "Direccion";
-            this.Direccion.ReadOnly = true;
-            this.Direccion.Visible = false;
-            this.Direccion.Width = 110;
-            // 
             // FechaEntrega
             // 
             this.FechaEntrega.HeaderText = "Fecha Entrega";
             this.FechaEntrega.Name = "FechaEntrega";
             this.FechaEntrega.ReadOnly = true;
-            this.FechaEntrega.Width = 125;
+            this.FechaEntrega.Width = 140;
             // 
-            // VentanaTiempoDesde
+            // TiempoRuta
             // 
-            this.VentanaTiempoDesde.HeaderText = "Ventana_Tiempo_Desde";
-            this.VentanaTiempoDesde.Name = "VentanaTiempoDesde";
-            this.VentanaTiempoDesde.ReadOnly = true;
-            this.VentanaTiempoDesde.Visible = false;
-            this.VentanaTiempoDesde.Width = 130;
-            // 
-            // VentanaTiempoHasta
-            // 
-            this.VentanaTiempoHasta.HeaderText = "Ventana_Tiempo_Hasta";
-            this.VentanaTiempoHasta.Name = "VentanaTiempoHasta";
-            this.VentanaTiempoHasta.ReadOnly = true;
-            this.VentanaTiempoHasta.Visible = false;
-            this.VentanaTiempoHasta.Width = 110;
+            this.TiempoRuta.HeaderText = "Tiempo Estimado";
+            this.TiempoRuta.Name = "TiempoRuta";
+            this.TiempoRuta.ReadOnly = true;
+            this.TiempoRuta.Visible = false;
+            this.TiempoRuta.Width = 110;
             // 
             // Cargas
             // 
             this.Cargas.HeaderText = "Cargas";
             this.Cargas.Name = "Cargas";
             this.Cargas.ReadOnly = true;
-            // 
-            // IdVehiculo
-            // 
-            this.IdVehiculo.HeaderText = "IdVehiculo";
-            this.IdVehiculo.Name = "IdVehiculo";
-            this.IdVehiculo.ReadOnly = true;
-            this.IdVehiculo.Visible = false;
-            // 
-            // NombreVehiculo
-            // 
-            this.NombreVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NombreVehiculo.HeaderText = "Vehículo";
-            this.NombreVehiculo.Name = "NombreVehiculo";
-            this.NombreVehiculo.ReadOnly = true;
-            // 
-            // NombreCliente
-            // 
-            this.NombreCliente.HeaderText = "Nombre Cliente";
-            this.NombreCliente.Name = "NombreCliente";
-            this.NombreCliente.ReadOnly = true;
-            this.NombreCliente.Visible = false;
-            // 
-            // TelefonoCliente
-            // 
-            this.TelefonoCliente.HeaderText = "Teléfono Cliente";
-            this.TelefonoCliente.Name = "TelefonoCliente";
-            this.TelefonoCliente.ReadOnly = true;
-            this.TelefonoCliente.Visible = false;
-            this.TelefonoCliente.Width = 140;
-            // 
-            // Telefono2Cliente
-            // 
-            this.Telefono2Cliente.HeaderText = "Teléfono 2 Cliente";
-            this.Telefono2Cliente.Name = "Telefono2Cliente";
-            this.Telefono2Cliente.ReadOnly = true;
-            this.Telefono2Cliente.Visible = false;
-            // 
-            // EmailCliente
-            // 
-            this.EmailCliente.HeaderText = "E-mail Cliente";
-            this.EmailCliente.Name = "EmailCliente";
-            this.EmailCliente.ReadOnly = true;
-            this.EmailCliente.Visible = false;
             // 
             // Comentarios
             // 
@@ -376,6 +303,7 @@
             this.Prioridad.HeaderText = "Prioridad";
             this.Prioridad.Name = "Prioridad";
             this.Prioridad.ReadOnly = true;
+            this.Prioridad.Width = 150;
             // 
             // Estado
             // 
@@ -430,17 +358,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IdRuta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Titulo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Concepto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaEntrega;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VentanaTiempoDesde;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VentanaTiempoHasta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TiempoRuta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cargas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdVehiculo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NombreVehiculo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NombreCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TelefonoCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Telefono2Cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EmailCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn Comentarios;
         private System.Windows.Forms.DataGridViewTextBoxColumn Prioridad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;

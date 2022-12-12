@@ -101,12 +101,11 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras.frm_Busquedas
                     };
                     this.DialogResult = DialogResult.OK;
                     this.Close();
-                    //MessageBox.Show("Has seleccionado una celda", "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

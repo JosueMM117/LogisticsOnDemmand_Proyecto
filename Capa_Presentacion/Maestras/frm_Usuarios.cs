@@ -120,10 +120,10 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         //Click
         private void dgvusuarios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int irow = e.RowIndex;
-            int icolumn = e.ColumnIndex;
             try
             {
+                int irow = e.RowIndex;
+                int icolumn = e.ColumnIndex;
                 if (irow >= 0 && icolumn >= 0)
                 {
                     txtidusuario.Text = Convert.ToString(dgvusuarios.Rows[irow].Cells["IdUsuario"].Value.ToString());
@@ -286,7 +286,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             }
         }
         #endregion
-
 
     }
 }
