@@ -9,9 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FireSharp.Response;
-using FireSharp.Interfaces;
-using FireSharp.Config;
+//using FireSharp.Response;
+//using FireSharp.Interfaces;
+//using FireSharp.Config;
 using System.Windows.Controls;
 
 namespace LogisticsOnDemmand_Proyecto.Capa_Datos
@@ -156,6 +156,12 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
         #endregion
 
         #region Actualizar
+        /// <summary>
+        /// Actualzar Datos de Ruta
+        /// </summary>
+        /// <param name="objruta"></param>
+        /// <param name="detalle_ruta"></param>
+        /// <returns>Retorna True, si el registro fue actualizado correctamente, en caso contrario devuelve false.</returns>
         public async Task<bool> actualizar_informacionruta(CM_Rutas objruta, List<CM_DetalleRuta> detalle_ruta)
         {
             try
@@ -219,10 +225,39 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
                 return false;
             }
         }
+
         #endregion
 
         #region Eliminar
+        /// <summary>
+        /// Borrar Rutas
+        /// </summary>
+        /// <param name="objruta"></param>
+        /// <returns>Retorna True, si el registro fue borrado correctamente.</returns>
+        public async Task<bool> borrar_ruta(CM_Rutas objruta)
+        {
+            try
+            {
+                var borrar = (await FireBase_Connect
+                    .Child("Rutas")
+                    .OnceAsync<CM_Rutas>()).Where(b => b.Object.IdRuta == objruta.IdRuta).FirstOrDefault();
+                await FireBase_Connect.Child("Rutas").Child(borrar.Key).DeleteAsync();
 
+                //Eliminar el detalle de la ruta
+                List<CM_DetalleRuta> listardetalles = await listadetallerutas();
+                var obteneriddetalle = listardetalles.Where(b => b.IdRuta == objruta.IdRuta).ToList();
+                foreach (var items in obteneriddetalle)
+                {
+                    await FireBase_Connect.Child("DetalleRutas/Registros").Child(items.IdDetalleRutaFireBase).DeleteAsync();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
         #endregion
 
         #endregion

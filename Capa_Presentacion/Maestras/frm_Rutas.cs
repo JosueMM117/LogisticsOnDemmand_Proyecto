@@ -19,6 +19,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Media3D;
 using System.Xml.Xsl;
 
 namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
@@ -59,6 +60,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             nupcargas.Value = 1;
             cboprioridad.SelectedIndex = -1;
             cboestado.SelectedIndex = -1;
+            dgvdetalleruta.Rows.Clear();
             foreach (Control controles in gbdatosvehiculo.Controls)
             {
                 if (controles is Label)
@@ -95,6 +97,53 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             txtlatitud.Text = "0";
             txtlongitud.Text = "0";
             marcadorgoogle.Position = new PointLatLng(latitudinicial, longitudinicial);
+        }
+        public void ActivarProcesado()
+        {
+            try
+            {
+                if (cboestado.SelectedIndex == 1)
+                {
+                    btneditar.Enabled = false;
+                    btnborrar.Enabled = false;
+                    foreach (Control item in pnlcontenedordatosruta.Controls)
+                    {
+                        if (item is Label) { }
+                            //null
+                        else
+                            item.Enabled = false;
+                    }
+                    foreach (ToolStripMenuItem c in menubotones.Items)
+                    {
+                        if (c.Name == btnprocesar.Name)
+                        {
+                            btnprocesar.Text = "Desprocear";
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    btneditar.Enabled = true;
+                    btnborrar.Enabled = true;
+                    foreach (Control item in pnlcontenedordatosruta.Controls)
+                    {
+                        item.Enabled = true;
+                    }
+                    foreach (ToolStripMenuItem c in menubotones.Items)
+                    {
+                        if (c.Name == btnprocesar.Name)
+                        {
+                            btnprocesar.Text = "Procesar";
+                            break;
+                        }
+                    } 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         public void CargarDatos()
         {
@@ -150,6 +199,34 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public void CargarMapa()
+        {
+            try
+            {
+                //Cargar gMaprutas
+                gMaprutas.DragButton = MouseButtons.Left;
+                gMaprutas.CanDragMap = true;
+                gMaprutas.MapProvider = GMapProviders.GoogleMap;
+                gMaprutas.Position = new GMap.NET.PointLatLng(latitudinicial, longitudinicial);
+                gMaprutas.AutoScroll = true;
+
+                //Marcador
+                marcadoraverlay = new GMapOverlay("Marcador");
+                marcadorgoogle = new GMarkerGoogle(new PointLatLng(latitudinicial, longitudinicial), GMarkerGoogleType.red);
+                marcadoraverlay.Markers.Add(marcadorgoogle); // Agregar al Mapa
+
+                //Crear mensaje flotante
+                marcadorgoogle.ToolTipMode = MarkerTooltipMode.Always;
+                //marcadorgoogle.ToolTipText = string.Format("Ubicación: \n Latitud:{0} \n Longitud:{1}", latitudinicial, longitudinicial);
+
+                //Agregar el mensaje flotante a gMaprutas
+                gMaprutas.Overlays.Add(marcadoraverlay);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         #endregion
 
         #region Eventos
@@ -161,6 +238,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             dtpfechaentrega.CustomFormat = "dd-MM-yyy";
             tbctlrutas.SelectTab(0);
             txtidruta.Select();
+            
         }
 
         #region Click
@@ -224,6 +302,8 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                                 });
                             }
                         }
+                        ActivarProcesado();
+                        //CargarMapa();
                     }
                 }
             }
@@ -644,30 +724,20 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     return;
                 }
 
-                var objvehiculo = new CM_Rutas
+                var objruta = new CM_Rutas
                 {
                     IdRuta = Convert.ToInt32(txtidruta.Text)
                 };
 
                 if (MessageBox.Show("¿Seguro que desea borrar la ruta?", "Rutas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    Limpiar();
-                    //Validar que la ruta no tenga algun destino completado, esto debe realizarse en la tabla de 
-                    //detalle ruta.
-
-                        //List<CM_Rutas> BuscarDatos = await cn_rutas.Listar_Rutas();
-                        //var validar_datos = BuscarDatos.Where(b => b.IdRuta == objvehiculo.IdVehiculo).FirstOrDefault();
-                        //if (validar_datos == null)
-                        //{
-                        //    bool respuesta = await cnvehiculos.Borrar_Habilidades(objhabilidad);
-                        //    if (respuesta == true)
-                        //    {
-
-                        //    }
-                        //}
+                    bool respuesta = await cn_rutas.Borrar_Rutas(objruta);
+                    if (respuesta == true)
+                    {
+                        Limpiar();    
+                    }
                     //else
-                    //    MessageBox.Show("No puede borrar este vehículo porque tiene rutas pendientes por entregar.", "Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //Limpiar();
+                    //    MessageBox.Show("La ruta no pudo se borrada.\n\n Proceso Cancelado.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -927,6 +997,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                                 }
                             }
                         }
+                        
                     }
                     else
                     {
@@ -1012,6 +1083,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                             }
                         }
                         txtidruta.SelectionStart = txtidruta.MaxLength;
+                        //CargarMapa();
                     }
                     else
                     {
@@ -1031,31 +1103,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         //Selected TabControl
         private void tbctlvehiculos_Selected(object sender, TabControlEventArgs e)
         {
-            try
-            {
-                //Cargar gMaprutas
-                gMaprutas.DragButton = MouseButtons.Left;
-                gMaprutas.CanDragMap = true;
-                gMaprutas.MapProvider = GMapProviders.GoogleMap;
-                gMaprutas.Position = new GMap.NET.PointLatLng(latitudinicial, longitudinicial);
-                gMaprutas.AutoScroll = true;
-
-                //Marcador
-                marcadoraverlay = new GMapOverlay("Marcador");
-                marcadorgoogle = new GMarkerGoogle(new PointLatLng(latitudinicial, longitudinicial), GMarkerGoogleType.red);
-                marcadoraverlay.Markers.Add(marcadorgoogle); // Agregar al Mapa
-
-                //Crear mensaje flotante
-                marcadorgoogle.ToolTipMode = MarkerTooltipMode.Always;
-                //marcadorgoogle.ToolTipText = string.Format("Ubicación: \n Latitud:{0} \n Longitud:{1}", latitudinicial, longitudinicial);
-
-                //Agregar el mensaje flotante a gMaprutas
-                gMaprutas.Overlays.Add(marcadoraverlay);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            CargarMapa();
         }
 
         //CellContentClick

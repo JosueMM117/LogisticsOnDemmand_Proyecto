@@ -63,7 +63,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Login
                     var objusuario = new CM_Usuarios()
                     {
                         Email = "mjosue615@gmail.com",
-                        Clave = "123456",
+                        Clave = "123456@",
                         NombreCompleto = nombreusaurio
                     };
                     var autenticacion = new FirebaseAuthProvider(new FirebaseConfig(CD_ConexionFireBase.WebApiKey)); //txtclave.Text.ToString()
@@ -84,7 +84,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Login
             }
             catch (Exception ex)
             {
-                MessageBox.Show("El Usuario o contraseña son incorrecto", "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El Usuario o contraseña son incorrecto", "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }  
         }
 

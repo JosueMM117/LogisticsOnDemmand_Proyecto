@@ -47,7 +47,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tbctlrutas = new MetroFramework.Controls.MetroTabControl();
             this.tabpgdatosruta = new MetroFramework.Controls.MetroTabPage();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlcontenedordatosruta = new System.Windows.Forms.Panel();
             this.txttiemporuta = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -123,7 +123,7 @@
             this.panel1.SuspendLayout();
             this.tbctlrutas.SuspendLayout();
             this.tabpgdatosruta.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.pnlcontenedordatosruta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nupcargas)).BeginInit();
             this.tabpbdatosenvio.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -343,7 +343,7 @@
             // tabpgdatosruta
             // 
             this.tabpgdatosruta.BackColor = System.Drawing.Color.Black;
-            this.tabpgdatosruta.Controls.Add(this.panel2);
+            this.tabpgdatosruta.Controls.Add(this.pnlcontenedordatosruta);
             this.tabpgdatosruta.HorizontalScrollbarBarColor = true;
             this.tabpgdatosruta.HorizontalScrollbarHighlightOnWheel = false;
             this.tabpgdatosruta.HorizontalScrollbarSize = 10;
@@ -357,32 +357,32 @@
             this.tabpgdatosruta.VerticalScrollbarHighlightOnWheel = false;
             this.tabpgdatosruta.VerticalScrollbarSize = 10;
             // 
-            // panel2
+            // pnlcontenedordatosruta
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.pnlcontenedordatosruta.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.panel2.Controls.Add(this.txttiemporuta);
-            this.panel2.Controls.Add(this.label17);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.txtcomentarios);
-            this.panel2.Controls.Add(this.cboestado);
-            this.panel2.Controls.Add(this.dtpfechaentrega);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.nupcargas);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.cboprioridad);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.txtconcepto);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.txttitulo);
-            this.panel2.Location = new System.Drawing.Point(-4, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1191, 540);
-            this.panel2.TabIndex = 2;
+            this.pnlcontenedordatosruta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.pnlcontenedordatosruta.Controls.Add(this.txttiemporuta);
+            this.pnlcontenedordatosruta.Controls.Add(this.label17);
+            this.pnlcontenedordatosruta.Controls.Add(this.label9);
+            this.pnlcontenedordatosruta.Controls.Add(this.txtcomentarios);
+            this.pnlcontenedordatosruta.Controls.Add(this.cboestado);
+            this.pnlcontenedordatosruta.Controls.Add(this.dtpfechaentrega);
+            this.pnlcontenedordatosruta.Controls.Add(this.label8);
+            this.pnlcontenedordatosruta.Controls.Add(this.nupcargas);
+            this.pnlcontenedordatosruta.Controls.Add(this.label6);
+            this.pnlcontenedordatosruta.Controls.Add(this.cboprioridad);
+            this.pnlcontenedordatosruta.Controls.Add(this.label5);
+            this.pnlcontenedordatosruta.Controls.Add(this.label7);
+            this.pnlcontenedordatosruta.Controls.Add(this.label2);
+            this.pnlcontenedordatosruta.Controls.Add(this.txtconcepto);
+            this.pnlcontenedordatosruta.Controls.Add(this.label3);
+            this.pnlcontenedordatosruta.Controls.Add(this.txttitulo);
+            this.pnlcontenedordatosruta.Location = new System.Drawing.Point(-4, 0);
+            this.pnlcontenedordatosruta.Name = "pnlcontenedordatosruta";
+            this.pnlcontenedordatosruta.Size = new System.Drawing.Size(1191, 540);
+            this.pnlcontenedordatosruta.TabIndex = 2;
             // 
             // txttiemporuta
             // 
@@ -1248,8 +1248,8 @@
             this.panel1.ResumeLayout(false);
             this.tbctlrutas.ResumeLayout(false);
             this.tabpgdatosruta.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.pnlcontenedordatosruta.ResumeLayout(false);
+            this.pnlcontenedordatosruta.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nupcargas)).EndInit();
             this.tabpbdatosenvio.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -1287,7 +1287,7 @@
         private MetroFramework.Controls.MetroTabPage tabpgdatosruta;
         private MetroFramework.Controls.MetroTabPage tabpbdatosenvio;
         private MetroFramework.Controls.MetroTabPage tabpgmapa;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel pnlcontenedordatosruta;
         private System.Windows.Forms.DateTimePicker dtpfechaentrega;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown nupcargas;
