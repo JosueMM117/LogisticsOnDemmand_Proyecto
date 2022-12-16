@@ -171,7 +171,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
         {
             DesactivarAnimacion_BotonesManu();
         }
-
         private void btnrutas_MouseDown(object sender, MouseEventArgs e )
         {
 
@@ -205,8 +204,17 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
             if (e.Button == MouseButtons.Right)
             {
                 opciones_menu.MenuItems.Add(mi);
-                btnajustes.ContextMenu = opciones_menu;
+                btnclientes.ContextMenu = opciones_menu;
                 FormularioBoton = typeof(frm_Ajustes);
+            }
+        }
+        private void btnclientes_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                opciones_menu.MenuItems.Add(mi);
+                btnclientes.ContextMenu = opciones_menu;
+                FormularioBoton = typeof(frm_Clientes);
             }
         }
         #endregion
@@ -306,6 +314,14 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Menus
             //    Form open = new frm_Ajustes();
             //    open.Show();
             //}
+        }
+        private void btnclientes_Click(object sender, EventArgs e)
+        {
+            //Icono del form hijo actual
+            iconformhijo.IconChar = currentbtn.IconChar;
+            iconformhijo.IconColor = currentbtn.IconColor;
+            lbltituloformhijo.Text = currentbtn.Text;
+            AbrirFormulario(new frm_Clientes());
         }
         private void iconformhijo_Click(object sender, EventArgs e)
         {

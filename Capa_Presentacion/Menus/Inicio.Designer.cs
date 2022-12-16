@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.pnlcontenedormenu = new System.Windows.Forms.Panel();
             this.btncerrarsesion = new FontAwesome.Sharp.IconButton();
-            this.btnajustes = new FontAwesome.Sharp.IconButton();
+            this.btnclientes = new FontAwesome.Sharp.IconButton();
             this.btnvehiculos = new FontAwesome.Sharp.IconButton();
             this.btnusuarios = new FontAwesome.Sharp.IconButton();
             this.btnrutas = new FontAwesome.Sharp.IconButton();
@@ -47,6 +47,7 @@
             this.txtemail = new System.Windows.Forms.Label();
             this.lbltituloformhijo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnajustes = new FontAwesome.Sharp.IconButton();
             this.pnlcontenedormenu.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -60,8 +61,9 @@
             // pnlcontenedormenu
             // 
             this.pnlcontenedormenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.pnlcontenedormenu.Controls.Add(this.btncerrarsesion);
             this.pnlcontenedormenu.Controls.Add(this.btnajustes);
+            this.pnlcontenedormenu.Controls.Add(this.btncerrarsesion);
+            this.pnlcontenedormenu.Controls.Add(this.btnclientes);
             this.pnlcontenedormenu.Controls.Add(this.btnvehiculos);
             this.pnlcontenedormenu.Controls.Add(this.btnusuarios);
             this.pnlcontenedormenu.Controls.Add(this.btnrutas);
@@ -97,31 +99,31 @@
             this.btncerrarsesion.MouseLeave += new System.EventHandler(this.btnrutas_MouseLeave);
             this.btncerrarsesion.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnrutas_MouseMove);
             // 
-            // btnajustes
+            // btnclientes
             // 
-            this.btnajustes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnajustes.FlatAppearance.BorderSize = 0;
-            this.btnajustes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnajustes.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnajustes.ForeColor = System.Drawing.Color.White;
-            this.btnajustes.IconChar = FontAwesome.Sharp.IconChar.Cog;
-            this.btnajustes.IconColor = System.Drawing.Color.DodgerBlue;
-            this.btnajustes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnajustes.IconSize = 42;
-            this.btnajustes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnajustes.Location = new System.Drawing.Point(0, 337);
-            this.btnajustes.Name = "btnajustes";
-            this.btnajustes.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnajustes.Size = new System.Drawing.Size(220, 60);
-            this.btnajustes.TabIndex = 4;
-            this.btnajustes.Text = "Ajustes";
-            this.btnajustes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnajustes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnajustes.UseVisualStyleBackColor = true;
-            this.btnajustes.Click += new System.EventHandler(this.btnajustes_Click);
-            this.btnajustes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnajustes_MouseDown);
-            this.btnajustes.MouseLeave += new System.EventHandler(this.btnrutas_MouseLeave);
-            this.btnajustes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnrutas_MouseMove);
+            this.btnclientes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnclientes.FlatAppearance.BorderSize = 0;
+            this.btnclientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnclientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnclientes.ForeColor = System.Drawing.Color.White;
+            this.btnclientes.IconChar = FontAwesome.Sharp.IconChar.Users;
+            this.btnclientes.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btnclientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnclientes.IconSize = 42;
+            this.btnclientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnclientes.Location = new System.Drawing.Point(0, 337);
+            this.btnclientes.Name = "btnclientes";
+            this.btnclientes.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnclientes.Size = new System.Drawing.Size(220, 60);
+            this.btnclientes.TabIndex = 4;
+            this.btnclientes.Text = "Clientes";
+            this.btnclientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnclientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnclientes.UseVisualStyleBackColor = true;
+            this.btnclientes.Click += new System.EventHandler(this.btnclientes_Click);
+            this.btnclientes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnclientes_MouseDown);
+            this.btnclientes.MouseLeave += new System.EventHandler(this.btnrutas_MouseLeave);
+            this.btnclientes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnrutas_MouseMove);
             // 
             // btnvehiculos
             // 
@@ -340,6 +342,32 @@
             this.panel1.Size = new System.Drawing.Size(1213, 10);
             this.panel1.TabIndex = 4;
             // 
+            // btnajustes
+            // 
+            this.btnajustes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnajustes.FlatAppearance.BorderSize = 0;
+            this.btnajustes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnajustes.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnajustes.ForeColor = System.Drawing.Color.White;
+            this.btnajustes.IconChar = FontAwesome.Sharp.IconChar.Cog;
+            this.btnajustes.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btnajustes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnajustes.IconSize = 42;
+            this.btnajustes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnajustes.Location = new System.Drawing.Point(0, 397);
+            this.btnajustes.Name = "btnajustes";
+            this.btnajustes.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnajustes.Size = new System.Drawing.Size(220, 60);
+            this.btnajustes.TabIndex = 7;
+            this.btnajustes.Text = "Ajustes";
+            this.btnajustes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnajustes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnajustes.UseVisualStyleBackColor = true;
+            this.btnajustes.Click += new System.EventHandler(this.btnajustes_Click);
+            this.btnajustes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnajustes_MouseDown);
+            this.btnajustes.MouseLeave += new System.EventHandler(this.btnrutas_MouseLeave);
+            this.btnajustes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnrutas_MouseMove);
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -373,7 +401,7 @@
         private FontAwesome.Sharp.IconButton btnrutas;
         private System.Windows.Forms.Panel panel2;
         private FontAwesome.Sharp.IconButton btncerrarsesion;
-        private FontAwesome.Sharp.IconButton btnajustes;
+        private FontAwesome.Sharp.IconButton btnclientes;
         private FontAwesome.Sharp.IconButton btnvehiculos;
         private FontAwesome.Sharp.IconButton btnusuarios;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -387,5 +415,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         public System.Windows.Forms.Label txtnombrecompleto;
         private System.Windows.Forms.PictureBox picblogoempresa;
+        private FontAwesome.Sharp.IconButton btnajustes;
     }
 }

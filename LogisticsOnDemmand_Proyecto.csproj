@@ -286,10 +286,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Capa_Datos\CD_Clientes.cs" />
     <Compile Include="Capa_Datos\CD_ConexionFireBase.cs" />
     <Compile Include="Capa_Datos\CD_Rutas.cs" />
     <Compile Include="Capa_Datos\CD_Usuarios.cs" />
     <Compile Include="Capa_Datos\CD_Vehiculos.cs" />
+    <Compile Include="Capa_Modelo\CM_Clientes.cs" />
     <Compile Include="Capa_Modelo\CM_DetalleRuta.cs" />
     <Compile Include="Capa_Modelo\CM_Habilidades.cs" />
     <Compile Include="Capa_Modelo\CM_Rutas.cs" />
@@ -309,6 +311,12 @@
     </Compile>
     <Compile Include="Capa_Presentacion\Login\Registro.Designer.cs">
       <DependentUpon>Registro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Capa_Presentacion\Maestras\frm_Busquedas\frm_BuscarClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Capa_Presentacion\Maestras\frm_Busquedas\frm_BuscarClientes.Designer.cs">
+      <DependentUpon>frm_BuscarClientes.cs</DependentUpon>
     </Compile>
     <Compile Include="Capa_Presentacion\Maestras\frm_Busquedas\frm_BuscarHabilidades.cs">
       <SubType>Form</SubType>

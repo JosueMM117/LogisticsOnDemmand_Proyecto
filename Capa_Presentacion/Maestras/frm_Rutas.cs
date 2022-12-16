@@ -28,6 +28,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
     {
         public CN_Rutas cn_rutas = new CN_Rutas();
         public CN_Vehiculos cn_vehiculos = new CN_Vehiculos();
+
         #region Constructor
         public frm_Rutas()
         {
@@ -38,7 +39,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         #region Variables
         GMarkerGoogle marcadorgoogle;
         GMapOverlay marcadoraverlay;
-
 
         //DataTable dtdestinos = new DataTable();
         int iddetalleruta_generado;
