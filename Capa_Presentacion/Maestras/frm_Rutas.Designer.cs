@@ -68,19 +68,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.gbdetalledestinos = new System.Windows.Forms.GroupBox();
             this.dgvdetalleruta = new MetroFramework.Controls.MetroGrid();
-            this.IdDetalleRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Conductor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DireccionEnvio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LatitudDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LongitudDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmailCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbclientes = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtidcliente = new System.Windows.Forms.TextBox();
@@ -119,6 +106,20 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.IdDetalleRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Conductor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DireccionEnvio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LatitudDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LongitudDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmailCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.menubotones.SuspendLayout();
@@ -637,6 +638,7 @@
             this.DireccionEnvio,
             this.LatitudDestino,
             this.LongitudDestino,
+            this.IdCliente,
             this.NombreCliente,
             this.Telefono1,
             this.Telefono2,
@@ -673,94 +675,6 @@
             this.dgvdetalleruta.Size = new System.Drawing.Size(1159, 262);
             this.dgvdetalleruta.TabIndex = 358;
             this.dgvdetalleruta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdetalleruta_CellDoubleClick);
-            // 
-            // IdDetalleRuta
-            // 
-            this.IdDetalleRuta.HeaderText = "IdDetalleRuta";
-            this.IdDetalleRuta.Name = "IdDetalleRuta";
-            this.IdDetalleRuta.ReadOnly = true;
-            this.IdDetalleRuta.Visible = false;
-            // 
-            // IdRuta
-            // 
-            this.IdRuta.HeaderText = "IdRuta";
-            this.IdRuta.Name = "IdRuta";
-            this.IdRuta.ReadOnly = true;
-            this.IdRuta.Visible = false;
-            // 
-            // IdVehiculo
-            // 
-            this.IdVehiculo.HeaderText = "IdVehiculo";
-            this.IdVehiculo.Name = "IdVehiculo";
-            this.IdVehiculo.ReadOnly = true;
-            this.IdVehiculo.Visible = false;
-            // 
-            // NombreVehiculo
-            // 
-            this.NombreVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NombreVehiculo.HeaderText = "Nombre Vehículo";
-            this.NombreVehiculo.Name = "NombreVehiculo";
-            this.NombreVehiculo.ReadOnly = true;
-            // 
-            // Conductor
-            // 
-            this.Conductor.HeaderText = "Conductor";
-            this.Conductor.Name = "Conductor";
-            this.Conductor.ReadOnly = true;
-            this.Conductor.Width = 130;
-            // 
-            // DireccionEnvio
-            // 
-            this.DireccionEnvio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DireccionEnvio.HeaderText = "Direccion Envío";
-            this.DireccionEnvio.Name = "DireccionEnvio";
-            this.DireccionEnvio.ReadOnly = true;
-            // 
-            // LatitudDestino
-            // 
-            this.LatitudDestino.HeaderText = "Latitud Destino";
-            this.LatitudDestino.Name = "LatitudDestino";
-            this.LatitudDestino.ReadOnly = true;
-            this.LatitudDestino.Visible = false;
-            // 
-            // LongitudDestino
-            // 
-            this.LongitudDestino.HeaderText = "Longitud Destino";
-            this.LongitudDestino.Name = "LongitudDestino";
-            this.LongitudDestino.ReadOnly = true;
-            this.LongitudDestino.Visible = false;
-            // 
-            // NombreCliente
-            // 
-            this.NombreCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NombreCliente.HeaderText = "Cliente";
-            this.NombreCliente.Name = "NombreCliente";
-            this.NombreCliente.ReadOnly = true;
-            // 
-            // Telefono1
-            // 
-            this.Telefono1.HeaderText = "Teléfono 1";
-            this.Telefono1.Name = "Telefono1";
-            this.Telefono1.ReadOnly = true;
-            // 
-            // Telefono2
-            // 
-            this.Telefono2.HeaderText = "Teléfono 2";
-            this.Telefono2.Name = "Telefono2";
-            this.Telefono2.ReadOnly = true;
-            // 
-            // EmailCliente
-            // 
-            this.EmailCliente.HeaderText = "Email";
-            this.EmailCliente.Name = "EmailCliente";
-            this.EmailCliente.ReadOnly = true;
-            // 
-            // FechaRegistro
-            // 
-            this.FechaRegistro.HeaderText = "Fecha Registro";
-            this.FechaRegistro.Name = "FechaRegistro";
-            this.FechaRegistro.ReadOnly = true;
-            this.FechaRegistro.Visible = false;
             // 
             // gbclientes
             // 
@@ -1264,6 +1178,101 @@
             this.label16.TabIndex = 292;
             this.label16.Text = "Longitud:";
             // 
+            // IdDetalleRuta
+            // 
+            this.IdDetalleRuta.HeaderText = "IdDetalleRuta";
+            this.IdDetalleRuta.Name = "IdDetalleRuta";
+            this.IdDetalleRuta.ReadOnly = true;
+            this.IdDetalleRuta.Visible = false;
+            // 
+            // IdRuta
+            // 
+            this.IdRuta.HeaderText = "IdRuta";
+            this.IdRuta.Name = "IdRuta";
+            this.IdRuta.ReadOnly = true;
+            this.IdRuta.Visible = false;
+            // 
+            // IdVehiculo
+            // 
+            this.IdVehiculo.HeaderText = "IdVehiculo";
+            this.IdVehiculo.Name = "IdVehiculo";
+            this.IdVehiculo.ReadOnly = true;
+            this.IdVehiculo.Visible = false;
+            // 
+            // NombreVehiculo
+            // 
+            this.NombreVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NombreVehiculo.HeaderText = "Nombre Vehículo";
+            this.NombreVehiculo.Name = "NombreVehiculo";
+            this.NombreVehiculo.ReadOnly = true;
+            // 
+            // Conductor
+            // 
+            this.Conductor.HeaderText = "Conductor";
+            this.Conductor.Name = "Conductor";
+            this.Conductor.ReadOnly = true;
+            this.Conductor.Width = 130;
+            // 
+            // DireccionEnvio
+            // 
+            this.DireccionEnvio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DireccionEnvio.HeaderText = "Direccion Envío";
+            this.DireccionEnvio.Name = "DireccionEnvio";
+            this.DireccionEnvio.ReadOnly = true;
+            // 
+            // LatitudDestino
+            // 
+            this.LatitudDestino.HeaderText = "Latitud Destino";
+            this.LatitudDestino.Name = "LatitudDestino";
+            this.LatitudDestino.ReadOnly = true;
+            this.LatitudDestino.Visible = false;
+            // 
+            // LongitudDestino
+            // 
+            this.LongitudDestino.HeaderText = "Longitud Destino";
+            this.LongitudDestino.Name = "LongitudDestino";
+            this.LongitudDestino.ReadOnly = true;
+            this.LongitudDestino.Visible = false;
+            // 
+            // IdCliente
+            // 
+            this.IdCliente.HeaderText = "IdCliente";
+            this.IdCliente.Name = "IdCliente";
+            this.IdCliente.ReadOnly = true;
+            this.IdCliente.Visible = false;
+            // 
+            // NombreCliente
+            // 
+            this.NombreCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NombreCliente.HeaderText = "Cliente";
+            this.NombreCliente.Name = "NombreCliente";
+            this.NombreCliente.ReadOnly = true;
+            // 
+            // Telefono1
+            // 
+            this.Telefono1.HeaderText = "Teléfono 1";
+            this.Telefono1.Name = "Telefono1";
+            this.Telefono1.ReadOnly = true;
+            // 
+            // Telefono2
+            // 
+            this.Telefono2.HeaderText = "Teléfono 2";
+            this.Telefono2.Name = "Telefono2";
+            this.Telefono2.ReadOnly = true;
+            // 
+            // EmailCliente
+            // 
+            this.EmailCliente.HeaderText = "Email";
+            this.EmailCliente.Name = "EmailCliente";
+            this.EmailCliente.ReadOnly = true;
+            // 
+            // FechaRegistro
+            // 
+            this.FechaRegistro.HeaderText = "Fecha Registro";
+            this.FechaRegistro.Name = "FechaRegistro";
+            this.FechaRegistro.ReadOnly = true;
+            this.FechaRegistro.Visible = false;
+            // 
             // frm_Rutas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1382,6 +1391,10 @@
         private System.Windows.Forms.TextBox txtemailcliente;
         private FontAwesome.Sharp.IconButton btncargarruta;
         private FontAwesome.Sharp.IconButton btnagregardestino;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtidcliente;
+        private FontAwesome.Sharp.IconButton btnbuscarcliente;
+        private System.Windows.Forms.Panel pnlcontenedordatosclientes;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdDetalleRuta;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdRuta;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdVehiculo;
@@ -1390,14 +1403,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DireccionEnvio;
         private System.Windows.Forms.DataGridViewTextBoxColumn LatitudDestino;
         private System.Windows.Forms.DataGridViewTextBoxColumn LongitudDestino;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono2;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmailCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaRegistro;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtidcliente;
-        private FontAwesome.Sharp.IconButton btnbuscarcliente;
-        private System.Windows.Forms.Panel pnlcontenedordatosclientes;
     }
 }

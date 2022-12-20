@@ -426,6 +426,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         DireccionEnvio = items_detalle.Cells["DireccionEnvio"].Value.ToString(),
                         Latitud = Convert.ToDouble(items_detalle.Cells["LatitudDestino"].Value),
                         Longitud = Convert.ToDouble(items_detalle.Cells["LongitudDestino"].Value),
+                        IdCliente = Convert.ToInt32(items_detalle.Cells["IdCliente"].Value),
                         NombreCliente = items_detalle.Cells["NombreCliente"].Value.ToString(),
                         TelefonoCliente1 = items_detalle.Cells["Telefono1"].Value.ToString(),
                         TelefonoCliente2 = items_detalle.Cells["Telefono2"].Value.ToString(),
@@ -858,6 +859,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 if (string.IsNullOrEmpty(txtidvehiculo.Text))
                 {
                     MessageBox.Show("Debe indicar un vehículo.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtidvehiculo.Select();
+                    return;
+                }
+                else if (string.IsNullOrEmpty(txtidcliente.Text))
+                {
+                    MessageBox.Show("Debe indicar un cliente.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtidcliente.Select();
                     return;
                 }
                 else if (txtlatitud.Text.Trim().Equals("0") || txtlongitud.Text.Trim().Equals("0"))
@@ -867,16 +875,36 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     return;
                 }
                 
-                List<CM_Vehiculos> BuscarDatos = await cn_vehiculos.Listar_Vehículos();
+                //Validar existencia del vehiculo seleccioando
+                List<CM_Vehiculos> BuscarDatosVehiculos = await cn_vehiculos.Listar_Vehículos();
                 if (txtidvehiculo.Text == "")
                     txtidvehiculo.Text = "0";
-                var validar = BuscarDatos.Where(b => b.IdVehiculo == Convert.ToInt32(txtidvehiculo.Text)).FirstOrDefault();
-                if (validar == null)
+                var validar_vehiculo = BuscarDatosVehiculos.Where(b => b.IdVehiculo == Convert.ToInt32(txtidvehiculo.Text)).FirstOrDefault();
+                if (validar_vehiculo == null)
                 {
                     MessageBox.Show("La vehículo no existe", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtidvehiculo.SelectAll();
                     txtnombreconductor.Text = "";
                     txtnombrevehiculo.Text = "";
+                    return;
+                }
+
+                //Validar existencia del cliente seleccioando
+                List<CM_Clientes> BuscarDatosClientes = await new CN_Clientes().Listar_Clientes();
+                if (txtidcliente.Text == "")
+                    txtidcliente.Text = "0";
+                var validar_cliente = BuscarDatosClientes.Where(b => b.IdCliente == Convert.ToInt32(txtidcliente.Text)).FirstOrDefault();
+                if (validar_cliente == null)
+                {
+                    MessageBox.Show("La cliente no existe", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtidcliente.SelectAll();
+                    foreach (Control controls in pnlcontenedordatosclientes.Controls)
+                    {
+                        if (controls is TextBox)
+                        {
+                            controls.Text = string.Empty;
+                        }
+                    }
                     return;
                 }
 
@@ -915,6 +943,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         txtdireccioncliente.Text,
                         Convert.ToDouble(txtlatitud.Text),
                         Convert.ToDouble(txtlongitud.Text),
+                        Convert.ToInt32(txtidcliente.Text),
                         txtnombrecliente.Text,
                         txttelefonocliente.Text,
                         txttelefono2cliente.Text,

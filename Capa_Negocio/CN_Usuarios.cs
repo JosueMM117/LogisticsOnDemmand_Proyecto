@@ -17,7 +17,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
         /// Listar Usuarios
         /// </summary>
         /// <returns>Retorna una lista con todos los usuarios registrados.</returns>
-        public async Task<List<CM_Usuarios>> Listar_Usuarios() => await listausuarios();
+        public async Task<List<CM_Usuarios>> Listar_Usuarios() { return await listausuarios(); }
 
         /// <summary>
         /// Registrar Usuarios
