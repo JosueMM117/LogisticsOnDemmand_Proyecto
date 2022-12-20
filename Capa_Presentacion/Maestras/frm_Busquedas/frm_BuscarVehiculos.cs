@@ -33,11 +33,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras.frm_Busquedas
         //Load
         private async void frm_BuscarVehiculos_Load(object sender, EventArgs e)
         {
-            List<CM_Vehiculos> ListaVehiculos = await cnvehiculos.Listar_Vehículos();
-            //var estado = listaUsuario.Where().FirstOrDefault();
-            foreach (CM_Vehiculos item in ListaVehiculos)
+            try
             {
-                dgv_vehiculos.Rows.Add(new object[] {
+                List<CM_Vehiculos> ListaVehiculos = await cnvehiculos.Listar_Vehículos();
+                //var estado = listaUsuario.Where().FirstOrDefault();
+                foreach (CM_Vehiculos item in ListaVehiculos)
+                {
+                    dgv_vehiculos.Rows.Add(new object[] {
                     item.IdVehiculo,
                     item.NombreVehiculo,
                     item.Marca,
@@ -52,20 +54,25 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras.frm_Busquedas
                     item.Estado,
                     item.FechaRegistro.ToString("dd-MMM-yyy"),
                     });
-            }
-
-            //Filtros
-            foreach (DataGridViewColumn columna in dgv_vehiculos.Columns)
-            {
-                if (columna.Visible == true && columna.Name != "IdVehiculo" && columna.Name != "FechaRegistro")
-                {
-                    cbofiltro.Items.Add(new OpcionCombo() { IdPos = columna.Name, Texto = columna.HeaderText });
                 }
+
+                //Filtros
+                foreach (DataGridViewColumn columna in dgv_vehiculos.Columns)
+                {
+                    if (columna.Visible == true && columna.Name != "IdVehiculo" && columna.Name != "FechaRegistro")
+                    {
+                        cbofiltro.Items.Add(new OpcionCombo() { IdPos = columna.Name, Texto = columna.HeaderText });
+                    }
+                }
+                cbofiltro.DisplayMember = "Texto";
+                cbofiltro.ValueMember = "IdPos";
+                //cbofiltro.SelectedIndex = 0;
+                txtbusqueda.Select();
             }
-            cbofiltro.DisplayMember = "Texto";
-            cbofiltro.ValueMember = "IdPos";
-            //cbofiltro.SelectedIndex = 0;
-            txtbusqueda.Select();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } 
         }
 
         //Click

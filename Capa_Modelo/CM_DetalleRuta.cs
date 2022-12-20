@@ -12,6 +12,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Modelo
         public int IdDetalleRuta { get; set; }
         public int IdRuta { get; set; }
         public int IdVehiculo { get; set; }
+        public int IdCliente { get; set; }
         public string NombreVehiculo { get; set; }
         public string Conductor { get; set; }
         public string DireccionEnvio { get; set; }

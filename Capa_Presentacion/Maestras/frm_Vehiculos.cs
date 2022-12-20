@@ -307,6 +307,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     txtidvehiculo.BackColor = Color.White;
                     btnbuscarconductor.Enabled = false;
 
+                    txtnombrevehiculo.ReadOnly = true;
+                    txtmarca.ReadOnly = true;
+                    txtidentificacion.ReadOnly = true;
+                    nupcargamaxima.ReadOnly = true;
+                    nupcargaminima.ReadOnly = true;
+                    nuphoraiodisponibilidad.ReadOnly = true;
+
                     #region Cargar_Datos_IdSelecciado
                     txtidvehiculo.Text = string.Format("{0:000}", Convert.ToInt32(txtidvehiculo.Text));
                     txtnombrevehiculo.Text = validar.NombreVehiculo;
@@ -328,7 +335,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     }
                     foreach (OpcionCombo oc in cboestado.Items)
                     {
-                        if (oc.Texto == validar.Habilidades.Descripcion)
+                        if (oc.Texto == validar.Estado)
                         {
                             int indice_combo = cboestado.Items.IndexOf(oc);
                             cboestado.SelectedIndex = indice_combo;
@@ -352,6 +359,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         btnbuscarconductor.Enabled = true;
                         txtidvehiculo.BackColor = Color.Khaki;
 
+                        txtnombrevehiculo.ReadOnly = false;
+                        txtmarca.ReadOnly = false;
+                        txtidentificacion.ReadOnly = false;
+                        nupcargamaxima.ReadOnly = false;
+                        nupcargaminima.ReadOnly = false;
+                        nuphoraiodisponibilidad.ReadOnly = false;
+
                         #region Cargar_Datos_IdSeleccionado
                         txtidvehiculo.Text = string.Format("{0:000}", Convert.ToInt32(txtidvehiculo.Text));
                         txtnombrevehiculo.Text = validar.NombreVehiculo;
@@ -373,7 +387,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         }
                         foreach (OpcionCombo oc in cboestado.Items)
                         {
-                            if (oc.Texto == validar.Habilidades.Descripcion)
+                            if (oc.Texto == validar.Estado)
                             {
                                 int indice_combo = cboestado.Items.IndexOf(oc);
                                 cboestado.SelectedIndex = indice_combo;
@@ -459,6 +473,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         }
                         cboestado.Enabled = false;
                         dgv_rutasvehiculo.Rows.Clear();
+
+                        txtnombrevehiculo.ReadOnly = true;
+                        txtmarca.ReadOnly = true;
+                        txtidentificacion.ReadOnly = true;
+                        nupcargamaxima.ReadOnly = true;
+                        nupcargaminima.ReadOnly = true;
+                        nuphoraiodisponibilidad.ReadOnly = true;
                     }
                 }
             }
@@ -568,6 +589,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         }
                         txtidvehiculo.SelectionStart = txtidvehiculo.MaxLength;
                         dgv_rutasvehiculo.Rows.Clear();
+
+                        txtnombrevehiculo.ReadOnly = true;
+                        txtmarca.ReadOnly = true;
+                        txtidentificacion.ReadOnly = true;
+                        nupcargamaxima.ReadOnly = true;
+                        nupcargaminima.ReadOnly = true;
+                        nuphoraiodisponibilidad.ReadOnly = true;
                     }
                     else
                     {

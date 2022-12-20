@@ -297,6 +297,7 @@
     <Compile Include="Capa_Modelo\CM_Rutas.cs" />
     <Compile Include="Capa_Modelo\CM_Usuarios.cs" />
     <Compile Include="Capa_Modelo\CM_Vehiculos.cs" />
+    <Compile Include="Capa_Negocio\CN_Clientes.cs" />
     <Compile Include="Capa_Negocio\CN_Rutas.cs" />
     <Compile Include="Capa_Negocio\CN_Usuarios.cs" />
     <Compile Include="Capa_Negocio\CN_Vehiculos.cs" />
@@ -400,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Capa_Presentacion\Login\Registro.resx">
       <DependentUpon>Registro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Capa_Presentacion\Maestras\frm_Busquedas\frm_BuscarClientes.resx">
+      <DependentUpon>frm_BuscarClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Capa_Presentacion\Maestras\frm_Busquedas\frm_BuscarHabilidades.resx">
       <DependentUpon>frm_BuscarHabilidades.cs</DependentUpon>

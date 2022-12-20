@@ -9,28 +9,20 @@ using System.Windows.Forms;
 
 namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
 {
-    public class CN_Vehiculos
+    public class CN_Vehiculos: CD_Vehiculos
     {
-        private CD_Vehiculos cd_vehiculos = new CD_Vehiculos();
-        private CD_Rutas cd_rutas = new CD_Rutas();
 
         /// <summary>
         /// Listar Vehiculos
         /// </summary>
         /// <returns>Retorna una lista con todos los vehículos registrados.</returns>
-        public async Task<List<CM_Vehiculos>> Listar_Vehículos()
-        {
-            return await cd_vehiculos.listavehiculos();
-        }
+        public async Task<List<CM_Vehiculos>> Listar_Vehículos() => await listavehiculos();
 
         /// <summary>
         /// Listar Habilidades
         /// </summary>
         /// <returns>Retorna una lista con todos los habilidades registrados.</returns>
-        public async Task<List<CM_Habilidades>> Listar_Habilidades()
-        {
-            return await cd_vehiculos.listahabilidades();
-        }
+        public async Task<List<CM_Habilidades>> Listar_Habilidades() => await listahabilidades();
 
         /// <summary>
         /// Registrar Vehículos
@@ -56,7 +48,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
                 if (Mensaje != string.Empty)
                     return false;
                 else
-                    return cd_vehiculos.registrar_vehiculos(objvehiculo, out Mensaje);
+                    return registrar_vehiculos(objvehiculo, out Mensaje);
             }
             catch (Exception ex)
             {
@@ -81,7 +73,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
                 if (Mensaje != string.Empty)
                     return false;
                 else
-                    return cd_vehiculos.registrar_habilidades(objhabilidad, out Mensaje);
+                    return registrar_habilidades(objhabilidad, out Mensaje);
             }
             catch (Exception ex)
             {
@@ -95,36 +87,16 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
         /// </summary>
         /// <param name="objusuario"></param>
         /// <returns>Retorn True, si el registro fue actualizado correctamente.</returns>
-        public async Task<bool> Actualizar_InformacionVehiculos(CM_Vehiculos objvehiculo)
-        {
-            try
-            {
-                return await cd_vehiculos.actualizar_informacionesvehiculos(objvehiculo);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Vehiculos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
+        public async Task<bool> Actualizar_InformacionVehiculos(CM_Vehiculos objvehiculo) 
+            => await actualizar_informacionesvehiculos(objvehiculo);
 
         /// <summary>
         /// Actualizar Inforacion de la Habilidad
         /// </summary>
         /// <param name="objhabilidad"></param>
         /// <returns>Retorn True, si el registro fue actualizado correctamente.</returns>
-        public async Task<bool> Actualizar_InformacionHabilidades(CM_Habilidades objhabilidad)
-        {
-            try
-            {
-                return await cd_vehiculos.actualizar_informacioneshabilidades(objhabilidad);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Habilidades", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
+        public async Task<bool> Actualizar_InformacionHabilidades(CM_Habilidades objhabilidad) 
+            => await actualizar_informacioneshabilidades(objhabilidad);
 
         /// <summary>
         /// Borrar Vehículos
@@ -136,7 +108,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
             try
             {
                 //Si un vehiculo ya posee rutas cuyo estado sea completado, el mismo no puede ser borrado.
-                List<CM_DetalleRuta> ListaRutas = await cd_rutas.listadetallerutas();
+                List<CM_DetalleRuta> ListaRutas = await new CD_Rutas().listadetallerutas();
                 var validar_rutas = ListaRutas.Where(b => b.IdVehiculo == objvehiculo.IdVehiculo).FirstOrDefault();
                 if (validar_rutas != null)
                 {
@@ -144,7 +116,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
                     return false;
                 }  
                 else
-                    return await cd_vehiculos.borrar_vehiculo(objvehiculo);
+                    return await borrar_vehiculo(objvehiculo);
             }
             catch (Exception ex)
             {
@@ -163,7 +135,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
             try
             {
                 //Si una habilidad se encuentra relacionada a un vehiculo, esta no puede ser borrada.
-                List<CM_Vehiculos> BuscarDatos = await cd_vehiculos.listavehiculos();
+                List<CM_Vehiculos> BuscarDatos = await listavehiculos();
                 var validar_datos = BuscarDatos.Where(b => b.Habilidades.IdHabilidad == objhabilidad.IdHabilidad).FirstOrDefault();
                 if (validar_datos != null)
                 {
@@ -171,7 +143,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
                     return false;
                 }
                 else
-                    return await cd_vehiculos.borrar_habilidad(objhabilidad);
+                    return await borrar_habilidad(objhabilidad);
             }
             catch (Exception ex)
             {

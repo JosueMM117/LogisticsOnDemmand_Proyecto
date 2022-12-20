@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -46,7 +46,7 @@
             this.txtidcliente = new System.Windows.Forms.TextBox();
             this.tbctlclientes = new MetroFramework.Controls.MetroTabControl();
             this.tabpginformacion = new MetroFramework.Controls.MetroTabPage();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.plncontenedordatos = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
             this.txtemailcliente = new System.Windows.Forms.TextBox();
             this.label996 = new System.Windows.Forms.Label();
@@ -79,7 +79,7 @@
             this.menubotones.SuspendLayout();
             this.tbctlclientes.SuspendLayout();
             this.tabpginformacion.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.plncontenedordatos.SuspendLayout();
             this.tabpgrutas.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_rutascliente)).BeginInit();
@@ -105,7 +105,7 @@
             this.panel1.Controls.Add(this.tbctlclientes);
             this.panel1.Location = new System.Drawing.Point(3, 43);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(932, 451);
+            this.panel1.Size = new System.Drawing.Size(932, 476);
             this.panel1.TabIndex = 9;
             // 
             // panel3
@@ -248,6 +248,8 @@
             this.txtidcliente.Name = "txtidcliente";
             this.txtidcliente.Size = new System.Drawing.Size(82, 23);
             this.txtidcliente.TabIndex = 289;
+            this.txtidcliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtidcliente_KeyDown);
+            this.txtidcliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtidcliente_KeyPress);
             // 
             // tbctlclientes
             // 
@@ -259,8 +261,8 @@
             this.tbctlclientes.FontWeight = MetroFramework.MetroTabControlWeight.Bold;
             this.tbctlclientes.Location = new System.Drawing.Point(3, 110);
             this.tbctlclientes.Name = "tbctlclientes";
-            this.tbctlclientes.SelectedIndex = 1;
-            this.tbctlclientes.Size = new System.Drawing.Size(924, 336);
+            this.tbctlclientes.SelectedIndex = 0;
+            this.tbctlclientes.Size = new System.Drawing.Size(924, 361);
             this.tbctlclientes.TabIndex = 3;
             this.tbctlclientes.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.tbctlclientes.UseSelectable = true;
@@ -268,7 +270,7 @@
             // tabpginformacion
             // 
             this.tabpginformacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.tabpginformacion.Controls.Add(this.panel2);
+            this.tabpginformacion.Controls.Add(this.plncontenedordatos);
             this.tabpginformacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.tabpginformacion.ForeColor = System.Drawing.Color.White;
             this.tabpginformacion.HorizontalScrollbarBarColor = true;
@@ -276,7 +278,7 @@
             this.tabpginformacion.HorizontalScrollbarSize = 10;
             this.tabpginformacion.Location = new System.Drawing.Point(4, 38);
             this.tabpginformacion.Name = "tabpginformacion";
-            this.tabpginformacion.Size = new System.Drawing.Size(916, 294);
+            this.tabpginformacion.Size = new System.Drawing.Size(916, 319);
             this.tabpginformacion.TabIndex = 0;
             this.tabpginformacion.Text = "Datos";
             this.tabpginformacion.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -284,27 +286,27 @@
             this.tabpginformacion.VerticalScrollbarHighlightOnWheel = false;
             this.tabpginformacion.VerticalScrollbarSize = 10;
             // 
-            // panel2
+            // plncontenedordatos
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.plncontenedordatos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.label20);
-            this.panel2.Controls.Add(this.txtemailcliente);
-            this.panel2.Controls.Add(this.label996);
-            this.panel2.Controls.Add(this.txtdireccioncliente);
-            this.panel2.Controls.Add(this.label12);
-            this.panel2.Controls.Add(this.txttelefono2cliente);
-            this.panel2.Controls.Add(this.label21);
-            this.panel2.Controls.Add(this.txttelefonocliente);
-            this.panel2.Controls.Add(this.label22);
-            this.panel2.Controls.Add(this.txtnombrecliente);
-            this.panel2.Controls.Add(this.cboestado);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Location = new System.Drawing.Point(0, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(918, 295);
-            this.panel2.TabIndex = 2;
+            this.plncontenedordatos.Controls.Add(this.label20);
+            this.plncontenedordatos.Controls.Add(this.txtemailcliente);
+            this.plncontenedordatos.Controls.Add(this.label996);
+            this.plncontenedordatos.Controls.Add(this.txtdireccioncliente);
+            this.plncontenedordatos.Controls.Add(this.label12);
+            this.plncontenedordatos.Controls.Add(this.txttelefono2cliente);
+            this.plncontenedordatos.Controls.Add(this.label21);
+            this.plncontenedordatos.Controls.Add(this.txttelefonocliente);
+            this.plncontenedordatos.Controls.Add(this.label22);
+            this.plncontenedordatos.Controls.Add(this.txtnombrecliente);
+            this.plncontenedordatos.Controls.Add(this.cboestado);
+            this.plncontenedordatos.Controls.Add(this.label7);
+            this.plncontenedordatos.Location = new System.Drawing.Point(0, 3);
+            this.plncontenedordatos.Name = "plncontenedordatos";
+            this.plncontenedordatos.Size = new System.Drawing.Size(918, 320);
+            this.plncontenedordatos.TabIndex = 2;
             // 
             // label20
             // 
@@ -362,6 +364,7 @@
             this.txttelefono2cliente.Name = "txttelefono2cliente";
             this.txttelefono2cliente.Size = new System.Drawing.Size(174, 23);
             this.txttelefono2cliente.TabIndex = 397;
+            this.txttelefono2cliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttelefonocliente_KeyPress);
             // 
             // label21
             // 
@@ -381,6 +384,7 @@
             this.txttelefonocliente.Name = "txttelefonocliente";
             this.txttelefonocliente.Size = new System.Drawing.Size(174, 23);
             this.txttelefonocliente.TabIndex = 395;
+            this.txttelefonocliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttelefonocliente_KeyPress);
             // 
             // label22
             // 
@@ -433,7 +437,7 @@
             this.tabpgrutas.HorizontalScrollbarSize = 10;
             this.tabpgrutas.Location = new System.Drawing.Point(4, 38);
             this.tabpgrutas.Name = "tabpgrutas";
-            this.tabpgrutas.Size = new System.Drawing.Size(916, 294);
+            this.tabpgrutas.Size = new System.Drawing.Size(916, 319);
             this.tabpgrutas.TabIndex = 1;
             this.tabpgrutas.Text = "Historial Entregas";
             this.tabpgrutas.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -488,14 +492,14 @@
             this.dgv_rutascliente.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_rutascliente.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgv_rutascliente.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle29.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(116)))), ((int)(((byte)(228)))));
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_rutascliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(116)))), ((int)(((byte)(228)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_rutascliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_rutascliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_rutascliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdRuta,
@@ -508,14 +512,14 @@
             this.Prioridad,
             this.Estado,
             this.FechaRegistro});
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_rutascliente.DefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_rutascliente.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_rutascliente.EnableHeadersVisualStyles = false;
             this.dgv_rutascliente.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.dgv_rutascliente.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -523,13 +527,13 @@
             this.dgv_rutascliente.Name = "dgv_rutascliente";
             this.dgv_rutascliente.ReadOnly = true;
             this.dgv_rutascliente.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle32.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_rutascliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_rutascliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgv_rutascliente.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgv_rutascliente.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgv_rutascliente.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
@@ -541,8 +545,8 @@
             // 
             // IdRuta
             // 
-            dataGridViewCellStyle30.Format = "0000";
-            this.IdRuta.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle2.Format = "0000";
+            this.IdRuta.DefaultCellStyle = dataGridViewCellStyle2;
             this.IdRuta.HeaderText = "IdRuta";
             this.IdRuta.Name = "IdRuta";
             this.IdRuta.ReadOnly = true;
@@ -622,6 +626,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_Clientes";
             this.Text = "frm_Clientes";
+            this.Load += new System.EventHandler(this.frm_Clientes_Load);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -630,8 +635,8 @@
             this.menubotones.PerformLayout();
             this.tbctlclientes.ResumeLayout(false);
             this.tabpginformacion.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.plncontenedordatos.ResumeLayout(false);
+            this.plncontenedordatos.PerformLayout();
             this.tabpgrutas.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_rutascliente)).EndInit();
@@ -655,7 +660,7 @@
         private System.Windows.Forms.TextBox txtidcliente;
         private MetroFramework.Controls.MetroTabControl tbctlclientes;
         private MetroFramework.Controls.MetroTabPage tabpginformacion;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel plncontenedordatos;
         private System.Windows.Forms.ComboBox cboestado;
         private System.Windows.Forms.Label label7;
         private MetroFramework.Controls.MetroTabPage tabpgrutas;

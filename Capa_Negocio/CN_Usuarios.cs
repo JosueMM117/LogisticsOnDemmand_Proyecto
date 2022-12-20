@@ -10,18 +10,14 @@ using System.Windows.Forms;
 
 namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
 {
-    public class CN_Usuarios
+    public class CN_Usuarios: CD_Usuarios
     {
-        private CD_Usuarios cdusuarios = new CD_Usuarios();
 
         /// <summary>
         /// Listar Usuarios
         /// </summary>
         /// <returns>Retorna una lista con todos los usuarios registrados.</returns>
-        public async Task<List<CM_Usuarios>> Listar_Usuarios()
-        {
-            return await cdusuarios.listausuarios();
-        }
+        public async Task<List<CM_Usuarios>> Listar_Usuarios() => await listausuarios();
 
         /// <summary>
         /// Registrar Usuarios
@@ -43,7 +39,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
                 if (Mensaje != string.Empty)
                     return false;
                 else
-                    return cdusuarios.registrar_usuarios(objusuario, out Mensaje);
+                    return registrar_usuarios(objusuario, out Mensaje);
             }
             catch (Exception ex)
             {
@@ -57,17 +53,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
         /// </summary>
         /// <param name="objusuario"></param>
         /// <returns>Retorn True, si el registro fue actualizado correctamente.</returns>
-        public async Task<bool> Actualizar_InformacionUsuarios(CM_Usuarios objusuario)
-        {
-            try
-            {
-                return await cdusuarios.actualizar_informacionusuarios(objusuario);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
+        public async Task<bool> Actualizar_InformacionUsuarios(CM_Usuarios objusuario) 
+            => await actualizar_informacionusuarios(objusuario);
     }
 }

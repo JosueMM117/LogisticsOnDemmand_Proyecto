@@ -82,24 +82,26 @@
             this.EmailCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbclientes = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtidcliente = new System.Windows.Forms.TextBox();
+            this.btnbuscarcliente = new FontAwesome.Sharp.IconButton();
+            this.pnlcontenedordatosclientes = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.txtemailcliente = new System.Windows.Forms.TextBox();
+            this.txtnombrecliente = new System.Windows.Forms.TextBox();
             this.label996 = new System.Windows.Forms.Label();
+            this.txttelefonocliente = new System.Windows.Forms.TextBox();
             this.txtdireccioncliente = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.txttelefono2cliente = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.txttelefonocliente = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.txtnombrecliente = new System.Windows.Forms.TextBox();
             this.gbdatosvehiculo = new System.Windows.Forms.GroupBox();
             this.lblidvehiculo = new System.Windows.Forms.Label();
             this.txtidvehiculo = new System.Windows.Forms.TextBox();
             this.btnbuscarvehiculo = new FontAwesome.Sharp.IconButton();
             this.panel8 = new System.Windows.Forms.Panel();
             this.btnagregardestino = new FontAwesome.Sharp.IconButton();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txthabilidadvehiculo = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.txtnombrevehiculo = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -130,6 +132,7 @@
             this.gbdetalledestinos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdetalleruta)).BeginInit();
             this.gbclientes.SuspendLayout();
+            this.pnlcontenedordatosclientes.SuspendLayout();
             this.gbdatosvehiculo.SuspendLayout();
             this.panel8.SuspendLayout();
             this.tabpgmapa.SuspendLayout();
@@ -297,7 +300,7 @@
             this.txtidruta.Size = new System.Drawing.Size(82, 23);
             this.txtidruta.TabIndex = 289;
             this.txtidruta.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtidruta_KeyDown);
-            this.txtidruta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtidruta_KeyPress);
+            this.txtidruta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SoloNumeros_KeyPress);
             // 
             // label1
             // 
@@ -333,7 +336,7 @@
             this.tbctlrutas.Location = new System.Drawing.Point(3, 3);
             this.tbctlrutas.Multiline = true;
             this.tbctlrutas.Name = "tbctlrutas";
-            this.tbctlrutas.SelectedIndex = 0;
+            this.tbctlrutas.SelectedIndex = 1;
             this.tbctlrutas.Size = new System.Drawing.Size(1198, 582);
             this.tbctlrutas.TabIndex = 3;
             this.tbctlrutas.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -391,6 +394,7 @@
             this.txttiemporuta.Name = "txttiemporuta";
             this.txttiemporuta.Size = new System.Drawing.Size(66, 23);
             this.txttiemporuta.TabIndex = 383;
+            this.txttiemporuta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SoloNumeros_KeyPress);
             // 
             // label17
             // 
@@ -760,16 +764,10 @@
             // 
             // gbclientes
             // 
-            this.gbclientes.Controls.Add(this.label20);
-            this.gbclientes.Controls.Add(this.txtemailcliente);
-            this.gbclientes.Controls.Add(this.label996);
-            this.gbclientes.Controls.Add(this.txtdireccioncliente);
-            this.gbclientes.Controls.Add(this.label12);
-            this.gbclientes.Controls.Add(this.txttelefono2cliente);
-            this.gbclientes.Controls.Add(this.label21);
-            this.gbclientes.Controls.Add(this.txttelefonocliente);
-            this.gbclientes.Controls.Add(this.label22);
-            this.gbclientes.Controls.Add(this.txtnombrecliente);
+            this.gbclientes.Controls.Add(this.label4);
+            this.gbclientes.Controls.Add(this.txtidcliente);
+            this.gbclientes.Controls.Add(this.btnbuscarcliente);
+            this.gbclientes.Controls.Add(this.pnlcontenedordatosclientes);
             this.gbclientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbclientes.ForeColor = System.Drawing.Color.White;
             this.gbclientes.Location = new System.Drawing.Point(12, 17);
@@ -779,50 +777,152 @@
             this.gbclientes.TabStop = false;
             this.gbclientes.Text = "Información Cliente";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(4, 30);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 17);
+            this.label4.TabIndex = 398;
+            this.label4.Text = "IdCliente:";
+            // 
+            // txtidcliente
+            // 
+            this.txtidcliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtidcliente.Location = new System.Drawing.Point(75, 27);
+            this.txtidcliente.Name = "txtidcliente";
+            this.txtidcliente.Size = new System.Drawing.Size(82, 23);
+            this.txtidcliente.TabIndex = 397;
+            this.txtidcliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtidcliente_KeyDown);
+            this.txtidcliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SoloNumeros_KeyPress);
+            // 
+            // btnbuscarcliente
+            // 
+            this.btnbuscarcliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.btnbuscarcliente.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnbuscarcliente.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnbuscarcliente.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnbuscarcliente.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btnbuscarcliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnbuscarcliente.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnbuscarcliente.ForeColor = System.Drawing.Color.White;
+            this.btnbuscarcliente.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.btnbuscarcliente.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btnbuscarcliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnbuscarcliente.IconSize = 17;
+            this.btnbuscarcliente.Location = new System.Drawing.Point(159, 26);
+            this.btnbuscarcliente.Name = "btnbuscarcliente";
+            this.btnbuscarcliente.Size = new System.Drawing.Size(24, 25);
+            this.btnbuscarcliente.TabIndex = 396;
+            this.btnbuscarcliente.UseVisualStyleBackColor = false;
+            this.btnbuscarcliente.Click += new System.EventHandler(this.btnbuscarcliente_Click);
+            // 
+            // pnlcontenedordatosclientes
+            // 
+            this.pnlcontenedordatosclientes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlcontenedordatosclientes.Controls.Add(this.label20);
+            this.pnlcontenedordatosclientes.Controls.Add(this.label22);
+            this.pnlcontenedordatosclientes.Controls.Add(this.txtemailcliente);
+            this.pnlcontenedordatosclientes.Controls.Add(this.txtnombrecliente);
+            this.pnlcontenedordatosclientes.Controls.Add(this.label996);
+            this.pnlcontenedordatosclientes.Controls.Add(this.txttelefonocliente);
+            this.pnlcontenedordatosclientes.Controls.Add(this.txtdireccioncliente);
+            this.pnlcontenedordatosclientes.Controls.Add(this.label21);
+            this.pnlcontenedordatosclientes.Controls.Add(this.label12);
+            this.pnlcontenedordatosclientes.Controls.Add(this.txttelefono2cliente);
+            this.pnlcontenedordatosclientes.Location = new System.Drawing.Point(5, 54);
+            this.pnlcontenedordatosclientes.Name = "pnlcontenedordatosclientes";
+            this.pnlcontenedordatosclientes.Size = new System.Drawing.Size(548, 156);
+            this.pnlcontenedordatosclientes.TabIndex = 395;
+            // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(6, 77);
+            this.label20.Location = new System.Drawing.Point(5, 55);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(51, 17);
             this.label20.TabIndex = 394;
             this.label20.Text = "E-Mail:";
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.White;
+            this.label22.Location = new System.Drawing.Point(5, 5);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(125, 17);
+            this.label22.TabIndex = 388;
+            this.label22.Text = "Nombre Completo:";
+            // 
             // txtemailcliente
             // 
             this.txtemailcliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtemailcliente.Location = new System.Drawing.Point(8, 98);
+            this.txtemailcliente.Location = new System.Drawing.Point(7, 76);
             this.txtemailcliente.Name = "txtemailcliente";
+            this.txtemailcliente.ReadOnly = true;
             this.txtemailcliente.Size = new System.Drawing.Size(351, 23);
             this.txtemailcliente.TabIndex = 393;
+            // 
+            // txtnombrecliente
+            // 
+            this.txtnombrecliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtnombrecliente.Location = new System.Drawing.Point(7, 26);
+            this.txtnombrecliente.Name = "txtnombrecliente";
+            this.txtnombrecliente.ReadOnly = true;
+            this.txtnombrecliente.Size = new System.Drawing.Size(351, 23);
+            this.txtnombrecliente.TabIndex = 387;
             // 
             // label996
             // 
             this.label996.AutoSize = true;
             this.label996.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label996.ForeColor = System.Drawing.Color.White;
-            this.label996.Location = new System.Drawing.Point(6, 126);
+            this.label996.Location = new System.Drawing.Point(5, 104);
             this.label996.Name = "label996";
             this.label996.Size = new System.Drawing.Size(109, 17);
             this.label996.TabIndex = 392;
             this.label996.Text = "Dirección envio:";
             // 
+            // txttelefonocliente
+            // 
+            this.txttelefonocliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txttelefonocliente.Location = new System.Drawing.Point(366, 26);
+            this.txttelefonocliente.Name = "txttelefonocliente";
+            this.txttelefonocliente.ReadOnly = true;
+            this.txttelefonocliente.Size = new System.Drawing.Size(174, 23);
+            this.txttelefonocliente.TabIndex = 379;
+            // 
             // txtdireccioncliente
             // 
             this.txtdireccioncliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtdireccioncliente.Location = new System.Drawing.Point(8, 147);
+            this.txtdireccioncliente.Location = new System.Drawing.Point(7, 125);
             this.txtdireccioncliente.Name = "txtdireccioncliente";
+            this.txtdireccioncliente.ReadOnly = true;
             this.txtdireccioncliente.Size = new System.Drawing.Size(533, 23);
             this.txtdireccioncliente.TabIndex = 391;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.White;
+            this.label21.Location = new System.Drawing.Point(364, 5);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(68, 17);
+            this.label21.TabIndex = 380;
+            this.label21.Text = "Teléfono:";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(365, 76);
+            this.label12.Location = new System.Drawing.Point(364, 54);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(80, 17);
             this.label12.TabIndex = 384;
@@ -831,48 +931,11 @@
             // txttelefono2cliente
             // 
             this.txttelefono2cliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txttelefono2cliente.Location = new System.Drawing.Point(367, 97);
+            this.txttelefono2cliente.Location = new System.Drawing.Point(366, 75);
             this.txttelefono2cliente.Name = "txttelefono2cliente";
+            this.txttelefono2cliente.ReadOnly = true;
             this.txttelefono2cliente.Size = new System.Drawing.Size(174, 23);
             this.txttelefono2cliente.TabIndex = 383;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(365, 27);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(68, 17);
-            this.label21.TabIndex = 380;
-            this.label21.Text = "Teléfono:";
-            // 
-            // txttelefonocliente
-            // 
-            this.txttelefonocliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txttelefonocliente.Location = new System.Drawing.Point(367, 48);
-            this.txttelefonocliente.Name = "txttelefonocliente";
-            this.txttelefonocliente.Size = new System.Drawing.Size(174, 23);
-            this.txttelefonocliente.TabIndex = 379;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(6, 27);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(125, 17);
-            this.label22.TabIndex = 388;
-            this.label22.Text = "Nombre Completo:";
-            // 
-            // txtnombrecliente
-            // 
-            this.txtnombrecliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnombrecliente.Location = new System.Drawing.Point(8, 48);
-            this.txtnombrecliente.Name = "txtnombrecliente";
-            this.txtnombrecliente.Size = new System.Drawing.Size(351, 23);
-            this.txtnombrecliente.TabIndex = 387;
             // 
             // gbdatosvehiculo
             // 
@@ -896,7 +959,7 @@
             this.lblidvehiculo.AutoSize = true;
             this.lblidvehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblidvehiculo.ForeColor = System.Drawing.Color.White;
-            this.lblidvehiculo.Location = new System.Drawing.Point(6, 32);
+            this.lblidvehiculo.Location = new System.Drawing.Point(6, 31);
             this.lblidvehiculo.Name = "lblidvehiculo";
             this.lblidvehiculo.Size = new System.Drawing.Size(77, 17);
             this.lblidvehiculo.TabIndex = 380;
@@ -905,12 +968,12 @@
             // txtidvehiculo
             // 
             this.txtidvehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtidvehiculo.Location = new System.Drawing.Point(89, 29);
+            this.txtidvehiculo.Location = new System.Drawing.Point(89, 28);
             this.txtidvehiculo.Name = "txtidvehiculo";
             this.txtidvehiculo.Size = new System.Drawing.Size(82, 23);
             this.txtidvehiculo.TabIndex = 379;
             this.txtidvehiculo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtidvehiculo_KeyDown);
-            this.txtidvehiculo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtidvehiculo_KeyPress);
+            this.txtidvehiculo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SoloNumeros_KeyPress);
             this.txtidvehiculo.MouseLeave += new System.EventHandler(this.txtidvehiculo_MouseLeave);
             // 
             // btnbuscarvehiculo
@@ -927,7 +990,7 @@
             this.btnbuscarvehiculo.IconColor = System.Drawing.Color.DodgerBlue;
             this.btnbuscarvehiculo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnbuscarvehiculo.IconSize = 17;
-            this.btnbuscarvehiculo.Location = new System.Drawing.Point(173, 28);
+            this.btnbuscarvehiculo.Location = new System.Drawing.Point(173, 27);
             this.btnbuscarvehiculo.Name = "btnbuscarvehiculo";
             this.btnbuscarvehiculo.Size = new System.Drawing.Size(24, 25);
             this.btnbuscarvehiculo.TabIndex = 378;
@@ -941,15 +1004,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel8.Controls.Add(this.btnagregardestino);
-            this.panel8.Controls.Add(this.label15);
-            this.panel8.Controls.Add(this.txthabilidadvehiculo);
             this.panel8.Controls.Add(this.label14);
             this.panel8.Controls.Add(this.txtnombrevehiculo);
             this.panel8.Controls.Add(this.label10);
             this.panel8.Controls.Add(this.txtnombreconductor);
-            this.panel8.Location = new System.Drawing.Point(6, 57);
+            this.panel8.Location = new System.Drawing.Point(5, 54);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(598, 153);
+            this.panel8.Size = new System.Drawing.Size(596, 156);
             this.panel8.TabIndex = 377;
             // 
             // btnagregardestino
@@ -975,35 +1036,12 @@
             this.btnagregardestino.UseVisualStyleBackColor = false;
             this.btnagregardestino.Click += new System.EventHandler(this.btnagregardestino_Click);
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(275, 9);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(71, 17);
-            this.label15.TabIndex = 380;
-            this.label15.Text = "Habilidad:";
-            this.label15.Visible = false;
-            // 
-            // txthabilidadvehiculo
-            // 
-            this.txthabilidadvehiculo.BackColor = System.Drawing.SystemColors.Window;
-            this.txthabilidadvehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txthabilidadvehiculo.ForeColor = System.Drawing.Color.Black;
-            this.txthabilidadvehiculo.Location = new System.Drawing.Point(274, 31);
-            this.txthabilidadvehiculo.Name = "txthabilidadvehiculo";
-            this.txthabilidadvehiculo.Size = new System.Drawing.Size(201, 23);
-            this.txthabilidadvehiculo.TabIndex = 381;
-            this.txthabilidadvehiculo.Visible = false;
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(8, 9);
+            this.label14.Location = new System.Drawing.Point(6, 9);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(120, 17);
             this.label14.TabIndex = 378;
@@ -1257,6 +1295,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvdetalleruta)).EndInit();
             this.gbclientes.ResumeLayout(false);
             this.gbclientes.PerformLayout();
+            this.pnlcontenedordatosclientes.ResumeLayout(false);
+            this.pnlcontenedordatosclientes.PerformLayout();
             this.gbdatosvehiculo.ResumeLayout(false);
             this.gbdatosvehiculo.PerformLayout();
             this.panel8.ResumeLayout(false);
@@ -1334,8 +1374,6 @@
         private System.Windows.Forms.TextBox txtidvehiculo;
         private FontAwesome.Sharp.IconButton btnbuscarvehiculo;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label txthabilidadvehiculo;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label txtnombrevehiculo;
         private System.Windows.Forms.Label label10;
@@ -1357,5 +1395,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono2;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmailCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaRegistro;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtidcliente;
+        private FontAwesome.Sharp.IconButton btnbuscarcliente;
+        private System.Windows.Forms.Panel pnlcontenedordatosclientes;
     }
 }

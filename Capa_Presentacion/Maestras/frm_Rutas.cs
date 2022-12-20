@@ -53,6 +53,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             txtidruta.Select();
             txtidruta.Clear();
             txtidvehiculo.Clear();
+            txtidcliente.Clear();
             txttitulo.Clear();
             txtconcepto.Clear();
             txtcomentarios.Clear();
@@ -82,9 +83,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         {
             //Datos Vehículo
             txtidvehiculo.Clear();
+            txtidcliente.Clear();
             txtnombrevehiculo.Text = string.Empty;
             txtnombreconductor.Text = string.Empty;
-            txthabilidadvehiculo.Text = string.Empty;
 
             //Datos Cliente
             txtnombrecliente.Clear();
@@ -181,7 +182,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
 
                 //InaHabilitar controles
                 txtidvehiculo.Enabled = false;
+                txtidcliente.Enabled = false;
                 btnbuscarvehiculo.Enabled = false;
+                btnbuscarcliente.Enabled = false;
                 btnguardar.Enabled = false;
                 cboestado.Enabled = false;
                 dgvdetalleruta.Enabled = false;
@@ -237,8 +240,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             CargarDatos();
             dtpfechaentrega.CustomFormat = "dd-MM-yyy";
             tbctlrutas.SelectTab(0);
-            txtidruta.Select();
-            
+            txtidruta.Select(); 
         }
 
         #region Click
@@ -327,21 +329,18 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     btnprocesar.Enabled = true;
                     txtidruta.Enabled = true;
                     btnbuscarvehiculo.Enabled = false;
+                    btnbuscarcliente.Enabled = false;
                     txtidvehiculo.Enabled = false;
+                    txtidcliente.Enabled = false;
                     txtidruta.BackColor = Color.White;
                     txtidvehiculo.BackColor = Color.White;
+                    txtidcliente.BackColor = Color.White;
                     cboestado.Enabled = false;
                     cboestado.SelectedIndex = -1;
                     dgvdetalleruta.Enabled = false;
                     btnagregardestino.Enabled = false;
-                    foreach (Control controles in gbclientes.Controls)
-                    {
-                        if (controles is TextBox)
-                        {
-                            controles.Enabled = false;
-                        }
-                    }
                     Limpiar();
+                    LimpiarDatosDetalle();
                 }
                 else
                 {
@@ -354,17 +353,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     txtidruta.Enabled = false;
                     cboestado.Enabled = false;
                     btnbuscarvehiculo.Enabled = true;
+                    btnbuscarcliente.Enabled = true;
                     txtidvehiculo.Enabled = true;
+                    txtidcliente.Enabled = true;
                     dgvdetalleruta.Enabled = true;
                     btnagregardestino.Enabled = true;
-                    foreach (Control controles in gbclientes.Controls)
-                    {
-                        if (controles is TextBox)
-                        {
-                            controles.Enabled = true;
-                        }
-                    }
                     Limpiar();
+                    LimpiarDatosDetalle();
 
                     //Genererar IdRuta
                     List<CM_Rutas> BuscarDatos = await cn_rutas.Listar_Rutas();
@@ -381,20 +376,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     txtidruta.Text = string.Format("{0:0000}", idgenerado);
                     txtidruta.BackColor = Color.LightGreen;
                     txtidvehiculo.BackColor = Color.LightGreen;
+                    txtidcliente.BackColor = Color.LightGreen;
                     btnguardar.Enabled = true;
                     cboestado.SelectedIndex = 0;
-                   
-
-                    //Generar IdDetalleRuta
-                    //List<CM_DetalleRuta> BuscarDetalleRuta = await cn_rutas.Listar_DetalleRutas();
-                    //int cantidad_registrosdetalle = BuscarDetalleRuta.Select(b => b.IdDetalleRuta).Count();
-                    //if (cantidad_registrosdetalle == 0)
-                    //    iddetalleruta_generado = 1;
-                    //else
-                    //{
-                    //    cantidad_registrosdetalle = BuscarDetalleRuta.Select(b => b.IdDetalleRuta).Max();
-                    //    iddetalleruta_generado = cantidad_registrosdetalle + 1;
-                    //}
                 }
             }
             catch (Exception ex)
@@ -434,7 +418,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 {
                     var objdetalleruta = new CM_DetalleRuta()
                     {
-
                         IdDetalleRuta = Convert.ToInt32(items_detalle.Cells["IdDetalleRuta"].Value),
                         IdRuta = Convert.ToInt32(items_detalle.Cells["IdRuta"].Value),
                         IdVehiculo = Convert.ToInt32(items_detalle.Cells["IdVehiculo"].Value),
@@ -470,11 +453,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         txtidruta.Enabled = true;
                         cboestado.Enabled = false;
                         btnbuscarvehiculo.Enabled = false;
+                        btnbuscarcliente.Enabled = false;
                         txtidvehiculo.Enabled = false;
                         dgvdetalleruta.Enabled = false;
                         btnagregardestino.Enabled = false;
                         txtidruta.BackColor = Color.White;
                         txtidvehiculo.BackColor = Color.White;
+                        txtidcliente.BackColor = Color.White;
                         foreach (Control controles in gbclientes.Controls)
                         {
                             if (controles is TextBox)
@@ -506,9 +491,11 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         cboestado.Enabled = false;
                         dgvdetalleruta.Enabled = false;
                         btnbuscarvehiculo.Enabled = false;
+                        btnbuscarcliente.Enabled = false;
                         txtidvehiculo.Enabled = false;
                         txtidruta.BackColor = Color.White;
                         txtidvehiculo.BackColor = Color.White;
+                        txtidcliente.BackColor = Color.White;
                         foreach (Control controles in gbclientes.Controls)
                         {
                             if (controles is TextBox)
@@ -553,17 +540,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     cboestado.Enabled = false;
                     txtidruta.BackColor = Color.White;
                     txtidvehiculo.BackColor = Color.White;
+                    txtidcliente.BackColor = Color.White;
                     txtidvehiculo.Enabled = false;
                     btnbuscarvehiculo.Enabled = false;
+                    btnbuscarcliente.Enabled = false;
                     dgvdetalleruta.Enabled = false;
                     btnagregardestino.Enabled = false;
-                    foreach (Control controles in gbclientes.Controls)
-                    {
-                        if (controles is TextBox)
-                        {
-                            controles.Enabled = false;
-                        }
-                    }
+                    LimpiarDatosDetalle();
 
                     #region Cargar_Datos_IdSelecciado
                     //Datos Ruta
@@ -631,22 +614,18 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         btnborrar.Enabled = false;
                         btnbuscar.Enabled = false;
                         btnbuscarvehiculo.Enabled = true;
+                        btnbuscarcliente.Enabled = true;
                         btnprocesar.Enabled = false;
                         cboestado.Enabled = true;
                         txtidruta.Enabled = false;
                         btnprocesar.Enabled = true;
                         txtidruta.BackColor = Color.Khaki;
                         txtidvehiculo.BackColor = Color.Khaki;
+                        txtidcliente.BackColor = Color.Khaki;
                         txtidvehiculo.Enabled = true;
                         dgvdetalleruta.Enabled = true;
                         btnagregardestino.Enabled = true;
-                        foreach (Control controles in gbclientes.Controls)
-                        {
-                            if (controles is TextBox)
-                            {
-                                controles.Enabled = true;
-                            }
-                        }
+                        LimpiarDatosDetalle();
 
                         #region Cargar_Datos_IdSeleccionado
 
@@ -734,10 +713,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     bool respuesta = await cn_rutas.Borrar_Rutas(objruta);
                     if (respuesta == true)
                     {
-                        Limpiar();    
+                        Limpiar();
+                        dgvdetalleruta.Rows.Clear();
                     }
-                    //else
-                    //    MessageBox.Show("La ruta no pudo se borrada.\n\n Proceso Cancelado.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -829,7 +807,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                             txtidvehiculo.Text = string.Format("{0:000}", modal._Vehiculos.IdVehiculo);
                             txtnombrevehiculo.Text = modal._Vehiculos.NombreVehiculo;
                             txtnombreconductor.Text = modal._Vehiculos.Conductor.NombreCompleto;
-                            txthabilidadvehiculo.Text = modal._Vehiculos.Habilidades.Descripcion;
                         }
                         else
                             MessageBox.Show("El Vehiculo se encuentra inactivo.","Rutas",MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -841,12 +818,49 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void btnbuscarcliente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var modal = new frm_BuscarClientes())
+                {
+                    var result = modal.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        txtidcliente.Text = string.Format("{0:0000}", modal._Clientes.IdCliente);
+                        txtnombrecliente.Text = modal._Clientes.NombreCompleto;
+                        txtemailcliente.Text = modal._Clientes.Email;
+                        txtdireccioncliente.Text = modal._Clientes.Direccion;
+                        txttelefonocliente.Text = modal._Clientes.Telefono;
+                        txttelefono2cliente.Text = modal._Clientes.Telefono2;
+                        foreach (OpcionCombo oc in cboestado.Items)
+                        {
+                            if (oc.Texto == modal._Clientes.Estado)
+                            {
+                                int indice_combo = cboestado.Items.IndexOf(oc);
+                                cboestado.SelectedIndex = indice_combo;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private async void btnagregardestino_Click(object sender, EventArgs e)
         {
             try
             {
                 //Agregar destinos al dtdestinos
-                if (txtlatitud.Text.Trim().Equals("0") || txtlongitud.Text.Trim().Equals("0"))
+                if (string.IsNullOrEmpty(txtidvehiculo.Text))
+                {
+                    MessageBox.Show("Debe indicar un vehículo.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                else if (txtlatitud.Text.Trim().Equals("0") || txtlongitud.Text.Trim().Equals("0"))
                 {
                     MessageBox.Show("Debe indicar la ubicación del destino.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     tbctlrutas.SelectTab(tabpgmapa);
@@ -863,7 +877,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     txtidvehiculo.SelectAll();
                     txtnombreconductor.Text = "";
                     txtnombrevehiculo.Text = "";
-                    txthabilidadvehiculo.Text = "";
                     return;
                 }
 
@@ -956,11 +969,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         }
 
         //KeyPress
-        private void txtidvehiculo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ValidarKeyPress.Numeros(e);
-        }
-        private void txtidruta_KeyPress(object sender, KeyPressEventArgs e)
+        private void SoloNumeros_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidarKeyPress.Numeros(e);
         }
@@ -982,7 +991,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                             txtidvehiculo.Text = string.Format("{0:000}", validar.IdVehiculo);
                             txtnombrevehiculo.Text = validar.NombreVehiculo;
                             txtnombreconductor.Text = validar.Conductor.NombreCompleto;
-                            txthabilidadvehiculo.Text = string.Format("{0:000}",validar.Habilidades.IdHabilidad) + "-" + validar.Habilidades.Descripcion;
                             txtidvehiculo.SelectionStart = txtidvehiculo.MaxLength;
                         }
                         else
@@ -1005,7 +1013,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         txtidvehiculo.SelectAll();
                         txtnombreconductor.Text = "";
                         txtnombrevehiculo.Text = "";
-                        txthabilidadvehiculo.Text = "";
                     }
                 }
             }
@@ -1099,7 +1106,60 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        private async void txtidcliente_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyValue == 13)
+                {
+                    e.SuppressKeyPress = true;
+                    if (string.IsNullOrEmpty(txtidcliente.Text))
+                    {
+                        MessageBox.Show("Debe indicar el Id del cliente.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    int codigo = int.Parse(txtidcliente.Text);
+                    List<CM_Clientes> BuscarDatos = await new CN_Clientes().Listar_Clientes();
+                    var validar = BuscarDatos.Where(b => b.IdCliente == codigo).FirstOrDefault();
+                    if (validar != null)
+                    {
+                        e.SuppressKeyPress = true;
+                        txtidcliente.Text = string.Format("{0:0000}", codigo);
+                        txtnombrecliente.Text = validar.NombreCompleto;
+                        txtemailcliente.Text = validar.Email;
+                        txtdireccioncliente.Text = validar.Direccion;
+                        txttelefonocliente.Text = validar.Telefono;
+                        txttelefono2cliente.Text = validar.Telefono2;
+                        foreach (OpcionCombo oc in cboestado.Items)
+                        {
+                            if (oc.Texto == validar.Estado)
+                            {
+                                int indice_combo = cboestado.Items.IndexOf(oc);
+                                cboestado.SelectedIndex = indice_combo;
+                                break;
+                            }
+                        }
+                        txtidcliente.SelectionStart = txtidcliente.MaxLength;
+                    }
+                    else
+                    {
+                        MessageBox.Show("La cliente no existe", "Clientes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtidcliente.SelectAll();
+                        foreach (Control item in pnlcontenedordatosclientes.Controls)
+                        {
+                            if (item is TextBox)
+                            {
+                                item.Text = string.Empty;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         //Selected TabControl
         private void tbctlvehiculos_Selected(object sender, TabControlEventArgs e)
         {
@@ -1168,5 +1228,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             }
         }
         #endregion
+
+       
     }
 }

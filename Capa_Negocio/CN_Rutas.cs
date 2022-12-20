@@ -9,27 +9,20 @@ using System.Windows.Forms;
 
 namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
 {
-    public class CN_Rutas
+    public class CN_Rutas: CD_Rutas
     {
-        private CD_Rutas cd_rutas = new CD_Rutas();
 
         /// <summary>
         /// Listar Rutas
         /// </summary>
         /// <returns>Retorna una lista con todas las rutas registrados.</returns>
-        public async Task<List<CM_Rutas>> Listar_Rutas()
-        {
-            return await cd_rutas.listarutas();
-        }
+        public async Task<List<CM_Rutas>> Listar_Rutas() => await listarutas();
 
         /// <summary>
         /// Listar Detalle Rutas
         /// </summary>
         /// <returns>Retorna una lista con todos los detalles de rutas registrados.</returns>
-        public async Task<List<CM_DetalleRuta>> Listar_DetalleRutas()
-        {
-            return await cd_rutas.listadetallerutas();
-        }
+        public async Task<List<CM_DetalleRuta>> Listar_DetalleRutas() => await listadetallerutas();
 
         /// <summary>
         /// Registrar Rutas
@@ -55,7 +48,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
                 if (Mensaje != string.Empty)
                     return false;
                 else
-                    return cd_rutas.registrar_rutas(objruta, out Mensaje, detalleruta); 
+                    return registrar_rutas(objruta, out Mensaje, detalleruta); 
             }
             catch (Exception ex)
             {
@@ -72,17 +65,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
         /// <param name="detalleruta"></param>
         /// <returns>Retorn True, si el registro fue actualizado correctamente.</returns>
         public async Task<bool> Actualizar_InformacionRuta(CM_Rutas objruta, List<CM_DetalleRuta> detalleruta)
-        {
-            try
-            {
-                return await cd_rutas.actualizar_informacionruta(objruta,detalleruta);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
+            => await actualizar_informacionruta(objruta, detalleruta);
 
         /// <summary>
         /// Borrar Rutas
@@ -94,15 +77,15 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
             try
             {
                 //Si una ruta esta en estado completada, la misma no puede ser borrada.
-                List<CM_Rutas> ListaRutas = await cd_rutas.listarutas();
+                List<CM_Rutas> ListaRutas = await listarutas();
                 var validar_rutas = ListaRutas.Where(b => b.Estado == "Completada").FirstOrDefault();
                 if (validar_rutas != null)
                 {
-                    MessageBox.Show("No se puede borrar la ruta, porque se encuentra complada.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No se puede borrar la ruta, porque se encuentra completada.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
                 else
-                    return await cd_rutas.borrar_ruta(objruta);
+                    return await borrar_ruta(objruta);
             }
             catch (Exception ex)
             {

@@ -35,7 +35,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Vehiculos));
             this.tbctlvehiculos = new MetroFramework.Controls.MetroTabControl();
             this.tabpginformacion = new MetroFramework.Controls.MetroTabPage();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlcontenedordatos = new System.Windows.Forms.Panel();
             this.nuphoraiodisponibilidad = new System.Windows.Forms.NumericUpDown();
             this.nupcargaminima = new System.Windows.Forms.NumericUpDown();
             this.nupcargamaxima = new System.Windows.Forms.NumericUpDown();
@@ -59,6 +59,18 @@
             this.txtnombrevehiculo = new System.Windows.Forms.TextBox();
             this.tabpgrutas = new MetroFramework.Controls.MetroTabPage();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btncargarrutavehiculo = new FontAwesome.Sharp.IconButton();
+            this.dgv_rutasvehiculo = new MetroFramework.Controls.MetroGrid();
+            this.IdRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Titulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Concepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TiempoRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cargas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comentarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Prioridad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -71,31 +83,19 @@
             this.btnbuscar = new FontAwesome.Sharp.IconButton();
             this.txtidvehiculo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgv_rutasvehiculo = new MetroFramework.Controls.MetroGrid();
-            this.IdRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Titulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Concepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TiempoRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cargas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Comentarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Prioridad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btncargarrutavehiculo = new FontAwesome.Sharp.IconButton();
             this.tbctlvehiculos.SuspendLayout();
             this.tabpginformacion.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.pnlcontenedordatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuphoraiodisponibilidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupcargaminima)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupcargamaxima)).BeginInit();
             this.tabpgrutas.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_rutasvehiculo)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.menubotones.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_rutasvehiculo)).BeginInit();
             this.SuspendLayout();
             // 
             // tbctlvehiculos
@@ -117,7 +117,7 @@
             // tabpginformacion
             // 
             this.tabpginformacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.tabpginformacion.Controls.Add(this.panel2);
+            this.tabpginformacion.Controls.Add(this.pnlcontenedordatos);
             this.tabpginformacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.tabpginformacion.ForeColor = System.Drawing.Color.White;
             this.tabpginformacion.HorizontalScrollbarBarColor = true;
@@ -133,36 +133,36 @@
             this.tabpginformacion.VerticalScrollbarHighlightOnWheel = false;
             this.tabpginformacion.VerticalScrollbarSize = 10;
             // 
-            // panel2
+            // pnlcontenedordatos
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.pnlcontenedordatos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.nuphoraiodisponibilidad);
-            this.panel2.Controls.Add(this.nupcargaminima);
-            this.panel2.Controls.Add(this.nupcargamaxima);
-            this.panel2.Controls.Add(this.txtidconductor);
-            this.panel2.Controls.Add(this.btnbuscarconductor);
-            this.panel2.Controls.Add(this.txtnombreconductor);
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.btnhabilidad);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.cbohabilidad);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.cboestado);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.txtidentificacion);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.txtmarca);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.txtnombrevehiculo);
-            this.panel2.Location = new System.Drawing.Point(0, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(918, 312);
-            this.panel2.TabIndex = 2;
+            this.pnlcontenedordatos.Controls.Add(this.nuphoraiodisponibilidad);
+            this.pnlcontenedordatos.Controls.Add(this.nupcargaminima);
+            this.pnlcontenedordatos.Controls.Add(this.nupcargamaxima);
+            this.pnlcontenedordatos.Controls.Add(this.txtidconductor);
+            this.pnlcontenedordatos.Controls.Add(this.btnbuscarconductor);
+            this.pnlcontenedordatos.Controls.Add(this.txtnombreconductor);
+            this.pnlcontenedordatos.Controls.Add(this.label10);
+            this.pnlcontenedordatos.Controls.Add(this.label9);
+            this.pnlcontenedordatos.Controls.Add(this.label8);
+            this.pnlcontenedordatos.Controls.Add(this.btnhabilidad);
+            this.pnlcontenedordatos.Controls.Add(this.label6);
+            this.pnlcontenedordatos.Controls.Add(this.cbohabilidad);
+            this.pnlcontenedordatos.Controls.Add(this.label5);
+            this.pnlcontenedordatos.Controls.Add(this.cboestado);
+            this.pnlcontenedordatos.Controls.Add(this.label7);
+            this.pnlcontenedordatos.Controls.Add(this.label4);
+            this.pnlcontenedordatos.Controls.Add(this.txtidentificacion);
+            this.pnlcontenedordatos.Controls.Add(this.label2);
+            this.pnlcontenedordatos.Controls.Add(this.txtmarca);
+            this.pnlcontenedordatos.Controls.Add(this.label3);
+            this.pnlcontenedordatos.Controls.Add(this.txtnombrevehiculo);
+            this.pnlcontenedordatos.Location = new System.Drawing.Point(0, 3);
+            this.pnlcontenedordatos.Name = "pnlcontenedordatos";
+            this.pnlcontenedordatos.Size = new System.Drawing.Size(918, 312);
+            this.pnlcontenedordatos.TabIndex = 2;
             // 
             // nuphoraiodisponibilidad
             // 
@@ -465,6 +465,164 @@
             this.panel4.Size = new System.Drawing.Size(918, 312);
             this.panel4.TabIndex = 2;
             // 
+            // btncargarrutavehiculo
+            // 
+            this.btncargarrutavehiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.btncargarrutavehiculo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btncargarrutavehiculo.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btncargarrutavehiculo.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btncargarrutavehiculo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btncargarrutavehiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btncargarrutavehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.btncargarrutavehiculo.ForeColor = System.Drawing.Color.White;
+            this.btncargarrutavehiculo.IconChar = FontAwesome.Sharp.IconChar.ArrowRotateForward;
+            this.btncargarrutavehiculo.IconColor = System.Drawing.Color.DodgerBlue;
+            this.btncargarrutavehiculo.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btncargarrutavehiculo.IconSize = 18;
+            this.btncargarrutavehiculo.Location = new System.Drawing.Point(4, 7);
+            this.btncargarrutavehiculo.Name = "btncargarrutavehiculo";
+            this.btncargarrutavehiculo.Size = new System.Drawing.Size(129, 24);
+            this.btncargarrutavehiculo.TabIndex = 301;
+            this.btncargarrutavehiculo.Text = "Cargar Ruta";
+            this.btncargarrutavehiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btncargarrutavehiculo.UseVisualStyleBackColor = false;
+            this.btncargarrutavehiculo.Click += new System.EventHandler(this.btncargarrutavehiculo_Click);
+            // 
+            // dgv_rutasvehiculo
+            // 
+            this.dgv_rutasvehiculo.AllowUserToAddRows = false;
+            this.dgv_rutasvehiculo.AllowUserToDeleteRows = false;
+            this.dgv_rutasvehiculo.AllowUserToResizeRows = false;
+            this.dgv_rutasvehiculo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv_rutasvehiculo.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgv_rutasvehiculo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgv_rutasvehiculo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgv_rutasvehiculo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(116)))), ((int)(((byte)(228)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_rutasvehiculo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_rutasvehiculo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_rutasvehiculo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdRuta,
+            this.Titulo,
+            this.Concepto,
+            this.FechaEntrega,
+            this.TiempoRuta,
+            this.Cargas,
+            this.Comentarios,
+            this.Prioridad,
+            this.Estado,
+            this.FechaRegistro});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_rutasvehiculo.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgv_rutasvehiculo.EnableHeadersVisualStyles = false;
+            this.dgv_rutasvehiculo.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.dgv_rutasvehiculo.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgv_rutasvehiculo.Location = new System.Drawing.Point(4, 37);
+            this.dgv_rutasvehiculo.Name = "dgv_rutasvehiculo";
+            this.dgv_rutasvehiculo.ReadOnly = true;
+            this.dgv_rutasvehiculo.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_rutasvehiculo.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgv_rutasvehiculo.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgv_rutasvehiculo.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgv_rutasvehiculo.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.dgv_rutasvehiculo.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Silver;
+            this.dgv_rutasvehiculo.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.dgv_rutasvehiculo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_rutasvehiculo.Size = new System.Drawing.Size(909, 268);
+            this.dgv_rutasvehiculo.TabIndex = 2;
+            // 
+            // IdRuta
+            // 
+            dataGridViewCellStyle2.Format = "0000";
+            this.IdRuta.DefaultCellStyle = dataGridViewCellStyle2;
+            this.IdRuta.HeaderText = "IdRuta";
+            this.IdRuta.Name = "IdRuta";
+            this.IdRuta.ReadOnly = true;
+            this.IdRuta.Width = 90;
+            // 
+            // Titulo
+            // 
+            this.Titulo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Titulo.HeaderText = "Título";
+            this.Titulo.Name = "Titulo";
+            this.Titulo.ReadOnly = true;
+            // 
+            // Concepto
+            // 
+            this.Concepto.HeaderText = "Concepto";
+            this.Concepto.Name = "Concepto";
+            this.Concepto.ReadOnly = true;
+            this.Concepto.Visible = false;
+            // 
+            // FechaEntrega
+            // 
+            this.FechaEntrega.HeaderText = "Fecha Entrega";
+            this.FechaEntrega.Name = "FechaEntrega";
+            this.FechaEntrega.ReadOnly = true;
+            this.FechaEntrega.Width = 140;
+            // 
+            // TiempoRuta
+            // 
+            this.TiempoRuta.HeaderText = "Tiempo Estimado";
+            this.TiempoRuta.Name = "TiempoRuta";
+            this.TiempoRuta.ReadOnly = true;
+            this.TiempoRuta.Visible = false;
+            this.TiempoRuta.Width = 110;
+            // 
+            // Cargas
+            // 
+            this.Cargas.HeaderText = "Cargas";
+            this.Cargas.Name = "Cargas";
+            this.Cargas.ReadOnly = true;
+            // 
+            // Comentarios
+            // 
+            this.Comentarios.HeaderText = "Comentarios";
+            this.Comentarios.Name = "Comentarios";
+            this.Comentarios.ReadOnly = true;
+            this.Comentarios.Visible = false;
+            // 
+            // Prioridad
+            // 
+            this.Prioridad.HeaderText = "Prioridad";
+            this.Prioridad.Name = "Prioridad";
+            this.Prioridad.ReadOnly = true;
+            this.Prioridad.Width = 150;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Width = 70;
+            // 
+            // FechaRegistro
+            // 
+            this.FechaRegistro.HeaderText = "Fecha Registro";
+            this.FechaRegistro.Name = "FechaRegistro";
+            this.FechaRegistro.ReadOnly = true;
+            this.FechaRegistro.Width = 125;
+            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -631,164 +789,6 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Mantenimiento de Vehículos\r\n";
             // 
-            // dgv_rutasvehiculo
-            // 
-            this.dgv_rutasvehiculo.AllowUserToAddRows = false;
-            this.dgv_rutasvehiculo.AllowUserToDeleteRows = false;
-            this.dgv_rutasvehiculo.AllowUserToResizeRows = false;
-            this.dgv_rutasvehiculo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgv_rutasvehiculo.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgv_rutasvehiculo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgv_rutasvehiculo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dgv_rutasvehiculo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(116)))), ((int)(((byte)(228)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_rutasvehiculo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgv_rutasvehiculo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_rutasvehiculo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IdRuta,
-            this.Titulo,
-            this.Concepto,
-            this.FechaEntrega,
-            this.TiempoRuta,
-            this.Cargas,
-            this.Comentarios,
-            this.Prioridad,
-            this.Estado,
-            this.FechaRegistro});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_rutasvehiculo.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgv_rutasvehiculo.EnableHeadersVisualStyles = false;
-            this.dgv_rutasvehiculo.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.dgv_rutasvehiculo.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dgv_rutasvehiculo.Location = new System.Drawing.Point(4, 37);
-            this.dgv_rutasvehiculo.Name = "dgv_rutasvehiculo";
-            this.dgv_rutasvehiculo.ReadOnly = true;
-            this.dgv_rutasvehiculo.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_rutasvehiculo.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgv_rutasvehiculo.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dgv_rutasvehiculo.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgv_rutasvehiculo.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            this.dgv_rutasvehiculo.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Silver;
-            this.dgv_rutasvehiculo.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            this.dgv_rutasvehiculo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_rutasvehiculo.Size = new System.Drawing.Size(909, 268);
-            this.dgv_rutasvehiculo.TabIndex = 2;
-            // 
-            // IdRuta
-            // 
-            dataGridViewCellStyle2.Format = "0000";
-            this.IdRuta.DefaultCellStyle = dataGridViewCellStyle2;
-            this.IdRuta.HeaderText = "IdRuta";
-            this.IdRuta.Name = "IdRuta";
-            this.IdRuta.ReadOnly = true;
-            this.IdRuta.Width = 90;
-            // 
-            // Titulo
-            // 
-            this.Titulo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Titulo.HeaderText = "Título";
-            this.Titulo.Name = "Titulo";
-            this.Titulo.ReadOnly = true;
-            // 
-            // Concepto
-            // 
-            this.Concepto.HeaderText = "Concepto";
-            this.Concepto.Name = "Concepto";
-            this.Concepto.ReadOnly = true;
-            this.Concepto.Visible = false;
-            // 
-            // FechaEntrega
-            // 
-            this.FechaEntrega.HeaderText = "Fecha Entrega";
-            this.FechaEntrega.Name = "FechaEntrega";
-            this.FechaEntrega.ReadOnly = true;
-            this.FechaEntrega.Width = 140;
-            // 
-            // TiempoRuta
-            // 
-            this.TiempoRuta.HeaderText = "Tiempo Estimado";
-            this.TiempoRuta.Name = "TiempoRuta";
-            this.TiempoRuta.ReadOnly = true;
-            this.TiempoRuta.Visible = false;
-            this.TiempoRuta.Width = 110;
-            // 
-            // Cargas
-            // 
-            this.Cargas.HeaderText = "Cargas";
-            this.Cargas.Name = "Cargas";
-            this.Cargas.ReadOnly = true;
-            // 
-            // Comentarios
-            // 
-            this.Comentarios.HeaderText = "Comentarios";
-            this.Comentarios.Name = "Comentarios";
-            this.Comentarios.ReadOnly = true;
-            this.Comentarios.Visible = false;
-            // 
-            // Prioridad
-            // 
-            this.Prioridad.HeaderText = "Prioridad";
-            this.Prioridad.Name = "Prioridad";
-            this.Prioridad.ReadOnly = true;
-            this.Prioridad.Width = 150;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            this.Estado.Width = 70;
-            // 
-            // FechaRegistro
-            // 
-            this.FechaRegistro.HeaderText = "Fecha Registro";
-            this.FechaRegistro.Name = "FechaRegistro";
-            this.FechaRegistro.ReadOnly = true;
-            this.FechaRegistro.Width = 125;
-            // 
-            // btncargarrutavehiculo
-            // 
-            this.btncargarrutavehiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.btncargarrutavehiculo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btncargarrutavehiculo.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btncargarrutavehiculo.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btncargarrutavehiculo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btncargarrutavehiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btncargarrutavehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.btncargarrutavehiculo.ForeColor = System.Drawing.Color.White;
-            this.btncargarrutavehiculo.IconChar = FontAwesome.Sharp.IconChar.ArrowRotateForward;
-            this.btncargarrutavehiculo.IconColor = System.Drawing.Color.DodgerBlue;
-            this.btncargarrutavehiculo.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btncargarrutavehiculo.IconSize = 18;
-            this.btncargarrutavehiculo.Location = new System.Drawing.Point(4, 7);
-            this.btncargarrutavehiculo.Name = "btncargarrutavehiculo";
-            this.btncargarrutavehiculo.Size = new System.Drawing.Size(129, 24);
-            this.btncargarrutavehiculo.TabIndex = 301;
-            this.btncargarrutavehiculo.Text = "Cargar Ruta";
-            this.btncargarrutavehiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btncargarrutavehiculo.UseVisualStyleBackColor = false;
-            this.btncargarrutavehiculo.Click += new System.EventHandler(this.btncargarrutavehiculo_Click);
-            // 
             // frm_Vehiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -804,20 +804,20 @@
             this.Load += new System.EventHandler(this.frm_Vehiculos_Load);
             this.tbctlvehiculos.ResumeLayout(false);
             this.tabpginformacion.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.pnlcontenedordatos.ResumeLayout(false);
+            this.pnlcontenedordatos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuphoraiodisponibilidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupcargaminima)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupcargamaxima)).EndInit();
             this.tabpgrutas.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_rutasvehiculo)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.menubotones.ResumeLayout(false);
             this.menubotones.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_rutasvehiculo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -837,7 +837,7 @@
         private FontAwesome.Sharp.IconMenuItem btnadicionar;
         private FontAwesome.Sharp.IconMenuItem btnguardar;
         private FontAwesome.Sharp.IconMenuItem btneditar;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel pnlcontenedordatos;
         private System.Windows.Forms.NumericUpDown nuphoraiodisponibilidad;
         private System.Windows.Forms.NumericUpDown nupcargaminima;
         private System.Windows.Forms.NumericUpDown nupcargamaxima;
