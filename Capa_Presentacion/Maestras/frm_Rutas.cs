@@ -189,6 +189,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 cboestado.Enabled = false;
                 dgvdetalleruta.Enabled = false;
                 btnagregardestino.Enabled = false;
+                dtpfechaentrega.Value = DateTime.Today;
                 foreach (Control controles in gbclientes.Controls)
                 {
                     if (controles is TextBox)
@@ -296,6 +297,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                                 items.DireccionEnvio,
                                 items.Latitud,
                                 items.Longitud,
+                                items.IdCliente,
                                 items.NombreCliente,
                                 items.TelefonoCliente1,
                                 items.TelefonoCliente2,
@@ -378,6 +380,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     txtidvehiculo.BackColor = Color.LightGreen;
                     txtidcliente.BackColor = Color.LightGreen;
                     btnguardar.Enabled = true;
+                    dtpfechaentrega.Value = DateTime.Today;
                     cboestado.SelectedIndex = 0;
                 }
             }
@@ -421,12 +424,12 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         IdDetalleRuta = Convert.ToInt32(items_detalle.Cells["IdDetalleRuta"].Value),
                         IdRuta = Convert.ToInt32(items_detalle.Cells["IdRuta"].Value),
                         IdVehiculo = Convert.ToInt32(items_detalle.Cells["IdVehiculo"].Value),
+                        IdCliente = Convert.ToInt32(items_detalle.Cells["IdCliente"].Value),
                         NombreVehiculo = items_detalle.Cells["NombreVehiculo"].Value.ToString(),
                         Conductor = items_detalle.Cells["Conductor"].Value.ToString(),
                         DireccionEnvio = items_detalle.Cells["DireccionEnvio"].Value.ToString(),
                         Latitud = Convert.ToDouble(items_detalle.Cells["LatitudDestino"].Value),
                         Longitud = Convert.ToDouble(items_detalle.Cells["LongitudDestino"].Value),
-                        IdCliente = Convert.ToInt32(items_detalle.Cells["IdCliente"].Value),
                         NombreCliente = items_detalle.Cells["NombreCliente"].Value.ToString(),
                         TelefonoCliente1 = items_detalle.Cells["Telefono1"].Value.ToString(),
                         TelefonoCliente2 = items_detalle.Cells["Telefono2"].Value.ToString(),
@@ -543,6 +546,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     txtidvehiculo.BackColor = Color.White;
                     txtidcliente.BackColor = Color.White;
                     txtidvehiculo.Enabled = false;
+                    txtidcliente.Enabled = false;
                     btnbuscarvehiculo.Enabled = false;
                     btnbuscarcliente.Enabled = false;
                     dgvdetalleruta.Enabled = false;
@@ -594,6 +598,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                                     items.DireccionEnvio,
                                     items.Latitud,
                                     items.Longitud,
+                                    items.IdCliente,
                                     items.NombreCliente,
                                     items.TelefonoCliente1,
                                     items.TelefonoCliente2,
@@ -624,6 +629,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         txtidvehiculo.BackColor = Color.Khaki;
                         txtidcliente.BackColor = Color.Khaki;
                         txtidvehiculo.Enabled = true;
+                        txtidcliente.Enabled = true;
                         dgvdetalleruta.Enabled = true;
                         btnagregardestino.Enabled = true;
                         LimpiarDatosDetalle();
@@ -674,6 +680,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                                     items.DireccionEnvio,
                                     items.Latitud,
                                     items.Longitud,
+                                    items.IdCliente,
                                     items.NombreCliente,
                                     items.TelefonoCliente1,
                                     items.TelefonoCliente2,
@@ -1110,6 +1117,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                                     items.DireccionEnvio,
                                     items.Latitud,
                                     items.Longitud,
+                                    items.IdCliente,
                                     items.NombreCliente,
                                     items.TelefonoCliente1,
                                     items.TelefonoCliente2,
@@ -1227,6 +1235,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 if (irow >= 0 && icolumn >= 0)
                 {
                     //Datos cliente
+                    txtidcliente.Text = string.Format("{0:0000}", dgvdetalleruta.Rows[irow].Cells["IdCliente"].Value);
                     txtnombrecliente.Text = dgvdetalleruta.Rows[irow].Cells["NombreCliente"].Value.ToString();
                     txttelefonocliente.Text = dgvdetalleruta.Rows[irow].Cells["Telefono1"].Value.ToString();
                     txttelefono2cliente.Text = dgvdetalleruta.Rows[irow].Cells["Telefono2"].Value.ToString();

@@ -92,6 +92,12 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     btnborrar.Enabled = true;
                     txtidcliente.Enabled = true;
                     txtidcliente.BackColor = Color.White;
+                    txtidcliente.ReadOnly = true;
+                    txtnombrecliente.ReadOnly = true;
+                    txtemailcliente.ReadOnly = true;
+                    txtdireccioncliente.ReadOnly = true;
+                    txttelefonocliente.ReadOnly = true;
+                    txttelefonocliente.ReadOnly = true;
                     Limpiar();
                 }
                 else
@@ -119,6 +125,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     txtidcliente.BackColor = Color.LightGreen;
                     btnguardar.Enabled = true;
                     cboestado.SelectedIndex = 0;
+
+                    txtidcliente.ReadOnly = false;
+                    txtnombrecliente.ReadOnly = false;
+                    txtemailcliente.ReadOnly = false;
+                    txtdireccioncliente.ReadOnly = false;
+                    txttelefonocliente.ReadOnly = false;
+                    txttelefonocliente.ReadOnly = false;
                 }
             }
             catch (Exception ex)
@@ -385,15 +398,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 }
                 int codigo = int.Parse(txtidcliente.Text);
                 List<CM_DetalleRuta> DetalleRutas = await new CN_Rutas().Listar_DetalleRutas();
-                var buscar_rutacliente = DetalleRutas.Where(b => b.IdCliente == codigo);
+                var buscar_rutacliente = DetalleRutas.Where(b => b.IdCliente == codigo).FirstOrDefault();
                 if (buscar_rutacliente != null)
                 {
                     List<CM_Rutas> Rutas = await new CN_Rutas().Listar_Rutas();
-                    var rutas = buscar_rutacliente.Where(b => b.IdCliente == codigo).FirstOrDefault();
-                    //var cargarruta = Rutas.Where(b => b.IdRuta.Equals(rutas.IdRuta));
                     foreach (var item in Rutas)
                     {
-                        if (item.IdRuta == rutas.IdRuta)
+                        if (item.IdRuta == buscar_rutacliente.IdRuta)
                         {
                             dgv_rutascliente.Rows.Add(new object[]
                             {

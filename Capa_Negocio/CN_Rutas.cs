@@ -78,12 +78,12 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
             {
                 //Si una ruta esta en estado completada, la misma no puede ser borrada.
                 List<CM_Rutas> ListaRutas = await listarutas();
-                var validar_rutas = ListaRutas.Where(b => b.Estado == "Completada").FirstOrDefault();
-                if (validar_rutas != null)
+                var validar_rutas = ListaRutas.Where(b=>b.IdRuta == objruta.IdRuta).FirstOrDefault();
+                if (validar_rutas.Estado == "Completada")
                 {
                     MessageBox.Show("No se puede borrar la ruta, porque se encuentra completada.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
-                }
+                }  
                 else
                     return await borrar_ruta(objruta);
             }

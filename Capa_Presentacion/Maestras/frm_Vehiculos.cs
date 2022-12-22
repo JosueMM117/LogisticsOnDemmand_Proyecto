@@ -499,15 +499,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 }
                 int codigo = int.Parse(txtidvehiculo.Text);
                 List<CM_DetalleRuta> DetalleRutas = await cn_rutas.Listar_DetalleRutas();
-                var buscar_rutavehiculo = DetalleRutas.Where(b => b.IdVehiculo == codigo);
+                var buscar_rutavehiculo = DetalleRutas.Where(b => b.IdVehiculo == codigo).FirstOrDefault();
                 if (buscar_rutavehiculo != null)
                 {
                     List<CM_Rutas> Rutas = await cn_rutas.Listar_Rutas();
-                    var rutas = buscar_rutavehiculo.Where(b => b.IdVehiculo == codigo).FirstOrDefault();
-                    //var cargarruta = Rutas.Where(b => b.IdRuta.Equals(rutas.IdRuta));
                     foreach (var item in Rutas)
                     {
-                        if (item.IdRuta == rutas.IdRuta)
+                        if (item.IdRuta == buscar_rutavehiculo.IdRuta)
                         {
                             dgv_rutasvehiculo.Rows.Add(new object[]
                             {
