@@ -65,8 +65,25 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
         /// <param name="detalleruta"></param>
         /// <returns>Retorn True, si el registro fue actualizado correctamente.</returns>
         public async Task<bool> Actualizar_InformacionRuta(CM_Rutas objruta, List<CM_DetalleRuta> detalleruta)
-            => await actualizar_informacionruta(objruta, detalleruta);
-
+        {
+            try
+            {
+                return await actualizar_informacionruta(objruta, detalleruta);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+             
+        /// <summary>
+        /// Procesar Ruta
+        /// </summary>
+        /// <param name="objruta"></param>
+        /// <returns>Retorn True, si el registro fue procesado correctamente.</returns>
+        public async Task<bool> Procesar_Ruta(CM_Rutas objruta) => await procesar_ruta(objruta);
+        
         /// <summary>
         /// Borrar Rutas
         /// </summary>

@@ -68,6 +68,20 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.gbdetalledestinos = new System.Windows.Forms.GroupBox();
             this.dgvdetalleruta = new MetroFramework.Controls.MetroGrid();
+            this.IdDetalleRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Conductor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DireccionEnvio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LatitudDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LongitudDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmailCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbclientes = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtidcliente = new System.Windows.Forms.TextBox();
@@ -106,20 +120,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.IdDetalleRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Conductor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DireccionEnvio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LatitudDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LongitudDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmailCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtestado = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.menubotones.SuspendLayout();
@@ -337,7 +338,7 @@
             this.tbctlrutas.Location = new System.Drawing.Point(3, 3);
             this.tbctlrutas.Multiline = true;
             this.tbctlrutas.Name = "tbctlrutas";
-            this.tbctlrutas.SelectedIndex = 1;
+            this.tbctlrutas.SelectedIndex = 0;
             this.tbctlrutas.Size = new System.Drawing.Size(1198, 582);
             this.tbctlrutas.TabIndex = 3;
             this.tbctlrutas.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -367,6 +368,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlcontenedordatosruta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.pnlcontenedordatosruta.Controls.Add(this.txtestado);
             this.pnlcontenedordatosruta.Controls.Add(this.txttiemporuta);
             this.pnlcontenedordatosruta.Controls.Add(this.label17);
             this.pnlcontenedordatosruta.Controls.Add(this.label9);
@@ -391,7 +393,7 @@
             // txttiemporuta
             // 
             this.txttiemporuta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txttiemporuta.Location = new System.Drawing.Point(561, 138);
+            this.txttiemporuta.Location = new System.Drawing.Point(560, 80);
             this.txttiemporuta.Name = "txttiemporuta";
             this.txttiemporuta.Size = new System.Drawing.Size(66, 23);
             this.txttiemporuta.TabIndex = 383;
@@ -402,7 +404,7 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(380, 140);
+            this.label17.Location = new System.Drawing.Point(379, 82);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(175, 17);
             this.label17.TabIndex = 381;
@@ -433,10 +435,11 @@
             this.cboestado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboestado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboestado.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboestado.Location = new System.Drawing.Point(638, 81);
+            this.cboestado.Location = new System.Drawing.Point(993, 59);
             this.cboestado.Name = "cboestado";
             this.cboestado.Size = new System.Drawing.Size(189, 24);
             this.cboestado.TabIndex = 376;
+            this.cboestado.Visible = false;
             // 
             // dtpfechaentrega
             // 
@@ -487,7 +490,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(379, 61);
+            this.label6.Location = new System.Drawing.Point(635, 10);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 17);
             this.label6.TabIndex = 365;
@@ -498,7 +501,7 @@
             this.cboprioridad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboprioridad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboprioridad.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboprioridad.Location = new System.Drawing.Point(382, 81);
+            this.cboprioridad.Location = new System.Drawing.Point(638, 30);
             this.cboprioridad.Name = "cboprioridad";
             this.cboprioridad.Size = new System.Drawing.Size(245, 24);
             this.cboprioridad.TabIndex = 364;
@@ -519,7 +522,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(635, 61);
+            this.label7.Location = new System.Drawing.Point(1031, 9);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 17);
             this.label7.TabIndex = 362;
@@ -675,6 +678,101 @@
             this.dgvdetalleruta.Size = new System.Drawing.Size(1159, 262);
             this.dgvdetalleruta.TabIndex = 358;
             this.dgvdetalleruta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdetalleruta_CellDoubleClick);
+            // 
+            // IdDetalleRuta
+            // 
+            this.IdDetalleRuta.HeaderText = "IdDetalleRuta";
+            this.IdDetalleRuta.Name = "IdDetalleRuta";
+            this.IdDetalleRuta.ReadOnly = true;
+            this.IdDetalleRuta.Visible = false;
+            // 
+            // IdRuta
+            // 
+            this.IdRuta.HeaderText = "IdRuta";
+            this.IdRuta.Name = "IdRuta";
+            this.IdRuta.ReadOnly = true;
+            this.IdRuta.Visible = false;
+            // 
+            // IdVehiculo
+            // 
+            this.IdVehiculo.HeaderText = "IdVehiculo";
+            this.IdVehiculo.Name = "IdVehiculo";
+            this.IdVehiculo.ReadOnly = true;
+            this.IdVehiculo.Visible = false;
+            // 
+            // NombreVehiculo
+            // 
+            this.NombreVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NombreVehiculo.HeaderText = "Nombre Vehículo";
+            this.NombreVehiculo.Name = "NombreVehiculo";
+            this.NombreVehiculo.ReadOnly = true;
+            // 
+            // Conductor
+            // 
+            this.Conductor.HeaderText = "Conductor";
+            this.Conductor.Name = "Conductor";
+            this.Conductor.ReadOnly = true;
+            this.Conductor.Width = 130;
+            // 
+            // DireccionEnvio
+            // 
+            this.DireccionEnvio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DireccionEnvio.HeaderText = "Direccion Envío";
+            this.DireccionEnvio.Name = "DireccionEnvio";
+            this.DireccionEnvio.ReadOnly = true;
+            // 
+            // LatitudDestino
+            // 
+            this.LatitudDestino.HeaderText = "Latitud Destino";
+            this.LatitudDestino.Name = "LatitudDestino";
+            this.LatitudDestino.ReadOnly = true;
+            this.LatitudDestino.Visible = false;
+            // 
+            // LongitudDestino
+            // 
+            this.LongitudDestino.HeaderText = "Longitud Destino";
+            this.LongitudDestino.Name = "LongitudDestino";
+            this.LongitudDestino.ReadOnly = true;
+            this.LongitudDestino.Visible = false;
+            // 
+            // IdCliente
+            // 
+            this.IdCliente.HeaderText = "IdCliente";
+            this.IdCliente.Name = "IdCliente";
+            this.IdCliente.ReadOnly = true;
+            this.IdCliente.Visible = false;
+            // 
+            // NombreCliente
+            // 
+            this.NombreCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NombreCliente.HeaderText = "Cliente";
+            this.NombreCliente.Name = "NombreCliente";
+            this.NombreCliente.ReadOnly = true;
+            // 
+            // Telefono1
+            // 
+            this.Telefono1.HeaderText = "Teléfono 1";
+            this.Telefono1.Name = "Telefono1";
+            this.Telefono1.ReadOnly = true;
+            // 
+            // Telefono2
+            // 
+            this.Telefono2.HeaderText = "Teléfono 2";
+            this.Telefono2.Name = "Telefono2";
+            this.Telefono2.ReadOnly = true;
+            // 
+            // EmailCliente
+            // 
+            this.EmailCliente.HeaderText = "Email";
+            this.EmailCliente.Name = "EmailCliente";
+            this.EmailCliente.ReadOnly = true;
+            // 
+            // FechaRegistro
+            // 
+            this.FechaRegistro.HeaderText = "Fecha Registro";
+            this.FechaRegistro.Name = "FechaRegistro";
+            this.FechaRegistro.ReadOnly = true;
+            this.FechaRegistro.Visible = false;
             // 
             // gbclientes
             // 
@@ -1178,100 +1276,14 @@
             this.label16.TabIndex = 292;
             this.label16.Text = "Longitud:";
             // 
-            // IdDetalleRuta
+            // txtestado
             // 
-            this.IdDetalleRuta.HeaderText = "IdDetalleRuta";
-            this.IdDetalleRuta.Name = "IdDetalleRuta";
-            this.IdDetalleRuta.ReadOnly = true;
-            this.IdDetalleRuta.Visible = false;
-            // 
-            // IdRuta
-            // 
-            this.IdRuta.HeaderText = "IdRuta";
-            this.IdRuta.Name = "IdRuta";
-            this.IdRuta.ReadOnly = true;
-            this.IdRuta.Visible = false;
-            // 
-            // IdVehiculo
-            // 
-            this.IdVehiculo.HeaderText = "IdVehiculo";
-            this.IdVehiculo.Name = "IdVehiculo";
-            this.IdVehiculo.ReadOnly = true;
-            this.IdVehiculo.Visible = false;
-            // 
-            // NombreVehiculo
-            // 
-            this.NombreVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NombreVehiculo.HeaderText = "Nombre Vehículo";
-            this.NombreVehiculo.Name = "NombreVehiculo";
-            this.NombreVehiculo.ReadOnly = true;
-            // 
-            // Conductor
-            // 
-            this.Conductor.HeaderText = "Conductor";
-            this.Conductor.Name = "Conductor";
-            this.Conductor.ReadOnly = true;
-            this.Conductor.Width = 130;
-            // 
-            // DireccionEnvio
-            // 
-            this.DireccionEnvio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DireccionEnvio.HeaderText = "Direccion Envío";
-            this.DireccionEnvio.Name = "DireccionEnvio";
-            this.DireccionEnvio.ReadOnly = true;
-            // 
-            // LatitudDestino
-            // 
-            this.LatitudDestino.HeaderText = "Latitud Destino";
-            this.LatitudDestino.Name = "LatitudDestino";
-            this.LatitudDestino.ReadOnly = true;
-            this.LatitudDestino.Visible = false;
-            // 
-            // LongitudDestino
-            // 
-            this.LongitudDestino.HeaderText = "Longitud Destino";
-            this.LongitudDestino.Name = "LongitudDestino";
-            this.LongitudDestino.ReadOnly = true;
-            this.LongitudDestino.Visible = false;
-            // 
-            // IdCliente
-            // 
-            this.IdCliente.HeaderText = "IdCliente";
-            this.IdCliente.Name = "IdCliente";
-            this.IdCliente.ReadOnly = true;
-            this.IdCliente.Visible = false;
-            // 
-            // NombreCliente
-            // 
-            this.NombreCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NombreCliente.HeaderText = "Cliente";
-            this.NombreCliente.Name = "NombreCliente";
-            this.NombreCliente.ReadOnly = true;
-            // 
-            // Telefono1
-            // 
-            this.Telefono1.HeaderText = "Teléfono 1";
-            this.Telefono1.Name = "Telefono1";
-            this.Telefono1.ReadOnly = true;
-            // 
-            // Telefono2
-            // 
-            this.Telefono2.HeaderText = "Teléfono 2";
-            this.Telefono2.Name = "Telefono2";
-            this.Telefono2.ReadOnly = true;
-            // 
-            // EmailCliente
-            // 
-            this.EmailCliente.HeaderText = "Email";
-            this.EmailCliente.Name = "EmailCliente";
-            this.EmailCliente.ReadOnly = true;
-            // 
-            // FechaRegistro
-            // 
-            this.FechaRegistro.HeaderText = "Fecha Registro";
-            this.FechaRegistro.Name = "FechaRegistro";
-            this.FechaRegistro.ReadOnly = true;
-            this.FechaRegistro.Visible = false;
+            this.txtestado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtestado.Location = new System.Drawing.Point(1034, 30);
+            this.txtestado.Name = "txtestado";
+            this.txtestado.ReadOnly = true;
+            this.txtestado.Size = new System.Drawing.Size(148, 23);
+            this.txtestado.TabIndex = 385;
             // 
             // frm_Rutas
             // 
@@ -1409,5 +1421,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono2;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmailCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaRegistro;
+        private System.Windows.Forms.TextBox txtestado;
     }
 }

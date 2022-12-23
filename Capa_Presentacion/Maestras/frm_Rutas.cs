@@ -26,9 +26,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
 {
     public partial class frm_Rutas : Form
     {
-        public CN_Rutas cn_rutas = new CN_Rutas();
-        public CN_Vehiculos cn_vehiculos = new CN_Vehiculos();
-
         #region Constructor
         public frm_Rutas()
         {
@@ -44,7 +41,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         int iddetalleruta_generado;
         double latitudinicial = 18.450217322488683;
         double longitudinicial = -69.92890886875865;
-        
+
+        public CN_Rutas cn_rutas = new CN_Rutas();
+        public CN_Vehiculos cn_vehiculos = new CN_Vehiculos();
         #endregion
 
         #region Metodos
@@ -58,9 +57,10 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             txtconcepto.Clear();
             txtcomentarios.Clear();
             txttiemporuta.Clear();
+            txtestado.Clear();
             nupcargas.Value = 1;
             cboprioridad.SelectedIndex = -1;
-            cboestado.SelectedIndex = -1;
+            //cboestado.SelectedIndex = -1;
             dgvdetalleruta.Rows.Clear();
             foreach (Control controles in gbdatosvehiculo.Controls)
             {
@@ -181,6 +181,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 cboestado.SelectedIndex = -1;
 
                 //InaHabilitar controles
+                btnprocesar.Enabled = false;
+                btneditar.Enabled = false;
+                btnborrar.Enabled = false;
                 txtidvehiculo.Enabled = false;
                 txtidcliente.Enabled = false;
                 btnbuscarvehiculo.Enabled = false;
@@ -239,6 +242,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         private void frm_Rutas_Load(object sender, EventArgs e)
         {
             CargarDatos();
+            CargarMapa();
             dtpfechaentrega.CustomFormat = "dd-MM-yyy";
             tbctlrutas.SelectTab(0);
             txtidruta.Select(); 
@@ -261,12 +265,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         txttiemporuta.Text = modal._Ruta.Tiempo_Ruta;
                         dtpfechaentrega.Value = modal._Ruta.Fecha_Entrega;
                         nupcargas.Value = modal._Ruta.Cargas;
+                        txtestado.Text = modal._Ruta.Estado;
                         foreach (OpcionCombo oc in cboprioridad.Items)
                         {
                             if (oc.Texto == modal._Ruta.Prioridad)
                             {
-                                int indice_combo = cboestado.Items.IndexOf(oc);
-                                cboestado.SelectedIndex = indice_combo;
+                                int indice_combo = cboprioridad.Items.IndexOf(oc);
+                                cboprioridad.SelectedIndex = indice_combo;
                                 break;
                             }
                         }
@@ -307,6 +312,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                             }
                         }
                         ActivarProcesado();
+                        btnprocesar.Enabled = true;
                         //CargarMapa();
                     }
                 }
@@ -325,10 +331,10 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     btnadicionar.IconChar = IconChar.FileCirclePlus;
                     btnadicionar.Text = "Adicionar";
                     btnguardar.Enabled = false;
-                    btneditar.Enabled = true;
+                    btneditar.Enabled = false;
                     btnbuscar.Enabled = true;
-                    btnborrar.Enabled = true;
-                    btnprocesar.Enabled = true;
+                    btnborrar.Enabled = false;
+                    btnprocesar.Enabled = false;
                     txtidruta.Enabled = true;
                     btnbuscarvehiculo.Enabled = false;
                     btnbuscarcliente.Enabled = false;
@@ -413,7 +419,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     Fecha_Entrega = dtpfechaentrega.Value,
                     Tiempo_Ruta = txttiemporuta.Text,
                     Prioridad = cboprioridad.GetItemText(cboprioridad.SelectedItem),
-                    Estado = cboestado.GetItemText(cboestado.SelectedItem),
+                    Estado = txtestado.Text,  //cboestado.GetItemText(cboestado.SelectedItem),
                     FechaRegistro = Convert.ToDateTime(DateTime.Today.ToString("dd-MMM-yyy HH:mm:ss tt"))
                 };
 
@@ -478,38 +484,44 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 }
                 else
                 {
-                    bool respuesta = await cn_rutas.Actualizar_InformacionRuta(objruta, detalle_ruta);
-                    if (respuesta == true)
+                    mensaje = string.Empty;
+                    if (objruta.Fecha_Entrega.Date > DateTime.Now)
+                        mensaje += MessageBox.Show("No puede crear una ruta con fecha futura.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    else
                     {
-                        btnadicionar.IconChar = IconChar.FileCirclePlus;
-                        btnadicionar.Text = "Adicionar";
-                        btneditar.IconChar = IconChar.FilePen;
-                        btneditar.Text = "Editar";
-                        btnguardar.Enabled = false;
-                        btneditar.Enabled = true;
-                        btnborrar.Enabled = true;
-                        btnadicionar.Enabled = true;
-                        btnprocesar.Enabled = true;
-                        btnbuscar.Enabled = true;
-                        txtidruta.Enabled = true;
-                        cboestado.Enabled = false;
-                        dgvdetalleruta.Enabled = false;
-                        btnbuscarvehiculo.Enabled = false;
-                        btnbuscarcliente.Enabled = false;
-                        txtidvehiculo.Enabled = false;
-                        txtidruta.BackColor = Color.White;
-                        txtidvehiculo.BackColor = Color.White;
-                        txtidcliente.BackColor = Color.White;
-                        foreach (Control controles in gbclientes.Controls)
+                        bool respuesta = await cn_rutas.Actualizar_InformacionRuta(objruta, detalle_ruta);
+                        if (respuesta == true)
                         {
-                            if (controles is TextBox)
+                            btnadicionar.IconChar = IconChar.FileCirclePlus;
+                            btnadicionar.Text = "Adicionar";
+                            btneditar.IconChar = IconChar.FilePen;
+                            btneditar.Text = "Editar";
+                            btnguardar.Enabled = false;
+                            btneditar.Enabled = true;
+                            btnborrar.Enabled = true;
+                            btnadicionar.Enabled = true;
+                            btnprocesar.Enabled = true;
+                            btnbuscar.Enabled = true;
+                            txtidruta.Enabled = true;
+                            cboestado.Enabled = false;
+                            dgvdetalleruta.Enabled = false;
+                            btnbuscarvehiculo.Enabled = false;
+                            btnbuscarcliente.Enabled = false;
+                            txtidvehiculo.Enabled = false;
+                            txtidruta.BackColor = Color.White;
+                            txtidvehiculo.BackColor = Color.White;
+                            txtidcliente.BackColor = Color.White;
+                            foreach (Control controles in gbclientes.Controls)
                             {
-                                controles.Enabled = false;
+                                if (controles is TextBox)
+                                {
+                                    controles.Enabled = false;
+                                }
                             }
                         }
-                    }
-                    else
-                        MessageBox.Show("No se pudieron actualizar las informaciones.\n \n Proceso Candelado.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        else
+                            MessageBox.Show("No se pudieron actualizar las informaciones.\n \n Proceso Candelado.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }  
                 }
             }
             catch (Exception ex)
@@ -519,7 +531,84 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         }
         private async void btnprocesar_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                List<CM_Rutas> BuscarDatos = await cn_rutas.Listar_Rutas();
+                var validar = BuscarDatos.Where(b => b.IdRuta == Convert.ToInt32(txtidruta.Text)).FirstOrDefault();
+                if (validar != null)
+                {
+                    if (txtestado.Text == "En Progreso")
+                    {
+                        var objruta_completada = new CM_Rutas
+                        {
+                            IdRuta = Convert.ToInt32(txtidruta.Text),
+                            Estado = "Completada"
+                        };
+                        bool respuesta = await cn_rutas.procesar_ruta(objruta_completada);
+                        if (respuesta == true)
+                        {
+                            btneditar.Enabled = false;
+                            btnborrar.Enabled = false;
+                            foreach (ToolStripMenuItem c in menubotones.Items)
+                            {
+                                if (c.Name == btnprocesar.Name)
+                                {
+                                    btnprocesar.Text = "Desprocear";
+                                    break;
+                                }
+                            }
+                            txtestado.Text = objruta_completada.Estado;
+                        }
+                        else
+                            MessageBox.Show("No se pudo procesar la ruta. \n \n Proceso candelado.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        var objruta_en_progreso = new CM_Rutas
+                        {
+                            IdRuta = Convert.ToInt32(txtidruta.Text),
+                            Estado = "En Progreso"
+                        };
+                        if (MessageBox.Show("¿Seguro que desea desprocesar la ruta?", "Rutas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            bool respuesta = await cn_rutas.procesar_ruta(objruta_en_progreso);
+                            if (respuesta == true)
+                            {
+                                btneditar.Enabled = true;
+                                btnborrar.Enabled = true;
+                                foreach (ToolStripMenuItem c in menubotones.Items)
+                                {
+                                    if (c.Name == btnprocesar.Name)
+                                    {
+                                        btnprocesar.Text = "Procesar";
+                                        break;
+                                    }
+                                }
+                                foreach (Control item in pnlcontenedordatosruta.Controls)
+                                {
+                                    item.Enabled = true;
+                                }
+                                txtestado.Text = objruta_en_progreso.Estado;
+                            }
+                            else
+                                MessageBox.Show("No se pudo desprocesar la ruta. \n \n Proceso candelado.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("La ruta no existe.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Limpiar();
+                    btnprocesar.Enabled = false;
+                    btneditar.Enabled = false;
+                    btnborrar.Enabled = false;
+                    txtidruta.Select();
+                }  
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private async void btneditar_Click(object sender, EventArgs e)
         {
@@ -540,6 +629,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     btnadicionar.Enabled = true;
                     btnbuscar.Enabled = true;
                     btnborrar.Enabled = true;
+                    btnprocesar.Enabled = true;
                     txtidruta.Enabled = true;
                     cboestado.Enabled = false;
                     txtidruta.BackColor = Color.White;
@@ -562,6 +652,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     dtpfechaentrega.Value = Convert.ToDateTime(validar.Fecha_Entrega);
                     txttiemporuta.Text = validar.Tiempo_Ruta;
                     nupcargas.Value = validar.Cargas;
+                    txtestado.Text = validar.Estado;
                     foreach (OpcionCombo oc in cboprioridad.Items)
                     {
                         if (oc.Texto == validar.Prioridad)
@@ -624,7 +715,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         btnprocesar.Enabled = false;
                         cboestado.Enabled = true;
                         txtidruta.Enabled = false;
-                        btnprocesar.Enabled = true;
                         txtidruta.BackColor = Color.Khaki;
                         txtidvehiculo.BackColor = Color.Khaki;
                         txtidcliente.BackColor = Color.Khaki;
@@ -644,6 +734,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         dtpfechaentrega.Value = Convert.ToDateTime(validar.Fecha_Entrega);
                         txttiemporuta.Text = validar.Tiempo_Ruta;
                         nupcargas.Value = validar.Cargas;
+                        txtestado.Text = validar.Estado;
                         foreach (OpcionCombo oc in cboprioridad.Items)
                         {
                             if (oc.Texto == validar.Prioridad)
@@ -835,21 +926,26 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     var result = modal.ShowDialog();
                     if (result == DialogResult.OK)
                     {
-                        txtidcliente.Text = string.Format("{0:0000}", modal._Clientes.IdCliente);
-                        txtnombrecliente.Text = modal._Clientes.NombreCompleto;
-                        txtemailcliente.Text = modal._Clientes.Email;
-                        txtdireccioncliente.Text = modal._Clientes.Direccion;
-                        txttelefonocliente.Text = modal._Clientes.Telefono;
-                        txttelefono2cliente.Text = modal._Clientes.Telefono2;
-                        foreach (OpcionCombo oc in cboestado.Items)
+                        if (modal._Clientes.Estado == "Activo")
                         {
-                            if (oc.Texto == modal._Clientes.Estado)
+                            txtidcliente.Text = string.Format("{0:0000}", modal._Clientes.IdCliente);
+                            txtnombrecliente.Text = modal._Clientes.NombreCompleto;
+                            txtemailcliente.Text = modal._Clientes.Email;
+                            txtdireccioncliente.Text = modal._Clientes.Direccion;
+                            txttelefonocliente.Text = modal._Clientes.Telefono;
+                            txttelefono2cliente.Text = modal._Clientes.Telefono2;
+                            foreach (OpcionCombo oc in cboestado.Items)
                             {
-                                int indice_combo = cboestado.Items.IndexOf(oc);
-                                cboestado.SelectedIndex = indice_combo;
-                                break;
+                                if (oc.Texto == modal._Clientes.Estado)
+                                {
+                                    int indice_combo = cboestado.Items.IndexOf(oc);
+                                    cboestado.SelectedIndex = indice_combo;
+                                    break;
+                                }
                             }
                         }
+                        else
+                            MessageBox.Show("El cliente se encuentra inactivo.", "Clientes", MessageBoxButtons.OK, MessageBoxIcon.Warning);  
                     }
                 }
             }
@@ -1082,12 +1178,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         txttiemporuta.Text = validar.Tiempo_Ruta;
                         dtpfechaentrega.Value = validar.Fecha_Entrega;
                         nupcargas.Value = validar.Cargas;
+                        txtestado.Text = validar.Estado;
                         foreach (OpcionCombo oc in cboprioridad.Items)
                         {
                             if (oc.Texto == validar.Prioridad)
                             {
-                                int indice_combo = cboestado.Items.IndexOf(oc);
-                                cboestado.SelectedIndex = indice_combo;
+                                int indice_combo = cboprioridad.Items.IndexOf(oc);
+                                cboprioridad.SelectedIndex = indice_combo;
                                 break;
                             }
                         }
@@ -1127,6 +1224,8 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                             }
                         }
                         txtidruta.SelectionStart = txtidruta.MaxLength;
+                        ActivarProcesado();
+                        btnprocesar.Enabled = true;
                         //CargarMapa();
                     }
                     else
@@ -1134,6 +1233,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         MessageBox.Show("La Ruta no existe", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         txtidruta.SelectAll();
                         dgvdetalleruta.Rows.Clear();
+                        btneditar.Enabled = false;
+                        btnborrar.Enabled = false;
+                        btnprocesar.Enabled = false;
                         Limpiar();
                     }
                 }
@@ -1160,23 +1262,28 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     var validar = BuscarDatos.Where(b => b.IdCliente == codigo).FirstOrDefault();
                     if (validar != null)
                     {
-                        e.SuppressKeyPress = true;
-                        txtidcliente.Text = string.Format("{0:0000}", codigo);
-                        txtnombrecliente.Text = validar.NombreCompleto;
-                        txtemailcliente.Text = validar.Email;
-                        txtdireccioncliente.Text = validar.Direccion;
-                        txttelefonocliente.Text = validar.Telefono;
-                        txttelefono2cliente.Text = validar.Telefono2;
-                        foreach (OpcionCombo oc in cboestado.Items)
+                        if (validar.Estado == "Activo")
                         {
-                            if (oc.Texto == validar.Estado)
+                            e.SuppressKeyPress = true;
+                            txtidcliente.Text = string.Format("{0:0000}", codigo);
+                            txtnombrecliente.Text = validar.NombreCompleto;
+                            txtemailcliente.Text = validar.Email;
+                            txtdireccioncliente.Text = validar.Direccion;
+                            txttelefonocliente.Text = validar.Telefono;
+                            txttelefono2cliente.Text = validar.Telefono2;
+                            foreach (OpcionCombo oc in cboestado.Items)
                             {
-                                int indice_combo = cboestado.Items.IndexOf(oc);
-                                cboestado.SelectedIndex = indice_combo;
-                                break;
+                                if (oc.Texto == validar.Estado)
+                                {
+                                    int indice_combo = cboestado.Items.IndexOf(oc);
+                                    cboestado.SelectedIndex = indice_combo;
+                                    break;
+                                }
                             }
+                            txtidcliente.SelectionStart = txtidcliente.MaxLength;
                         }
-                        txtidcliente.SelectionStart = txtidcliente.MaxLength;
+                        else
+                            MessageBox.Show("El cliente se encuentra inactivo.", "Clientes", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
                     }
                     else
                     {

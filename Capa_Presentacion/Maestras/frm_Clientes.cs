@@ -57,7 +57,12 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 cboestado.ValueMember = "IdPos";
                 cboestado.SelectedIndex = -1;
 
-                txtidcliente.ReadOnly = false;
+                //Inhabilitar Controles
+                txtidcliente.Select();
+                cboestado.Enabled = false;
+                btnguardar.Enabled = false;
+
+
                 txtnombrecliente.ReadOnly = false;
                 txtemailcliente.ReadOnly = false;
                 txtdireccioncliente.ReadOnly = false;
@@ -75,6 +80,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         private void frm_Clientes_Load(object sender, EventArgs e)
         {
             CargarDatos();
+           
         }
 
         #region Click
@@ -92,7 +98,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     btnborrar.Enabled = true;
                     txtidcliente.Enabled = true;
                     txtidcliente.BackColor = Color.White;
-                    txtidcliente.ReadOnly = true;
                     txtnombrecliente.ReadOnly = true;
                     txtemailcliente.ReadOnly = true;
                     txtdireccioncliente.ReadOnly = true;
@@ -126,7 +131,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     btnguardar.Enabled = true;
                     cboestado.SelectedIndex = 0;
 
-                    txtidcliente.ReadOnly = false;
                     txtnombrecliente.ReadOnly = false;
                     txtemailcliente.ReadOnly = false;
                     txtdireccioncliente.ReadOnly = false;
@@ -174,7 +178,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         cboestado.Enabled = true;
                         txtidcliente.BackColor = Color.White;
 
-                        txtidcliente.ReadOnly = true;
                         txtnombrecliente.ReadOnly = true;
                         txtemailcliente.ReadOnly = true;
                         txtdireccioncliente.ReadOnly = true;
@@ -202,7 +205,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         cboestado.Enabled = true;
                         txtidcliente.BackColor = Color.White;
 
-                        txtidcliente.ReadOnly = true;
                         txtnombrecliente.ReadOnly = true;
                         txtemailcliente.ReadOnly = true;
                         txtdireccioncliente.ReadOnly = true;
@@ -242,7 +244,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     cboestado.Enabled = false;
                     txtidcliente.BackColor = Color.White;
 
-                    txtidcliente.ReadOnly = true;
                     txtnombrecliente.ReadOnly = true;
                     txtemailcliente.ReadOnly = true;
                     txtdireccioncliente.ReadOnly = true;
@@ -281,7 +282,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         cboestado.Enabled = true;
                         txtidcliente.BackColor = Color.Khaki;
 
-                        txtidcliente.ReadOnly = false;
                         txtnombrecliente.ReadOnly = false;
                         txtemailcliente.ReadOnly = false;
                         txtdireccioncliente.ReadOnly = false;
@@ -372,7 +372,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         cboestado.Enabled = false;
                         dgv_rutascliente.Rows.Clear();
 
-                        txtidcliente.ReadOnly = true;
+                        
                         txtnombrecliente.ReadOnly = true;
                         txtemailcliente.ReadOnly = true;
                         txtdireccioncliente.ReadOnly = true;
@@ -478,7 +478,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                         txtidcliente.SelectionStart = txtidcliente.MaxLength;
                         dgv_rutascliente.Rows.Clear();
 
-                        txtidcliente.ReadOnly = true;
                         txtnombrecliente.ReadOnly = true;
                         txtemailcliente.ReadOnly = true;
                         txtdireccioncliente.ReadOnly = true;

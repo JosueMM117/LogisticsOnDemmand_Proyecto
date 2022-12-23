@@ -228,6 +228,43 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
             }
         }
 
+        /// <summary>
+        /// Procesar Ruta
+        /// </summary>
+        /// <param name="objruta"></param>
+        /// <returns>Retorna True, si el registro fue procesado correctamente, en caso contrario devuelve false.</returns>
+        public async Task<bool> procesar_ruta(CM_Rutas objruta)
+        {
+            try
+            {
+                var datos_ruta = (await FireBase_Connect
+                    .Child("Rutas")
+                    .OnceAsync<CM_Rutas>()).Where(b => b.Object.IdRuta == objruta.IdRuta).FirstOrDefault();
+
+                await FireBase_Connect
+                   .Child("Rutas")
+                   .Child(datos_ruta.Key)
+                   .PutAsync(new CM_Rutas()
+                   {
+                       IdRuta = datos_ruta.Object.IdRuta,
+                       Titulo = datos_ruta.Object.Titulo,
+                       Concepto = datos_ruta.Object.Concepto,
+                       Fecha_Entrega = datos_ruta.Object.Fecha_Entrega,
+                       Tiempo_Ruta = datos_ruta.Object.Tiempo_Ruta,
+                       Cargas = datos_ruta.Object.Cargas,
+                       Comentarios = datos_ruta.Object.Comentarios,
+                       Prioridad = datos_ruta.Object.Prioridad,
+                       Estado = objruta.Estado,
+                       FechaRegistro = datos_ruta.Object.FechaRegistro
+                   });
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
         #endregion
 
         #region Eliminar
