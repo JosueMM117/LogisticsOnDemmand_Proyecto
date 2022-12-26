@@ -68,7 +68,13 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Negocio
         {
             try
             {
-                return await actualizar_informacionruta(objruta, detalleruta);
+                if (objruta.Fecha_Entrega.Date > DateTime.Now)
+                {
+                    MessageBox.Show("No puede crear una ruta con fecha futura.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                else
+                    return await actualizar_informacionruta(objruta, detalleruta);
             }
             catch (Exception ex)
             {

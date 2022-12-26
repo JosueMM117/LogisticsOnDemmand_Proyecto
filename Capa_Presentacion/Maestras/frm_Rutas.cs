@@ -50,18 +50,17 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         public void Limpiar()
         {
             txtidruta.Select();
-            txtidruta.Clear();
-            txtidvehiculo.Clear();
-            txtidcliente.Clear();
-            txttitulo.Clear();
-            txtconcepto.Clear();
-            txtcomentarios.Clear();
-            txttiemporuta.Clear();
-            txtestado.Clear();
-            nupcargas.Value = 1;
-            cboprioridad.SelectedIndex = -1;
-            //cboestado.SelectedIndex = -1;
-            dgvdetalleruta.Rows.Clear();
+            foreach (Control controles in pnlcontenedordatosruta.Controls)
+            {
+                if (controles is TextBox)
+                {
+                    ((TextBoxBase)controles).Clear();
+                    txtidruta.Clear();
+                    nupcargas.Value = 1;
+                    cboprioridad.SelectedIndex = -1;
+                    dgvdetalleruta.Rows.Clear();
+                }
+            }
             foreach (Control controles in gbdatosvehiculo.Controls)
             {
                 if (controles is Label)
@@ -103,7 +102,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         {
             try
             {
-                if (cboestado.SelectedIndex == 1)
+                if (txtestado.Text == "Completada")
                 {
                     btneditar.Enabled = false;
                     btnborrar.Enabled = false;
@@ -485,44 +484,39 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 else
                 {
                     mensaje = string.Empty;
-                    if (objruta.Fecha_Entrega.Date > DateTime.Now)
-                        mensaje += MessageBox.Show("No puede crear una ruta con fecha futura.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    else
+                    bool respuesta = await cn_rutas.Actualizar_InformacionRuta(objruta, detalle_ruta);
+                    if (respuesta == true)
                     {
-                        bool respuesta = await cn_rutas.Actualizar_InformacionRuta(objruta, detalle_ruta);
-                        if (respuesta == true)
+                        btnadicionar.IconChar = IconChar.FileCirclePlus;
+                        btnadicionar.Text = "Adicionar";
+                        btneditar.IconChar = IconChar.FilePen;
+                        btneditar.Text = "Editar";
+                        btnguardar.Enabled = false;
+                        btneditar.Enabled = true;
+                        btnborrar.Enabled = true;
+                        btnadicionar.Enabled = true;
+                        btnprocesar.Enabled = true;
+                        btnbuscar.Enabled = true;
+                        txtidruta.Enabled = true;
+                        cboestado.Enabled = false;
+                        dgvdetalleruta.Enabled = false;
+                        btnbuscarvehiculo.Enabled = false;
+                        btnbuscarcliente.Enabled = false;
+                        txtidvehiculo.Enabled = false;
+                        txtidruta.BackColor = Color.White;
+                        txtidvehiculo.BackColor = Color.White;
+                        txtidcliente.BackColor = Color.White;
+                        foreach (Control controles in gbclientes.Controls)
                         {
-                            btnadicionar.IconChar = IconChar.FileCirclePlus;
-                            btnadicionar.Text = "Adicionar";
-                            btneditar.IconChar = IconChar.FilePen;
-                            btneditar.Text = "Editar";
-                            btnguardar.Enabled = false;
-                            btneditar.Enabled = true;
-                            btnborrar.Enabled = true;
-                            btnadicionar.Enabled = true;
-                            btnprocesar.Enabled = true;
-                            btnbuscar.Enabled = true;
-                            txtidruta.Enabled = true;
-                            cboestado.Enabled = false;
-                            dgvdetalleruta.Enabled = false;
-                            btnbuscarvehiculo.Enabled = false;
-                            btnbuscarcliente.Enabled = false;
-                            txtidvehiculo.Enabled = false;
-                            txtidruta.BackColor = Color.White;
-                            txtidvehiculo.BackColor = Color.White;
-                            txtidcliente.BackColor = Color.White;
-                            foreach (Control controles in gbclientes.Controls)
+                            if (controles is TextBox)
                             {
-                                if (controles is TextBox)
-                                {
-                                    controles.Enabled = false;
-                                }
+                                controles.Enabled = false;
                             }
                         }
-                        else
-                            MessageBox.Show("No se pudieron actualizar las informaciones.\n \n Proceso Candelado.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }  
-                }
+                    }
+                    else
+                        MessageBox.Show("No se pudieron actualizar las informaciones.\n \n Proceso Candelado.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }  
             }
             catch (Exception ex)
             {
@@ -544,7 +538,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                             IdRuta = Convert.ToInt32(txtidruta.Text),
                             Estado = "Completada"
                         };
-                        bool respuesta = await cn_rutas.procesar_ruta(objruta_completada);
+                        bool respuesta = await cn_rutas.Procesar_Ruta(objruta_completada);
                         if (respuesta == true)
                         {
                             btneditar.Enabled = false;
@@ -560,7 +554,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                             txtestado.Text = objruta_completada.Estado;
                         }
                         else
-                            MessageBox.Show("No se pudo procesar la ruta. \n \n Proceso candelado.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("No se pudo procesar la ruta. \n \n Proceso cancelado.", "Rutas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
@@ -813,6 +807,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     if (respuesta == true)
                     {
                         Limpiar();
+                        btneditar.Enabled = false;
+                        btnborrar.Enabled = false;
+                        btnprocesar.Enabled = false;
                         dgvdetalleruta.Rows.Clear();
                     }
                 }
@@ -1197,6 +1194,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                                 break;
                             }
                         }
+                        ActivarProcesado();
                         //Detalle Ruta
                         dgvdetalleruta.Rows.Clear();
                         List<CM_DetalleRuta> BuscarDatosDetalle = await cn_rutas.Listar_DetalleRutas();
@@ -1224,9 +1222,7 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                             }
                         }
                         txtidruta.SelectionStart = txtidruta.MaxLength;
-                        ActivarProcesado();
                         btnprocesar.Enabled = true;
-                        //CargarMapa();
                     }
                     else
                     {

@@ -32,12 +32,16 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
             {
                 if (controls is TextBox)
                 {
-                    controls.Text = "";
-                    txtidcliente.Clear();
-                    txtidcliente.Select();
-                    cboestado.SelectedIndex = -1;
+                    if (((TextBoxBase)controls).ReadOnly == true)
+                        ((TextBoxBase)controls).ReadOnly = false;
+                    else
+                        ((TextBoxBase)controls).ReadOnly = true;
+                    controls.Text = string.Empty;
                 }
-            } 
+            }
+            txtidcliente.Select();
+            txtidcliente.Clear();
+            cboestado.SelectedIndex = -1;
         }
         public async void CargarDatos()
         {
@@ -62,12 +66,11 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                 cboestado.Enabled = false;
                 btnguardar.Enabled = false;
 
-
-                txtnombrecliente.ReadOnly = false;
-                txtemailcliente.ReadOnly = false;
-                txtdireccioncliente.ReadOnly = false;
-                txttelefonocliente.ReadOnly = false;
-                txttelefonocliente.ReadOnly = false;
+                txtnombrecliente.ReadOnly = true;
+                txtemailcliente.ReadOnly = true;
+                txtdireccioncliente.ReadOnly = true;
+                txttelefonocliente.ReadOnly = true;
+                txttelefono2cliente.ReadOnly = true;
             }
             catch (Exception ex)
             {
@@ -80,7 +83,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
         private void frm_Clientes_Load(object sender, EventArgs e)
         {
             CargarDatos();
-           
         }
 
         #region Click
@@ -93,16 +95,12 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     btnadicionar.IconChar = IconChar.FileCirclePlus;
                     btnadicionar.Text = "Adicionar";
                     btnguardar.Enabled = false;
-                    btneditar.Enabled = true;
+                    btneditar.Enabled = false;
                     btnbuscar.Enabled = true;
-                    btnborrar.Enabled = true;
+                    btnborrar.Enabled = false;
                     txtidcliente.Enabled = true;
                     txtidcliente.BackColor = Color.White;
-                    txtnombrecliente.ReadOnly = true;
-                    txtemailcliente.ReadOnly = true;
-                    txtdireccioncliente.ReadOnly = true;
-                    txttelefonocliente.ReadOnly = true;
-                    txttelefonocliente.ReadOnly = true;
+
                     Limpiar();
                 }
                 else
@@ -130,12 +128,6 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     txtidcliente.BackColor = Color.LightGreen;
                     btnguardar.Enabled = true;
                     cboestado.SelectedIndex = 0;
-
-                    txtnombrecliente.ReadOnly = false;
-                    txtemailcliente.ReadOnly = false;
-                    txtdireccioncliente.ReadOnly = false;
-                    txttelefonocliente.ReadOnly = false;
-                    txttelefonocliente.ReadOnly = false;
                 }
             }
             catch (Exception ex)
@@ -337,6 +329,8 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                     if (respuesta == true)
                     {
                         Limpiar();
+                        btneditar.Enabled = false;
+                        btnborrar.Enabled = false;
                     }
                 }
             }
@@ -370,14 +364,9 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                             }
                         }
                         cboestado.Enabled = false;
+                        btneditar.Enabled = true;
+                        btnborrar.Enabled = true;
                         dgv_rutascliente.Rows.Clear();
-
-                        
-                        txtnombrecliente.ReadOnly = true;
-                        txtemailcliente.ReadOnly = true;
-                        txtdireccioncliente.ReadOnly = true;
-                        txttelefonocliente.ReadOnly = true;
-                        txttelefonocliente.ReadOnly = true;
                     }
                 }
             }
@@ -475,20 +464,18 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Maestras
                                 break;
                             }
                         }
+                        btneditar.Enabled = true;
+                        btnborrar.Enabled = true;
                         txtidcliente.SelectionStart = txtidcliente.MaxLength;
                         dgv_rutascliente.Rows.Clear();
-
-                        txtnombrecliente.ReadOnly = true;
-                        txtemailcliente.ReadOnly = true;
-                        txtdireccioncliente.ReadOnly = true;
-                        txttelefonocliente.ReadOnly = true;
-                        txttelefonocliente.ReadOnly = true;
                     }
                     else
                     {
                         MessageBox.Show("La cliente no existe", "Clientes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         txtidcliente.SelectAll();
                         dgv_rutascliente.Rows.Clear();
+                        btneditar.Enabled = false;
+                        btnborrar.Enabled = false;
                         Limpiar();
                     }
                 }
