@@ -13,8 +13,8 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Datos
 {
     public class CD_ConexionFireBase
     {
-        public static FirebaseClient FireBase_Connect = new FirebaseClient("https://logisticondemmand-default-rtdb.firebaseio.com/");
-        public static string WebApiKey = "AIzaSyA5wKkf-pIKnit4dDcHYRIZZzrgp2SvoVQ";
+        public static FirebaseClient FireBase_Connect = new FirebaseClient("link de su base de datos");
+        public static string WebApiKey = "Token de la cuenta";
         //public IFirebaseConfig config = new FirebaseConfig
         //{
             
