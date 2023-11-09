@@ -55,15 +55,15 @@ namespace LogisticsOnDemmand_Proyecto.Capa_Presentacion.Login
                 if (validar == null)
                 {
                     string nombreusaurio = string.Empty;                   //txtemail.Text
-                    foreach (var item in listausuario.Where(b=> b.Email == "mjosue615@gmail.com"))
+                    foreach (var item in listausuario.Where(b=> b.Email == txtemail.Text))
                     {
                         nombreusaurio = item.NombreCompleto.ToString();
                         break;
                     }
                     var objusuario = new CM_Usuarios()
                     {
-                        Email = "mjosue615@gmail.com",
-                        Clave = "123456@",
+                        Email = txtemail.Text,
+                        Clave = txtclave.Text,
                         NombreCompleto = nombreusaurio
                     };
                     var autenticacion = new FirebaseAuthProvider(new FirebaseConfig(CD_ConexionFireBase.WebApiKey)); //txtclave.Text.ToString()
